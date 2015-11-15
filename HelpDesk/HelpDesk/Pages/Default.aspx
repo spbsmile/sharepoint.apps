@@ -14,6 +14,7 @@
 
     <!-- Добавьте свои стили CSS в следующий файл -->
     <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
+    <link rel="Stylesheet" type =" text/css" href="../Content/bootstrap-scope.css"/>
 
     <!-- Добавьте свой код JavaScript в следующий файл -->
     <script type="text/javascript" src="../Scripts/App.js"></script>
@@ -30,8 +31,18 @@
     <div>
         <p id="message">
             <!-- При выполнении приложения следующее содержимое будет заменено именем пользователя - см. App.js -->
-            initializing...
+             initializing...
         </p>
+    </div>
+
+    <div class="bootstrap-scope">
+        <div class="bootstrap-html">
+            <div class="bootstrap-body">
+                <textarea class="form-control" rows="3">
+                    
+                </textarea>
+            </div>
+        </div>
     </div>
 
 </asp:Content>

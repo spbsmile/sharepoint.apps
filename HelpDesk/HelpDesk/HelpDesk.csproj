@@ -45,6 +45,8 @@
     <None Include="Pages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{da89ef4a-5066-4a69-9d8d-87d7bfed21c5}</SharePointProjectItemId>
     </None>
+    <Content Include="Content\bootstrap-scope.css" />
+    <Content Include="Content\bootstrap-scope.min.css" />
     <Content Include="Pages\Elements.xml" />
     <Content Include="Pages\Default.aspx" />
   </ItemGroup>
