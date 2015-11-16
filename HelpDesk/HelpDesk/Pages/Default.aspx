@@ -2,10 +2,6 @@
 
 <%@ Page Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" MasterPageFile="~masterurl/default.master" Language="C#" %>
 
-<%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-
 <%-- Разметка и скрипт из следующего элемента Content будут помещены в элемент <head> страницы --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
     <script type="text/javascript" src="../Scripts/jquery-1.10.2.min.js"></script>
@@ -13,8 +9,8 @@
     <script type="text/javascript" src="/_layouts/15/sp.js"></script>
 
     <!-- Добавьте свои стили CSS в следующий файл -->
-    <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
-    <link rel="Stylesheet" type =" text/css" href="../Content/bootstrap-scope.css"/>
+    <link rel="Stylesheet" type="text/css" href="../Content/App.css"/>
+    <link href="../Content/bootstrap-scope.min.css" rel="stylesheet"/>
 
     <!-- Добавьте свой код JavaScript в следующий файл -->
     <script type="text/javascript" src="../Scripts/App.js"></script>
@@ -22,25 +18,63 @@
 
 <%-- Разметка из следующего элемента Content будет помещена в элемент TitleArea страницы --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server">
-    Page Title
+    Заявка в техподдержку
 </asp:Content>
 
 <%-- Разметка и скрипт из следующего элемента Content будут помещены в элемент <body> страницы --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
 
-    <div>
-        <p id="message">
-            <!-- При выполнении приложения следующее содержимое будет заменено именем пользователя - см. App.js -->
-             initializing...
-        </p>
-    </div>
-
     <div class="bootstrap-scope">
         <div class="bootstrap-html">
             <div class="bootstrap-body">
-                <textarea class="form-control" rows="3">
+                <form  class="form-horizontal" style="width: 50%;">
+                    <label>Пожалуйста, заполните форму</label>
+                      <br><br>
                     
-                </textarea>
+                    <div class="form-group">
+                        <label for="title">Название</label>
+                        <div>
+                            <input style="width: 300px;" type="text" class="form-control" id="title">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Выберите категорию</label>
+                        <div>
+                            <select style="width: 300px;" id="category" class="form-control">
+                                <option>Починка оборудования</option>
+                                <option>Починка ПО</option>
+                                <option>Интернет</option>
+                                <option>Lync</option>
+                                <option>Документы</option>
+                                <option>Другое</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="discription">Описание</label>
+                        <div>
+                            <textarea style="height: 100px; width: 600px;" class="form-control" id="discription" rows="3"></textarea>
+                        </div>
+                    
+                    </div>
+                    
+                     <div class="form-group">
+                        <label for="howfast"> Определите срочность:</label>
+                        <div>
+                            <select style="width: 300px;" id="howfast" class="form-control">
+                                <option>в течении дня</option>
+                                <option>в течении 1 часа</option>
+                                <option>в течении 2 часов</option>
+                                <option>в течении 4 часов</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </form>
+                
+                 <input type="button" class="btn btn-default" OnClick="handleClick();" runat="server" value="Отправить"/>
             </div>
         </div>
     </div>

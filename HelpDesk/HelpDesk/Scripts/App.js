@@ -24,3 +24,15 @@ function onGetUserNameSuccess() {
 function onGetUserNameFail(sender, args) {
     alert('Failed to get user name. Error:' + args.get_message());
 }
+
+function handleClick() {
+    //console.log(input.innerText);
+    //console.log(input.innerHTML);
+    var text = $("#2").val();
+    console.log(text);
+    alert(text);
+    //var text = $("#2").val();
+    //console.log(text);
+    //console.log(selected.options[selected.selectedIndex]);
+    //alert("sdfds");
+}
