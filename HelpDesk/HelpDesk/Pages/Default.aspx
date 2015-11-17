@@ -27,54 +27,68 @@
     <div class="bootstrap-scope">
         <div class="bootstrap-html">
             <div class="bootstrap-body">
-                <form  class="form-horizontal" style="width: 50%;">
-                    <label>Пожалуйста, заполните форму</label>
-                      <br><br>
-                    
-                    <div class="form-group">
-                        <label for="title">Название</label>
-                        <div>
-                            <input style="width: 300px;" type="text" class="form-control" id="title">
-                        </div>
-                    </div>
+                <!-- <div class="container">-->
+                <label>Пожалуйста, заполните форму</label>
+                <br><br>
+                <form>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="category">Выберите категорию</label>
+                                <div>
+                                    <select id="category" class="form-control">
+                                        <option>Починка оборудования</option>
+                                        <option>Починка ПО</option>
+                                        <option>Интернет</option>
+                                        <option>Lync</option>
+                                        <option>Документы</option>
+                                        <option>Другое</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="category">Выберите категорию</label>
-                        <div>
-                            <select style="width: 300px;" id="category" class="form-control">
-                                <option>Починка оборудования</option>
-                                <option>Починка ПО</option>
-                                <option>Интернет</option>
-                                <option>Lync</option>
-                                <option>Документы</option>
-                                <option>Другое</option>
-                            </select>
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <label for="discription">Описание</label>
+                                <div>
+                                    <textarea style="height: 100px;" class="form-control" id="discription" rows="3"></textarea>
+                                </div>
+                            </div>
 
-                    <div class="form-group">
-                        <label for="discription">Описание</label>
-                        <div>
-                            <textarea style="height: 100px; width: 600px;" class="form-control" id="discription" rows="3"></textarea>
+                            <div class="form-group">
+                                <label for="howfast"> Определите срочность:</label>
+                                <div>
+                                    <select id="howfast" class="form-control">
+                                        <option>в течении дня</option>
+                                        <option>в течении 1 часа</option>
+                                        <option>в течении 2 часов</option>
+                                        <option>в течении 4 часов</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <input id="Button1" type="button" class="btn btn-default" OnClick="processSendEmails();" runat="server" value="Отправить"/>
+                            <input id="Button2" type="button" class="btn btn-default" OnClick="getEmailCurrentUser();" runat="server" value="Получить текущий email"/>
+                            <input id="Button3" type="button" class="btn btn-default" OnClick="anotherAttempt();" runat="server" value="Отправить"/>
                         </div>
-                    
-                    </div>
-                    
-                     <div class="form-group">
-                        <label for="howfast"> Определите срочность:</label>
-                        <div>
-                            <select style="width: 300px;" id="howfast" class="form-control">
-                                <option>в течении дня</option>
-                                <option>в течении 1 часа</option>
-                                <option>в течении 2 часов</option>
-                                <option>в течении 4 часов</option>
-                            </select>
-                        </div>
-                    </div>
 
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    FAQ:
+                                </label>
+                                <div class="panel-footer">
+                                    <p>
+                                        Нет страшнее зверя в сибирских лесах, чем разъяренный заяц-мутант.
+                                        Вы видели, какие у него зубы? О, даже медведь боится этих зубов! А, как известно,
+                                        медведи больше ничего не боятся.
+                                    </p>
+                                    <p>
+                                        Если у вас что-то сломалось - купите кофе.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
-                
-                 <input type="button" class="btn btn-default" OnClick="handleClick();" runat="server" value="Отправить"/>
             </div>
         </div>
     </div>
