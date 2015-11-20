@@ -6,5 +6,18 @@
     <File Path="Scripts\jquery-1.10.2.min.js" Url="Scripts/jquery-1.10.2.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\jquery-1.10.2.js" Url="Scripts/jquery-1.10.2.js" ReplaceContent="TRUE" />
     <File Path="Scripts\jquery-1.10.2.intellisense.js" Url="Scripts/jquery-1.10.2.intellisense.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\microsoft-ajax\microsoft.ajax.d.ts" Url="Scripts/typings/microsoft-ajax/microsoft.ajax.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\sharepoint\SharePoint.d.ts" Url="Scripts/typings/sharepoint/SharePoint.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\jquery\jquery.d.ts" Url="Scripts/typings/jquery/jquery.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\angularjs\angular-sanitize.d.ts" Url="Scripts/typings/angularjs/angular-sanitize.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\angularjs\angular-route.d.ts" Url="Scripts/typings/angularjs/angular-route.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\angularjs\angular-resource.d.ts" Url="Scripts/typings/angularjs/angular-resource.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\angularjs\angular-mocks.d.ts" Url="Scripts/typings/angularjs/angular-mocks.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\angularjs\angular-cookies.d.ts" Url="Scripts/typings/angularjs/angular-cookies.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\angularjs\angular-animate.d.ts" Url="Scripts/typings/angularjs/angular-animate.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\angularjs\angular.d.ts" Url="Scripts/typings/angularjs/angular.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\knockout\knockout.d.ts" Url="Scripts/typings/knockout/knockout.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\typescripttemplates\typescripttemplates.d.ts" Url="Scripts/typings/typescripttemplates/typescripttemplates.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typescripttemplates.js" Url="Scripts/typescripttemplates.js" ReplaceContent="TRUE" />
   </Module>
 </Elements>

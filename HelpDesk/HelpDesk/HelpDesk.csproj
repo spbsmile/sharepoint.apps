@@ -60,6 +60,19 @@
     <Content Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\typescripttemplates.js" />
+    <Content Include="Scripts\typings\angularjs\angular-animate.d.ts" />
+    <Content Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
+    <Content Include="Scripts\typings\angularjs\angular-mocks.d.ts" />
+    <Content Include="Scripts\typings\angularjs\angular-resource.d.ts" />
+    <Content Include="Scripts\typings\angularjs\angular-route.d.ts" />
+    <Content Include="Scripts\typings\angularjs\angular-sanitize.d.ts" />
+    <Content Include="Scripts\typings\angularjs\angular.d.ts" />
+    <Content Include="Scripts\typings\jquery\jquery.d.ts" />
+    <Content Include="Scripts\typings\knockout\knockout.d.ts" />
+    <Content Include="Scripts\typings\microsoft-ajax\microsoft.ajax.d.ts" />
+    <Content Include="Scripts\typings\sharepoint\SharePoint.d.ts" />
+    <Content Include="Scripts\typings\typescripttemplates\typescripttemplates.d.ts" />
     <Content Include="Scripts\_references.js" />
   </ItemGroup>
   <ItemGroup>
