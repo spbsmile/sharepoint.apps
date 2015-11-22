@@ -1,147 +1,123 @@
-﻿'use strict';
+﻿"use strict";
 
-var context = SP.ClientContext.get_current();
-var user = context.get_web().get_currentUser();
+$(document).ready(function() {
 
-// Этот код, запускаемый после готовности модели DOM, создает объект контекста, который требуется для использования объектной модели SharePoint
-$(document).ready(function () {
-    getUserName();
+    var listName = "Movies";
+    var hostweburl = decodeURIComponent(getQueryStringParameter("SPHostUrl"));
+    var appweburl = decodeURIComponent(getQueryStringParameter("SPAppWebUrl"));
+
+    var scriptbase = hostweburl + "/_layouts/15/";
+    
+    SP.SOD.registerSod('sp.requestExecutor.js', '/_layout/15/sp.requestExecutor.js');
+    SP.SOD.executeFunc('sp.requestExecutor.js', 'SP.RequestExecutor', function () {
+
+        $.getScript(scriptbase + "SP.RequestExecutor.js",
+        function () {
+            $.getScript(scriptbase + "SP.js",
+                function() { $.getScript(scriptbase + "SP.RequestExecutor.js") } //, execCrossDomainRequest); }
+            );
+        }
+    );
+
+    });
+
+  
+
+    // Use cross-domain library to interact with more than one domain
+    //in your remote add-in page through a proxy
+   // function execCrossDomainRequest() {
+      //  executor = new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl);
+   // }
+    console.log(_spPageContextInfo.siteAbsoluteUrl + " _spPageContextInfo.siteAbsoluteUrl ");
+
+    var context;
+    var factory;
+    var appContextSite;
+
+    context = new SP.ClientContext(appweburl);
+    //factory = new SP.ProxyWebRequestExecutorFactory(appweburl);
+    //context.set_webRequestExecutorFactory(factory);
+    appContextSite = new SP.AppContextSite(context, hostweburl);
+
+    $("#showButton").click(function () {
+        var executor = new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl);
+        console.log(GetItemTypeForListName(listName) + " GetItemTypeForListName");
+
+        var data = {
+            __metadata: {
+                type: GetItemTypeForListName(listName),
+                "Title": "NameNewItem"
+            }
+        };
+
+        data = JSON.stringify(data);
+
+        executor.executeAsync(
+            {
+                url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items",
+                method: "POST",
+                contentType: "application/json;odata=verbose",
+                body: data,
+                headers: {
+                    "Accept": "application/json;odata=verbose",
+                    "X-RequestDigest": jQuery("#__REQUESTDIGEST").val()
+                },
+                success: function(data) { console.log("y") },
+                error: function(data) { console.log("n") }
+            }
+        );
+
+
+    });
+
+    $("#showButton2").click(function () {
+
+        console.log(GetItemTypeForListName(listName) + " GetItemTypeForListName");
+
+        var itemType = GetItemTypeForListName(listName);
+
+        var item = {
+            "__metadata": { "type": itemType },
+            "Title": "dgfd"
+        };
+
+        console.log(_spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items");
+        $.ajax({
+            url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items",
+            
+            type: "POST",
+            contentType: "application/json;odata=verbose",
+            data: JSON.stringify(item),
+            headers: {
+                "Accept": "application/json;odata=verbose",
+                "X-RequestDigest": $("#__REQUESTDIGEST").val()
+            },
+            success: function(data) {
+                console.log("y");
+            },
+            error: function(data) {
+                console.log("sfsd");
+            }
+        });
+    });
+
+   
 });
 
-// Эта функция подготавливает, загружает и затем выполняет запрос SharePoint для получения сведений о текущих пользователях
-function getUserName() {
-    context.load(user);
-    context.executeQueryAsync(onGetUserNameSuccess, onGetUserNameFail);
+
+
+//function to get a parameter value by a specific key
+function getQueryStringParameter(urlParameterKey) {
+    var params = document.URL.split("?")[1].split("&");
+    var strParams = "";
+    for (var i = 0; i < params.length; i = i + 1) {
+        var singleParam = params[i].split("=");
+        if (singleParam[0] == urlParameterKey)
+            return decodeURIComponent(singleParam[1]);
+    }
 }
 
-// Эта функция выполняется, если приведенный выше вызов был успешным
-// Она заменяет содержимое элемента message именем пользователя
-function onGetUserNameSuccess() {
-    $('#message').text('Hello ' + user.get_title());
-}
-
-// Эта функция выполняется при сбое приведенного выше вызова
-function onGetUserNameFail(sender, args) {
-    alert('Failed to get user name. Error:' + args.get_message());
-}
-
-function handleClick() {
-    var text = $("#2").val();
-    console.log(text);
-    alert(text);
-}
-
-function processSendEmails(parameters) {
-    var from = 'M_Zabiyakin@rivs.ru',
-        to = 'M_Zabiyakin@rivs.ru',
-        body = 'Hello World Body',
-        subject = 'Hello World Subject';
-
-    sendEmails(from, to, body, subject);
-}
-
-function sendEmails(from, to, body, subject) {
-    var siteurl = _spPageContextInfo.webServerRelativeUrl;
-    var urlTemplate = siteurl + "/_api/SP.Utilities.Utility.SendEmail";
-    $.ajax({
-        contentType: 'application/json',
-        url: urlTemplate,
-        type: "POST",
-        data: JSON.stringify({
-            'properties': {
-                '__metadata': {
-                    'type': 'SP.Utilities.EmailProperties'
-                },
-                'From': from,
-                'To': {
-                    'results': [to]
-                },
-                'Body': body,
-                'Subject': subject
-            }
-        }),
-        headers: {
-            "Accept": "application/json;odata=verbose",
-            "content-type": "application/json;odata=verbose",
-            "X-RequestDigest": jQuery("#__REQUESTDIGEST").val()
-        },
-        success: function (data) {
-            alert('Email Sent Successfully');
-        },
-        error: function (err) {
-            alert('Error in sending Email: ' + JSON.stringify(err));
-        }
-    });
-}
-
-function getEmailCurrentUser(parameters) {
-    console.log(user.get_email());
-    alert(user.get_email());
-}
-
-function sendEmailAnother(from, to, body, subject) {
-
-    var siteurl = _spPageContextInfo.webServerRelativeUrl;
-
-    var urlTemplate = siteurl + "/_api/SP.Utilities.Utility.SendEmail";
-    console.log(urlTemplate.toString());
-    $.ajax({
-        contentType: 'application/json',
-        url: urlTemplate,
-        type: "POST",
-        data: JSON.stringify({
-            'properties': {
-                '__metadata': { 'type': 'SP.Utilities.EmailProperties' },
-                'From': from,
-                'To': { 'results': [to] },
-                'Body': body,
-                'Subject': subject
-            }
-        }
-      ),
-        headers: {
-            "Accept": "application/json;odata=verbose",
-            "content-type": "application/json;odata=verbose",
-            "X-RequestDigest": $("#__REQUESTDIGEST").val()
-        },
-        success: function (data) {
-            alert("Eposten ble sendt");
-        },
-        error: function (err) {
-            alert(err.responseText);
-            debugger;
-        }
-    });
-}
-
-function anotherAttempt(parameters) {
-    var siteurl = _spPageContextInfo.webServerRelativeUrl;
-
-    var urlTemplate = siteurl + "/_api/SP.Utilities.Utility.SendEmail";
-    console.log(urlTemplate.toString());
-
-    $.ajax({
-        contentType: 'application/json',
-        url: urlTemplate,
-        type: "POST",
-        data: JSON.stringify({
-            'properties': {
-                '__metadata': { 'type': 'SP.Utilities.EmailProperties' },
-                'Body': 'Hello',
-                'To': { 'results': ['M_Zabiyakin@rivs.ru'] },
-                'Subject': "From REST API"
-            }
-        }),
-        headers: {
-            "Accept": "application/json;odata=verbose",
-            "content-type": "application/json;odata=verbose",
-            "X-RequestDigest": $("#__REQUESTDIGEST").val()
-        },
-        success: function (data) {
-            alert("Successful");
-        },
-        error: function (err) {
-            alert(err.responseText);
-        }
-    });
+// Get List Item Type metadata
+function GetItemTypeForListName(name) {
+    return "SP.Data." + name.charAt(0).toUpperCase() + name.split(" ").join("").slice(1) + "ListItem";
 }

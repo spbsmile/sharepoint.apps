@@ -65,6 +65,9 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                   
+                            </div>
                             <input id="Button1" type="button" class="btn btn-default" OnClick="processSendEmails();" runat="server" value="Отправить"/>
                             <input id="Button2" type="button" class="btn btn-default" OnClick="getEmailCurrentUser();" runat="server" value="Получить текущий email"/>
                             <input id="Button3" type="button" class="btn btn-default" OnClick="anotherAttempt();" runat="server" value="Отправить"/>
@@ -76,6 +79,8 @@
                                     FAQ:
                                 </label>
                                 <div class="panel-footer">
+                                    Добро пожаловать на страницу техподдержки.
+                                    <p>Через обратную форму Вы можете отправить нам заявку.</p>
                                     <p>
                                         Интсрукция по 1 пункту.
                                     </p>
@@ -93,7 +98,24 @@
                         </div>
                     </div>
                 </form>
-            </div>
+
+            
+                </div>
+                
+                <div id="test">
+                    
+                </div>
+            
+            <div>
+         <input id="showButton" type="button" value="Show Movies2" />
+                
+                 <input id="showButton2" type="button" value="Movies2 ajax" />
+    </div>
+
+    <div id="resultsDiv">
+    </div>
+
+            
         </div>
     </div>
 
