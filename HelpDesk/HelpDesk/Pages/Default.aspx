@@ -5,6 +5,7 @@
 <%-- Разметка и скрипт из следующего элемента Content будут помещены в элемент <head> страницы --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
     <script type="text/javascript" src="../Scripts/jquery-1.10.2.min.js"></script>
+     <script type="text/javascript" src="../Scripts/moment.min.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.js"></script>
 
@@ -55,22 +56,21 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="howfast"> Определите срочность:</label>
+                                <label for="urgentlyValue"> Определите срочность:</label>
                                 <div>
-                                    <select id="howfast" class="form-control">
-                                        <option>в течении дня</option>
-                                        <option>в течении 1 часа</option>
-                                        <option>в течении 2 часов</option>
-                                        <option>в течении 4 часов</option>
+                                    <select id="urgentlyValue" class="form-control">
+                                        <option>В течении дня</option>
+                                        <option>В течении 1 часа</option>
+                                        <option>В течении 2 часов</option>
+                                        <option>В течении 4 часов</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                   
+
                             </div>
-                            <input id="Button1" type="button" class="btn btn-default" OnClick="processSendEmails();" runat="server" value="Отправить"/>
+                            <input id="sendTicket" type="button" class="btn btn-default" value="Отправить"/>
                             <input id="Button2" type="button" class="btn btn-default" OnClick="getEmailCurrentUser();" runat="server" value="Получить текущий email"/>
-                            <input id="Button3" type="button" class="btn btn-default" OnClick="anotherAttempt();" runat="server" value="Отправить"/>
                         </div>
 
                         <div class="col-md-4">
@@ -82,40 +82,25 @@
                                     Добро пожаловать на страницу техподдержки.
                                     <p>Через обратную форму Вы можете отправить нам заявку.</p>
                                     <p>
-                                        Интсрукция по 1 пункту.
+                                        Инструкция по 1 пункту.
                                     </p>
                                     <p>
-                                        Интсрукция по 2 пункту.
+                                        Инструкция по 2 пункту.
                                     </p>
                                     <p>
-                                        Интсрукция по 3 пункту.
+                                        Инструкция по 3 пункту.
                                     </p>
                                     <p>
-                                        Интсрукция по 4 пункту.
+                                        Инструкция по 4 пункту.
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
-
-            
-                </div>
-                
-                <div id="test">
-                    
-                </div>
-            
+            </div>
             <div>
-         <input id="showButton" type="button" value="Show Movies2" />
-                
-                 <input id="showButton2" type="button" value="Movies2 ajax" />
-    </div>
-
-    <div id="resultsDiv">
-    </div>
-
-            
+            </div>
         </div>
     </div>
 

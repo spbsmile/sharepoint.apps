@@ -1,90 +1,40 @@
 ﻿"use strict";
 
-$(document).ready(function() {
+var listName = "Tickets";
+var listGuid = "4f71156b-0221-45e8-8166-7ccca783813f";
+var itemType;
 
-    var listName = "Movies";
+$(document).ready(function () {
+
+    itemType = GetItemTypeForListName(listName);
     var hostweburl = decodeURIComponent(getQueryStringParameter("SPHostUrl"));
-    var appweburl = decodeURIComponent(getQueryStringParameter("SPAppWebUrl"));
-
     var scriptbase = hostweburl + "/_layouts/15/";
     
     SP.SOD.registerSod('sp.requestExecutor.js', '/_layout/15/sp.requestExecutor.js');
     SP.SOD.executeFunc('sp.requestExecutor.js', 'SP.RequestExecutor', function () {
-
         $.getScript(scriptbase + "SP.RequestExecutor.js",
         function () {
             $.getScript(scriptbase + "SP.js",
-                function() { $.getScript(scriptbase + "SP.RequestExecutor.js") } //, execCrossDomainRequest); }
+                function() { $.getScript(scriptbase + "SP.RequestExecutor.js") } 
             );
         }
     );
 
     });
 
-  
-
-    // Use cross-domain library to interact with more than one domain
-    //in your remote add-in page through a proxy
-   // function execCrossDomainRequest() {
-      //  executor = new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl);
-   // }
-    console.log(_spPageContextInfo.siteAbsoluteUrl + " _spPageContextInfo.siteAbsoluteUrl ");
-
-    var context;
-    var factory;
-    var appContextSite;
-
-    context = new SP.ClientContext(appweburl);
-    //factory = new SP.ProxyWebRequestExecutorFactory(appweburl);
-    //context.set_webRequestExecutorFactory(factory);
-    appContextSite = new SP.AppContextSite(context, hostweburl);
-
-    $("#showButton").click(function () {
-        var executor = new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl);
-        console.log(GetItemTypeForListName(listName) + " GetItemTypeForListName");
-
-        var data = {
-            __metadata: {
-                type: GetItemTypeForListName(listName),
-                "Title": "NameNewItem"
-            }
-        };
-
-        data = JSON.stringify(data);
-
-        executor.executeAsync(
-            {
-                url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items",
-                method: "POST",
-                contentType: "application/json;odata=verbose",
-                body: data,
-                headers: {
-                    "Accept": "application/json;odata=verbose",
-                    "X-RequestDigest": jQuery("#__REQUESTDIGEST").val()
-                },
-                success: function(data) { console.log("y") },
-                error: function(data) { console.log("n") }
-            }
-        );
-
-
-    });
-
-    $("#showButton2").click(function () {
-
-        console.log(GetItemTypeForListName(listName) + " GetItemTypeForListName");
-
-        var itemType = GetItemTypeForListName(listName);
-
+    $("#sendTicket").click(function () {
+      
         var item = {
             "__metadata": { "type": itemType },
-            "Title": "dgfd"
+            "Title": "вапв",
+            "Discription": $("#discription").val(),
+            "urgently": $("#urgentlyValue").val(),
+            "category": $("#category").val(),
+             "Data" : moment().format('LLL')
         };
 
-        console.log(_spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items");
         $.ajax({
-            url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists/getbytitle('" + listName + "')/items",
-            
+            url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists(guid'" + listGuid + "')/items",
             type: "POST",
             contentType: "application/json;odata=verbose",
             data: JSON.stringify(item),
@@ -92,7 +42,8 @@ $(document).ready(function() {
                 "Accept": "application/json;odata=verbose",
                 "X-RequestDigest": $("#__REQUESTDIGEST").val()
             },
-            success: function(data) {
+            success: function (data) {
+                alert("Сообщение успешно отправлено");
                 console.log("y");
             },
             error: function(data) {
@@ -100,13 +51,8 @@ $(document).ready(function() {
             }
         });
     });
-
-   
 });
 
-
-
-//function to get a parameter value by a specific key
 function getQueryStringParameter(urlParameterKey) {
     var params = document.URL.split("?")[1].split("&");
     var strParams = "";
