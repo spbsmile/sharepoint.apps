@@ -23,5 +23,7 @@
     <File Path="Scripts\moment-with-locales.js" Url="Scripts/moment-with-locales.js" ReplaceContent="TRUE" />
     <File Path="Scripts\moment.min.js" Url="Scripts/moment.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\moment.js" Url="Scripts/moment.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\spAppUtils.js" Url="Scripts/spAppUtils.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\oDataUtils.js" Url="Scripts/oDataUtils.js" ReplaceContent="TRUE" />
   </Module>
 </Elements>

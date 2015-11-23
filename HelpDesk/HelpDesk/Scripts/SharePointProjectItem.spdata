@@ -24,5 +24,7 @@
     <ProjectItemFile Source="moment-with-locales.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="moment.min.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="moment.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="spAppUtils.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="oDataUtils.js" Target="Scripts\" Type="ElementFile" />
   </Files>
 </ProjectItem>
