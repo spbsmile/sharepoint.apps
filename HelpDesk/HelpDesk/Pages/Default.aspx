@@ -38,6 +38,7 @@
                                 <label for="category">Выберите категорию</label>
                                 <div>
                                     <select id="category" class="form-control">
+                                        <option>...</option>
                                         <option>Починка оборудования</option>
                                         <option>Починка ПО</option>
                                         <option>Интернет</option>
@@ -70,7 +71,6 @@
 
                             </div>
                             <input id="sendTicket" type="button" class="btn btn-default" value="Отправить"/>
-                            <input id="Button2" type="button" class="btn btn-default" OnClick="getEmailCurrentUser();" runat="server" value="Получить текущий email"/>
                         </div>
 
                         <div class="col-md-4">

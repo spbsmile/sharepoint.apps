@@ -1,5 +1,9 @@
 ﻿"use strict";
 
+var context = null;
+var web = null;
+var currentUser = null;
+
 var listName = "Tickets";
 var listGuid = "4f71156b-0221-45e8-8166-7ccca783813f";
 var itemType;
@@ -22,16 +26,20 @@ $(document).ready(function () {
 
     });
 
+    //CallClientOM();
+
     $("#sendTicket").click(function () {
-      
+
+        CallClientOM();
         var item = {
             "__metadata": { "type": itemType },
-            "Title": "вапв",
             "Discription": $("#discription").val(),
             "urgently": $("#urgentlyValue").val(),
             "category": $("#category").val(),
-             "Data" : moment().format('LLL')
-        };
+            "Data": moment().format('LLL'),
+            "Time": moment().format('h:mm'),
+            "AuthorText": currentUser.get_title()
+    };
 
         $.ajax({
             url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists(guid'" + listGuid + "')/items",
@@ -44,14 +52,32 @@ $(document).ready(function () {
             },
             success: function (data) {
                 alert("Сообщение успешно отправлено");
-                console.log("y");
+                console.log("succes");
             },
             error: function(data) {
-                console.log("sfsd");
+                console.log("error");
             }
         });
     });
 });
+
+function CallClientOM() {
+    context = new SP.ClientContext.get_current();
+    web = context.get_web();
+    currentUser = web.get_currentUser();
+    context.load(currentUser);
+    context.executeQueryAsync(onQuerySucceeded, onQueryFailed);
+}
+
+function onQuerySucceeded(sender, args) {
+    console.log(currentUser.get_title());
+    console.log(currentUser.get_loginName());
+    console.log(currentUser.get_id());
+}
+
+function onQueryFailed(sender, args) {
+    console.log('request failed ' + args.get_message() + '\n' + args.get_stackTrace());
+}
 
 function getQueryStringParameter(urlParameterKey) {
     var params = document.URL.split("?")[1].split("&");
