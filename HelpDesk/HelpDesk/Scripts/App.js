@@ -3,6 +3,9 @@
 var context = null;
 var web = null;
 var currentUser = null;
+var currentUserTitle = null;
+var currentUserLogin = null;
+var currentUserId = null;
 
 var listName = "Tickets";
 var listGuid = "4f71156b-0221-45e8-8166-7ccca783813f";
@@ -26,20 +29,27 @@ $(document).ready(function () {
 
     });
 
-    //CallClientOM();
+    CallClientOM();
 
     $("#sendTicket").click(function () {
 
-        CallClientOM();
         var item = {
-            "__metadata": { "type": itemType },
+            "__metadata": {
+                "type": itemType,
+                "Discription": "",
+                "urgently": "",
+                "category": "",
+                "Data": "",
+                "Time": "",
+                "kk": ""
+            },
             "Discription": $("#discription").val(),
             "urgently": $("#urgentlyValue").val(),
             "category": $("#category").val(),
             "Data": moment().format('LLL'),
             "Time": moment().format('h:mm'),
-            "AuthorText": currentUser.get_title()
-    };
+            "kkId": 1
+        };
 
         $.ajax({
             url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists(guid'" + listGuid + "')/items",
@@ -50,12 +60,12 @@ $(document).ready(function () {
                 "Accept": "application/json;odata=verbose",
                 "X-RequestDigest": $("#__REQUESTDIGEST").val()
             },
-            success: function (data) {
+            success: function (sender, args) {
                 alert("Сообщение успешно отправлено");
                 console.log("succes");
             },
-            error: function(data) {
-                console.log("error");
+            error: function (error) {
+                console.log("error" + JSON.stringify(error));
             }
         });
     });
@@ -70,9 +80,9 @@ function CallClientOM() {
 }
 
 function onQuerySucceeded(sender, args) {
-    console.log(currentUser.get_title());
-    console.log(currentUser.get_loginName());
-    console.log(currentUser.get_id());
+    currentUserTitle = currentUser.get_title();
+    currentUserLogin = currentUser.get_loginName();
+    currentUserId = currentUser.get_id();
 }
 
 function onQueryFailed(sender, args) {
