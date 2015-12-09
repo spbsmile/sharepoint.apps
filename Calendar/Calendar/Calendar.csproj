@@ -44,6 +44,9 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Pages\HelloClientWebPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3a8e2f3e-8f85-4ce9-a671-5c1020297bb4}</SharePointProjectItemId>
+    </None>
     <None Include="Pages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{38e58a99-7270-4748-a35e-e231b250729e}</SharePointProjectItemId>
     </None>
@@ -55,6 +58,10 @@
     <None Include="Scripts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{778cbcb5-b2b0-4dcd-8d78-b70e99fefe54}</SharePointProjectItemId>
     </None>
+    <Content Include="Pages\HelloClientWebPart.aspx" />
+    <Content Include="Pages\HelloClientWebPart\Elements.xml">
+      <OpcRelationship>feature-elementmanifest</OpcRelationship>
+    </Content>
     <Content Include="Scripts\App.js" />
     <Content Include="Scripts\Elements.xml" />
     <Content Include="Scripts\moment-with-locales.js" />
