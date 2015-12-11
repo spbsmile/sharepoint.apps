@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" 
+        Id="fbca0abf-61c7-4c32-bde7-9bbce97cf067" 
+        solutionId="fbca0abf-61c7-4c32-bde7-9bbce97cf067" 
+        xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" 
+        name="CalendarWebPart"
+        sharePointProductVersion="15.0">
+  <features>
+        <featureReference itemId="989cd36e-d3b3-4a7f-9059-287da401b0a2" />
+  </features>
+</package>
