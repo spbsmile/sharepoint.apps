@@ -44,7 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Pages\HelloClientWebPart\SharePointProjectItem.spdata">
+    <None Include="CalendarWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3a8e2f3e-8f85-4ce9-a671-5c1020297bb4}</SharePointProjectItemId>
     </None>
     <None Include="Pages\SharePointProjectItem.spdata">
@@ -58,8 +58,7 @@
     <None Include="Scripts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{778cbcb5-b2b0-4dcd-8d78-b70e99fefe54}</SharePointProjectItemId>
     </None>
-    <Content Include="Pages\HelloClientWebPart.aspx" />
-    <Content Include="Pages\HelloClientWebPart\Elements.xml">
+    <Content Include="CalendarWebPart\Elements.xml">
       <OpcRelationship>feature-elementmanifest</OpcRelationship>
     </Content>
     <Content Include="Scripts\App.js" />

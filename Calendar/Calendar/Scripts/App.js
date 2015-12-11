@@ -5,7 +5,7 @@ var context = SP.ClientContext.get_current();
 var user = context.get_web().get_currentUser();
 // Этот код, запускаемый после готовности модели DOM, создает объект контекста, который требуется для использования объектной модели SharePoint
 $(document).ready(function () {
-    getUserName();
+     getUserName();
 });
 // Эта функция подготавливает, загружает и затем выполняет запрос SharePoint для получения сведений о текущих пользователях
 function getUserName() {
