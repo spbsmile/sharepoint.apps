@@ -20,6 +20,7 @@
     <!-- Добавьте свой код JavaScript в следующий файл -->
     <script type="text/javascript" src="../Scripts/App.js"></script>
        <script type="text/javascript" src="../Scripts/moment.js"></script>
+        <script type="text/javascript" src="../Scripts/moment-with-locales.js"></script>
 </asp:Content>
 
 <%-- Разметка из следующего элемента Content будет помещена в элемент TitleArea страницы --%>
@@ -29,7 +30,6 @@
 
 <%-- Разметка и скрипт из следующего элемента Content будут помещены в элемент <body> страницы --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
-
     <div class="bootstrap-scope">
         <div class="bootstrap-html">
             <div class="bootstrap-body">
@@ -39,8 +39,9 @@
                             <p>
                                 <span class="datt pull-left">
                                     <span id = "DayNow" class="countdata">22</span>
-                                    <br id ="MonthNow">
-                                    октября</span>
+                                     <span id="MonthNow">...</span>
+
+                                </span>
                             </p>
                             <span class="time pull-right">
                                 <p id ="TimeNow">

@@ -6,16 +6,15 @@ function initializePage()
 {
     $(document).ready(function ()
     {
+        moment.locale(window.navigator.userLanguage || window.navigator.language);
         displayTime();
     });
 
     function displayTime()
     {
+        $('#DayNow').html(moment().format("D"));
         $('#TimeNow').html(moment().format('HH:mm'));
-
-        $('#DayNow').html(moment().day());
-        $('#MonthNow').html(moment().format("MMMM"));
-
+        $('#MonthNow').html(moment().format("MMM"));
         setTimeout(displayTime, 1000);
     }
 }
