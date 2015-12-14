@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>РИВС Сотрудники</title>
+
+    <link href="../Content/bootstrap.css" rel="stylesheet" />
+    <link href="../Content/App.css" rel="stylesheet" />
+
+    <!--<script src="../Scripts/bootstrap.js"></script> -->
+    <script src="../Scripts/angular.js"></script>
+    <script src="../Scripts/angular-route.js"></script>
+    <script src="../Scripts/jquery-1.9.1.js"></script>
+
+    <script src="App.js"></script>
+    <script src="controllers.js"></script>
+    <script src="jquery-extensions.js"></script>
+
+</head>
+<body ng-app="AngularCRM">
+    <div class="container">
+
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">РИВС Сотрудники </a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#/new">Вкладка 1</a></li>
+                        <li><a href="#/about">Вкладка 2</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a id="lnkHostWeb">Назад, на основной сайт</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2">
+            <nav class="nav-sidebar">
+                <ul class="nav">
+                    <li class="active"><a href="javascript:;">Главная</a></li>
+                    <li><a href="#/new">Подразделение 1</a></li>
+                    <li><a href="#/about">Подразделение 2</a></li>
+                    <li><a href="javascript:;">Подразделение 3</a></li>
+                    <li><a href="javascript:;">Подразделение 4</a></li>
+                    <li><a href="javascript:;">Подразделение 5</a></li>
+                    <li><a href="javascript:;">Подразделение 6</a></li>
+                    <li><a href="javascript:;">Подразделение 7</a></li>
+                    <li><a href="javascript:;">Подразделение 8</a></li>
+                    <li><a href="javascript:;">Подразделение 9</a></li>
+                    <li><a href="javascript:;">Подразделение 10</a></li>
+                    <li><a href="javascript:;">Подразделение 11</a></li>
+                    <li><a href="javascript:;">Подразделение 12</a></li>
+                    <li><a href="javascript:;">Подразделение 13</a></li>
+                    <li><a href="javascript:;">Подразделение 14</a></li>
+                    <li><a href="javascript:;">Подразделение 15</a></li>
+                    <li class="nav-divider"></li>
+                    <li><a href="javascript:;"></i>Подвал</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-sm-8">
+            <div id="content-box" ng-view></div>
+        </div>
+    </div>
+
+</body>
+</html>
