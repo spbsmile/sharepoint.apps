@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package dslVersion="1.0.0.0" 
-        Id="fbca0abf-61c7-4c32-bde7-9bbce97cf067" 
-        solutionId="fbca0abf-61c7-4c32-bde7-9bbce97cf067" 
+        Id="4de8c736-78cd-46a7-9df8-ffff5e0c9e8c" 
+        solutionId="4de8c736-78cd-46a7-9df8-ffff5e0c9e8c" 
         xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" 
-        name="CalendarWebPart"
+        name="CalendarApp"
         sharePointProductVersion="15.0">
   <features>
-        <featureReference itemId="989cd36e-d3b3-4a7f-9059-287da401b0a2" />
+        <featureReference itemId="5f420743-8f53-4141-a59e-82e17ce21da6" />
   </features>
 </package>

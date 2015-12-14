@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ClientWebPart Name="ClientWebPart1" 
-                 Title="CalendarWebPartApp" 
-                 Description="Описание" 
-                 DefaultWidth="450" 
+  <ClientWebPart Name="ClientWebPart1"
+                 Title="CalendarWebPartApp"
+                 Description="Описание"
+                 DefaultWidth="450"
                  DefaultHeight="550">
 
     <!-- Элемент контента идентифицирует расположение страницы, которая будет отображаться внутри клиентской веб-части

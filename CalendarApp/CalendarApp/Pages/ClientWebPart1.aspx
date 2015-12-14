@@ -1,36 +1,50 @@
-﻿<%-- Следующие 4 строки представляют собой директивы ASP.NET, необходимые при использовании компонентов SharePoint --%>
+﻿<%@ Page language="C#" Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 
-<%@ Page Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" MasterPageFile="~masterurl/default.master" Language="C#" %>
+<WebPartPages:AllowFraming ID="AllowFraming" runat="server" />
 
-<%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<html>
+<head>
+    <title></title>
 
-<%-- Разметка и скрипт из следующего элемента Content будут помещены в элемент <head> страницы --%>
-<asp:Content ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
     <script type="text/javascript" src="../Scripts/jquery-1.9.1.min.js"></script>
-    <SharePoint:ScriptLink name="sp.js" runat="server" OnDemand="true" LoadAfterUI="true" Localizable="false" />
-    <meta name="WebPartPageExpansion" content="full" />
+    <script type="text/javascript" src="/_layouts/15/MicrosoftAjax.js"></script>
+    <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
+    <script type="text/javascript" src="/_layouts/15/sp.js"></script>
 
-    <!-- Добавьте свои стили CSS в следующий файл -->
-    <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
+     <script type="text/javascript" src="../Scripts/moment.min.js"></script>
+    <script type="text/javascript" src="../Scripts/moment-with-locales.js"></script>
     <link rel="Stylesheet" type="text/css" href="../Content/bootstrap-scope.min.css" />
-    
+    <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
 
-    <!-- Добавьте свой код JavaScript в следующий файл -->
-    <script type="text/javascript" src="../Scripts/App.js"></script>
-       <script type="text/javascript" src="../Scripts/moment.js"></script>
-        <script type="text/javascript" src="../Scripts/moment-with-locales.js"></script>
-</asp:Content>
+    <script type="text/javascript">
+        // Согласование стиля клиентской веб-части со стилем хост-сайта.
+        (function () {
+            'use strict';
 
-<%-- Разметка из следующего элемента Content будет помещена в элемент TitleArea страницы --%>
-<asp:Content ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server">
-    Page Title
-</asp:Content>
-
-<%-- Разметка и скрипт из следующего элемента Content будут помещены в элемент <body> страницы --%>
-<asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
-    <div class="bootstrap-scope">
+            var hostUrl = '';
+            var link = document.createElement('link');
+            link.setAttribute('rel', 'stylesheet');
+            if (document.URL.indexOf('?') != -1) {
+                var params = document.URL.split('?')[1].split('&');
+                for (var i = 0; i < params.length; i++) {
+                    var p = decodeURIComponent(params[i]);
+                    if (/^SPHostUrl=/i.test(p)) {
+                        hostUrl = p.split('=')[1];
+                        link.setAttribute('href', hostUrl + '/_layouts/15/defaultcss.ashx');
+                        break;
+                    }
+                }
+            }
+            if (hostUrl == '') {
+                link.setAttribute('href', '/_layouts/15/1033/styles/themable/corev15.css');
+            }
+            document.head.appendChild(link);
+        })();
+    </script>
+ <div class="bootstrap-scope">
         <div class="bootstrap-html">
             <div class="bootstrap-body">
                 <div class="col-md-4 col-md-offset-1 nopaddingright">
@@ -39,9 +53,8 @@
                             <p>
                                 <span class="datt pull-left">
                                     <span id = "DayNow" class="countdata">22</span>
-                                     <span id="MonthNow">...</span>
-
-                                </span>
+                                    <br id ="MonthNow">
+                                    Декабря</span>
                             </p>
                             <span class="time pull-right">
                                 <p id ="TimeNow">
@@ -114,4 +127,8 @@
         </div>
     </div>
 
-</asp:Content>
+</head>
+<body>
+</body>
+</html>
+

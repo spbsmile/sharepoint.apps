@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F182F852-F016-4E3A-A991-CDA2C3BE90B3}</ProjectGuid>
+    <ProjectGuid>{9EACB886-CB11-4C5E-B096-3E7401979EDF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CalendarWebPart</RootNamespace>
-    <AssemblyName>CalendarWebPart</AssemblyName>
+    <RootNamespace>CalendarApp</RootNamespace>
+    <AssemblyName>CalendarApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetOfficeVersion>15.0</TargetOfficeVersion>
     <FileAlignment>512</FileAlignment>
@@ -17,11 +17,11 @@
     <MinimumOfficeToolsVersion>11.1</MinimumOfficeToolsVersion>
     <IncludeAssemblyInPackage>False</IncludeAssemblyInPackage>
     <ProjectMode>SharePointApp</ProjectMode>
-    <AppFeaturePartId>{2ad4ac9a-e407-4a69-95c1-1b380ee8aad1}</AppFeaturePartId>
-    <WspPartId>{7ed25355-babc-4979-aa99-56f1db321899}</WspPartId>
-    <WorkflowPartId>{119a9e78-43ba-409f-b40c-b875bd273a40}</WorkflowPartId>
-    <CspkgPartId>{cd10b5bb-e791-4823-aada-c1025eea49de}</CspkgPartId>
-    <SqlPackagePartId>{ede6c1ec-6a83-493d-918b-e4dc32b1153c}</SqlPackagePartId>
+    <AppFeaturePartId>{8b16defa-3cbe-4f73-ba69-b4dff93bc8e1}</AppFeaturePartId>
+    <WspPartId>{05c57db7-e686-4251-8a7f-7b4cf0742612}</WspPartId>
+    <WorkflowPartId>{5eca209f-e3b0-4567-a61c-5ab32f8480e8}</WorkflowPartId>
+    <CspkgPartId>{42215d6c-ebb6-4786-af5f-2a26766c394e}</CspkgPartId>
+    <SqlPackagePartId>{f6a96d47-0afc-4229-a3a0-a92a20801957}</SqlPackagePartId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,11 +44,11 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="ClientWebPart1\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{88fd20b0-dc71-4586-bdab-05c9f4216fe5}</SharePointProjectItemId>
+      <SharePointProjectItemId>{6f7f55b7-4c12-4628-a814-7115c2a138db}</SharePointProjectItemId>
     </None>
     <None Include="packages.config" />
     <None Include="Pages\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{21e6b3a2-bd42-49a0-b420-c3bf878b81b2}</SharePointProjectItemId>
+      <SharePointProjectItemId>{7e023874-da79-4a05-a34a-e277df88e4c1}</SharePointProjectItemId>
     </None>
     <Content Include="ClientWebPart1\Elements.xml">
       <OpcRelationship>feature-elementmanifest</OpcRelationship>
@@ -63,7 +63,7 @@
   <ItemGroup>
     <None Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{ede6c1ec-6a83-493d-918b-e4dc32b1153c}</SharePointProjectItemId>
+      <SharePointProjectItemId>{f6a96d47-0afc-4229-a3a0-a92a20801957}</SharePointProjectItemId>
     </None>
     <Content Include="Scripts\Elements.xml" />
     <Content Include="Scripts\App.js" />
@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{1326825c-4501-409c-9251-7a2b03ce3903}</SharePointProjectItemId>
+      <SharePointProjectItemId>{78de4583-4512-4f6b-88cf-2f7522893f9e}</SharePointProjectItemId>
     </None>
     <Content Include="Content\Elements.xml" />
     <Content Include="Content\App.css" />
@@ -89,18 +89,18 @@
     </Content>
     <Content Include="Images\Elements.xml" />
     <None Include="Images\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{242d9ca6-4cef-4efe-b50b-ba97cd1a597b}</SharePointProjectItemId>
+      <SharePointProjectItemId>{0ce88da3-ecfa-45ce-b051-5e19086b1244}</SharePointProjectItemId>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Package\Package.package">
-      <PackageId>{fbca0abf-61c7-4c32-bde7-9bbce97cf067}</PackageId>
+      <PackageId>{4de8c736-78cd-46a7-9df8-ffff5e0c9e8c}</PackageId>
     </None>
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
     <None Include="Features\Feature1\Feature1.feature">
-      <FeatureId>{989cd36e-d3b3-4a7f-9059-287da401b0a2}</FeatureId>
+      <FeatureId>{5f420743-8f53-4141-a59e-82e17ce21da6}</FeatureId>
     </None>
     <None Include="Features\Feature1\Feature1.Template.xml">
       <DependentUpon>Feature1.feature</DependentUpon>

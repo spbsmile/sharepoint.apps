@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--Created:cb85b80c-f585-40ff-8bfc-12ff4d0e34a9-->
 <App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest"
-     Name="CalendarWebPart"
-     ProductID="{21e6b3a2-bd42-49a0-b420-c3bf878b81b2}"
+     Name="CalendarApp"
+     ProductID="{7e023874-da79-4a05-a34a-e277df88e4c1}"
      Version="1.0.0.0"
      SharePointMinVersion="15.0.0.0"
 >
   <Properties>
-    <Title>CalendarWebPart</Title>
+    <Title>CalendarApp</Title>
     <StartPage>~appWebUrl/Pages/Default.aspx?{StandardTokens}</StartPage>
   </Properties>
 
