@@ -62,6 +62,8 @@ Licensed under the MIT license
         //define basic api endpoint
         apiURL = 'http://api.openweathermap.org/data/2.5/weather?lang=' + s.lang;
 
+        
+
         //if city isn't null
         if (s.city != null) {
 
@@ -156,6 +158,9 @@ Licensed under the MIT license
 
                 //set temperature
                 el.html(temperature);
+
+                console.log(s.lang + " lang");
+                console.log(data.weather[0].description + " description");
 
                 //if minTemperatureTarget isn't null
                 if (s.minTemperatureTarget != null) {
