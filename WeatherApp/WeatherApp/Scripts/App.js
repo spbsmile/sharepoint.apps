@@ -2,10 +2,10 @@
 
     $('.weather-temperature').openWeather({
         key: '20a2e62715e21640afbebd96e0a5972d',
-        lang: 'ru',
-        city: 'Toronto, ON',
+        lang: 'RU',
+        city: 'Saint Petersburg',
         placeTarget: '.weather-place',
-        units: 'f',
+        units: 'c',
         descriptionTarget: '.weather-description',
         minTemperatureTarget: '.weather-min-temperature',
         maxTemperatureTarget: '.weather-max-temperature',
