@@ -48,7 +48,20 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
          	// Footer: function(ctx) { return "Hello "; }
       },
 
-      // OnPostRender: function(ctx) { },
+       OnPostRender: function(ctx) {
+    	var rows = ctx.ListData.Row;
+    	for (var i=0;i<rows.length;i++)
+    	{
+      		var isApproved = rows[i]["Count"] <= 2;
+      		console.log("hello postRender");
+      		if (isApproved)
+      		{
+        		var rowElementId = GenerateIIDForListItem(ctx, rows[i]);
+        		var tr = document.getElementById(rowElementId);
+        		tr.style.backgroundColor = "#FF0000";//"#ada"; //#FF0000
+      		}
+    	}
+  },
 
       ListTemplateType: 100
 
@@ -72,11 +85,11 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
    {
         var fieldVal = ctx.CurrentItem[ctx.CurrentFieldSchema.Name];
       	var id = GenerateIIDForListItem(ctx, ctx.ListData.Row[rowIndex]);
-    	var temp = id[(id.indexOf(",")+1)];
+    	var itemID = id[(id.indexOf(",")+1)];
       
         var html = "";
         //html += "<input type='button' value=" \ + fieldVal + \"  />";
-        html += '<input type="button" value=" \'' + fieldVal + '\'  " onClick="DisplayVersionHistory(\'' + temp + '\')" />';
+        html += '<input type="button" value=" \'' + fieldVal + '\'  " onClick="DisplayVersionHistory(\'' + itemID + '\')" />';
         html += "</input>";
         html += "</input>";
         html += "<div id ='modalWindow';  title=' Принтер:'>";
@@ -93,11 +106,15 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
 
 function DecreaseCount(itemID, value) {
 
+  	console.log(itemID + " " + value);
     var payload = {
-      "__metadata": { "type": "SP.Data.SurveysListItem" }, 
-      "Count": value};
+      "__metadata": { "type": itemType }, 
+      "Count":  1
+    };
+  	console.log(itemType);
+    console.log("http://devsp/sites/testdev/" + "/_api/web/lists/GetByTitle('" + listName + "')/items(" + itemID + ")");
     var p = $.ajax({
-        url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/GetByTitle('market')/items(" + itemID + ")",
+        url: "http://devsp/sites/testdev/" + "/_api/web/lists/GetByTitle('" + listName + "')/items(" + itemID + ")",
         method: "POST",
         data: JSON.stringify(payload),
         contentType: "application/json;odata=nometadata",
@@ -108,7 +125,6 @@ function DecreaseCount(itemID, value) {
         }
     });
 }
-
 
 
 function DisplayVersionHistory(itemID)
