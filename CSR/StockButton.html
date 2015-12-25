@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+
+    <link type="text/css" rel="stylesheet"
+          href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/start/jquery-ui.css"/>
+    <style>
+        ui-dialog.ui-dialog-titlebar-close span.over {
+            margin: 0;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#dialog2").dialog({
+                autoOpen: false,
+
+            });
+
+            $("#opener2").click(function () {
+                $("#dialog2").dialog("open");
+            });
+        });
+    </script>
+
+</head>
+<body>
+
+<div id="dialog2" title="Выбор параметров">
+    <p>Тип картриджа, колличество, замечания</p>
+</div>
+
+<button id="opener2">Форма приема</button>
+
+</body>
+</html>
