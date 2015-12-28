@@ -2,26 +2,30 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="http://server-sp-it/sites/wiki/Style%20Library/Printers/jquery-ui.min.css"/>
+    <style>
+        fieldset {
+            border: 0;
+        }
 
+        label {
+            display: block;
+            margin: 30px 0 0 0;
+        }
 
-    <!-- Reference the jQueryUI theme's stylesheet on the Google CDN. Here we're using the "Start" theme -->
-    <link type="text/css" rel="stylesheet"
-          href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/start/jquery-ui.css"/>
+        select {
+            width: 200px;
+        }
 
-    <!-- Reference jQuery on the Google CDN -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <!-- Reference jQueryUI on the Google CDN -->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-    <!-- Reference SPServices on cdnjs (Cloudflare) -->
-    <script type="text/javascript"
-            src="http://cdnjs.cloudflare.com/ajax/libs/jquery.SPServices/0.7.1a/jquery.SPServices-0.7.1a.min.js"></script>
-
-
+        .overflow {
+            height: 200px;
+        }
+    </style>
     <script>
         $(document).ready(function () {
 
-            var printers = [{label: "Тип1", value: "Тип1"},
-                {label: "Тип2", value: "Тип2"}]
+            //var printers = [{label: "Тип1", value: "Тип1"},
+            //   {label: "Тип2", value: "Тип2"}]
 
             $("#dialog2").dialog({
                 resizable: false,
@@ -30,13 +34,16 @@
                 autoOpen: false
             });
 
-            $("#acInput").autocomplete({source: printers})
 
             $("#opener2").click(function () {
+                addItemsDataToDialog();
                 $("#dialog2").dialog("open");
             });
 
+            $("#speed").selectmenu();
+
             function addDataToTable() {
+
                 var data = {
                     count: $("#countForm").val()
                 }
@@ -44,16 +51,48 @@
                 //add data to table
                 $("#dialog2").dialog("close");
             }
+
+            function addItemsDataToDialog()
+            {
+                $.ajax({
+                    url: "http://server-sp-it/sites/wiki/" + "/_api/web/lists/getbytitle('тестовый список')/items",
+                    method: "GET",
+                    headers: {"Accept": "application/json; odata=verbose"},
+                    success: function (data) {
+                        //success(data);
+                        console.log("success rest");
+                        var items = data.d.results;
+                        var dataTest = {};
+                        for(var i = 0; i < items.length;i++) {
+                            console.log(items[i].Title);
+                        }
+                        $.each(items, function(key, value) {
+                            $('#mySelect')
+                                    .append($("<option></option>")
+                                            .attr("value",key)
+                                            .text(value));
+                        });
+                    }, error: function (data) {
+                        //failure(data);
+                        console.log("fail rest");
+                    }
+                });
+            }
         });
 
     </script>
-
 </head>
 <body>
 
 <div id="dialog2" title="Введите данные" class="ui-widget">
-    <div><label for="acInput">Название притера:<input id="acInput"/></label></div>
-    <div><label for="countForm">Количество:</label><input id="countForm"/></div>
+    <div><label>Название притера:</label></div>
+    <div><select id="mySelect">
+        <option value="Q 2612A">Q 2612A</option>
+        <option value="Q 7553A">Q 7553A</option>
+        <option value="TK - 895">TK - 895</option>
+        <option value="TK - 6305">TK - 6305</option>
+    </select></div>
+    <div><label for="countForm">Количество картрижей:</label><input id="countForm"/></div>
 </div>
 
 <input type="button" value="Добавить " id="opener2">
