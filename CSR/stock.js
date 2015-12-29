@@ -1,6 +1,7 @@
 // The file has been created, saved into "/Style Library/Printers/"
 // and attached to the XLV via JSLink property.
 
+var siteUrl = "http://server-sp-it/sites/wiki";
 
 var replaceDate = {};
 var cartridgeCount = {};
@@ -8,15 +9,11 @@ var cartridgeCount = {};
 var itemType;
 var listTitle = "Тестовый список";
 var countFieldName = "_x041a__x043e__x043b__x0438__x04";
-var replaceDateFieldName = "";
+var replaceDateFieldName = "_x0414__x0430__x0442__x0430__x00";
 var replaceButtonFieldName = "_x0417__x0430__x043c__x0435__x04";
+var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
 //var listGuid = "4f71156b-0221-45e8-8166-7ccca783813f";
-var siteUrl = "http://server-sp-it/sites/wiki";
 var threshold = 5;
-var rowIndex = 0;
-
-var cars = ["1", "2", "3"];
-
 
 SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
@@ -51,10 +48,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
                         //             NewForm: function(ctx) { return ""; }
                     }
                 },
-                Footer: function (ctx) {
-                    return "Hello";
-                }
-
+                //Footer: function (ctx) { return ""; }
             },
 
             // OnPostRender: function(ctx) { },
@@ -67,50 +61,52 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
     RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/Printers/printersView.js"), init);
     init();
 
-    function renderReplaceField(ctx) {
-        var fieldVal = ctx.CurrentItem[ctx.CurrentFieldSchema.Name];
-
+  function renderReplaceField(ctx) {
+    	console.log(ctx.CurrentItem[""]);
         var html = "";
-        html += '<input type="button" value="Заменить" onClick="replaceAction(\'' + rowIndex + '\',\'' + fieldVal + '\')" />';
+        html += '<input type="button" value="Заменить" onClick="replaceAction(\'' +  ctx.CurrentItem.ID + '\')" />';
         html += "</input>";
         return html;
     }
 
     function renderCountField(ctx) {
-        var fieldVal = ctx.CurrentItem[ctx.CurrentFieldSchema.Name];
-        var str = fieldVal.toString();
-        console.log(ctx.CurrentItem.ID);
-        var i = 0;
-        var id = GenerateIIDForListItem(ctx, ctx.ListData.Row[cars[i]]);
-        //var fieldVal = 0;
-        var itemID = 1;//id[(id.indexOf(",") + 1)];
         var html = "";
-        html += '<input type="button" value=" \'' + fieldVal + '&quot;  " onClick="DisplayVersionHistory(\'' + itemID + '\')" />';
+        html += '<input type="button" value=" \'' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\'   " onClick="DisplayVersionHistory(\'' + ctx.CurrentItem.ID + '\')" />';
         html += "</input>";
         html += "</input>";
-        html += "<div id ='modalWindow';  title=' Принтер:'>";
+        html += "<div id ='modalWindow';  title='Картридж:'>";
         html += "<div id='dialogText';  >";
         html += "";
         html += "</div>";
         html += "</div>";
-        rowIndex = rowIndex + 1;
         return html;
     }
 });
 
 
-function replaceAction(itemID, value) {
+function replaceAction(itemID) {
     var clientContext = new SP.ClientContext(siteUrl);
     var oList = clientContext.get_web().get_lists().getByTitle(listTitle);
 
     var oListItem = oList.getItemById(itemID);
     clientContext.load(oListItem, countFieldName);
+   
 
     clientContext.executeQueryAsync(
         function () {
             if (oListItem.get_item(countFieldName) >= 1) {
                 oListItem.set_item(countFieldName, oListItem.get_item(countFieldName) - 1);
                 oListItem.set_item(replaceDateFieldName, moment().format('LLL'));
+                            
+                var camlQuery = new SP.CamlQuery();
+  					var query = new CamlBuilder().Where()
+					.LookupField(catridgeFieldName)
+					.ValueAsText().In(["TK-1140"])
+					.ToString();
+              	camlQuery.set_viewXml(camlQuery);
+  
+              	clientContext.load(oList.getItems(camlQuery));
+  
                 oListItem.update();
                 clientContext.executeQueryAsync(function () {
                         console.log("success get count");
@@ -128,10 +124,8 @@ function replaceAction(itemID, value) {
 
 function DisplayVersionHistory(itemID) {
 
-  	//console.log(GetItemID);
-  
     if ($("#table").length === 0) {
-        jQuery("#dialogText").append('<table border="1" id="table"> <caption>История изменений картриджей</caption><tr><th>Дата</th><th>Действие</th><th>Количество</th></tr></table>');
+      jQuery("#dialogText").append('<table border="1" id="table"> <caption>История изменений:</caption><tr><th>Дата</th><th>Действие</th><th>Количество</th></tr></table>');
     }
 
    /* $().SPServices({

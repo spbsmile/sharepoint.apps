@@ -2,7 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="http://server-sp-it/sites/wiki/Style%20Library/Printers/jquery-ui.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="http://server-sp-it/sites/wiki/Style%20Library/Printers/jquery-ui.min.css"/>
     <style>
         fieldset {
             border: 0;
@@ -23,17 +24,12 @@
     </style>
     <script>
         $(document).ready(function () {
-
-            //var printers = [{label: "Тип1", value: "Тип1"},
-            //   {label: "Тип2", value: "Тип2"}]
-
             $("#dialog2").dialog({
                 resizable: false,
                 modal: true,
                 buttons: [{text: "Добавить", click: addDataToTable}],
                 autoOpen: false
             });
-
 
             $("#opener2").click(function () {
                 addItemsDataToDialog();
@@ -48,32 +44,31 @@
                     count: $("#countForm").val()
                 }
                 console.log("Количество " + data.count);
-                //add data to table
                 $("#dialog2").dialog("close");
             }
 
-            function addItemsDataToDialog()
-            {
+            function addItemsDataToDialog() {
                 $.ajax({
-                    url: "http://server-sp-it/sites/wiki/" + "/_api/web/lists/getbytitle('тестовый список')/items",
+                    url: "http://server-sp-it/sites/wiki/" + "/_api/web/lists/getbytitle('Тестовый список')/items",
                     method: "GET",
                     headers: {"Accept": "application/json; odata=verbose"},
                     success: function (data) {
-                        //success(data);
-                        console.log("success rest");
                         var items = data.d.results;
-                        var dataTest = {};
-                        for(var i = 0; i < items.length;i++) {
-                            console.log(items[i].Title);
+                        var cartridgesData = [];
+                        var cartridgeInternalField = "OData__x041a__x0430__x0440__x0442__x04";
+                        for (var i = 0; i < items.length; i++) {
+                            if ($.inArray(items[i][cartridgeInternalField], cartridgesData) === -1)
+                            {
+                                cartridgesData.push(items[i][cartridgeInternalField]);
+                            }
                         }
-                        $.each(items, function(key, value) {
+                        $.each(cartridgesData, function (key, value) {
                             $('#mySelect')
                                     .append($("<option></option>")
-                                            .attr("value",key)
+                                            .attr("value", key)
                                             .text(value));
                         });
                     }, error: function (data) {
-                        //failure(data);
                         console.log("fail rest");
                     }
                 });
@@ -85,14 +80,10 @@
 <body>
 
 <div id="dialog2" title="Введите данные" class="ui-widget">
-    <div><label>Название притера:</label></div>
+    <div><label>Картриж:</label></div>
     <div><select id="mySelect">
-        <option value="Q 2612A">Q 2612A</option>
-        <option value="Q 7553A">Q 7553A</option>
-        <option value="TK - 895">TK - 895</option>
-        <option value="TK - 6305">TK - 6305</option>
     </select></div>
-    <div><label for="countForm">Количество картрижей:</label><input id="countForm"/></div>
+    <div><label for="countForm">Количество:</label><input id="countForm"/></div>
 </div>
 
 <input type="button" value="Добавить " id="opener2">
