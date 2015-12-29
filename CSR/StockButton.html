@@ -57,7 +57,7 @@
                         var cartridgesData = [];
                         var cartridgeInternalField = "OData__x041a__x0430__x0440__x0442__x04";
                         for (var i = 0; i < items.length; i++) {
-                            if ($.inArray(items[i][cartridgeInternalField], cartridgesData) === -1)
+                            if ($.inArray(items[i][cartridgeInternalField], cartridgesData) === -1 && items[i][cartridgeInternalField] != null))
                             {
                                 cartridgesData.push(items[i][cartridgeInternalField]);
                             }

@@ -1,19 +1,21 @@
 // The file has been created, saved into "/Style Library/Printers/"
 // and attached to the XLV via JSLink property.
 
+
 var siteUrl = "http://server-sp-it/sites/wiki";
 
 var replaceDate = {};
 var cartridgeCount = {};
 
 var itemType;
-var listTitle = "Тестовый список";
+var listTitle = "???????? ??????";
 var countFieldName = "_x041a__x043e__x043b__x0438__x04";
 var replaceDateFieldName = "_x0414__x0430__x0442__x0430__x00";
 var replaceButtonFieldName = "_x0417__x0430__x043c__x0435__x04";
 var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
 //var listGuid = "4f71156b-0221-45e8-8166-7ccca783813f";
 var threshold = 5;
+
 
 SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
@@ -61,15 +63,14 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
     RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/Printers/printersView.js"), init);
     init();
 
-  function renderReplaceField(ctx) {
-    	console.log(ctx.CurrentItem[""]);
-        var html = "";
-        html += '<input type="button" value="Заменить" onClick="replaceAction(\'' +  ctx.CurrentItem.ID + '\')" />';
+    function renderReplaceField(ctx) {
+    	var html = "";
+        html += '<input type="button" value="Заменить" onClick="replaceAction(\'' +  ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Cartidges"] + '\')" />';
         html += "</input>";
         return html;
-    }
-
-    function renderCountField(ctx) {
+   }
+  
+  function renderCountField(ctx) {
         var html = "";
         html += '<input type="button" value=" \'' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\'   " onClick="DisplayVersionHistory(\'' + ctx.CurrentItem.ID + '\')" />';
         html += "</input>";
@@ -81,46 +82,38 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
         html += "</div>";
         return html;
     }
+
 });
 
-
-function replaceAction(itemID) {
-    var clientContext = new SP.ClientContext(siteUrl);
-    var oList = clientContext.get_web().get_lists().getByTitle(listTitle);
-
-    var oListItem = oList.getItemById(itemID);
-    clientContext.load(oListItem, countFieldName);
-   
-
-    clientContext.executeQueryAsync(
-        function () {
-            if (oListItem.get_item(countFieldName) >= 1) {
-                oListItem.set_item(countFieldName, oListItem.get_item(countFieldName) - 1);
-                oListItem.set_item(replaceDateFieldName, moment().format('LLL'));
-                            
-                var camlQuery = new SP.CamlQuery();
-  					var query = new CamlBuilder().Where()
-					.LookupField(catridgeFieldName)
-					.ValueAsText().In(["TK-1140"])
-					.ToString();
-              	camlQuery.set_viewXml(camlQuery);
-  
-              	clientContext.load(oList.getItems(camlQuery));
-  
-                oListItem.update();
-                clientContext.executeQueryAsync(function () {
-                        console.log("success get count");
-                    },
-                    function () {
-                        console.log("fail get count");
-                    });
-                document.location.reload();
-            }
-        },
-        function () {
-            console.log("fail get count");
-        });
+function replaceAction(itemID, cartridgesName) {
+     var clientContext = new SP.ClientContext(siteUrl);
+     var oList = clientContext.get_web().get_lists().getByTitle(listTitle);
+     
+     var caml = new SP.CamlQuery();
+     var query = new CamlBuilder().Where()
+	.LookupField("Cartidges")
+	.ValueAsText().In(["Enter Choice #1"])
+	.ToString();
+    console.log(query);
+    caml.set_viewXml(query);
+   collListItems = oList.getItems(caml);
+    clientContext.load(collListItems);
+    clientContext.executeQueryAsync(onQuerySucceeded, onQueryFailed);        
 }
+
+function onQuerySucceeded(sender, args) {
+    var listItemInfo = '';
+    var listItemEnumerator = collListItems.getEnumerator();
+    while (listItemEnumerator.moveNext()) {
+        var oListItem = listItemEnumerator.get_current();
+        console.log(oListItem.get_item("Cartidges"));
+    }
+}
+
+function onQueryFailed(sender, args) {
+    alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+}
+
 
 function DisplayVersionHistory(itemID) {
 
