@@ -23,6 +23,12 @@
         }
     </style>
     <script>
+
+        var listTitle = "Тестовый список";
+        var siteUrl = "http://server-sp-it/sites/wiki";
+        var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
+        var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
+
         $(document).ready(function () {
             $("#dialog2").dialog({
                 resizable: false,
@@ -40,11 +46,43 @@
 
             function addDataToTable() {
 
-                var data = {
-                    count: $("#countForm").val()
-                }
-                console.log("Количество " + data.count);
+                console.log($("#countForm").val());
+                var t = $( "#mySelect option:selected" ).text();
+                var clientContext = new SP.ClientContext(siteUrl);
+                var list = clientContext.get_web().get_lists().getByTitle(listTitle);
+
+                var caml = new SP.CamlQuery();
+                caml.set_viewXml("<View><Query>" +
+                        new CamlBuilder().Where()
+                                .LookupField(catridgeFieldName)
+                                .ValueAsText().In([t])
+                                .ToString() +
+                        "</Query></View>");
+                var collListItems = list.getItems(caml);
+
+                clientContext.load(collListItems);
+
+                clientContext.executeQueryAsync(function () {
+                            var enumerator = collListItems.getEnumerator();
+                            while (enumerator.moveNext()) {
+                                var item = enumerator.get_current();
+                                var p = $("#countForm").val();
+                                item.set_item(catridgeCountFieldName, (item.get_item(catridgeCountFieldName) + parseInt(p)));
+                                item.update();
+                            }
+                            clientContext.executeQueryAsync(function () {
+                                        console.log("success get count");
+                                    },
+                                    onQueryFailed);
+                            document.location.reload();
+                        },
+                        onQueryFailed);
+
                 $("#dialog2").dialog("close");
+            }
+
+            function onQueryFailed(sender, args) {
+                console.log('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
             }
 
             function addItemsDataToDialog() {
@@ -57,8 +95,7 @@
                         var cartridgesData = [];
                         var cartridgeInternalField = "OData__x041a__x0430__x0440__x0442__x04";
                         for (var i = 0; i < items.length; i++) {
-                            if ($.inArray(items[i][cartridgeInternalField], cartridgesData) === -1 && items[i][cartridgeInternalField] != null))
-                            {
+                            if ($.inArray(items[i][cartridgeInternalField], cartridgesData) === -1 && items[i][cartridgeInternalField] != null) {
                                 cartridgesData.push(items[i][cartridgeInternalField]);
                             }
                         }

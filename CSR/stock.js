@@ -1,21 +1,19 @@
 // The file has been created, saved into "/Style Library/Printers/"
 // and attached to the XLV via JSLink property.
 
-
 var siteUrl = "http://server-sp-it/sites/wiki";
 
 var replaceDate = {};
 var cartridgeCount = {};
 
 var itemType;
-var listTitle = "???????? ??????";
-var countFieldName = "_x041a__x043e__x043b__x0438__x04";
+var listTitle = "Тестовый список";
 var replaceDateFieldName = "_x0414__x0430__x0442__x0430__x00";
 var replaceButtonFieldName = "_x0417__x0430__x043c__x0435__x04";
 var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
+var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
 //var listGuid = "4f71156b-0221-45e8-8166-7ccca783813f";
 var threshold = 5;
-
 
 SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
@@ -26,37 +24,18 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
     function init() {
 
         SPClientTemplates.TemplateManager.RegisterTemplateOverrides({
-
-            // OnPreRender: function(ctx) { },
-
             Templates: {
-
-                //     View: function(ctx) { return ""; },
-                //     Header: function(ctx) { return ""; },
-                //     Body: function(ctx) { return ""; },
-                //     Group: function(ctx) { return ""; },
-                //     Item: function(ctx) { return ""; },
                 Fields: {
                     "_x0417__x0430__x043c__x0435__x04": {
                         View: renderReplaceField,
-                        //             EditForm: function(ctx) { return ""; },
-                        //             DisplayForm: function(ctx) { return ""; },
-                        //             NewForm: function(ctx) { return ""; }
                     },
                     "_x041a__x043e__x043b__x0438__x04": {
                         View: renderCountField,
-                        //             EditForm: function(ctx) { return ""; },
-                        //             DisplayForm: function(ctx) { return ""; },
-                        //             NewForm: function(ctx) { return ""; }
                     }
                 },
-                //Footer: function (ctx) { return ""; }
             },
-
             // OnPostRender: function(ctx) { },
-
             ListTemplateType: 120
-
         });
     }
 
@@ -64,13 +43,13 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
     init();
 
     function renderReplaceField(ctx) {
-    	var html = "";
-        html += '<input type="button" value="Заменить" onClick="replaceAction(\'' +  ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Cartidges"] + '\')" />';
+        var html = "";
+        html += '<input type="button" value="Заменить" onClick="replaceAction(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
         html += "</input>";
         return html;
-   }
-  
-  function renderCountField(ctx) {
+    }
+
+    function renderCountField(ctx) {
         var html = "";
         html += '<input type="button" value=" \'' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\'   " onClick="DisplayVersionHistory(\'' + ctx.CurrentItem.ID + '\')" />';
         html += "</input>";
@@ -82,31 +61,44 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
         html += "</div>";
         return html;
     }
-
 });
 
-function replaceAction(itemID, cartridgesName) {
-     var clientContext = new SP.ClientContext(siteUrl);
-     var oList = clientContext.get_web().get_lists().getByTitle(listTitle);
-     
-     var caml = new SP.CamlQuery();
-     var query = new CamlBuilder().Where()
-	.LookupField("Cartidges")
-	.ValueAsText().In(["Enter Choice #1"])
-	.ToString();
-    console.log(query);
-    caml.set_viewXml(query);
-   collListItems = oList.getItems(caml);
-    clientContext.load(collListItems);
-    clientContext.executeQueryAsync(onQuerySucceeded, onQueryFailed);        
-}
+function replaceAction(itemID, cartridgesName, cartridgesCount) {
+    if (cartridgesCount >= 1) {
+        var clientContext = new SP.ClientContext(siteUrl);
+        var list = clientContext.get_web().get_lists().getByTitle(listTitle);
 
-function onQuerySucceeded(sender, args) {
-    var listItemInfo = '';
-    var listItemEnumerator = collListItems.getEnumerator();
-    while (listItemEnumerator.moveNext()) {
-        var oListItem = listItemEnumerator.get_current();
-        console.log(oListItem.get_item("Cartidges"));
+        var caml = new SP.CamlQuery();
+        caml.set_viewXml("<View><Query>" +
+            new CamlBuilder().Where()
+                .LookupField(catridgeFieldName)
+                .ValueAsText().In([cartridgesName])
+                .ToString() +
+            "</Query></View>");
+        var collListItems = list.getItems(caml);
+
+        clientContext.load(collListItems);
+
+        clientContext.executeQueryAsync(function () {
+                var enumerator = collListItems.getEnumerator();
+                while (enumerator.moveNext()) {
+                    var item = enumerator.get_current();
+                    item.set_item(catridgeCountFieldName, cartridgesCount - 1);
+                    if (item.get_id() == itemID) {
+                        console.log(itemID + " item update");
+                        item.set_item(replaceDateFieldName, moment().format('LLL'));
+                    }
+                    item.update();
+                }
+                clientContext.executeQueryAsync(function () {
+                        console.log("success get count");
+                    },
+                    function () {
+                        console.log("fail get count");
+                    });
+                document.location.reload();
+            },
+            onQueryFailed);
     }
 }
 
@@ -114,14 +106,13 @@ function onQueryFailed(sender, args) {
     alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
 }
 
-
 function DisplayVersionHistory(itemID) {
 
     if ($("#table").length === 0) {
-      jQuery("#dialogText").append('<table border="1" id="table"> <caption>История изменений:</caption><tr><th>Дата</th><th>Действие</th><th>Количество</th></tr></table>');
+        jQuery("#dialogText").append('<table border="1" id="table"> <caption>История изменений:</caption><tr><th>Дата</th><th>Действие</th><th>Количество</th></tr></table>');
     }
 
-   /* $().SPServices({
+    $().SPServices({
         operation: "GetVersionCollection",
         async: false,
         strlistID: listTitle,
@@ -142,10 +133,10 @@ function DisplayVersionHistory(itemID) {
         async: false,
         strlistID: listTitle,
         strlistItemID: itemID,
-        strFieldName: countFieldName,
+        strFieldName: catridgeCountFieldName,
         completefunc: function (xData, Status) {
             $(xData.responseText).find("Version").each(function (i) {
-                cartridgeCount[i] = $(this).attr(countFieldName);
+                cartridgeCount[i] = $(this).attr(catridgeCountFieldName);
                 if (i >= threshold) {
                     return false;
                 }
@@ -153,10 +144,10 @@ function DisplayVersionHistory(itemID) {
         }
     });
 
-    for (key in replaceDate) {
+    for (key in cartridgeCount) {
         $('#table').append("<tr><td>" + replaceDate[key] + "</td><td>Замена</td><td>" + cartridgeCount[key] + "</td></tr>");
         console.log(key);
-    } */
+    }
 
     $(function () {
         $("#modalWindow").dialog({
