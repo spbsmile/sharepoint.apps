@@ -5,14 +5,15 @@ var siteUrl = "http://server-sp-it/sites/wiki";
 
 var replaceDate = {};
 var cartridgeCount = {};
+var action = {};
 
-var itemType;
 var listTitle = "Тестовый список";
 var replaceDateFieldName = "_x0414__x0430__x0442__x0430__x00";
 var replaceButtonFieldName = "_x0417__x0430__x043c__x0435__x04";
 var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
 var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
-//var listGuid = "4f71156b-0221-45e8-8166-7ccca783813f";
+var actionFieldName = "Action";
+
 var threshold = 5;
 
 SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
@@ -22,7 +23,6 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
     }
 
     function init() {
-
         SPClientTemplates.TemplateManager.RegisterTemplateOverrides({
             Templates: {
                 Fields: {
@@ -44,14 +44,14 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
     function renderReplaceField(ctx) {
         var html = "";
-        html += '<input type="button" value="Заменить" onClick="replaceAction(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
+        html += '<input type="button" value="Заменить" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
         html += "</input>";
         return html;
     }
 
     function renderCountField(ctx) {
         var html = "";
-        html += '<input type="button" value=" \'' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\'   " onClick="DisplayVersionHistory(\'' + ctx.CurrentItem.ID + '\')" />';
+        html += '<input type="button" value=" \'' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\'   " onClick="clickVersionButton(\'' + ctx.CurrentItem.ID + '\')" />';
         html += "</input>";
         html += "</input>";
         html += "<div id ='modalWindow';  title='Картридж:'>";
@@ -63,7 +63,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
     }
 });
 
-function replaceAction(itemID, cartridgesName, cartridgesCount) {
+function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
     if (cartridgesCount >= 1) {
         var clientContext = new SP.ClientContext(siteUrl);
         var list = clientContext.get_web().get_lists().getByTitle(listTitle);
@@ -102,51 +102,18 @@ function replaceAction(itemID, cartridgesName, cartridgesCount) {
     }
 }
 
-function onQueryFailed(sender, args) {
-    alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
-}
-
-function DisplayVersionHistory(itemID) {
+function clickVersionButton(itemID) {
 
     if ($("#table").length === 0) {
         jQuery("#dialogText").append('<table border="1" id="table"> <caption>История изменений:</caption><tr><th>Дата</th><th>Действие</th><th>Количество</th></tr></table>');
     }
 
-    $().SPServices({
-        operation: "GetVersionCollection",
-        async: false,
-        strlistID: listTitle,
-        strlistItemID: itemID,
-        strFieldName: replaceDateFieldName,
-        completefunc: function (xData, Status) {
-            $(xData.responseText).find("Version").each(function (i) {
-                replaceDate[i] = $(this).attr(replaceDateFieldName);
-                if (i >= threshold) {
-                    return false;
-                }
-            });
-        }
-    });
+    RecordVersionCollection(replaceDate, itemID, replaceDateFieldName);
 
-    $().SPServices({
-        operation: "GetVersionCollection",
-        async: false,
-        strlistID: listTitle,
-        strlistItemID: itemID,
-        strFieldName: catridgeCountFieldName,
-        completefunc: function (xData, Status) {
-            $(xData.responseText).find("Version").each(function (i) {
-                cartridgeCount[i] = $(this).attr(catridgeCountFieldName);
-                if (i >= threshold) {
-                    return false;
-                }
-            });
-        }
-    });
+    RecordVersionCollection(cartridgeCount, itemID, catridgeCountFieldName);
 
     for (key in cartridgeCount) {
         $('#table').append("<tr><td>" + replaceDate[key] + "</td><td>Замена</td><td>" + cartridgeCount[key] + "</td></tr>");
-        console.log(key);
     }
 
     $(function () {
@@ -159,4 +126,27 @@ function DisplayVersionHistory(itemID) {
             }
         });
     });
+}
+
+function RecordVersionCollection(arrayData, itemId, fieldName)
+{
+    $().SPServices({
+        operation: "GetVersionCollection",
+        async: false,
+        strlistID: listTitle,
+        strlistItemID: itemId,
+        strFieldName: fieldName,
+        completefunc: function (xData, Status) {
+            $(xData.responseText).find("Version").each(function (i) {
+                arrayData[i] = $(this).attr(fieldName);
+                if (i >= threshold) {
+                    return false;
+                }
+            });
+        }
+    });
+}
+
+function onQueryFailed(sender, args) {
+    alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
 }
