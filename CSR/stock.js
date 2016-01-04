@@ -3,17 +3,12 @@
 
 var siteUrl = "http://server-sp-it/sites/wiki";
 
-var replaceDate = {};
-var cartridgeCount = {};
-var action = {};
-
 var listTitle = "Тестовый список";
 var replaceDateFieldName = "_x0414__x0430__x0442__x0430__x00";
 var replaceButtonFieldName = "_x0417__x0430__x043c__x0435__x04";
 var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
 var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
 var actionFieldName = "Action";
-
 var threshold = 5;
 
 SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
@@ -45,15 +40,12 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
     function renderReplaceField(ctx) {
         var html = "";
         html += '<input type="button" value="Заменить" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
-        html += "</input>";
         return html;
     }
 
     function renderCountField(ctx) {
         var html = "";
-        html += '<input type="button" value=" \'' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\'   " onClick="clickVersionButton(\'' + ctx.CurrentItem.ID + '\')" />';
-        html += "</input>";
-        html += "</input>";
+        html += '<input type="button" value="' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\" onClick="clickVersionButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\')" />';
         html += "<div id ='modalWindow';  title='Картридж:'>";
         html += "<div id='dialogText';  >";
         html += "";
@@ -84,8 +76,8 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                 while (enumerator.moveNext()) {
                     var item = enumerator.get_current();
                     item.set_item(catridgeCountFieldName, cartridgesCount - 1);
+					item.set_item(actionFieldName, "Замена");
                     if (item.get_id() == itemID) {
-                        console.log(itemID + " item update");
                         item.set_item(replaceDateFieldName, moment().format('LLL'));
                     }
                     item.update();
@@ -102,22 +94,27 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
     }
 }
 
-function clickVersionButton(itemID) {
+function clickVersionButton(itemID, cartrigeName) {
+	var cartridgeCountStorage = [];
+    var actionStorage = [];
 
     if ($("#table").length === 0) {
         jQuery("#dialogText").append('<table border="1" id="table"> <caption>История изменений:</caption><tr><th>Дата</th><th>Действие</th><th>Количество</th></tr></table>');
     }
 
-    RecordVersionCollection(replaceDate, itemID, replaceDateFieldName);
+    RecordVersionCollection(cartridgeCountStorage, itemID, catridgeCountFieldName);
+    RecordVersionCollection(actionStorage, itemID, actionFieldName);
 
-    RecordVersionCollection(cartridgeCount, itemID, catridgeCountFieldName);
-
-    for (key in cartridgeCount) {
-        $('#table').append("<tr><td>" + replaceDate[key] + "</td><td>Замена</td><td>" + cartridgeCount[key] + "</td></tr>");
+    for (var i = 0; i <= threshold - 1; i++) {
+        if (actionStorage[i] === undefined) break;
+        if (actionStorage[i].value === undefined) break;
+        $('#table').append("<tr><td>" + cartridgeCountStorage[i].timeUpdate + "</td><td>" + actionStorage[i].value + "</td><td>" + cartridgeCountStorage[i].value + "</td></tr>");
     }
+
 
     $(function () {
         $("#modalWindow").dialog({
+			title: 'Картридж: ' + cartrigeName,
             width: 600,
             modal: true,
             resizable: false,
@@ -138,7 +135,10 @@ function RecordVersionCollection(arrayData, itemId, fieldName)
         strFieldName: fieldName,
         completefunc: function (xData, Status) {
             $(xData.responseText).find("Version").each(function (i) {
-                arrayData[i] = $(this).attr(fieldName);
+                arrayData.push({
+                    value: $(this).attr(fieldName),
+                    timeUpdate: $(this).attr("Modified")
+                });
                 if (i >= threshold) {
                     return false;
                 }
@@ -148,5 +148,5 @@ function RecordVersionCollection(arrayData, itemId, fieldName)
 }
 
 function onQueryFailed(sender, args) {
-    alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+    console.log('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
 }
