@@ -17,10 +17,6 @@
         select {
             width: 200px;
         }
-
-        .overflow {
-            height: 200px;
-        }
     </style>
     <script>
 
@@ -28,6 +24,7 @@
         var siteUrl = "http://server-sp-it/sites/wiki";
         var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
         var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
+		var actionFieldName = "Action";
 
         $(document).ready(function () {
             $("#dialog2").dialog({
@@ -42,12 +39,8 @@
                 $("#dialog2").dialog("open");
             });
 
-            $("#speed").selectmenu();
-
             function addDataToTable() {
-
-                console.log($("#countForm").val());
-                var t = $( "#mySelect option:selected" ).text();
+                var selectedValue = $( "#mySelect option:selected" ).text();
                 var clientContext = new SP.ClientContext(siteUrl);
                 var list = clientContext.get_web().get_lists().getByTitle(listTitle);
 
@@ -55,7 +48,7 @@
                 caml.set_viewXml("<View><Query>" +
                         new CamlBuilder().Where()
                                 .LookupField(catridgeFieldName)
-                                .ValueAsText().In([t])
+                                .ValueAsText().In([selectedValue])
                                 .ToString() +
                         "</Query></View>");
                 var collListItems = list.getItems(caml);
@@ -66,8 +59,8 @@
                             var enumerator = collListItems.getEnumerator();
                             while (enumerator.moveNext()) {
                                 var item = enumerator.get_current();
-                                var p = $("#countForm").val();
-                                item.set_item(catridgeCountFieldName, (item.get_item(catridgeCountFieldName) + parseInt(p)));
+                                item.set_item(catridgeCountFieldName, (item.get_item(catridgeCountFieldName) + parseInt($("#countForm").val())));
+                                item.set_item(actionFieldName, "Привезено " + parseInt($("#countForm").val()) + " картриджей" );
                                 item.update();
                             }
                             clientContext.executeQueryAsync(function () {
