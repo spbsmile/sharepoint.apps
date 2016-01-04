@@ -24,8 +24,8 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
                     "_x0417__x0430__x043c__x0435__x04": {
                         View: renderReplaceField,
                     },
-                    "_x041a__x043e__x043b__x0438__x04": {
-                        View: renderCountField,
+                    "_x0414__x0430__x0442__x0430__x00": {
+                        View: renderVersionsField,
                     }
                 },
             },
@@ -36,6 +36,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
     RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/Printers/printersView.js"), init);
     init();
+  	
 
     function renderReplaceField(ctx) {
         var html = "";
@@ -43,7 +44,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
         return html;
     }
 
-    function renderCountField(ctx) {
+    function renderVersionsField(ctx) {
         var html = "";
         html += '<input type="button" value="' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\" onClick="clickVersionButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\')" />';
         html += "<div id ='modalWindow';  title='Картридж:'>";
@@ -76,7 +77,7 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                 while (enumerator.moveNext()) {
                     var item = enumerator.get_current();
                     item.set_item(catridgeCountFieldName, cartridgesCount - 1);
-					item.set_item(actionFieldName, "Замена");
+                    item.set_item(actionFieldName, "Замена");
                     if (item.get_id() == itemID) {
                         item.set_item(replaceDateFieldName, moment().format('LLL'));
                     }
@@ -95,26 +96,34 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
 }
 
 function clickVersionButton(itemID, cartrigeName) {
-	var cartridgeCountStorage = [];
+    var cartridgeCountStorage = [];
     var actionStorage = [];
 
     if ($("#table").length === 0) {
-        jQuery("#dialogText").append('<table border="1" id="table"> <caption>История изменений:</caption><tr><th>Дата</th><th>Действие</th><th>Количество</th></tr></table>');
+        jQuery("#dialogText").append('<table border="1"> <caption>История изменений:</caption> <thead><tr><th>Дата</th><th>Действие</th><th>Количество</th></tr></thead> <tbody id="table"></tbody></table>');
     }
 
+    moment.locale(window.navigator.userLanguage || window.navigator.language);
     RecordVersionCollection(cartridgeCountStorage, itemID, catridgeCountFieldName);
     RecordVersionCollection(actionStorage, itemID, actionFieldName);
 
     for (var i = 0; i <= threshold - 1; i++) {
-        if (actionStorage[i] === undefined) break;
-        if (actionStorage[i].value === undefined) break;
-        $('#table').append("<tr><td>" + cartridgeCountStorage[i].timeUpdate + "</td><td>" + actionStorage[i].value + "</td><td>" + cartridgeCountStorage[i].value + "</td></tr>");
+        var localAction = actionStorage[i] === undefined ? "Замена": actionStorage[i].value;
+        if (cartridgeCountStorage[i] == undefined)
+        {
+            if (i == 0)
+            {
+                jQuery("#dialogText").remove();
+            }
+            break;
+        }
+        $('#table').append("<tr><td>" + cartridgeCountStorage[i].timeUpdate + "</td><td>" + localAction + "</td><td>" + cartridgeCountStorage[i].value + "</td></tr>");
     }
 
 
     $(function () {
         $("#modalWindow").dialog({
-			title: 'Картридж: ' + cartrigeName,
+            title: 'Картридж: ' + cartrigeName,
             width: 600,
             modal: true,
             resizable: false,
@@ -137,7 +146,7 @@ function RecordVersionCollection(arrayData, itemId, fieldName)
             $(xData.responseText).find("Version").each(function (i) {
                 arrayData.push({
                     value: $(this).attr(fieldName),
-                    timeUpdate: $(this).attr("Modified")
+                    timeUpdate: moment($(this).attr("Modified")).format('LLL')
                 });
                 if (i >= threshold) {
                     return false;

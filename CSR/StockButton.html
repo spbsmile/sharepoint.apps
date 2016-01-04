@@ -24,7 +24,7 @@
         var siteUrl = "http://server-sp-it/sites/wiki";
         var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
         var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
-		var actionFieldName = "Action";
+        var actionFieldName = "Action";
 
         $(document).ready(function () {
             $("#dialog2").dialog({
@@ -35,7 +35,9 @@
             });
 
             $("#opener2").click(function () {
-                addItemsDataToDialog();
+                if( $('#mySelect').has('option').length <= 0 ) {
+                    addItemsDataToDialog();
+                }
                 $("#dialog2").dialog("open");
             });
 
