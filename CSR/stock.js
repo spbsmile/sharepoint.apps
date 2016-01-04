@@ -29,14 +29,24 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
                     }
                 },
             },
-            // OnPostRender: function(ctx) { },
+            OnPostRender: function (ctx) {
+                var rows = ctx.ListData.Row;
+                for (var i = 0; i < rows.length; i++) {
+                    if (IsCriticalCount(rows[i][catridgeFieldName], rows[i][catridgeCountFieldName])) {
+                        var rowElementId = GenerateIIDForListItem(ctx, rows[i]);
+                        var tr = document.getElementById(rowElementId);
+                        if (tr != null) {
+                            tr.style.backgroundColor = "#ada";//"#ada"; //#FF0000
+                        }
+                    }
+                }
+            },
             ListTemplateType: 120
         });
     }
 
     RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/Printers/printersView.js"), init);
     init();
-  	
 
     function renderReplaceField(ctx) {
         var html = "";
@@ -108,11 +118,9 @@ function clickVersionButton(itemID, cartrigeName) {
     RecordVersionCollection(actionStorage, itemID, actionFieldName);
 
     for (var i = 0; i <= threshold - 1; i++) {
-        var localAction = actionStorage[i] === undefined ? "Замена": actionStorage[i].value;
-        if (cartridgeCountStorage[i] == undefined)
-        {
-            if (i == 0)
-            {
+        var localAction = actionStorage[i] === undefined ? "Замена" : actionStorage[i].value;
+        if (cartridgeCountStorage[i] == undefined) {
+            if (i == 0) {
                 jQuery("#dialogText").remove();
             }
             break;
@@ -134,8 +142,7 @@ function clickVersionButton(itemID, cartrigeName) {
     });
 }
 
-function RecordVersionCollection(arrayData, itemId, fieldName)
-{
+function RecordVersionCollection(arrayData, itemId, fieldName) {
     $().SPServices({
         operation: "GetVersionCollection",
         async: false,
@@ -154,6 +161,52 @@ function RecordVersionCollection(arrayData, itemId, fieldName)
             });
         }
     });
+}
+
+function IsCriticalCount(cartrigeName, cartrigeCount) {
+    switch (cartrigeName) {
+        case "TK-1140":
+            return cartrigeCount < 3;
+            break;
+        case "TK-350":
+            return cartrigeCount < 3;
+            break;
+        case "TK-6305":
+            return cartrigeCount < 3;
+            break;
+        case "C4129x":
+            return cartrigeCount < 3;
+            break;
+        case "CB436A":
+            return cartrigeCount < 3;
+            break;
+        case "Q2612A":
+            return cartrigeCount < 3;
+            break;
+        case "TK-685":
+            return cartrigeCount < 3;
+            break;
+        case "TK-170":
+            return cartrigeCount < 3;
+            break;
+        case "TK-435":
+            return cartrigeCount < 3;
+            break;
+        case "Q7516A":
+            return cartrigeCount < 3;
+            break;
+        case "CE278A":
+            return cartrigeCount < 3;
+            break;
+        case "Q7553A":
+            return cartrigeCount < 3;
+            break;
+        case "TK-895":
+            return cartrigeCount < 3;
+            break;
+        default:
+            return false;
+    }
 }
 
 function onQueryFailed(sender, args) {
