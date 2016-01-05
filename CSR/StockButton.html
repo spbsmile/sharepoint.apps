@@ -40,8 +40,24 @@
                 }
                 $("#dialog2").dialog("open");
             });
+            
+            $("#dialogform").validate({
+                rules: {
+                    pswd: {
+                        required: true,
+                        digits: true
+                    }
+                },
+                messages: {
+                    pswd: {
+                        required: "Поле 'Количество' обязательно для заполнения",
+                        digits: "Должны быть цифры"
+                    }
+                }
+            });
 
             function addDataToTable() {
+                if (!$('#dialogform').valid()) return;
                 var selectedValue = $( "#mySelect option:selected" ).text();
                 var clientContext = new SP.ClientContext(siteUrl);
                 var list = clientContext.get_web().get_lists().getByTitle(listTitle);
@@ -61,8 +77,8 @@
                             var enumerator = collListItems.getEnumerator();
                             while (enumerator.moveNext()) {
                                 var item = enumerator.get_current();
-                                item.set_item(catridgeCountFieldName, (item.get_item(catridgeCountFieldName) + parseInt($("#countForm").val())));
-                                item.set_item(actionFieldName, "Привезено " + parseInt($("#countForm").val()) + " картриджей" );
+                                item.set_item(catridgeCountFieldName, (item.get_item(catridgeCountFieldName) + parseInt($("#countinput").val())));
+                                item.set_item(actionFieldName, "Привезено " + parseInt($("#countinput").val()) + " картриджей" );
                                 item.update();
                             }
                             clientContext.executeQueryAsync(function () {
@@ -112,10 +128,14 @@
 <body>
 
 <div id="dialog2" title="Введите данные" class="ui-widget">
-    <div><label>Картриж:</label></div>
-    <div><select id="mySelect">
-    </select></div>
-    <div><label for="countForm">Количество:</label><input id="countForm"/></div>
+    <form id="mainform" name="mainform">
+
+    </form>
+    <form id="dialogform">
+        <div><label>Картриж:</label></div>
+        <div><select id="mySelect"></select></div>
+        <div><label> Количество:</label><input id="countinput" name="pswd"/></div>
+    </form>
 </div>
 
 <input type="button" value="Добавить " id="opener2">
