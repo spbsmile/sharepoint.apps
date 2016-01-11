@@ -39,7 +39,6 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
                       {
                         tr.style.backgroundColor = "#ada";//"#ada"; //#FF0000
                       }
-                        
                     } 
                 }
             }, 
@@ -52,15 +51,15 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
     function renderReplaceField(ctx) {
         var html = "";
-        html += '<input type="button" value="Заменить" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
+        html += '<input type="button" value="пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
         return html;
     }
 
     function renderVersionsField(ctx) {
         var html = "";
         html += '<input type="button" value="' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\" onClick="clickVersionButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\')" />';
-        html += "<div id ='modalWindow';  title='Картридж:'>";
-        html += "<div id='dialogText';  >";
+        html += '<div id ="modalWindow' + ctx.CurrentItem.ID + '\";>';
+        html += '<div id="dialogText' + ctx.CurrentItem.ID + '\";>';
         html += "";
         html += "</div>";
         html += "</div>";
@@ -89,7 +88,7 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                 while (enumerator.moveNext()) {
                     var item = enumerator.get_current();
                     item.set_item(catridgeCountFieldName, cartridgesCount - 1);
-                    item.set_item(actionFieldName, "Замена");
+                    item.set_item(actionFieldName, "пїЅпїЅпїЅпїЅпїЅпїЅ");
                     if (item.get_id() == itemID) {
                         item.set_item(replaceDateFieldName, moment().format('LLL'));
                     }
@@ -109,8 +108,8 @@ function clickVersionButton(itemID, cartrigeName) {
     var cartridgeCountStorage = [];
     var actionStorage = [];
 
-    if ($("#table").length === 0) {
-        jQuery("#dialogText").append('<table border="1"> <caption>История изменений:</caption> <thead><tr><th>Дата</th><th>Действие</th><th>Количество</th></tr></thead> <tbody id="table"></tbody></table>');
+    if ($("#table" + itemID).length === 0) {
+        jQuery("#dialogText" + itemID).append('<table border="1"> <caption>пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:</caption> <thead><tr><th>пїЅпїЅпїЅпїЅ</th><th>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</th><th>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
     }
 
     moment.locale(window.navigator.userLanguage || window.navigator.language);
@@ -118,26 +117,26 @@ function clickVersionButton(itemID, cartrigeName) {
     RecordVersionCollection(actionStorage, itemID, actionFieldName);
 
     for (var i = 0; i <= threshold - 1; i++) {
-        var localAction = actionStorage[i] === undefined ? "Замена" : actionStorage[i].value;
+        var localAction = actionStorage[i] === undefined ? "пїЅпїЅпїЅпїЅпїЅпїЅ" : actionStorage[i].value;
         if (cartridgeCountStorage[i] == undefined) {
             if (i == 0) {
-                jQuery("#dialogText").remove();
+                jQuery("#dialogText" + itemID).remove();
             }
             break;
         }
       // (moment($(this).attr("Modified")) > moment("2016-01-11T10:04:24Z"))
-        $('#table').append("<tr><td>" + cartridgeCountStorage[i].timeUpdate + "</td><td>" + localAction + "</td><td>" + cartridgeCountStorage[i].value + "</td></tr>");
+        $('#table' + itemID).append("<tr><td>" + cartridgeCountStorage[i].timeUpdate + "</td><td>" + localAction + "</td><td>" + cartridgeCountStorage[i].value + "</td></tr>");
     }
 
 
     $(function () {
-        $("#modalWindow").dialog({
-            title: 'Картридж: ' + cartrigeName,
+        $("#modalWindow" + itemID).dialog({
+            title: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ' + cartrigeName,
             width: 600,
             modal: true,
             resizable: false,
             close: function (event, ui) {
-                $("#table").remove();
+                $("#table"+ itemID).remove();
             }
         });
     });

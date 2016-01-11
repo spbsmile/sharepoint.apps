@@ -92,10 +92,6 @@
                 $("#dialog2").dialog("close");
             }
 
-            function onQueryFailed(sender, args) {
-                console.log('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
-            }
-
             function addItemsDataToDialog() {
                 $.ajax({
                     url: "http://server-sp-it/sites/wiki/" + "/_api/web/lists/getbytitle('Тестовый список')/items",
@@ -116,9 +112,7 @@
                                             .attr("value", key)
                                             .text(value));
                         });
-                    }, error: function (data) {
-                        console.log("fail rest");
-                    }
+                    }, error: onQueryFailed
                 });
             }
         });

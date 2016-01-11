@@ -2,7 +2,7 @@
 // and attached to the XLV via JSLink property.
 
 var siteUrl = "http://server-sp-it/sites/wiki/";
-var listTitle = "Офисная техника";
+var listTitle = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 var remainFieldName = "_x041e__x0441__x0442__x0430__x04";
 var numberofissuedFieldName = "_x041e__x0431__x0449__x0435__x04";
 var reseivedFieldName = "_x041a__x043e__x043c__x0443__x00"; //OData__x041a__x043e__x043c__x0443__x00
@@ -40,9 +40,9 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
   function renderGetOut(ctx)
   {
         var html = "";
-        html += '<input type="button" value="Выдать" onClick="clickDialogGetOut(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Title"] + '\')" />';
-        html += "<div id ='mdGetOut';>";
-        html += "<div id='dialogText';  >";
+        html += '<input type="button" value="пїЅпїЅпїЅпїЅпїЅпїЅ" onClick="clickDialogGetOut(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Title"] + '\')" />';
+        html += '<div id ="mdGetOut' + ctx.CurrentItem.ID + '\";>';
+        html += '<div id="dialogText' + ctx.CurrentItem.ID + '\";  >';
         html += "";
         html += "</div>";
         html += "</div>";
@@ -52,9 +52,9 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
   function renderViewHistory(ctx)
   {
         var html = "";
-        html += '<input type="button" value="Посмотреть историю выдачи" onClick="clickViewHistory(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Title"] + '\')" />';
-        html += "<div id ='mdViewHistory';>";
-        html += "<div id='dialogTextHistory';  >";
+        html += '<input type="button" value="пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" onClick="clickViewHistory(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Title"] + '\')" />';
+        html += '<div id ="mdViewHistory' + ctx.CurrentItem.ID + '\";>';
+        html += '<div id="dialogTextHistory'+ ctx.CurrentItem.ID + '\";>';
         html += "";
         html += "</div>";
         html += "</div>";
@@ -70,34 +70,33 @@ function clickViewHistory(itemID, itemName)
     var getOutFeildsStorage = [];
     var resievedFeildsStorage = [];
   
-    if ($("#dialogTextHistory").length === 0) {
-        $("#mdViewHistory").append("<div id ='dialogTextHistory';</div>");
+    if ($("#dialogTextHistory" + itemID).length === 0) {
+        $("#mdViewHistory" + itemID).append('<div id ="dialogTextHistory'+ itemID + '\";</div>');
     }
-    jQuery("#dialogTextHistory").append('<table border="1"> <thead><tr><th>Дата</th><th>Получатели</th><th>Количество выданных</th></tr></thead> <tbody id="table"></tbody></table>');
+    jQuery("#dialogTextHistory" + itemID).append('<table border="1"> <thead><tr><th>пїЅпїЅпїЅпїЅ</th><th>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</th><th>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</th></tr></thead> <tbody id="table'+ itemID + '\"></tbody></table>');
     moment.locale(window.navigator.userLanguage || window.navigator.language);
     RecordVersionCollection(getOutFeildsStorage, itemID, getoutFieldName);
     RecordVersionCollection(resievedFeildsStorage, itemID, reseivedFieldName);
   
   for (var i = 0; i <= threshold - 1; i++) {
-       
       // (moment($(this).attr("Modified")) > moment("2016-01-11T10:04:24Z"))
       if (getOutFeildsStorage[i] == undefined) {
             if (i == 0) {
-                jQuery("#dialogTextHistory").remove();
+                jQuery("#dialogTextHistory" + itemID).remove();
             }
             break;
         }
-        $('#table').append("<tr><td>" + getOutFeildsStorage[i].timeUpdate + "</td><td>" + resievedFeildsStorage[i].value + "</td><td>" + getOutFeildsStorage[i].value + "</td></tr>");
+        $('#table' + itemID).append("<tr><td>" + getOutFeildsStorage[i].timeUpdate + "</td><td>" + resievedFeildsStorage[i].value + "</td><td>" + getOutFeildsStorage[i].value + "</td></tr>");
     }
   
   $(function () {
-        $("#mdViewHistory").dialog({
-            title: 'История выдачи: ' + itemName,
+        $("#mdViewHistory" + itemID).dialog({
+            title: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: ' + itemName,
             width: 600,
             modal: true,
             resizable: false,
              close: function (event, ui) {
-                $("#dialogTextHistory").remove();
+                $("#dialogTextHistory" + itemID).remove();
             }
         });
     });
@@ -105,27 +104,28 @@ function clickViewHistory(itemID, itemName)
 
 function clickDialogGetOut(itemID, itemName)
 {
-  if ($("#dialogText").length == 0)
+  if ($("#dialogText" + itemID).length == 0)
   {
-    $("#mdGetOut").append("<div id ='dialogText';</div>");
+    $("#mdGetOut" + itemID).append('<div id ="dialogText'+ itemID + '\";</div>');
   }
-  jQuery("#dialogText").append('<label>Кому выдать:</label> <div> <input name="users" id="users" value="" /> <label>Количество:</label> <div> <input id="countdevice" /> </div></div><label>Замечания:</label><p><textarea rows="3"  name="text"></textarea></p>');
+  jQuery("#dialogText" + itemID).append('<label>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ:</label> <div> <input name="users" id="users" value="" /> <label>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:</label> <div> <input id="countdevice'+ itemID + '\" /> </div></div><label>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:</label><p><textarea rows="3"  name="text"></textarea></p>');
   $("input[name='users']").pickSPUser();
   $(function () {
-        $("#mdGetOut").dialog({
+        $("#mdGetOut" + itemID).dialog({
             buttons: [
               {
-                text: "Выдать", 
+                text: "пїЅпїЅпїЅпїЅпїЅпїЅ", 
                 click: function(){
                   		var clientContext = new SP.ClientContext(siteUrl);
-		                var list = clientContext.get_web().get_lists().getByTitle(listTitle);
+                        //todo get by id
+		                var list = clientContext.get_web().get_lists().getByTitle(listTitle);//.getById(listId); 
                   		var item = list.getItemById(itemID);
 				        clientContext.load(item);
      					
                    		clientContext.executeQueryAsync(function () {
-                          item.set_item(remainFieldName, item.get_item(remainFieldName) - parseInt($("#countdevice").val()));
-                          item.set_item(numberofissuedFieldName, item.get_item(numberofissuedFieldName) + parseInt($("#countdevice").val()));
-                          item.set_item(getoutFieldName, parseInt($("#countdevice").val()));
+                          item.set_item(remainFieldName, item.get_item(remainFieldName) - parseInt($("#countdevice" + itemID).val()));
+                          item.set_item(numberofissuedFieldName, item.get_item(numberofissuedFieldName) + parseInt($("#countdevice" + itemID).val()));
+                          item.set_item(getoutFieldName, parseInt($("#countdevice" + itemID).val()));
                           item.set_item(reseivedFieldName, $("#users").val());  
                		 	  item.update();
                           clientContext.executeQueryAsync(function () {
@@ -136,28 +136,27 @@ function clickDialogGetOut(itemID, itemName)
                     		});
             		},
             		onQueryFailed);
-                  $("mdGetOut").dialog("close");
+                  $("mdGetOut" + itemID).dialog("close");
                   document.location.reload();
                 }
               }
             ],
-            title: 'Выдать: '+ itemName,
+            title: 'пїЅпїЅпїЅпїЅпїЅпїЅ: '+ itemName,
             width: 600,
             modal: true,
             resizable: false,
             close: function (event, ui) {
-                $("#dialogTextHistory").remove();
+                $("#dialogTextHistory" + itemID).remove();
             }
         });
     });
 }
 
-
 function RecordVersionCollection(arrayData, itemId, fieldName) {
     $().SPServices({
         operation: "GetVersionCollection",
         async: false,
-        strlistID: listTitle,
+        strlistID: listTitle, //listId
         strlistItemID: itemId,
         strFieldName: fieldName,
         completefunc: function (xData, Status) {
@@ -174,6 +173,4 @@ function RecordVersionCollection(arrayData, itemId, fieldName) {
     });
 }
 
-function onQueryFailed(sender, args) {
-    console.log('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
-}
+
