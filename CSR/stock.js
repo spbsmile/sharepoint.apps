@@ -3,7 +3,7 @@
 
 var siteUrl = "http://server-sp-it/sites/wiki";
 
-var listTitle = "Тестовый список";
+var listId = "629c7c86-dd24-4337-b01a-48a6da811cc5";
 var replaceDateFieldName = "_x0414__x0430__x0442__x0430__x00";
 var replaceButtonFieldName = "_x0417__x0430__x043c__x0435__x04";
 var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
@@ -31,16 +31,18 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
             },
             OnPostRender: function (ctx) {
                 var rows = ctx.ListData.Row;
-                for (var i = 0; i < rows.length; i++) {
-                    if (IsCriticalCount(rows[i][catridgeFieldName], rows[i][catridgeCountFieldName])) {
+               for (var i = 0; i < rows.length; i++) {
+                 if (IsCriticalCount( rows[i][catridgeFieldName] , rows[i][catridgeCountFieldName])) {
                         var rowElementId = GenerateIIDForListItem(ctx, rows[i]);
                         var tr = document.getElementById(rowElementId);
-                        if (tr != null) {
-                            tr.style.backgroundColor = "#ada";//"#ada"; //#FF0000
-                        }
-                    }
+                      if(tr != null)
+                      {
+                        tr.style.backgroundColor = "#ada";//"#ada"; //#FF0000
+                      }
+                        
+                    } 
                 }
-            },
+            }, 
             ListTemplateType: 120
         });
     }
@@ -69,7 +71,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
     if (cartridgesCount >= 1) {
         var clientContext = new SP.ClientContext(siteUrl);
-        var list = clientContext.get_web().get_lists().getByTitle(listTitle);
+        var list = clientContext.get_web().get_lists().getById(listId); 
 
         var caml = new SP.CamlQuery();
         caml.set_viewXml("<View><Query>" +
@@ -94,11 +96,9 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                     item.update();
                 }
                 clientContext.executeQueryAsync(function () {
-                        console.log("success get count");
+                        console.log("success set count");
                     },
-                    function () {
-                        console.log("fail get count");
-                    });
+                    onQueryFailed);
                 document.location.reload();
             },
             onQueryFailed);
@@ -125,6 +125,7 @@ function clickVersionButton(itemID, cartrigeName) {
             }
             break;
         }
+      // (moment($(this).attr("Modified")) > moment("2016-01-11T10:04:24Z"))
         $('#table').append("<tr><td>" + cartridgeCountStorage[i].timeUpdate + "</td><td>" + localAction + "</td><td>" + cartridgeCountStorage[i].value + "</td></tr>");
     }
 
@@ -146,12 +147,12 @@ function RecordVersionCollection(arrayData, itemId, fieldName) {
     $().SPServices({
         operation: "GetVersionCollection",
         async: false,
-        strlistID: listTitle,
+        strlistID: listId,
         strlistItemID: itemId,
         strFieldName: fieldName,
         completefunc: function (xData, Status) {
             $(xData.responseText).find("Version").each(function (i) {
-                arrayData.push({
+                 arrayData.push({
                     value: $(this).attr(fieldName),
                     timeUpdate: moment($(this).attr("Modified")).format('LLL')
                 });
