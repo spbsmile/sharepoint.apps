@@ -39,6 +39,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
                       {
                         tr.style.backgroundColor = "#ada";//"#ada"; //#FF0000
                       }
+                        
                     } 
                 }
             }, 
@@ -51,7 +52,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
     function renderReplaceField(ctx) {
         var html = "";
-        html += '<input type="button" value="��������" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
+        html += '<input type="button" value="Заменить" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
         return html;
     }
 
@@ -88,14 +89,17 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                 while (enumerator.moveNext()) {
                     var item = enumerator.get_current();
                     item.set_item(catridgeCountFieldName, cartridgesCount - 1);
-                    item.set_item(actionFieldName, "������");
+                    item.set_item(actionFieldName, "Замена");
                     if (item.get_id() == itemID) {
-                        item.set_item(replaceDateFieldName, moment().format('LLL'));
+                       // var t = moment().format('LLL');
+                       // console.log($.now().toString());
+                       // item.set_item(replaceDateFieldName,  $.now().toString());
                     }
                     item.update();
                 }
-                clientContext.executeQueryAsync(
-                    console.log("success set count"),
+                clientContext.executeQueryAsync(function () {
+                        console.log("success set count");
+                    },
                     onQueryFailed);
                 document.location.reload();
             },
@@ -108,7 +112,7 @@ function clickVersionButton(itemID, cartrigeName) {
     var actionStorage = [];
 
     if ($("#table" + itemID).length === 0) {
-        jQuery("#dialogText" + itemID).append('<table border="1"> <caption>������� ���������:</caption> <thead><tr><th>����</th><th>��������</th><th>����������</th><th>Кто выдал</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
+        jQuery("#dialogText" + itemID).append('<table border="1"> <caption>История изменений:</caption> <thead><tr><th>Дата</th><th>Действие</th><th>Количество</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
     }
 
     moment.locale(window.navigator.userLanguage || window.navigator.language);
@@ -116,7 +120,7 @@ function clickVersionButton(itemID, cartrigeName) {
     RecordVersionCollection(actionStorage, itemID, actionFieldName);
 
     for (var i = 0; i <= threshold - 1; i++) {
-        var localAction = actionStorage[i] === undefined ? "������" : actionStorage[i].value;
+        var localAction = actionStorage[i] === undefined ? "Замена" : actionStorage[i].value;
         if (cartridgeCountStorage[i] == undefined) {
             if (i == 0) {
                 jQuery("#dialogText" + itemID).remove();
@@ -129,13 +133,13 @@ function clickVersionButton(itemID, cartrigeName) {
 
 
     $(function () {
-        $("#modalWindow" + itemID).dialog({
-            title: '��������: ' + cartrigeName,
+         $("#modalWindow" + itemID).dialog({
+            title: 'Картридж: ' + cartrigeName,
             width: 600,
             modal: true,
             resizable: false,
             close: function (event, ui) {
-                $("#table"+ itemID).remove();
+                $("#table").remove();
             }
         });
     });
@@ -206,8 +210,4 @@ function IsCriticalCount(cartrigeName, cartrigeCount) {
         default:
             return false;
     }
-}
-
-function onQueryFailed(sender, args) {
-    console.log('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
 }
