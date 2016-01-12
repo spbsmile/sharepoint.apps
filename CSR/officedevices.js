@@ -13,32 +13,31 @@ var timeFieldName = "";
 
 var threshold = 20;
 
-SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
+SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
-  function getBaseHtml(ctx) {
-    return SPClientTemplates["_defaultTemplates"].Fields.default.all.all[ctx.CurrentFieldSchema.FieldType][ctx.BaseViewID](ctx);
-  }
+    function getBaseHtml(ctx) {
+        return SPClientTemplates["_defaultTemplates"].Fields.default.all.all[ctx.CurrentFieldSchema.FieldType][ctx.BaseViewID](ctx);
+    }
 
-  function init() {
-    SPClientTemplates.TemplateManager.RegisterTemplateOverrides({
+    function init() {
+        SPClientTemplates.TemplateManager.RegisterTemplateOverrides({
 
-      Templates: {
-           Fields: {
-               "_x0414__x0435__x0439__x0441__x04": {
-                    View: renderGetOut
-               }
-             ,
-             "_x0418__x0441__x0442__x043e__x04": {
-                    View: renderViewHistory
-               }
-           },
-      },
-      ListTemplateType: 100
-    });
-  }
- 
-  function renderGetOut(ctx)
-  {
+            Templates: {
+                Fields: {
+                    "_x0414__x0435__x0439__x0441__x04": {
+                        View: renderGetOut
+                    }
+                    ,
+                    "_x0418__x0441__x0442__x043e__x04": {
+                        View: renderViewHistory
+                    }
+                },
+            },
+            ListTemplateType: 100
+        });
+    }
+
+    function renderGetOut(ctx) {
         var html = "";
         html += '<input type="button" value="������" onClick="clickDialogGetOut(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Title"] + '\')" />';
         html += '<div id ="mdGetOut' + ctx.CurrentItem.ID + '\";>';
@@ -47,40 +46,38 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
         html += "</div>";
         html += "</div>";
         return html;
-  }
-    
-  function renderViewHistory(ctx)
-  {
+    }
+
+    function renderViewHistory(ctx) {
         var html = "";
         html += '<input type="button" value="���������� ������� ������" onClick="clickViewHistory(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Title"] + '\')" />';
         html += '<div id ="mdViewHistory' + ctx.CurrentItem.ID + '\";>';
-        html += '<div id="dialogTextHistory'+ ctx.CurrentItem.ID + '\";>';
+        html += '<div id="dialogTextHistory' + ctx.CurrentItem.ID + '\";>';
         html += "";
         html += "</div>";
         html += "</div>";
         return html;
-  }
+    }
 
-  RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/OfficeDevices/devices.js"), init);
-  init();
+    RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/OfficeDevices/devices.js"), init);
+    init();
 });
 
-function clickViewHistory(itemID, itemName)
-{
+function clickViewHistory(itemID, itemName) {
     var getOutFeildsStorage = [];
     var resievedFeildsStorage = [];
-  
+
     if ($("#dialogTextHistory" + itemID).length === 0) {
-        $("#mdViewHistory" + itemID).append('<div id ="dialogTextHistory'+ itemID + '\";</div>');
+        $("#mdViewHistory" + itemID).append('<div id ="dialogTextHistory' + itemID + '\";</div>');
     }
-    jQuery("#dialogTextHistory" + itemID).append('<table border="1"> <thead><tr><th>����</th><th>����������</th><th>���������� ��������</th></tr></thead> <tbody id="table'+ itemID + '\"></tbody></table>');
+    jQuery("#dialogTextHistory" + itemID).append('<table border="1"> <thead><tr><th>����</th><th>����������</th><th>���������� ��������</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
     moment.locale(window.navigator.userLanguage || window.navigator.language);
     RecordVersionCollection(getOutFeildsStorage, itemID, getoutFieldName);
     RecordVersionCollection(resievedFeildsStorage, itemID, reseivedFieldName);
-  
-  for (var i = 0; i <= threshold - 1; i++) {
-      // (moment($(this).attr("Modified")) > moment("2016-01-11T10:04:24Z"))
-      if (getOutFeildsStorage[i] == undefined) {
+
+    for (var i = 0; i <= threshold - 1; i++) {
+        // (moment($(this).attr("Modified")) > moment("2016-01-11T10:04:24Z"))
+        if (getOutFeildsStorage[i] == undefined) {
             if (i == 0) {
                 jQuery("#dialogTextHistory" + itemID).remove();
             }
@@ -88,60 +85,56 @@ function clickViewHistory(itemID, itemName)
         }
         $('#table' + itemID).append("<tr><td>" + getOutFeildsStorage[i].timeUpdate + "</td><td>" + resievedFeildsStorage[i].value + "</td><td>" + getOutFeildsStorage[i].value + "</td></tr>");
     }
-  
-  $(function () {
+
+    $(function () {
         $("#mdViewHistory" + itemID).dialog({
             title: '������� ������: ' + itemName,
             width: 600,
             modal: true,
             resizable: false,
-             close: function (event, ui) {
+            close: function (event, ui) {
                 $("#dialogTextHistory" + itemID).remove();
             }
         });
     });
-} 
+}
 
-function clickDialogGetOut(itemID, itemName)
-{
-  if ($("#dialogText" + itemID).length == 0)
-  {
-    $("#mdGetOut" + itemID).append('<div id ="dialogText'+ itemID + '\";</div>');
-  }
-  jQuery("#dialogText" + itemID).append('<label>���� ������:</label> <div> <input name="users" id="users" value="" /> <label>����������:</label> <div> <input id="countdevice'+ itemID + '\" /> </div></div><label>���������:</label><p><textarea rows="3"  name="text"></textarea></p>');
-  $("input[name='users']").pickSPUser();
-  $(function () {
+function clickDialogGetOut(itemID, itemName) {
+    if ($("#dialogText" + itemID).length == 0) {
+        $("#mdGetOut" + itemID).append('<div id ="dialogText' + itemID + '\";</div>');
+    }
+    jQuery("#dialogText" + itemID).append('<label>���� ������:</label> <div> <input name="users" id="users" value="" /> <label>����������:</label> <div> <input id="countdevice' + itemID + '\" /> </div></div><label>���������:</label><p><textarea id="remark" rows="3"  name="text"></textarea></p>');
+    $("input[name='users']").pickSPUser();
+    $(function () {
         $("#mdGetOut" + itemID).dialog({
             buttons: [
-              {
-                text: "������", 
-                click: function(){
-                  		var clientContext = new SP.ClientContext(siteUrl);
+                {
+                    text: "������",
+                    click: function () {
+                        var clientContext = new SP.ClientContext(siteUrl);
                         //todo get by id
-		                var list = clientContext.get_web().get_lists().getByTitle(listTitle);//.getById(listId); 
-                  		var item = list.getItemById(itemID);
-				        clientContext.load(item);
-     					
-                   		clientContext.executeQueryAsync(function () {
-                          item.set_item(remainFieldName, item.get_item(remainFieldName) - parseInt($("#countdevice" + itemID).val()));
-                          item.set_item(numberofissuedFieldName, item.get_item(numberofissuedFieldName) + parseInt($("#countdevice" + itemID).val()));
-                          item.set_item(getoutFieldName, parseInt($("#countdevice" + itemID).val()));
-                          item.set_item(reseivedFieldName, $("#users").val());  
-               		 	  item.update();
-                          clientContext.executeQueryAsync(function () {
-                    	    	console.log("success set count");
-                    		},
-                    		function () {
-                        		onQueryFailed;
-                    		});
-            		},
-            		onQueryFailed);
-                  $("mdGetOut" + itemID).dialog("close");
-                  document.location.reload();
+                        var list = clientContext.get_web().get_lists().getByTitle(listTitle);//.getById(listId);
+                        var item = list.getItemById(itemID);
+                        clientContext.load(item);
+
+                        clientContext.executeQueryAsync(function () {
+                                item.set_item(remainFieldName, item.get_item(remainFieldName) - parseInt($("#countdevice" + itemID).val()));
+                                item.set_item(numberofissuedFieldName, item.get_item(numberofissuedFieldName) + parseInt($("#countdevice" + itemID).val()));
+                                item.set_item(getoutFieldName, parseInt($("#countdevice" + itemID).val()));
+                                item.set_item(reseivedFieldName, $("#users").val());
+                                item.set_item(remainFieldName, $("#remark").val());
+                                item.update();
+                                clientContext.executeQueryAsync(
+                                    console.log("success set count"),
+                                    onQueryFailed);
+                            },
+                            onQueryFailed);
+                        $("mdGetOut" + itemID).dialog("close");
+                        document.location.reload();
+                    }
                 }
-              }
             ],
-            title: '������: '+ itemName,
+            title: '������: ' + itemName,
             width: 600,
             modal: true,
             resizable: false,
