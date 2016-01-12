@@ -94,9 +94,8 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                     }
                     item.update();
                 }
-                clientContext.executeQueryAsync(function () {
-                        console.log("success set count");
-                    },
+                clientContext.executeQueryAsync(
+                    console.log("success set count"),
                     onQueryFailed);
                 document.location.reload();
             },
@@ -109,7 +108,7 @@ function clickVersionButton(itemID, cartrigeName) {
     var actionStorage = [];
 
     if ($("#table" + itemID).length === 0) {
-        jQuery("#dialogText" + itemID).append('<table border="1"> <caption>������� ���������:</caption> <thead><tr><th>����</th><th>��������</th><th>����������</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
+        jQuery("#dialogText" + itemID).append('<table border="1"> <caption>������� ���������:</caption> <thead><tr><th>����</th><th>��������</th><th>����������</th><th>Кто выдал</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
     }
 
     moment.locale(window.navigator.userLanguage || window.navigator.language);
