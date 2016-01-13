@@ -8,8 +8,12 @@ var replaceDateFieldName = "_x0414__x0430__x0442__x0430__x00";
 var replaceButtonFieldName = "_x0417__x0430__x043c__x0435__x04";
 var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
 var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
+var whogiveFieldName = "_x041a__x0442__x043e__x0020__x04";
 var actionFieldName = "Action";
 var threshold = 5;
+
+var currentUser = null;
+var currentUserId = null;
 
 SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
@@ -35,11 +39,10 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
                  if (IsCriticalCount( rows[i][catridgeFieldName] , rows[i][catridgeCountFieldName])) {
                         var rowElementId = GenerateIIDForListItem(ctx, rows[i]);
                         var tr = document.getElementById(rowElementId);
-                      if(tr != null)
-                      {
-                        tr.style.backgroundColor = "#ada";//"#ada"; //#FF0000
-                      }
-                        
+                        if(tr != null)
+                        {
+                          tr.style.backgroundColor = "#ada";//"#ada"; //#FF0000
+                        }
                     } 
                 }
             }, 
@@ -73,6 +76,8 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
         var clientContext = new SP.ClientContext(siteUrl);
         var list = clientContext.get_web().get_lists().getById(listId); 
 
+      	CallClientOM();
+      
         var caml = new SP.CamlQuery();
         caml.set_viewXml("<View><Query>" +
             new CamlBuilder().Where()
@@ -91,17 +96,16 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                     item.set_item(catridgeCountFieldName, cartridgesCount - 1);
                     item.set_item(actionFieldName, "Замена");
                     if (item.get_id() == itemID) {
-                       // var t = moment().format('LLL');
-                       // console.log($.now().toString());
+                      	item.set_item(whogiveFieldName, currentUserId);
                        // item.set_item(replaceDateFieldName,  $.now().toString());
                     }
                     item.update();
                 }
                 clientContext.executeQueryAsync(function () {
                         console.log("success set count");
+                        document.location.reload();
                     },
                     onQueryFailed);
-                document.location.reload();
             },
             onQueryFailed);
     }
@@ -110,15 +114,17 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
 function clickVersionButton(itemID, cartrigeName) {
     var cartridgeCountStorage = [];
     var actionStorage = [];
+	var whogiveStorage = [];
 
-    if ($("#table" + itemID).length === 0) {
-        jQuery("#dialogText" + itemID).append('<table border="1"> <caption>История изменений:</caption> <thead><tr><th>Дата</th><th>Действие</th><th>Количество</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
+    if ($("#dialogText" + itemID).length === 0) {
+        jQuery("#modalWindow" + itemID).append('<div id ="dialogText' + itemID + '\";</div>');
     }
-
+	jQuery("#dialogText" + itemID).append('<table border="1"> <caption>История изменений:</caption> <thead><tr><th>Дата</th><th>Действие</th><th>Количество</th><th>Кто выдал</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
     moment.locale(window.navigator.userLanguage || window.navigator.language);
     RecordVersionCollection(cartridgeCountStorage, itemID, catridgeCountFieldName);
     RecordVersionCollection(actionStorage, itemID, actionFieldName);
-
+    RecordVersionCollection(whogiveStorage, itemID, whogiveFieldName);
+  
     for (var i = 0; i <= threshold - 1; i++) {
         var localAction = actionStorage[i] === undefined ? "Замена" : actionStorage[i].value;
         if (cartridgeCountStorage[i] == undefined) {
@@ -127,10 +133,10 @@ function clickVersionButton(itemID, cartrigeName) {
             }
             break;
         }
-      // (moment($(this).attr("Modified")) > moment("2016-01-11T10:04:24Z"))
-        $('#table' + itemID).append("<tr><td>" + cartridgeCountStorage[i].timeUpdate + "</td><td>" + localAction + "</td><td>" + cartridgeCountStorage[i].value + "</td></tr>");
+        var person = (whogiveStorage[i] === undefined ||  whogiveStorage[i].value === undefined) ? "  ": whogiveStorage[i].value;
+        //(moment($(this).attr("Modified")) > moment("2016-01-11T10:04:24Z"))
+        $('#table' + itemID).append("<tr><td>" + cartridgeCountStorage[i].timeUpdate + "</td><td>" + localAction + "</td><td>" + cartridgeCountStorage[i].value + "</td><td>" + person + "</td></tr>");
     }
-
 
     $(function () {
          $("#modalWindow" + itemID).dialog({
@@ -139,11 +145,24 @@ function clickVersionButton(itemID, cartrigeName) {
             modal: true,
             resizable: false,
             close: function (event, ui) {
-                $("#table").remove();
+                $("#dialogText" + itemID).remove();
             }
         });
     });
 }
+
+function CallClientOM() {
+    var context = new SP.ClientContext.get_current();
+    var web = context.get_web();
+    currentUser = web.get_currentUser();
+    context.load(currentUser);
+    context.executeQueryAsync(onQuerySucceeded, onQueryFailed);
+}
+
+function onQuerySucceeded(sender, args) {
+    currentUserId = currentUser.get_id();
+}
+
 
 function RecordVersionCollection(arrayData, itemId, fieldName) {
     $().SPServices({

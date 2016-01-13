@@ -9,8 +9,10 @@ var numberofissuedFieldName = "_x041e__x0431__x0449__x0435__x04";
 var reseivedFieldName = "_x041a__x043e__x043c__x0443__x00"; //OData__x041a__x043e__x043c__x0443__x00
 var getoutFieldName = "_x0412__x044b__x0434__x0430__x04";
 var whogiveFieldName = "_x041a__x0442__x043e__x0020__x04";
+var commentFieldName = "_x041a__x043e__x043c__x043c__x04";
 
-var currentUserLogin = null;
+var currentUser = null;
+var currentUserId = null;
 
 var remarkFieldName = "";
 var timeFieldName = "";
@@ -69,17 +71,20 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 function clickViewHistory(itemID, itemName) {
     var getOutFeildsStorage = [];
     var resievedFeildsStorage = [];
+  	var whogiveStorage = [];
+  	var commentStorage = [];
 
     if ($("#dialogTextHistory" + itemID).length === 0) {
         $("#mdViewHistory" + itemID).append('<div id ="dialogTextHistory' + itemID + '\";</div>');
     }
-    jQuery("#dialogTextHistory" + itemID).append('<table border="1"> <thead><tr><th>Дата</th><th>Получатели</th><th>Количество выданных</th><th>Кто выдал</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
+    jQuery("#dialogTextHistory" + itemID).append('<table border="1"> <thead><tr><th>Дата</th><th>Получатели</th><th>Количество выданных</th><th>Кто выдал</th><th>Комментарий</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
     moment.locale(window.navigator.userLanguage || window.navigator.language);
     RecordVersionCollection(getOutFeildsStorage, itemID, getoutFieldName);
     RecordVersionCollection(resievedFeildsStorage, itemID, reseivedFieldName);
+    RecordVersionCollection(whogiveStorage, itemID, whogiveFieldName);
+    RecordVersionCollection(commentStorage, itemID, commentFieldName);
 
     for (var i = 0; i <= threshold - 1; i++) {
-
         // (moment($(this).attr("Modified")) > moment("2016-01-11T10:04:24Z"))
         if (getOutFeildsStorage[i] == undefined) {
             if (i == 0) {
@@ -87,7 +92,9 @@ function clickViewHistory(itemID, itemName) {
             }
             break;
         }
-        $('#table' + itemID).append("<tr><td>" + getOutFeildsStorage[i].timeUpdate + "</td><td>" + resievedFeildsStorage[i].value + "</td><td>" + getOutFeildsStorage[i].value + "</td></tr>");
+        var person = (whogiveStorage[i] === undefined ||  whogiveStorage[i].value === undefined) ? "  ": whogiveStorage[i].value;
+        var comment = (commentStorage[i] === undefined ||  commentStorage[i].value === undefined) ? "  ": commentStorage[i].value;
+        $('#table' + itemID).append("<tr><td>" + getOutFeildsStorage[i].timeUpdate + "</td><td>" + resievedFeildsStorage[i].value + "</td><td>" + getOutFeildsStorage[i].value + "</td><td>" + person + "</td><td>" + comment + "</td></tr>");
     }
 
     $(function () {
@@ -107,7 +114,7 @@ function clickDialogGetOut(itemID, itemName) {
     if ($("#dialogText" + itemID).length == 0) {
         $("#mdGetOut" + itemID).append('<div id ="dialogText' + itemID + '\";</div>');
     }
-    jQuery("#dialogText" + itemID).append('<label>Кому выдать:</label> <div> <input name="users" id="users" value="" /> <label>Количество:</label> <div> <input id="countdevice' + itemID + '\" /> </div></div><label>Замечания:</label><p><textarea rows="3"  name="text"></textarea></p>');
+    jQuery("#dialogText" + itemID).append('<label>Кому выдать:</label> <div> <input name="users" id="users" value="" /> <label>Количество:</label> <div> <input id="countdevice' + itemID + '\" /> </div></div><label>Комментарий:</label><p><textarea id="comment" rows="3"  name="text"></textarea></p>');
     $("input[name='users']").pickSPUser();
     $(function () {
         $("#mdGetOut" + itemID).dialog({
@@ -120,33 +127,25 @@ function clickDialogGetOut(itemID, itemName) {
                         var clientContext = new SP.ClientContext(siteUrl);
                         var list = clientContext.get_web().get_lists().getById(listId);
                         var item = list.getItemById(itemID);
+                        var h = $(this);
                         clientContext.load(item);
-
                         clientContext.executeQueryAsync(function () {
-                                //var currentuser = clientContext.get_web().get_currentUser();
                                 item.set_item(remainFieldName, item.get_item(remainFieldName) - parseInt($("#countdevice" + itemID).val()));
                                 item.set_item(numberofissuedFieldName, item.get_item(numberofissuedFieldName) + parseInt($("#countdevice" + itemID).val()));
                                 item.set_item(getoutFieldName, parseInt($("#countdevice" + itemID).val()));
                                 item.set_item(reseivedFieldName, $("#users").val());
-                                console.log(currentUserLogin + " inside");
-                                item.set_item(whogiveFieldName, currentUserLogin);
+                                item.set_item(commentFieldName, $("#comment").val())
+                               	item.set_item(whogiveFieldName, currentUserId);
                                 item.update();
-                                //console.log(currentuser);
-                                //clientContext.load(currentuser);
                                 clientContext.executeQueryAsync(
-                                    console.log("item updated")
-                                    /*  function()
-                                     {
-                                     //console.log(currentuser.get_loginName());
-                                     //item.set_item(whogiveFieldName, currentuser.get_loginName());
-                                     //item.update();
-                                     console.log("item updated");
-                                     }*/,
-                                    onQueryFailed);
+                                  function()
+                                  {
+                                    h.dialog('close');
+                                    console.log("succes");
+                                  },
+                                  onQueryFailed);
                             },
                             onQueryFailed);
-                        $("mdGetOut" + itemID).dialog("close");
-                        document.location.reload();
                     }
                 }
             ],
@@ -156,6 +155,8 @@ function clickDialogGetOut(itemID, itemName) {
             resizable: false,
             close: function (event, ui) {
                 $("#dialogText" + itemID).remove();
+                console.log("inside close function");
+                document.location.reload();
             }
         });
     });
@@ -170,10 +171,7 @@ function CallClientOM() {
 }
 
 function onQuerySucceeded(sender, args) {
-    currentUserTitle = currentUser.get_title();
-    currentUserLogin = currentUser.get_loginName();
-    console.log(currentUserLogin);
-    //currentUserId = currentUser.get_id();
+    currentUserId = currentUser.get_id();
 }
 
 
