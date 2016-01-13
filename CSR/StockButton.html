@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css"
@@ -14,13 +12,22 @@
             margin: 30px 0 0 0;
         }
 
+        textarea {
+            width: 97%;
+            margin-top: 4px;
+        }
+
         select {
             width: 200px;
+        }
+
+        .inner {
+            display: inline-block;
         }
     </style>
     <script>
 
-        var listTitle = "Тестовый список";
+        var listId = "629c7c86-dd24-4337-b01a-48a6da811cc5";
         var siteUrl = "http://server-sp-it/sites/wiki";
         var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
         var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
@@ -34,13 +41,24 @@
                 autoOpen: false
             });
 
+            $("#dialogstatistics").dialog({
+                resizable: false,
+                modal: true,
+                autoOpen: false
+            });
+
             $("#opener2").click(function () {
-                if( $('#mySelect').has('option').length <= 0 ) {
+                if ($('#mySelect').has('option').length <= 0) {
                     addItemsDataToDialog();
                 }
                 $("#dialog2").dialog("open");
             });
-            
+
+            $("#openstatistics").click(function () {
+
+                $("#dialogstatistics").dialog("open");
+            });
+
             $("#dialogform").validate({
                 rules: {
                     pswd: {
@@ -58,17 +76,11 @@
 
             function addDataToTable() {
                 if (!$('#dialogform').valid()) return;
-                var selectedValue = $( "#mySelect option:selected" ).text();
+                var selectedValue = $("#mySelect option:selected").text();
                 var clientContext = new SP.ClientContext(siteUrl);
-                var list = clientContext.get_web().get_lists().getByTitle(listTitle);
+                var list = clientContext.get_web().get_lists().getById(listId);
 
-                var caml = new SP.CamlQuery();
-                caml.set_viewXml("<View><Query>" +
-                        new CamlBuilder().Where()
-                                .LookupField(catridgeFieldName)
-                                .ValueAsText().In([selectedValue])
-                                .ToString() +
-                        "</Query></View>");
+                var caml = queryByUniqueTitle(catridgeFieldName, selectedValue);
                 var collListItems = list.getItems(caml);
 
                 clientContext.load(collListItems);
@@ -78,7 +90,7 @@
                             while (enumerator.moveNext()) {
                                 var item = enumerator.get_current();
                                 item.set_item(catridgeCountFieldName, (item.get_item(catridgeCountFieldName) + parseInt($("#countinput").val())));
-                                item.set_item(actionFieldName, "Привезено " + parseInt($("#countinput").val()) + " картриджей" );
+                                item.set_item(actionFieldName, "Привезено " + parseInt($("#countinput").val()) + " картриджей");
                                 item.update();
                             }
                             clientContext.executeQueryAsync(function () {
@@ -94,7 +106,7 @@
 
             function addItemsDataToDialog() {
                 $.ajax({
-                    url: "http://server-sp-it/sites/wiki/" + "/_api/web/lists/getbytitle('Тестовый список')/items",
+                    url: "http://server-sp-it/sites/wiki/" + "/_api/web/lists(guid'" + listId + "')/items",
                     method: "GET",
                     headers: {"Accept": "application/json; odata=verbose"},
                     success: function (data) {
@@ -116,7 +128,6 @@
                 });
             }
         });
-
     </script>
 </head>
 <body>
@@ -132,7 +143,12 @@
     </form>
 </div>
 
-<input type="button" value="Добавить " id="opener2">
+<div id="dialogstatistics" title="Общая статистика картриджей">
+    <div id="contentstatistics"></div>
+</div>
 
+<div>
+    <input class="inner " type="button" value="Добавить " id="opener2">
+    <input class="inner " type="button" value="Общая статистика по картриджам" id="openstatistics">
+</div>
 </body>
-</html>

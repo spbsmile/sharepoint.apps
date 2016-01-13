@@ -19,6 +19,8 @@ var timeFieldName = "";
 
 var threshold = 20;
 
+var isClosed = true;
+
 SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
     function getBaseHtml(ctx) {
@@ -114,14 +116,17 @@ function clickDialogGetOut(itemID, itemName) {
     if ($("#dialogText" + itemID).length == 0) {
         $("#mdGetOut" + itemID).append('<div id ="dialogText' + itemID + '\";</div>');
     }
-    jQuery("#dialogText" + itemID).append('<label>Кому выдать:</label> <div> <input name="users" id="users" value="" /> <label>Количество:</label> <div> <input id="countdevice' + itemID + '\" /> </div></div><label>Комментарий:</label><p><textarea id="comment" rows="3"  name="text"></textarea></p>');
+    jQuery("#dialogText" + itemID).append('<label>Кому выдать:</label> <div> <input name="users" id="users" value="" /> <label>Количество:</label> <div> <input id="countdevice' + itemID + '\" /> </div></div>Комментарий:<textarea id="comment" rows="4"  name="text"></textarea>');
     $("input[name='users']").pickSPUser();
+    isClosed = true;
     $(function () {
         $("#mdGetOut" + itemID).dialog({
             buttons: [
                 {
                     text: "Выдать",
                     click: function () {
+                      
+                      	isClosed = false;
                         CallClientOM();
 
                         var clientContext = new SP.ClientContext(siteUrl);
@@ -156,7 +161,9 @@ function clickDialogGetOut(itemID, itemName) {
             close: function (event, ui) {
                 $("#dialogText" + itemID).remove();
                 console.log("inside close function");
+              if(!isClosed){
                 document.location.reload();
+              }
             }
         });
     });

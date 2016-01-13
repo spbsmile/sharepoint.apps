@@ -9,11 +9,14 @@ var replaceButtonFieldName = "_x0417__x0430__x043c__x0435__x04";
 var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
 var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
 var whogiveFieldName = "_x041a__x0442__x043e__x0020__x04";
+var commentFieldName = "_x041a__x043e__x043c__x043c__x04";
 var actionFieldName = "Action";
 var threshold = 5;
 
 var currentUser = null;
 var currentUserId = null;
+
+var isClosed = true;
 
 SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
@@ -35,17 +38,16 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
             },
             OnPostRender: function (ctx) {
                 var rows = ctx.ListData.Row;
-               for (var i = 0; i < rows.length; i++) {
-                 if (IsCriticalCount( rows[i][catridgeFieldName] , rows[i][catridgeCountFieldName])) {
+                for (var i = 0; i < rows.length; i++) {
+                    if (IsCriticalCount(rows[i][catridgeFieldName], rows[i][catridgeCountFieldName])) {
                         var rowElementId = GenerateIIDForListItem(ctx, rows[i]);
                         var tr = document.getElementById(rowElementId);
-                        if(tr != null)
-                        {
-                          tr.style.backgroundColor = "#ada";//"#ada"; //#FF0000
+                        if (tr != null) {
+                            tr.style.backgroundColor = "#ada";//"#ada"; //#FF0000
                         }
-                    } 
+                    }
                 }
-            }, 
+            },
             ListTemplateType: 120
         });
     }
@@ -56,6 +58,10 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
     function renderReplaceField(ctx) {
         var html = "";
         html += '<input type="button" value="Заменить" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
+        html += '<div id ="modalReplaceWindow' + ctx.CurrentItem.ID + '\";>';
+        html += '<div id="dialogTextReplace' + ctx.CurrentItem.ID + '\";>';
+        html += "";
+        html += "</div>";  
         return html;
     }
 
@@ -72,59 +78,87 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 });
 
 function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
+
     if (cartridgesCount >= 1) {
+        if ($("#dialogTextReplace" + itemID).length == 0) {
+            $("#modalReplaceWindow" + itemID).append('<div id ="dialogTextReplace' + itemID + '\";</div>');
+        }
+        jQuery("#dialogTextReplace" + itemID).append('Комментарий:<textarea id="comment" rows="4" name="text"></textarea>');
+
         var clientContext = new SP.ClientContext(siteUrl);
-        var list = clientContext.get_web().get_lists().getById(listId); 
-
-      	CallClientOM();
+        var list = clientContext.get_web().get_lists().getById(listId);
+        isClosed = true;
       
-        var caml = new SP.CamlQuery();
-        caml.set_viewXml("<View><Query>" +
-            new CamlBuilder().Where()
-                .LookupField(catridgeFieldName)
-                .ValueAsText().In([cartridgesName])
-                .ToString() +
-            "</Query></View>");
-        var collListItems = list.getItems(caml);
+        $(function () {
+            $("#modalReplaceWindow" + itemID).dialog({
+                buttons: [
+                    {
+                        text: "Заменить",
+                        click: function () {
+                          
+                            isClosed = false;
+                            CallClientOM();
 
-        clientContext.load(collListItems);
+                            var caml = queryByUniqueTitle(catridgeFieldName, cartridgesName);
+                            var collListItems = list.getItems(caml);
 
-        clientContext.executeQueryAsync(function () {
-                var enumerator = collListItems.getEnumerator();
-                while (enumerator.moveNext()) {
-                    var item = enumerator.get_current();
-                    item.set_item(catridgeCountFieldName, cartridgesCount - 1);
-                    item.set_item(actionFieldName, "Замена");
-                    if (item.get_id() == itemID) {
-                      	item.set_item(whogiveFieldName, currentUserId);
-                       // item.set_item(replaceDateFieldName,  $.now().toString());
+                            clientContext.load(collListItems);
+
+                            clientContext.executeQueryAsync(function () {
+                                    var enumerator = collListItems.getEnumerator();
+                                    while (enumerator.moveNext()) {
+                                        var item = enumerator.get_current();
+                                        item.set_item(catridgeCountFieldName, cartridgesCount - 1);
+                                        item.set_item(actionFieldName, "Замена");
+                                        if (item.get_id() == itemID) {
+                                            item.set_item(whogiveFieldName, currentUserId);
+                                            item.set_item(commentFieldName, $("#comment").val() + "  ");
+                                            // item.set_item(replaceDateFieldName,  $.now().toString());
+                                        }
+                                        item.update();
+                                    }
+                                    clientContext.executeQueryAsync(function () {
+                                            console.log("success set count");
+                                            document.location.reload();
+                                        },
+                                        onQueryFailed);
+                                },
+                                onQueryFailed);
+                        }
                     }
-                    item.update();
+                ],
+                title: 'Заменить картридж: ' + cartridgesName,
+                width: 600,
+                modal: true,
+                resizable: false,
+                close: function (event, ui) {
+                    $("#dialogTextReplace" + itemID).remove();
+                    console.log("inside close dialogTextReplace");
+                  if(!isClosed){
+                    document.location.reload();
+                  }
                 }
-                clientContext.executeQueryAsync(function () {
-                        console.log("success set count");
-                        document.location.reload();
-                    },
-                    onQueryFailed);
-            },
-            onQueryFailed);
+            });
+        });
     }
 }
 
 function clickVersionButton(itemID, cartrigeName) {
     var cartridgeCountStorage = [];
     var actionStorage = [];
-	var whogiveStorage = [];
+    var whogiveStorage = [];
+    var commentStoage = [];
 
     if ($("#dialogText" + itemID).length === 0) {
         jQuery("#modalWindow" + itemID).append('<div id ="dialogText' + itemID + '\";</div>');
     }
-	jQuery("#dialogText" + itemID).append('<table border="1"> <caption>История изменений:</caption> <thead><tr><th>Дата</th><th>Действие</th><th>Количество</th><th>Кто выдал</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
+    jQuery("#dialogText" + itemID).append('<table border="1"> <caption>История изменений:</caption> <thead><tr><th>Дата</th><th>Действие</th><th>Количество</th><th>Кто выдал</th><th>Комментарий</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
     moment.locale(window.navigator.userLanguage || window.navigator.language);
     RecordVersionCollection(cartridgeCountStorage, itemID, catridgeCountFieldName);
     RecordVersionCollection(actionStorage, itemID, actionFieldName);
     RecordVersionCollection(whogiveStorage, itemID, whogiveFieldName);
-  
+    RecordVersionCollection(commentStoage, itemID, commentFieldName);
+
     for (var i = 0; i <= threshold - 1; i++) {
         var localAction = actionStorage[i] === undefined ? "Замена" : actionStorage[i].value;
         if (cartridgeCountStorage[i] == undefined) {
@@ -133,13 +167,14 @@ function clickVersionButton(itemID, cartrigeName) {
             }
             break;
         }
-        var person = (whogiveStorage[i] === undefined ||  whogiveStorage[i].value === undefined) ? "  ": whogiveStorage[i].value;
+        var person = (whogiveStorage[i] === undefined || whogiveStorage[i].value === undefined) ? "  " : whogiveStorage[i].value;
+        var comment = (commentStoage[i] === undefined || commentStoage[i].value === undefined) ? "  " : commentStoage[i].value;
         //(moment($(this).attr("Modified")) > moment("2016-01-11T10:04:24Z"))
-        $('#table' + itemID).append("<tr><td>" + cartridgeCountStorage[i].timeUpdate + "</td><td>" + localAction + "</td><td>" + cartridgeCountStorage[i].value + "</td><td>" + person + "</td></tr>");
+        $('#table' + itemID).append("<tr><td>" + cartridgeCountStorage[i].timeUpdate + "</td><td>" + localAction + "</td><td>" + cartridgeCountStorage[i].value + "</td><td>" + person + "</td><td>" + comment + "</td></tr>");
     }
 
     $(function () {
-         $("#modalWindow" + itemID).dialog({
+        $("#modalWindow" + itemID).dialog({
             title: 'Картридж: ' + cartrigeName,
             width: 600,
             modal: true,
@@ -173,7 +208,7 @@ function RecordVersionCollection(arrayData, itemId, fieldName) {
         strFieldName: fieldName,
         completefunc: function (xData, Status) {
             $(xData.responseText).find("Version").each(function (i) {
-                 arrayData.push({
+                arrayData.push({
                     value: $(this).attr(fieldName),
                     timeUpdate: moment($(this).attr("Modified")).format('LLL')
                 });
