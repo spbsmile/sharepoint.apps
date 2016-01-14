@@ -1,4 +1,4 @@
-﻿/// <reference path="jquery-1.10.2.js" />
+﻿/// <reference path="jquery-2.2.0.js" />
 /// <reference name="MicrosoftAjax.js" />
 /// <reference path="~/_layouts/15/init.js" />
 /// <reference path="~/_layouts/15/SP.Core.js" />

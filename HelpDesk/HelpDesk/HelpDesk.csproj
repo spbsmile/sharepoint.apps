@@ -51,15 +51,16 @@
     <Content Include="Pages\Default.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Scripts\jquery-1.10.2.min.map" />
+    <None Include="Scripts\jquery-2.2.0.min.map" />
     <None Include="Scripts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a4176a58-7c13-4b91-9998-29ff9698b3c9}</SharePointProjectItemId>
     </None>
     <Content Include="Scripts\Elements.xml" />
     <Content Include="Scripts\App.js" />
     <Content Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.0.js" />
+    <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
@@ -74,10 +75,8 @@
     <Content Include="Scripts\typings\angularjs\angular-route.d.ts" />
     <Content Include="Scripts\typings\angularjs\angular-sanitize.d.ts" />
     <Content Include="Scripts\typings\angularjs\angular.d.ts" />
-    <Content Include="Scripts\typings\jquery\jquery.d.ts" />
     <Content Include="Scripts\typings\knockout\knockout.d.ts" />
     <Content Include="Scripts\typings\microsoft-ajax\microsoft.ajax.d.ts" />
-    <Content Include="Scripts\typings\sharepoint\SharePoint.d.ts" />
     <Content Include="Scripts\typings\typescripttemplates\typescripttemplates.d.ts" />
     <Content Include="Scripts\_references.js" />
   </ItemGroup>
@@ -116,10 +115,15 @@
       <SubType>Designer</SubType>
     </AppManifestFile>
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\sharepoint\SharePoint.d.ts" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0'">11.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" />
 </Project>

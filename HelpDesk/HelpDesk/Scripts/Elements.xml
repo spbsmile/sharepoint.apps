@@ -1,29 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="Scripts">
-    <File Path="Scripts\App.js" Url="Scripts/App.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\jquery-1.10.2.min.map" Url="Scripts/jquery-1.10.2.min.map" ReplaceContent="TRUE" />
-    <File Path="Scripts\jquery-1.10.2.min.js" Url="Scripts/jquery-1.10.2.min.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\jquery-1.10.2.js" Url="Scripts/jquery-1.10.2.js" ReplaceContent="TRUE" />
     <File Path="Scripts\jquery-1.10.2.intellisense.js" Url="Scripts/jquery-1.10.2.intellisense.js" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\microsoft-ajax\microsoft.ajax.d.ts" Url="Scripts/typings/microsoft-ajax/microsoft.ajax.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\sharepoint\SharePoint.d.ts" Url="Scripts/typings/sharepoint/SharePoint.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\jquery\jquery.d.ts" Url="Scripts/typings/jquery/jquery.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\angularjs\angular-sanitize.d.ts" Url="Scripts/typings/angularjs/angular-sanitize.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\angularjs\angular-route.d.ts" Url="Scripts/typings/angularjs/angular-route.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\angularjs\angular-resource.d.ts" Url="Scripts/typings/angularjs/angular-resource.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\angularjs\angular-mocks.d.ts" Url="Scripts/typings/angularjs/angular-mocks.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\angularjs\angular-cookies.d.ts" Url="Scripts/typings/angularjs/angular-cookies.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\angularjs\angular-animate.d.ts" Url="Scripts/typings/angularjs/angular-animate.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\angularjs\angular.d.ts" Url="Scripts/typings/angularjs/angular.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\knockout\knockout.d.ts" Url="Scripts/typings/knockout/knockout.d.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\typescripttemplates\typescripttemplates.d.ts" Url="Scripts/typings/typescripttemplates/typescripttemplates.d.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\typescripttemplates.js" Url="Scripts/typescripttemplates.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\moment-with-locales.min.js" Url="Scripts/moment-with-locales.min.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\moment-with-locales.js" Url="Scripts/moment-with-locales.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\moment.min.js" Url="Scripts/moment.min.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\moment.js" Url="Scripts/moment.js" ReplaceContent="TRUE" />
     <File Path="Scripts\spAppUtils.js" Url="Scripts/spAppUtils.js" ReplaceContent="TRUE" />
     <File Path="Scripts\oDataUtils.js" Url="Scripts/oDataUtils.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\sharepoint\SharePoint.d.ts" Url="Scripts/typings/sharepoint/SharePoint.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\jquery-2.2.0.min.map" Url="Scripts/jquery-2.2.0.min.map" ReplaceContent="TRUE" />
+    <File Path="Scripts\jquery-2.2.0.min.js" Url="Scripts/jquery-2.2.0.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\jquery-2.2.0.js" Url="Scripts/jquery-2.2.0.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\jquery-2.2.0.intellisense.js" Url="Scripts/jquery-2.2.0.intellisense.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment.min.js" Url="Scripts/moment.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment.js" Url="Scripts/moment.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-with-locales.min.js" Url="Scripts/moment-with-locales.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-with-locales.js" Url="Scripts/moment-with-locales.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\App.ts" Url="Scripts/App.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\jquery\jquery.d.ts" Url="Scripts/typings/jquery/jquery.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\moment\moment.d.ts" Url="Scripts/typings/moment/moment.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\moment\moment-node.d.ts" Url="Scripts/typings/moment/moment-node.d.ts" ReplaceContent="TRUE" />
   </Module>
 </Elements>

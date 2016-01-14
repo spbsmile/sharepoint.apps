@@ -4,7 +4,7 @@
 
 <%-- Разметка и скрипт из следующего элемента Content будут помещены в элемент <head> страницы --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
-    <script type="text/javascript" src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery-2.2.0.min.js"></script>
      <script type="text/javascript" src="../Scripts/moment.min.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.js"></script>
@@ -68,7 +68,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-
+                                <label for="exampleInputFile">Добавить файл</label>
+                                <input type="file" id="exampleInputFile">
+                                <p class="help-block">Например, скриншот</p>
                             </div>
                             <input id="sendTicket" type="button" class="btn btn-default" value="Отправить"/>
                         </div>

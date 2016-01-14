@@ -63,4 +63,4 @@
 });
 NotifyScriptLoadedAndExecuteWaitingJobs("oDataUtils.js");
 
-Read more at http://www.andrewconnell.com/blog/simplifying-sharepoint-2013-rest-api#DZuJMco2IBd684ve.99
+//Read more at http://www.andrewconnell.com/blog/simplifying-sharepoint-2013-rest-api#DZuJMco2IBd684ve.99
