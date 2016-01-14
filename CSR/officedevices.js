@@ -139,7 +139,7 @@ function clickDialogGetOut(itemID, itemName) {
                                 item.set_item(numberofissuedFieldName, item.get_item(numberofissuedFieldName) + parseInt($("#countdevice" + itemID).val()));
                                 item.set_item(getoutFieldName, parseInt($("#countdevice" + itemID).val()));
                                 item.set_item(reseivedFieldName, $("#users").val());
-                                item.set_item(commentFieldName, $("#comment").val())
+                                item.set_item(commentFieldName, $("#comment").val() + "_");
                                	item.set_item(whogiveFieldName, currentUserId);
                                 item.update();
                                 clientContext.executeQueryAsync(

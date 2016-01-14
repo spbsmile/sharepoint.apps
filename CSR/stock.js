@@ -110,9 +110,9 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                                         var item = enumerator.get_current();
                                         item.set_item(catridgeCountFieldName, cartridgesCount - 1);
                                         item.set_item(actionFieldName, "Замена");
+                                        item.set_item(commentFieldName, $("#comment").val() + "__");
+                                        item.set_item(whogiveFieldName, currentUserId);
                                         if (item.get_id() == itemID) {
-                                            item.set_item(whogiveFieldName, currentUserId);
-                                            item.set_item(commentFieldName, $("#comment").val() + "  ");
                                             // item.set_item(replaceDateFieldName,  $.now().toString());
                                         }
                                         item.update();
@@ -208,6 +208,14 @@ function RecordVersionCollection(arrayData, itemId, fieldName) {
         strFieldName: fieldName,
         completefunc: function (xData, Status) {
             $(xData.responseText).find("Version").each(function (i) {
+                if (moment($(this).attr("Modified")).isAfter('2016-01-01'))
+                {
+                    console.log(moment($(this).attr("Modified")).format('LLL') + " isAfter");
+                }
+                else{
+                    console.log(moment($(this).attr("Modified")).format('LLL') + " isBefore");
+                }
+              
                 arrayData.push({
                     value: $(this).attr(fieldName),
                     timeUpdate: moment($(this).attr("Modified")).format('LLL')
