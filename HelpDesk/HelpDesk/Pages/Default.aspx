@@ -73,6 +73,11 @@
                                 <p class="help-block">Например, скриншот</p>
                             </div>
                             <input id="sendTicket" type="button" class="btn btn-default" value="Отправить"/>
+
+                            <input id="getFile" type="file"/><br />
+                            <input id="displayName" type="text" value="Enter a unique name" /><br />
+                            <input id="addFileButton" type="button" value="Upload" onclick="uploadFile()"/>
+
                         </div>
 
                         <div class="col-md-4">

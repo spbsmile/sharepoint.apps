@@ -55,8 +55,8 @@
     <None Include="Scripts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a4176a58-7c13-4b91-9998-29ff9698b3c9}</SharePointProjectItemId>
     </None>
-    <Content Include="Scripts\Elements.xml" />
     <Content Include="Scripts\App.js" />
+    <Content Include="Scripts\Elements.xml" />
     <Content Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
@@ -67,17 +67,7 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\oDataUtils.js" />
     <Content Include="Scripts\spAppUtils.js" />
-    <Content Include="Scripts\typescripttemplates.js" />
-    <Content Include="Scripts\typings\angularjs\angular-animate.d.ts" />
-    <Content Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
-    <Content Include="Scripts\typings\angularjs\angular-mocks.d.ts" />
-    <Content Include="Scripts\typings\angularjs\angular-resource.d.ts" />
-    <Content Include="Scripts\typings\angularjs\angular-route.d.ts" />
-    <Content Include="Scripts\typings\angularjs\angular-sanitize.d.ts" />
-    <Content Include="Scripts\typings\angularjs\angular.d.ts" />
-    <Content Include="Scripts\typings\knockout\knockout.d.ts" />
     <Content Include="Scripts\typings\microsoft-ajax\microsoft.ajax.d.ts" />
-    <Content Include="Scripts\typings\typescripttemplates\typescripttemplates.d.ts" />
     <Content Include="Scripts\_references.js" />
   </ItemGroup>
   <ItemGroup>
@@ -116,7 +106,10 @@
     </AppManifestFile>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\App.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\moment\moment-node.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\moment\moment.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\sharepoint\SharePoint.d.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,22 +4,21 @@
     <ProjectItemFile Source="Elements.xml" Target="Scripts\" Type="ElementManifest" />
     <ProjectItemFile Source="jquery-1.10.2.intellisense.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="typings\microsoft-ajax\microsoft.ajax.d.ts" Target="Scripts\typings\microsoft-ajax\" Type="ElementFile" />
-    <ProjectItemFile Source="typings\typescripttemplates\typescripttemplates.d.ts" Target="Scripts\typings\typescripttemplates\" Type="ElementFile" />
-    <ProjectItemFile Source="typescripttemplates.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="spAppUtils.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="oDataUtils.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="typings\sharepoint\SharePoint.d.ts" Target="Scripts\typings\sharepoint\" Type="ElementFile" />
-    <ProjectItemFile Source="jquery-2.2.0.min.map" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="jquery-2.2.0.min.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="jquery-2.2.0.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="jquery-2.2.0.intellisense.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="moment.min.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="moment.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="moment-with-locales.min.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="moment-with-locales.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="App.ts" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="typings\jquery\jquery.d.ts" Target="Scripts\typings\jquery\" Type="ElementFile" />
     <ProjectItemFile Source="typings\moment\moment.d.ts" Target="Scripts\typings\moment\" Type="ElementFile" />
     <ProjectItemFile Source="typings\moment\moment-node.d.ts" Target="Scripts\typings\moment\" Type="ElementFile" />
+    <ProjectItemFile Source="typings\sharepoint\SharePoint.d.ts" Target="Scripts\typings\sharepoint\" Type="ElementFile" />
+    <ProjectItemFile Source="typings\jquery\jquery.d.ts" Target="Scripts\typings\jquery\" Type="ElementFile" />
+    <ProjectItemFile Source="App.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="App.ts" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="jquery-2.2.0.min.map" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="jquery-2.2.0.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="jquery-2.2.0.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="jquery-2.2.0.intellisense.js" Target="Scripts\" Type="ElementFile" />
   </Files>
 </ProjectItem>
