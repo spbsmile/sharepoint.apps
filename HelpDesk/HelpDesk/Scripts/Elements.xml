@@ -3,8 +3,6 @@
   <Module Name="Scripts">
     <File Path="Scripts\jquery-1.10.2.intellisense.js" Url="Scripts/jquery-1.10.2.intellisense.js" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\microsoft-ajax\microsoft.ajax.d.ts" Url="Scripts/typings/microsoft-ajax/microsoft.ajax.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\spAppUtils.js" Url="Scripts/spAppUtils.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\oDataUtils.js" Url="Scripts/oDataUtils.js" ReplaceContent="TRUE" />
     <File Path="Scripts\moment.min.js" Url="Scripts/moment.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\moment.js" Url="Scripts/moment.js" ReplaceContent="TRUE" />
     <File Path="Scripts\moment-with-locales.min.js" Url="Scripts/moment-with-locales.min.js" ReplaceContent="TRUE" />
@@ -19,5 +17,8 @@
     <File Path="Scripts\jquery-2.2.0.min.js" Url="Scripts/jquery-2.2.0.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\jquery-2.2.0.js" Url="Scripts/jquery-2.2.0.js" ReplaceContent="TRUE" />
     <File Path="Scripts\jquery-2.2.0.intellisense.js" Url="Scripts/jquery-2.2.0.intellisense.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\jquery-ui-1.11.4.min.js" Url="Scripts/jquery-ui-1.11.4.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\jquery-ui-1.11.4.js" Url="Scripts/jquery-ui-1.11.4.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\jqueryui\jqueryui.d.ts" Url="Scripts/typings/jqueryui/jqueryui.d.ts" ReplaceContent="TRUE" />
   </Module>
 </Elements>

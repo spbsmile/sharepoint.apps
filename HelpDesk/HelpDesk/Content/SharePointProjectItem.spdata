@@ -5,5 +5,38 @@
     <ProjectItemFile Source="App.css" Target="Content\" Type="ElementFile" />
     <ProjectItemFile Source="bootstrap-scope.css" Target="Content\" Type="ElementFile" />
     <ProjectItemFile Source="bootstrap-scope.min.css" Target="Content\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\tooltip.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\theme.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\tabs.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\spinner.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\sortable.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\slider.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\selectmenu.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\selectable.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\resizable.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\progressbar.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\menu.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\images\ui-icons_cd0a0a_256x240.png" Target="Content\themes\base\images\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\images\ui-icons_888888_256x240.png" Target="Content\themes\base\images\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\images\ui-icons_454545_256x240.png" Target="Content\themes\base\images\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\images\ui-icons_2e83ff_256x240.png" Target="Content\themes\base\images\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\images\ui-icons_222222_256x240.png" Target="Content\themes\base\images\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" Target="Content\themes\base\images\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" Target="Content\themes\base\images\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" Target="Content\themes\base\images\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\images\ui-bg_glass_75_dadada_1x400.png" Target="Content\themes\base\images\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\images\ui-bg_glass_65_ffffff_1x400.png" Target="Content\themes\base\images\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" Target="Content\themes\base\images\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\images\ui-bg_flat_75_ffffff_40x100.png" Target="Content\themes\base\images\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" Target="Content\themes\base\images\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\draggable.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\dialog.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\datepicker.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\core.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\button.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\base.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\autocomplete.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\all.css" Target="Content\themes\base\" Type="ElementFile" />
+    <ProjectItemFile Source="themes\base\accordion.css" Target="Content\themes\base\" Type="ElementFile" />
   </Files>
 </ProjectItem>

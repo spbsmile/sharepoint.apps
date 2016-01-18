@@ -5,18 +5,24 @@
 <%-- Разметка и скрипт из следующего элемента Content будут помещены в элемент <head> страницы --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
     <script type="text/javascript" src="../Scripts/jquery-2.2.0.min.js"></script>
-     <script type="text/javascript" src="../Scripts/moment.min.js"></script>
+    <!--<script type="text/plain" src="../Scripts/jquery-2.2.0.min.map"></script>-->>
+    <script type="text/javascript" src="../Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script type="text/javascript" src="../Scripts/moment.min.js"></script>
+    <script type="text/javascript" src="../Scripts/moment-with-locales.min.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.js"></script>
 
     <!-- Добавьте свои стили CSS в следующий файл -->
     <link rel="Stylesheet" type="text/css" href="../Content/App.css"/>
+    <link rel="stylesheet" type="text/css" href="../Content/themes/base/dialog.css"/>
+    <link rel="stylesheet" type="text/css" href="../Content/themes/base/core.css"/>
     <link href="../Content/bootstrap-scope.min.css" rel="stylesheet"/>
+    <link href="../Content/themes/base/images/"/>
 
     <!-- Добавьте свой код JavaScript в следующий файл -->
     <script type="text/javascript" src="../Scripts/App.js"></script>
 </asp:Content>
-
+    
 <%-- Разметка из следующего элемента Content будет помещена в элемент TitleArea страницы --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server">
     Заявка в техподдержку
@@ -68,16 +74,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile">Добавить файл</label>
-                                <input type="file" id="exampleInputFile">
+                                <label>Добавить файл</label>
+                                <input type="file" id="getFile">
                                 <p class="help-block">Например, скриншот</p>
                             </div>
                             <input id="sendTicket" type="button" class="btn btn-default" value="Отправить"/>
-
-                            <input id="getFile" type="file"/><br />
-                            <input id="displayName" type="text" value="Enter a unique name" /><br />
-                            <input id="addFileButton" type="button" value="Upload" onclick="uploadFile()"/>
-
                         </div>
 
                         <div class="col-md-4">
@@ -103,6 +104,9 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div id="modalDialog"></div>
+
                     </div>
                 </form>
             </div>
