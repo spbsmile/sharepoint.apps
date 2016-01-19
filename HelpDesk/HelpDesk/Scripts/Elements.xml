@@ -17,8 +17,9 @@
     <File Path="Scripts\jquery-2.2.0.min.js" Url="Scripts/jquery-2.2.0.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\jquery-2.2.0.js" Url="Scripts/jquery-2.2.0.js" ReplaceContent="TRUE" />
     <File Path="Scripts\jquery-2.2.0.intellisense.js" Url="Scripts/jquery-2.2.0.intellisense.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\jquery-ui-1.11.4.min.js" Url="Scripts/jquery-ui-1.11.4.min.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\jquery-ui-1.11.4.js" Url="Scripts/jquery-ui-1.11.4.js" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\jqueryui\jqueryui.d.ts" Url="Scripts/typings/jqueryui/jqueryui.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\jquery-ui.min.js" Url="Scripts/jquery-ui.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\jquery.validate.min.js" Url="Scripts/jquery.validate.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\jquery.validation\jquery.validation.d.ts" Url="Scripts/typings/jquery.validation/jquery.validation.d.ts" ReplaceContent="TRUE" />
   </Module>
 </Elements>

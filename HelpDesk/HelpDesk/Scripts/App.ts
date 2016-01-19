@@ -2,6 +2,7 @@
 ///<reference path="typings/sharepoint/SharePoint.d.ts" />
 ///<reference path="typings/moment/moment.d.ts" />
 ///<reference path="typings/jqueryui/jqueryui.d.ts" />
+///<reference path="typings/jquery.validation/jquery.validation.d.ts" />
 
 "use strict";
 
@@ -37,10 +38,24 @@ $(document).ready(() => {
 
     });
 
-    //moment.locale(window.navigator.userLanguage || window.navigator.language);
+   // moment.locale(window.navigator.userLanguage || window.navigator.language);
     defineCurrentUser();
 
+    $("#dialogform").validate({
+        rules: {
+            pswd: {
+                required: true
+            }
+        },
+        messages: {
+            pswd: {
+                required: "Описание обязательно для заполнения"
+            }
+        }
+    }); 
+
     $("#sendTicket").click(() => {
+        if (!$('#dialogform').valid()) return;
         if ((<HTMLInputElement>$('#getFile').get(0)).files.length === 0) {
              addItem(null);    
         } else {
@@ -51,6 +66,8 @@ $(document).ready(() => {
 
 
 function addItem(itemIDlkf) {
+    var dt = new Date();
+    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
     var item = {
         "__metadata": {
             "type": itemType,
@@ -66,7 +83,7 @@ function addItem(itemIDlkf) {
         "urgently": $("#urgentlyValue").val(),
         "category": $("#category").val(),
         "Data": moment().format("LLL"),
-        "Time": moment().format("h:mm"),
+        "Time": time,//moment().format("h:mm"),
         "kkId": currentUserId,
         "attachfileId": itemIDlkf
     };
@@ -86,7 +103,8 @@ function addItem(itemIDlkf) {
             {
                 title: "Сообщение успешно отправлено",
                 modal: true,
-                resizable: false
+                resizable: false,
+                width:400
             });
         },
         error: onError

@@ -18,8 +18,9 @@
     <ProjectItemFile Source="jquery-2.2.0.min.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="jquery-2.2.0.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="jquery-2.2.0.intellisense.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="jquery-ui-1.11.4.min.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="jquery-ui-1.11.4.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="typings\jqueryui\jqueryui.d.ts" Target="Scripts\typings\jqueryui\" Type="ElementFile" />
+    <ProjectItemFile Source="jquery-ui.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="jquery.validate.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="typings\jquery.validation\jquery.validation.d.ts" Target="Scripts\typings\jquery.validation\" Type="ElementFile" />
   </Files>
 </ProjectItem>

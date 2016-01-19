@@ -2,6 +2,7 @@
 ///<reference path="typings/sharepoint/SharePoint.d.ts" />
 ///<reference path="typings/moment/moment.d.ts" />
 ///<reference path="typings/jqueryui/jqueryui.d.ts" />
+///<reference path="typings/jquery.validation/jquery.validation.d.ts" />
 "use strict";
 var context = null;
 var web = null;
@@ -24,9 +25,23 @@ $(document).ready(function () {
             $.getScript(scriptbase + "SP.js", function () { $.getScript(scriptbase + "SP.RequestExecutor.js"); });
         });
     });
-    //moment.locale(window.navigator.userLanguage || window.navigator.language);
+    // moment.locale(window.navigator.userLanguage || window.navigator.language);
     defineCurrentUser();
+    $("#dialogform").validate({
+        rules: {
+            pswd: {
+                required: true
+            }
+        },
+        messages: {
+            pswd: {
+                required: "Описание обязательно для заполнения"
+            }
+        }
+    });
     $("#sendTicket").click(function () {
+        if (!$('#dialogform').valid())
+            return;
         if ($('#getFile').get(0).files.length === 0) {
             addItem(null);
         }
@@ -36,6 +51,8 @@ $(document).ready(function () {
     });
 });
 function addItem(itemIDlkf) {
+    var dt = new Date();
+    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
     var item = {
         "__metadata": {
             "type": itemType,
@@ -51,7 +68,7 @@ function addItem(itemIDlkf) {
         "urgently": $("#urgentlyValue").val(),
         "category": $("#category").val(),
         "Data": moment().format("LLL"),
-        "Time": moment().format("h:mm"),
+        "Time": time,
         "kkId": currentUserId,
         "attachfileId": itemIDlkf
     };
@@ -69,7 +86,8 @@ function addItem(itemIDlkf) {
             $("#modalDialog").dialog({
                 title: "Сообщение успешно отправлено",
                 modal: true,
-                resizable: false
+                resizable: false,
+                width: 400
             });
         },
         error: onError

@@ -6,18 +6,17 @@
 <asp:Content ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
     <script type="text/javascript" src="../Scripts/jquery-2.2.0.min.js"></script>
     <!--<script type="text/plain" src="../Scripts/jquery-2.2.0.min.map"></script>-->>
-    <script type="text/javascript" src="../Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../Scripts/moment.min.js"></script>
     <script type="text/javascript" src="../Scripts/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery.validate.min.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.js"></script>
 
     <!-- Добавьте свои стили CSS в следующий файл -->
     <link rel="Stylesheet" type="text/css" href="../Content/App.css"/>
-    <link rel="stylesheet" type="text/css" href="../Content/themes/base/dialog.css"/>
-    <link rel="stylesheet" type="text/css" href="../Content/themes/base/core.css"/>
+    <link rel="stylesheet" type="text/css" href="../Content/jquery-ui.min.css"/>
     <link href="../Content/bootstrap-scope.min.css" rel="stylesheet"/>
-    <link href="../Content/themes/base/images/"/>
 
     <!-- Добавьте свой код JavaScript в следующий файл -->
     <script type="text/javascript" src="../Scripts/App.js"></script>
@@ -57,13 +56,18 @@
 
                             <div class="form-group">
                                 <label for="discription">Описание</label>
-                                <div>
-                                    <textarea style="height: 100px;" class="form-control" id="discription" rows="3"></textarea>
-                                </div>
+                                <form id="mainform" name="mainform">
+
+                                 </form>
+                                 <form id="dialogform">
+                                    <div>
+                                        <textarea style="height: 100px;" class="form-control" id="discription" rows="3" name="pswd"></textarea>
+                                    </div>
+                                </form>
                             </div>
 
                             <div class="form-group">
-                                <label for="urgentlyValue"> Определите срочность:</label>
+                                <label for="urgentlyValue">Определите срочность:</label>
                                 <div>
                                     <select id="urgentlyValue" class="form-control">
                                         <option>В течении дня</option>
