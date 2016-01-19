@@ -25,6 +25,11 @@ $(document).ready(function () {
             $.getScript(scriptbase + "SP.js", function () { $.getScript(scriptbase + "SP.RequestExecutor.js"); });
         });
     });
+    $("#supportForm").hide();
+    $("#pressButtonSupport").click(function () {
+        $("#pressButtonSupport").hide();
+        $("#supportForm").show();
+    });
     // moment.locale(window.navigator.userLanguage || window.navigator.language);
     defineCurrentUser();
     $("#dialogform").validate({

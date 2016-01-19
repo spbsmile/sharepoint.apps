@@ -5,7 +5,6 @@
 <%-- Разметка и скрипт из следующего элемента Content будут помещены в элемент <head> страницы --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
     <script type="text/javascript" src="../Scripts/jquery-2.2.0.min.js"></script>
-    <!--<script type="text/plain" src="../Scripts/jquery-2.2.0.min.map"></script>-->>
     <script type="text/javascript" src="../Scripts/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../Scripts/moment.min.js"></script>
     <script type="text/javascript" src="../Scripts/moment-with-locales.min.js"></script>
@@ -33,7 +32,10 @@
     <div class="bootstrap-scope">
         <div class="bootstrap-html">
             <div class="bootstrap-body">
-                <!-- <div class="container">-->
+                <div id ="supportButton">
+                    <input id="pressButtonSupport" type="button" class="btn btn-primary" value="Подать заявку"/>
+                </div>
+                <div id ="supportForm">
                 <label>Пожалуйста, заполните форму</label>
                 <br><br>
                 <form>
@@ -113,6 +115,39 @@
 
                     </div>
                 </form>
+                </div>
+                <h3>Принятые заявки</h3>
+                <h3>Выполненные заявки</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Дата</th>
+                            <th>Пользователь</th>
+                            <th>Текст</th>
+                             <th>Оценка</th>
+                            <th>Комментарий пользователя</th>
+                            <th>Принята</th>
+                            <th>Выполнена</th>
+                            <th>Сотрудник ИТ отдела</th>
+                            <th>Комментарий сотрудника ИТ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div>
             </div>

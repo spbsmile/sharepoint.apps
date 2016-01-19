@@ -38,6 +38,12 @@ $(document).ready(() => {
 
     });
 
+    $("#supportForm").hide();
+    $("#pressButtonSupport").click(() => {
+        $("#pressButtonSupport").hide();
+        $("#supportForm").show();
+    });
+
    // moment.locale(window.navigator.userLanguage || window.navigator.language);
     defineCurrentUser();
 
