@@ -83,8 +83,8 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
         if ($("#dialogTextReplace" + itemID).length == 0) {
             $("#modalReplaceWindow" + itemID).append('<div id ="dialogTextReplace' + itemID + '\";</div>');
         }
-        jQuery("#dialogTextReplace" + itemID).append('Комментарий:<textarea id="comment" rows="4" name="text"></textarea>');
-
+        jQuery("#dialogTextReplace" + itemID).append('<label>Кому выдать:</label> <div> <input name="users" id="users" value="" /> Комментарий:<textarea id="comment" rows="4" name="text"></textarea>');
+        $("input[name='users']").pickSPUser();
         var clientContext = new SP.ClientContext(siteUrl);
         var list = clientContext.get_web().get_lists().getById(listId);
         isClosed = true;
@@ -110,7 +110,7 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                                         var item = enumerator.get_current();
                                         item.set_item(catridgeCountFieldName, cartridgesCount - 1);
                                         item.set_item(actionFieldName, "Замена");
-                                        item.set_item(commentFieldName, $("#comment").val() + "__");
+                                        item.set_item(commentFieldName, $("#comment").val() + "Выдан: " + $("#users").val());
                                         item.set_item(whogiveFieldName, currentUserId);
                                         if (item.get_id() == itemID) {
                                             // item.set_item(replaceDateFieldName,  $.now().toString());
@@ -208,13 +208,13 @@ function RecordVersionCollection(arrayData, itemId, fieldName) {
         strFieldName: fieldName,
         completefunc: function (xData, Status) {
             $(xData.responseText).find("Version").each(function (i) {
-                if (moment($(this).attr("Modified")).isAfter('2016-01-01'))
+                /*if (moment($(this).attr("Modified")).isAfter('2016-01-01'))
                 {
                     console.log(moment($(this).attr("Modified")).format('LLL') + " isAfter");
                 }
                 else{
                     console.log(moment($(this).attr("Modified")).format('LLL') + " isBefore");
-                }
+                }*/
               
                 arrayData.push({
                     value: $(this).attr(fieldName),

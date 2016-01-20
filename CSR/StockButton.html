@@ -48,6 +48,7 @@
             });
 
             $("#opener2").click(function () {
+                //$("#dialog2").show();
                 if ($('#mySelect').has('option').length <= 0) {
                     addItemsDataToDialog();
                 }
@@ -55,7 +56,7 @@
             });
 
             $("#openstatistics").click(function () {
-
+                //$("#dialogstatistics").show();
                 $("#dialogstatistics").dialog("open");
             });
 
@@ -132,7 +133,7 @@
 </head>
 <body>
 
-<div id="dialog2" title="Введите данные" class="ui-widget">
+<div id="dialog2" title="Введите данные" class="ui-widget" hidden="true">
     <form id="mainform" name="mainform">
 
     </form>
@@ -143,7 +144,7 @@
     </form>
 </div>
 
-<div id="dialogstatistics" title="Общая статистика картриджей">
+<div id="dialogstatistics" title="Общая статистика картриджей" hidden="true">
     <div id="contentstatistics"></div>
 </div>
 
