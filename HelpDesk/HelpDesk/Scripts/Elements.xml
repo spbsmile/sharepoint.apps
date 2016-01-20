@@ -21,5 +21,7 @@
     <File Path="Scripts\jquery-ui.min.js" Url="Scripts/jquery-ui.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\jquery.validate.min.js" Url="Scripts/jquery.validate.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\jquery.validation\jquery.validation.d.ts" Url="Scripts/typings/jquery.validation/jquery.validation.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\IsCurrentUserMemberOfGroup.js" Url="Scripts/IsCurrentUserMemberOfGroup.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\IsCurrentUserMemberOfGroup.ts" Url="Scripts/IsCurrentUserMemberOfGroup.ts" ReplaceContent="TRUE" />
   </Module>
 </Elements>

@@ -14,6 +14,12 @@ var listName = "Tickets";
 var listGuid = "4f71156b-0221-45e8-8166-7ccca783813f";
 var itemType;
 var appWebUrl, hostWebUrl;
+//владельцы
+var bossGroupId = 5;
+//участники
+var supportGroupId = 7;
+//посетители
+var guestGroupId = 6;
 $(document).ready(function () {
     itemType = getItemTypeForListName(listName);
     hostWebUrl = decodeURIComponent(getQueryStringParameter("SPHostUrl"));
@@ -25,7 +31,32 @@ $(document).ready(function () {
             $.getScript(scriptbase + "SP.js", function () { $.getScript(scriptbase + "SP.RequestExecutor.js"); });
         });
     });
-    $("#supportForm").hide();
+    context = SP.ClientContext.get_current();
+    web = context.get_web();
+    function IsCurrentUserWithContributePerms() {
+        IsCurrentUserMemberOfGroup(bossGroupId, function (isCurrentUserInGroup) {
+            if (isCurrentUserInGroup) {
+                $("#titlePage").text("Журнал Заявок");
+                $("#tablesBoss").show();
+            }
+            else {
+                IsCurrentUserMemberOfGroup(supportGroupId, function (isCurrentUserInGroup) {
+                    if (isCurrentUserInGroup) {
+                        $("#titlePage").text("Заявка в техподдержку");
+                        $("#supportButton").show();
+                        $("#tablesGuest").show();
+                    }
+                    else {
+                        //TODO guest
+                        $("#titlePage").text("Заявка в техподдержку");
+                        $("#supportButton").show();
+                        $("#tablesGuest").show();
+                    }
+                });
+            }
+        });
+    }
+    ExecuteOrDelayUntilScriptLoaded(IsCurrentUserWithContributePerms, 'SP.js');
     $("#pressButtonSupport").click(function () {
         $("#pressButtonSupport").hide();
         $("#supportForm").show();
@@ -182,8 +213,6 @@ function uploadFileaddItem() {
     }
 }
 function defineCurrentUser() {
-    context = SP.ClientContext.get_current();
-    web = context.get_web();
     currentUser = web.get_currentUser();
     context.load(currentUser);
     context.executeQueryAsync(onQuerySucceeded, onQueryFailed);

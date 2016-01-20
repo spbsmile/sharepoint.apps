@@ -9,6 +9,7 @@
     <script type="text/javascript" src="../Scripts/moment.min.js"></script>
     <script type="text/javascript" src="../Scripts/moment-with-locales.min.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../Scripts/IsCurrentUserMemberOfGroup.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.js"></script>
 
@@ -20,10 +21,10 @@
     <!-- Добавьте свой код JavaScript в следующий файл -->
     <script type="text/javascript" src="../Scripts/App.js"></script>
 </asp:Content>
-    
+
 <%-- Разметка из следующего элемента Content будет помещена в элемент TitleArea страницы --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server">
-    Заявка в техподдержку
+    <div id="titlePage"> </div>
 </asp:Content>
 
 <%-- Разметка и скрипт из следующего элемента Content будут помещены в элемент <body> страницы --%>
@@ -31,123 +32,208 @@
 
     <div class="bootstrap-scope">
         <div class="bootstrap-html">
-            <div class="bootstrap-body">
-                <div id ="supportButton">
+            <div id="main" class="bootstrap-body">
+                <div id="supportButton" hidden="true">
                     <input id="pressButtonSupport" type="button" class="btn btn-primary" value="Подать заявку"/>
                 </div>
-                <div id ="supportForm">
-                <label>Пожалуйста, заполните форму</label>
-                <br><br>
-                <form>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="category">Выберите категорию</label>
-                                <div>
-                                    <select id="category" class="form-control">
-                                        <option>...</option>
-                                        <option>Починка оборудования</option>
-                                        <option>Починка ПО</option>
-                                        <option>Интернет</option>
-                                        <option>Lync</option>
-                                        <option>Документы</option>
-                                        <option>Другое</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="discription">Описание</label>
-                                <form id="mainform" name="mainform">
-
-                                 </form>
-                                 <form id="dialogform">
+                <div id="supportForm" hidden="true">
+                    <label>Пожалуйста, заполните форму</label>
+                    <br><br>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="category">Выберите категорию</label>
                                     <div>
-                                        <textarea style="height: 100px;" class="form-control" id="discription" rows="3" name="pswd"></textarea>
+                                        <select id="category" class="form-control">
+                                            <option>...</option>
+                                            <option>Починка оборудования</option>
+                                            <option>Починка ПО</option>
+                                            <option>Интернет</option>
+                                            <option>Lync</option>
+                                            <option>Документы</option>
+                                            <option>Другое</option>
+                                        </select>
                                     </div>
-                                </form>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="discription">Описание</label>
+                                    <form id="mainform" name="mainform">
+
+                                    </form>
+                                    <form id="dialogform">
+                                        <div>
+                                            <textarea style="height: 100px;" class="form-control" id="discription" rows="3" name="pswd"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="urgentlyValue">Определите срочность:</label>
+                                    <div>
+                                        <select id="urgentlyValue" class="form-control">
+                                            <option>В течении дня</option>
+                                            <option>В течении 1 часа</option>
+                                            <option>В течении 2 часов</option>
+                                            <option>В течении 4 часов</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Добавить файл</label>
+                                    <input type="file" id="getFile">
+                                    <p class="help-block">Например, скриншот</p>
+                                </div>
+                                <input id="sendTicket" type="button" class="btn btn-default" value="Отправить"/>
                             </div>
 
-                            <div class="form-group">
-                                <label for="urgentlyValue">Определите срочность:</label>
-                                <div>
-                                    <select id="urgentlyValue" class="form-control">
-                                        <option>В течении дня</option>
-                                        <option>В течении 1 часа</option>
-                                        <option>В течении 2 часов</option>
-                                        <option>В течении 4 часов</option>
-                                    </select>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        FAQ:
+                                    </label>
+                                    <div class="panel-footer">
+                                        Добро пожаловать на страницу техподдержки.
+                                        <p>Через обратную форму Вы можете отправить нам заявку.</p>
+                                        <p>
+                                            Инструкция по 1 пункту.
+                                        </p>
+                                        <p>
+                                            Инструкция по 2 пункту.
+                                        </p>
+                                        <p>
+                                            Инструкция по 3 пункту.
+                                        </p>
+                                        <p>
+                                            Инструкция по 4 пункту.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Добавить файл</label>
-                                <input type="file" id="getFile">
-                                <p class="help-block">Например, скриншот</p>
-                            </div>
-                            <input id="sendTicket" type="button" class="btn btn-default" value="Отправить"/>
-                        </div>
 
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    FAQ:
-                                </label>
-                                <div class="panel-footer">
-                                    Добро пожаловать на страницу техподдержки.
-                                    <p>Через обратную форму Вы можете отправить нам заявку.</p>
-                                    <p>
-                                        Инструкция по 1 пункту.
-                                    </p>
-                                    <p>
-                                        Инструкция по 2 пункту.
-                                    </p>
-                                    <p>
-                                        Инструкция по 3 пункту.
-                                    </p>
-                                    <p>
-                                        Инструкция по 4 пункту.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div id="modalDialog"></div>
+                            <div id="modalDialog"></div>
 
-                    </div>
-                </form>
+                        </div>
+                    </form>
                 </div>
-                <h3>Принятые заявки</h3>
-                <h3>Выполненные заявки</h3>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Дата</th>
-                            <th>Пользователь</th>
-                            <th>Текст</th>
-                             <th>Оценка</th>
-                            <th>Комментарий пользователя</th>
-                            <th>Принята</th>
-                            <th>Выполнена</th>
-                            <th>Сотрудник ИТ отдела</th>
-                            <th>Комментарий сотрудника ИТ</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="clearfix"></div>
+                <div>
+                    <div id ="tablesGuest" hidden="true">
+                        <h2>Ваши заявки</h2>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Дата</th>
+                                    <th>Текст</th>
+                                    <th>Срочность</th>
+                                    <th>Статус</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id ="tablesBoss" hidden="true">
+                        <h2>Новые заявки</h2>
+                        <br/>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th align="center">#</th>
+                                    <th align="center" style ="width:100px;">Дата</th>
+                                    <th align="center"  style ="width:200px;">Пользователь</th>
+                                    <th align="center" style ="width:500px;">Текст</th>
+                                    <th align="center">Срочность</th>
+                                    <th align="center" style ="width:200px;">Принять на выполнение</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><button class="acceptIssue">Принять</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>&nbsp;</p>
+                        <hr/>
+                        <h2>Принятые заявки</h2>
+                        <br/>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th align="center">#</th>
+                                    <th align="center" style ="width:100px;">Дата</th>
+                                    <th align="center" style ="width:200px;">Пользователь</th>
+                                    <th align="center" style ="width:500px;">Текст</th>
+                                    <th align="center">Сотрудник ИТ отдела</th>
+                                    <th align="center">Выполняется с</th>
+                                    <th align="center">Выполнено</th>
+                                    <th align="center">Комментарий</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>&nbsp;</p>
+                        <hr/>
+                        <h2>Выполненные заявки</h2>
+                        <br/>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th align="center">#</th>
+                                    <th align="center" style ="width:100px;">Дата</th>
+                                    <th align="center"  style ="width:200px;">Пользователь</th>
+                                    <th align="center" style ="width:500px;">Текст</th>
+                                    <th align="center">Оценка</th>
+                                    <th align="center">Комментарий пользователя</th>
+                                    <th align="center">Принята</th>
+                                    <th align="center">Выполнена</th>
+                                    <th align="center">Сотрудник ИТ отдела</th>
+                                    <th align="center">Комментарий сотрудника ИТ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td align="center">Otto</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div>
             </div>

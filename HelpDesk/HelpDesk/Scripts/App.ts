@@ -19,6 +19,13 @@ var itemType: string;
 
 var appWebUrl: string, hostWebUrl: string;
 
+//владельцы
+var bossGroupId = 5;
+//участники
+var supportGroupId = 7;
+//посетители
+var guestGroupId = 6;
+
 $(document).ready(() => {
 
     itemType = getItemTypeForListName(listName);
@@ -35,10 +42,35 @@ $(document).ready(() => {
                 );
             }
         );
-
     });
 
-    $("#supportForm").hide();
+    context = SP.ClientContext.get_current();
+    web = context.get_web();
+
+    function IsCurrentUserWithContributePerms() {
+        IsCurrentUserMemberOfGroup(bossGroupId, isCurrentUserInGroup => {
+            if (isCurrentUserInGroup) {
+                $("#titlePage").text("Журнал Заявок");
+                $("#tablesBoss").show();
+            } else {
+                IsCurrentUserMemberOfGroup(supportGroupId, isCurrentUserInGroup => {
+                    if (isCurrentUserInGroup) {
+                        $("#titlePage").text("Заявка в техподдержку");
+                        $("#supportButton").show();
+                        $("#tablesGuest").show();
+                    } else {
+                        //TODO guest
+                        $("#titlePage").text("Заявка в техподдержку");
+                        $("#supportButton").show();
+                        $("#tablesGuest").show();
+                    }
+                });
+            }
+        });
+
+    }
+    ExecuteOrDelayUntilScriptLoaded(IsCurrentUserWithContributePerms, 'SP.js');
+
     $("#pressButtonSupport").click(() => {
         $("#pressButtonSupport").hide();
         $("#supportForm").show();
@@ -221,8 +253,6 @@ function uploadFileaddItem() {
 }
 
 function defineCurrentUser() {
-    context = SP.ClientContext.get_current();
-    web = context.get_web();
     currentUser = web.get_currentUser();
     context.load(currentUser);
     context.executeQueryAsync(onQuerySucceeded, onQueryFailed);

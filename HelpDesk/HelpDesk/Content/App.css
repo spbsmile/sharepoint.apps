@@ -3,3 +3,23 @@
     border: 1px solid gray;
     padding: 10px;
 }
+
+hr {
+    display: block;
+    -webkit-margin-before: 0.5em;
+    -webkit-margin-after: 0.5em;
+    -webkit-margin-start: auto;
+    -webkit-margin-end: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+/*
+th {
+    align: center;
+    font-weight: bold;
+}
+
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}*/
