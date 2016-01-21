@@ -6,13 +6,14 @@ var listTitle = "Офисная техника";
 var listId = "ab3cc3f0-8ced-4862-bdac-c92b951ae72c";
 var remainFieldName = "_x041e__x0441__x0442__x0430__x04";
 var numberofissuedFieldName = "_x041e__x0431__x0449__x0435__x04";
-var reseivedFieldName = "_x041a__x043e__x043c__x0443__x00"; //OData__x041a__x043e__x043c__x0443__x00
+var reseivedFieldName = "_x041a__x043e__x043c__x0443__x00";
+//OData__x041a__x043e__x043c__x0443__x00
 var getoutFieldName = "_x0412__x044b__x0434__x0430__x04";
 var whogiveFieldName = "_x041a__x0442__x043e__x0020__x04";
 var commentFieldName = "_x041a__x043e__x043c__x043c__x04";
 
-var currentUser = null;
-var currentUserId = null;
+var currentUser = null ;
+var currentUserId = null ;
 
 var remarkFieldName = "";
 var timeFieldName = "";
@@ -21,7 +22,7 @@ var threshold = 20;
 
 var isClosed = true;
 
-SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
+SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
 
     function getBaseHtml(ctx) {
         return SPClientTemplates["_defaultTemplates"].Fields.default.all.all[ctx.CurrentFieldSchema.FieldType][ctx.BaseViewID](ctx);
@@ -73,8 +74,8 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 function clickViewHistory(itemID, itemName) {
     var getOutFeildsStorage = [];
     var resievedFeildsStorage = [];
-  	var whogiveStorage = [];
-  	var commentStorage = [];
+    var whogiveStorage = [];
+    var commentStorage = [];
 
     if ($("#dialogTextHistory" + itemID).length === 0) {
         $("#mdViewHistory" + itemID).append('<div id ="dialogTextHistory' + itemID + '\";</div>');
@@ -94,18 +95,18 @@ function clickViewHistory(itemID, itemName) {
             }
             break;
         }
-        var person = (whogiveStorage[i] === undefined ||  whogiveStorage[i].value === undefined) ? "  ": whogiveStorage[i].value;
-        var comment = (commentStorage[i] === undefined ||  commentStorage[i].value === undefined) ? "  ": commentStorage[i].value;
+        var person = (whogiveStorage[i] === undefined || whogiveStorage[i].value === undefined) ? "  " : whogiveStorage[i].value;
+        var comment = (commentStorage[i] === undefined || commentStorage[i].value === undefined) ? "  " : commentStorage[i].value;
         $('#table' + itemID).append("<tr><td>" + getOutFeildsStorage[i].timeUpdate + "</td><td>" + resievedFeildsStorage[i].value + "</td><td>" + getOutFeildsStorage[i].value + "</td><td>" + person + "</td><td>" + comment + "</td></tr>");
     }
 
-    $(function () {
+    $(function() {
         $("#mdViewHistory" + itemID).dialog({
             title: 'История выдачи: ' + itemName,
             width: 600,
             modal: true,
             resizable: false,
-            close: function (event, ui) {
+            close: function(event, ui) {
                 $("#dialogTextHistory" + itemID).remove();
             }
         });
@@ -119,36 +120,38 @@ function clickDialogGetOut(itemID, itemName) {
     jQuery("#dialogText" + itemID).append('<label>Кому выдать:</label> <div> <input name="users" id="users" value="" /> <label>Количество:</label> <div> <input id="countdevice' + itemID + '\" /> </div></div>Комментарий:<textarea id="comment" rows="4"  name="text"></textarea>');
     $("input[name='users']").pickSPUser();
     isClosed = true;
-    $(function () {
+    $(function() {
         $("#mdGetOut" + itemID).dialog({
             buttons: [
                 {
                     text: "Выдать",
-                    click: function () {
-                      
-                      	isClosed = false;
-                        CallClientOM();
+                    click: function() {
+
+                        isClosed = false;
 
                         var clientContext = new SP.ClientContext(siteUrl);
+                        GetCurrentUser(clientContext, function(user) {
+                            currentUserId = user.id;
+                        })
                         var list = clientContext.get_web().get_lists().getById(listId);
                         var item = list.getItemById(itemID);
                         var h = $(this);
                         clientContext.load(item);
-                        clientContext.executeQueryAsync(function () {
+                        clientContext.executeQueryAsync(function() {
                                 item.set_item(remainFieldName, item.get_item(remainFieldName) - parseInt($("#countdevice" + itemID).val()));
                                 item.set_item(numberofissuedFieldName, item.get_item(numberofissuedFieldName) + parseInt($("#countdevice" + itemID).val()));
                                 item.set_item(getoutFieldName, parseInt($("#countdevice" + itemID).val()));
                                 item.set_item(reseivedFieldName, $("#users").val());
                                 item.set_item(commentFieldName, $("#comment").val() + "_");
-                               	item.set_item(whogiveFieldName, currentUserId);
+                                item.set_item(whogiveFieldName, currentUserId);
                                 item.update();
                                 clientContext.executeQueryAsync(
-                                  function()
-                                  {
-                                    h.dialog('close');
-                                    console.log("succes");
-                                  },
-                                  onQueryFailed);
+                                    function()
+                                    {
+                                        h.dialog('close');
+                                        console.log("succes");
+                                    },
+                                    onQueryFailed);
                             },
                             onQueryFailed);
                     }
@@ -158,29 +161,16 @@ function clickDialogGetOut(itemID, itemName) {
             width: 600,
             modal: true,
             resizable: false,
-            close: function (event, ui) {
+            close: function(event, ui) {
                 $("#dialogText" + itemID).remove();
                 console.log("inside close function");
-              if(!isClosed){
-                document.location.reload();
-              }
+                if (!isClosed) {
+                    document.location.reload();
+                }
             }
         });
     });
 }
-
-function CallClientOM() {
-    var context = new SP.ClientContext.get_current();
-    var web = context.get_web();
-    currentUser = web.get_currentUser();
-    context.load(currentUser);
-    context.executeQueryAsync(onQuerySucceeded, onQueryFailed);
-}
-
-function onQuerySucceeded(sender, args) {
-    currentUserId = currentUser.get_id();
-}
-
 
 function RecordVersionCollection(arrayData, itemId, fieldName) {
     $().SPServices({
@@ -189,8 +179,8 @@ function RecordVersionCollection(arrayData, itemId, fieldName) {
         strlistID: listId,
         strlistItemID: itemId,
         strFieldName: fieldName,
-        completefunc: function (xData, Status) {
-            $(xData.responseText).find("Version").each(function (i) {
+        completefunc: function(xData, Status) {
+            $(xData.responseText).find("Version").each(function(i) {
                 arrayData.push({
                     value: $(this).attr(fieldName),
                     timeUpdate: moment($(this).attr("Modified")).format('LLL')
@@ -202,4 +192,3 @@ function RecordVersionCollection(arrayData, itemId, fieldName) {
         }
     });
 }
-

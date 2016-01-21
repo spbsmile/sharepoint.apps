@@ -61,7 +61,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
         html += '<div id ="modalReplaceWindow' + ctx.CurrentItem.ID + '\";>';
         html += '<div id="dialogTextReplace' + ctx.CurrentItem.ID + '\";>';
         html += "";
-        html += "</div>";  
+        html += "</div>";
         return html;
     }
 
@@ -88,16 +88,18 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
         var clientContext = new SP.ClientContext(siteUrl);
         var list = clientContext.get_web().get_lists().getById(listId);
         isClosed = true;
-      
+
         $(function () {
             $("#modalReplaceWindow" + itemID).dialog({
                 buttons: [
                     {
                         text: "Заменить",
                         click: function () {
-                          
+
                             isClosed = false;
-                            CallClientOM();
+                            GetCurrentUser(clientContext, function(user) {
+                                currentUserId = user.id;
+                            })
 
                             var caml = queryByUniqueTitle(catridgeFieldName, cartridgesName);
                             var collListItems = list.getItems(caml);
@@ -134,9 +136,9 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                 close: function (event, ui) {
                     $("#dialogTextReplace" + itemID).remove();
                     console.log("inside close dialogTextReplace");
-                  if(!isClosed){
-                    document.location.reload();
-                  }
+                    if(!isClosed){
+                        document.location.reload();
+                    }
                 }
             });
         });
@@ -186,19 +188,6 @@ function clickVersionButton(itemID, cartrigeName) {
     });
 }
 
-function CallClientOM() {
-    var context = new SP.ClientContext.get_current();
-    var web = context.get_web();
-    currentUser = web.get_currentUser();
-    context.load(currentUser);
-    context.executeQueryAsync(onQuerySucceeded, onQueryFailed);
-}
-
-function onQuerySucceeded(sender, args) {
-    currentUserId = currentUser.get_id();
-}
-
-
 function RecordVersionCollection(arrayData, itemId, fieldName) {
     $().SPServices({
         operation: "GetVersionCollection",
@@ -209,13 +198,13 @@ function RecordVersionCollection(arrayData, itemId, fieldName) {
         completefunc: function (xData, Status) {
             $(xData.responseText).find("Version").each(function (i) {
                 /*if (moment($(this).attr("Modified")).isAfter('2016-01-01'))
-                {
-                    console.log(moment($(this).attr("Modified")).format('LLL') + " isAfter");
-                }
-                else{
-                    console.log(moment($(this).attr("Modified")).format('LLL') + " isBefore");
-                }*/
-              
+                 {
+                 console.log(moment($(this).attr("Modified")).format('LLL') + " isAfter");
+                 }
+                 else{
+                 console.log(moment($(this).attr("Modified")).format('LLL') + " isBefore");
+                 }*/
+
                 arrayData.push({
                     value: $(this).attr(fieldName),
                     timeUpdate: moment($(this).attr("Modified")).format('LLL')
