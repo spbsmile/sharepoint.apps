@@ -13,7 +13,7 @@ function IsCurrentUserMemberOfGroup(groupId, OnComplete) {
         var userInGroup = IsUserInGroup(currentUser, group);
         OnComplete(userInGroup);
     }, function OnFailure(sender, args) {
-        OnComplete(false);
+        console.log('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
     });
     function IsUserInGroup(user, group) {
         var groupUsers = group.get_users();

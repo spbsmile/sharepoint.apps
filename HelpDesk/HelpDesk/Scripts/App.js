@@ -117,7 +117,6 @@ function addItem(itemIDlkf) {
             "X-RequestDigest": $("#__REQUESTDIGEST").val()
         },
         success: function (sender, args) {
-            //alert("Сообщение успешно отправлено");
             $("#modalDialog").dialog({
                 title: "Сообщение успешно отправлено",
                 modal: true,

@@ -21,7 +21,7 @@ function IsCurrentUserMemberOfGroup(groupId, OnComplete) {
                     OnComplete(userInGroup);
                 },
                 function OnFailure(sender, args) {
-                   OnComplete(false);
+                    console.log('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
                 }
         );
         

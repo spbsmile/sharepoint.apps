@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css"
           href="http://server-sp-it/sites/wiki/Style%20Library/Printers/jquery-ui.min.css"/>
-    <style>
+   <style>
         fieldset {
             border: 0;
         }
@@ -24,6 +24,11 @@
         .inner {
             display: inline-block;
         }
+
+    .inner [hidden]{
+            display: inline-block;
+        }
+      
     </style>
     <script>
 
@@ -32,8 +37,22 @@
         var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
         var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
         var actionFieldName = "Action";
+        var editingGroupId = 41;
 
         $(document).ready(function () {
+
+                  function IsCurrentUserWithContributePerms() {
+                IsCurrentUserMemberOfGroup(editingGroupId , function (isCurrentUserInGroup) {
+                    if (isCurrentUserInGroup) {
+                        console.log("isCurrentUserInGroup");
+                        $("#opener2").show();
+                    }
+                });
+            }
+            ExecuteOrDelayUntilScriptLoaded(IsCurrentUserWithContributePerms, 'SP.js');
+
+
+            
             $("#dialog2").dialog({
                 resizable: false,
                 modal: true,
@@ -75,6 +94,7 @@
                 }
             });
 
+      
             function addDataToTable() {
                 if (!$('#dialogform').valid()) return;
                 var selectedValue = $("#mySelect option:selected").text();
@@ -103,7 +123,7 @@
                         onQueryFailed);
 
                 $("#dialog2").dialog("close");
-            }
+            } 
 
             function addItemsDataToDialog() {
                 $.ajax({
@@ -144,12 +164,12 @@
     </form>
 </div>
 
-<div id="dialogstatistics" title="Общая статистика картриджей" hidden="true">
+<div id="dialogstatistics" title="Общая статистика картриджей" >
     <div id="contentstatistics"></div>
 </div>
 
 <div>
-    <input class="inner " type="button" value="Добавить " id="opener2">
-    <input class="inner " type="button" value="Общая статистика по картриджам" id="openstatistics">
+    <input  class="innerbutton" type="button" value="Добавить " id="opener2" hidden = "true">
+    <input  class="inner " type="button" value="Общая статистика по картриджам" id="openstatistics">
 </div>
 </body>

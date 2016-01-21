@@ -125,9 +125,12 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Дата</th>
-                                    <th>Текст</th>
-                                    <th>Срочность</th>
+                                    <th align="center" style ="width:100px;">Дата Создания</th>
+                                    <th align="center" style ="width:100px;">Время</th>
+                                    <th align="center" style ="width:500px;">Описание</th>
+                                    <th align="center"  style ="width:200px;">Срочность</th>
+                                    <th align="center"  style ="width:200px;">Категория</th>
+                                    <th align="center"  style ="width:200px;">Приложенный файл</th>
                                     <th>Статус</th>
                                 </tr>
                             </thead>
@@ -150,10 +153,13 @@
                             <thead>
                                 <tr>
                                     <th align="center">#</th>
-                                    <th align="center" style ="width:100px;">Дата</th>
-                                    <th align="center"  style ="width:200px;">Пользователь</th>
-                                    <th align="center" style ="width:500px;">Текст</th>
-                                    <th align="center">Срочность</th>
+                                    <th align="center" style ="width:100px;">Дата Создания</th>
+                                    <th align="center" style ="width:100px;">Время</th>
+                                    <th align="center"  style ="width:200px;">Автор</th>
+                                    <th align="center" style ="width:500px;">Описание</th>
+                                    <th align="center"  style ="width:200px;">Срочность</th>
+                                    <th align="center"  style ="width:200px;">Категория</th>
+                                    <th align="center"  style ="width:200px;">Приложенный файл</th>
                                     <th align="center" style ="width:200px;">Принять на выполнение</th>
                                 </tr>
                             </thead>
@@ -164,6 +170,10 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
+                                     <td></td>
                                     <td><button class="acceptIssue">Принять</button></td>
                                 </tr>
                             </tbody>
@@ -176,9 +186,12 @@
                             <thead>
                                 <tr>
                                     <th align="center">#</th>
-                                    <th align="center" style ="width:100px;">Дата</th>
-                                    <th align="center" style ="width:200px;">Пользователь</th>
-                                    <th align="center" style ="width:500px;">Текст</th>
+                                    <th align="center" style ="width:100px;">Дата Создания</th>
+                                    <th align="center" style ="width:100px;">Время</th>
+                                    <th align="center"  style ="width:200px;">Автор</th>
+                                    <th align="center" style ="width:500px;">Описание</th>
+                                    <th align="center"  style ="width:200px;">Срочность</th>
+                                    <th align="center"  style ="width:200px;">Приложенный файл</th>
                                     <th align="center">Сотрудник ИТ отдела</th>
                                     <th align="center">Выполняется с</th>
                                     <th align="center">Выполнено</th>
@@ -206,9 +219,12 @@
                             <thead>
                                 <tr>
                                     <th align="center">#</th>
-                                    <th align="center" style ="width:100px;">Дата</th>
-                                    <th align="center"  style ="width:200px;">Пользователь</th>
-                                    <th align="center" style ="width:500px;">Текст</th>
+                                    <th align="center" style ="width:100px;">Дата Создания</th>
+                                    <th align="center" style ="width:100px;">Время</th>
+                                    <th align="center"  style ="width:200px;">Автор</th>
+                                    <th align="center" style ="width:500px;">Описание</th>
+                                    <th align="center"  style ="width:200px;">Срочность</th>
+                                    <th align="center"  style ="width:200px;">Категория</th>
                                     <th align="center">Оценка</th>
                                     <th align="center">Комментарий пользователя</th>
                                     <th align="center">Принята</th>
