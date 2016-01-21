@@ -24,5 +24,7 @@
     <ProjectItemFile Source="typings\jquery.validation\jquery.validation.d.ts" Target="Scripts\typings\jquery.validation\" Type="ElementFile" />
     <ProjectItemFile Source="IsCurrentUserMemberOfGroup.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="IsCurrentUserMemberOfGroup.ts" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="getCurrentUser.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="getCurrentUser.ts" Target="Scripts\" Type="ElementFile" />
   </Files>
 </ProjectItem>

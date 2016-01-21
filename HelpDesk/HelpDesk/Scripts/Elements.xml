@@ -23,5 +23,7 @@
     <File Path="Scripts\typings\jquery.validation\jquery.validation.d.ts" Url="Scripts/typings/jquery.validation/jquery.validation.d.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\IsCurrentUserMemberOfGroup.js" Url="Scripts/IsCurrentUserMemberOfGroup.js" ReplaceContent="TRUE" />
     <File Path="Scripts\IsCurrentUserMemberOfGroup.ts" Url="Scripts/IsCurrentUserMemberOfGroup.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\getCurrentUser.js" Url="Scripts/getCurrentUser.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\getCurrentUser.ts" Url="Scripts/getCurrentUser.ts" ReplaceContent="TRUE" />
   </Module>
 </Elements>

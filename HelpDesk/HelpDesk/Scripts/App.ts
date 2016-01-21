@@ -8,9 +8,6 @@
 
 var context = null;
 var web = null;
-var currentUser = null;
-var currentUserTitle = null;
-var currentUserLogin = null;
 var currentUserId = null;
 
 var listName = "Tickets";
@@ -77,7 +74,9 @@ $(document).ready(() => {
     });
 
    // moment.locale(window.navigator.userLanguage || window.navigator.language);
-    defineCurrentUser();
+    getCurrentUser(context, user => {
+        currentUserId = user.get_id();
+    });
 
     $("#dialogform").validate({
         rules: {
@@ -250,18 +249,6 @@ function uploadFileaddItem() {
             headers: { "accept": "application/json;odata=verbose" }
         });
     }
-}
-
-function defineCurrentUser() {
-    currentUser = web.get_currentUser();
-    context.load(currentUser);
-    context.executeQueryAsync(onQuerySucceeded, onQueryFailed);
-}
-
-function onQuerySucceeded(sender, args) {
-    currentUserTitle = currentUser.get_title();
-    currentUserLogin = currentUser.get_loginName();
-    currentUserId = currentUser.get_id();
 }
 
 function onQueryFailed(sender: any, args: any);
