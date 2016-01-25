@@ -2,24 +2,24 @@
 // and attached to the XLV via JSLink property.
 
 var siteUrl = "http://server-sp-it/sites/wiki/";
-var listTitle = "Офисная техника";
-var listId = "ab3cc3f0-8ced-4862-bdac-c92b951ae72c";
-var remainFieldName = "_x041e__x0441__x0442__x0430__x04";
-var numberofissuedFieldName = "_x041e__x0431__x0449__x0435__x04";
-var reseivedFieldName = "_x041a__x043e__x043c__x0443__x00";
-//OData__x041a__x043e__x043c__x0443__x00
-var getoutFieldName = "_x0412__x044b__x0434__x0430__x04";
-var whogiveFieldName = "_x041a__x0442__x043e__x0020__x04";
-var commentFieldName = "_x041a__x043e__x043c__x043c__x04";
+var listId = "e032d241-fbc2-4efb-b5bf-48b7aeaf3e67";
 
-var currentUser = null ;
+//на складе
+var remainFieldName = "_x041e__x0441__x0442__x0430__x04";//
+// общее число выданных
+var numberofissuedFieldName = "_x041e__x0431__x0449__x0435__x04";//
+// получатель
+var reseivedFieldName = "_x041a__x043e__x043c__x0443__x00";//
+//выдано
+var getoutFieldName = "_x0412__x044b__x0434__x0430__x04";
+// кто выдал
+var whogiveFieldName = "_x041a__x0442__x043e__x0020__x04";//
+//комментарий
+var commentFieldName = "_x041a__x043e__x043c__x043c__x04";//
+
 var currentUserId = null ;
 
-var remarkFieldName = "";
-var timeFieldName = "";
-
 var threshold = 20;
-
 var isClosed = true;
 
 SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
