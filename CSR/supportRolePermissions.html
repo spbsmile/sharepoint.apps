@@ -1,0 +1,25 @@
+<script>
+
+function Document.Ready(){
+	var user = getCurrentUser();
+	if (user.InBossGroup)
+	{
+		displayNewTasks();
+		displayAcceptedTasks();
+		displayResolvedTasks();
+	}
+	else if (user.InSupportGroup){
+		displayNewTasks(); 
+		displayUserCurrentTasks();
+	}
+	else
+	{
+		displaySupportForm();	
+		displayUserCurrentTasks();
+	}
+	
+}
+
+
+
+</script>
