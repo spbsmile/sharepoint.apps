@@ -1,0 +1,124 @@
+// The file has been created, saved into "/Style Library/market/"
+// and attached to the XLV via JSLink property.
+
+var listNewTasksId = "";
+var listAcceptedTasksId = "";
+var listResolvedTasksId = "";
+var itemType;
+
+SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
+
+  function getBaseHtml(ctx) {
+    return SPClientTemplates["_defaultTemplates"].Fields.default.all.all[ctx.CurrentFieldSchema.FieldType][ctx.BaseViewID](ctx);
+  }
+
+  function init() {
+
+    SPClientTemplates.TemplateManager.RegisterTemplateOverrides({
+
+      Templates: {
+
+           Fields: {
+               "addtask": {
+                   View: renderAccept,
+   
+              },
+             "ClosedTask": {
+                   View: renderClose,
+   
+              }
+           },
+      },
+
+      ListTemplateType: 100
+
+    });
+  }
+  
+   function renderAccept(ctx) {
+        var html = "";
+        html += '<input type="button" value="Принять" onClick="clickAcceptTask(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Title"] + '\')" />';
+        return html;
+    }
+
+    function renderClose(ctx) {
+        var html = "";
+        html += '<input type="button" value="Закрыть задачу" onClick="clickCloseTask(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Title"] + '\')" />';
+        return html;
+    }
+
+  RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/market/newTasks.js"), init);
+  init();
+  
+});
+
+function clickAcceptTask(itemId, title)
+{
+    console.log("hello acceptTask");
+    moveItem(itemId, listNewTasksId, listAcceptedTasksId);  
+}
+
+function clickCloseTask(itemId, title)
+{
+    console.log("close Task");
+    //moveItem(itemId, listAcceptedTasksId, listResolvedTasksId);
+}
+
+function moveItem(itemId, fromListId, toListId)
+{
+ // removeItem(itemId, fromListId);
+  
+  
+  
+ // addItem(itemId, toListId);
+}
+
+
+function addItem(itemIDlkf) {
+    var dt = new Date();
+    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+    var item = {
+        "__metadata": {
+            "type": itemType,
+            "Discription": ""
+           
+     
+        },
+        "Discription": $("#discription").val(),
+        
+        "Time": time,
+       
+    };
+    $.ajax({
+        url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists(guid'" + listGuid + "')/items",
+        type: "POST",
+        contentType: "application/json;odata=verbose",
+        data: JSON.stringify(item),
+        headers: {
+            "Accept": "application/json;odata=verbose",
+            "X-RequestDigest": $("#__REQUESTDIGEST").val()
+        },
+        success: function (sender, args) {
+            
+        },
+        error: onError
+    });
+}
+// Display error messages. 
+function onError(error) {
+    console.log(error.responseText);
+}
+
+function getQueryStringParameter(urlParameterKey) {
+    var params = document.URL.split("?")[1].split("&");
+    var strParams = "";
+    for (var i = 0; i < params.length; i = i + 1) {
+        var singleParam = params[i].split("=");
+        if (singleParam[0] == urlParameterKey)
+            return decodeURIComponent(singleParam[1]);
+    }
+}
+// Get List Item Type metadata
+function getItemTypeForListName(name) {
+    return "SP.Data." + name.charAt(0).toUpperCase() + name.split(" ").join("").slice(1) + "ListItem";
+}
