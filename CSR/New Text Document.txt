@@ -1,124 +1,54 @@
-// The file has been created, saved into "/Style Library/market/"
-// and attached to the XLV via JSLink property.
+<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/jquery.validate.min.js"></script>
+<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/jquery.SPServices-0.7.1a.min.js"></script>
+<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/jquery.SPWidgets.min.js"></script>
+<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/getCurrentUser.js"></script>
+<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/IsCurrentUserMemberOfGroup.js"></script>
+<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/camljs.js"></script>
+<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/moment.min.js"></script>
+<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/query.js"></script>
+<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/utils.js"></script>
 
-var listNewTasksId = "";
-var listAcceptedTasksId = "";
-var listResolvedTasksId = "";
-var itemType;
+<script> 
+//владельцы
+var bossGroupId = 5;
+//участники
+var supportGroupId = 7;
+//посетители
+var guestGroupId = 6;
 
-SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
+$(document).ready(function () {
 
-  function getBaseHtml(ctx) {
-    return SPClientTemplates["_defaultTemplates"].Fields.default.all.all[ctx.CurrentFieldSchema.FieldType][ctx.BaseViewID](ctx);
-  }
+  function IsCurrentUserWithContributePerms() {
+        IsCurrentUserMemberOfGroup(bossGroupId, function (isCurrentUserInGroup) {
+            if (isCurrentUserInGroup) {
 
-  function init() {
+            }
+            else {
+                IsCurrentUserMemberOfGroup(supportGroupId, function (isCurrentUserInGroup) {
+                    if (isCurrentUserInGroup) {
+                        $("#tableSupportUser").show();
+                    }
+                    else {
+                        $("#supportButton").show();
+                        $("#tableGuestUser").show();
+                    }
+                });
+            }
+        });
+    }
 
-    SPClientTemplates.TemplateManager.RegisterTemplateOverrides({
-
-      Templates: {
-
-           Fields: {
-               "addtask": {
-                   View: renderAccept,
-   
-              },
-             "ClosedTask": {
-                   View: renderClose,
-   
-              }
-           },
-      },
-
-      ListTemplateType: 100
-
+   $("#pressButtonSupport").click(function () {
+          console.log("support form open");
+         window.open("http://app-3028e036e9355b.apps.com/sites/testdev/HelpDesk/Pages/Default.aspx?SPHostUrl=http%3A%2F%2Fdevsp%2Fsites%2Ftestdev&SPLanguage=ru-RU&SPClientTag=0&SPProductNumber=15%2E0%2E4763%2E1000&SPAppWebUrl=http%3A%2F%2Fapp-3028e036e9355b%2EApps%2Ecom%2Fsites%2Ftestdev%2FHelpDesk");
     });
-  }
-  
-   function renderAccept(ctx) {
-        var html = "";
-        html += '<input type="button" value="Принять" onClick="clickAcceptTask(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Title"] + '\')" />';
-        return html;
-    }
-
-    function renderClose(ctx) {
-        var html = "";
-        html += '<input type="button" value="Закрыть задачу" onClick="clickCloseTask(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Title"] + '\')" />';
-        return html;
-    }
-
-  RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/market/newTasks.js"), init);
-  init();
-  
-});
-
-function clickAcceptTask(itemId, title)
-{
-    console.log("hello acceptTask");
-    moveItem(itemId, listNewTasksId, listAcceptedTasksId);  
-}
-
-function clickCloseTask(itemId, title)
-{
-    console.log("close Task");
-    //moveItem(itemId, listAcceptedTasksId, listResolvedTasksId);
-}
-
-function moveItem(itemId, fromListId, toListId)
-{
- // removeItem(itemId, fromListId);
-  
-  
-  
- // addItem(itemId, toListId);
-}
+}); //hidden="true">
 
 
-function addItem(itemIDlkf) {
-    var dt = new Date();
-    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
-    var item = {
-        "__metadata": {
-            "type": itemType,
-            "Discription": ""
-           
-     
-        },
-        "Discription": $("#discription").val(),
-        
-        "Time": time,
-       
-    };
-    $.ajax({
-        url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists(guid'" + listGuid + "')/items",
-        type: "POST",
-        contentType: "application/json;odata=verbose",
-        data: JSON.stringify(item),
-        headers: {
-            "Accept": "application/json;odata=verbose",
-            "X-RequestDigest": $("#__REQUESTDIGEST").val()
-        },
-        success: function (sender, args) {
-            
-        },
-        error: onError
-    });
-}
-// Display error messages. 
-function onError(error) {
-    console.log(error.responseText);
-}
 
-function getQueryStringParameter(urlParameterKey) {
-    var params = document.URL.split("?")[1].split("&");
-    var strParams = "";
-    for (var i = 0; i < params.length; i = i + 1) {
-        var singleParam = params[i].split("=");
-        if (singleParam[0] == urlParameterKey)
-            return decodeURIComponent(singleParam[1]);
-    }
-}
-// Get List Item Type metadata
-function getItemTypeForListName(name) {
-    return "SP.Data." + name.charAt(0).toUpperCase() + name.split(" ").join("").slice(1) + "ListItem";
-}
+</script>
+ <div id="supportButton" >
+                    <input id="pressButtonSupport" type="button"  value="Подать заявку"/>
+ </div>
