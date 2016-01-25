@@ -44,30 +44,6 @@ $(document).ready(() => {
     context = SP.ClientContext.get_current();
     web = context.get_web();
 
-    function IsCurrentUserWithContributePerms() {
-        IsCurrentUserMemberOfGroup(bossGroupId, isCurrentUserInGroup => {
-            if (isCurrentUserInGroup) {
-                $("#titlePage").text("Журнал Заявок");
-                $("#tablesBoss").show();
-            } else {
-                IsCurrentUserMemberOfGroup(supportGroupId, isCurrentUserInGroup => {
-                    if (isCurrentUserInGroup) {
-                        $("#titlePage").text("Заявка в техподдержку");
-                        $("#supportButton").show();
-                        $("#tablesGuest").show();
-                    } else {
-                        //TODO guest
-                        $("#titlePage").text("Заявка в техподдержку");
-                        $("#supportButton").show();
-                        $("#tablesGuest").show();
-                    }
-                });
-            }
-        });
-
-    }
-    ExecuteOrDelayUntilScriptLoaded(IsCurrentUserWithContributePerms, 'SP.js');
-
     $("#pressButtonSupport").click(() => {
         $("#pressButtonSupport").hide();
         $("#supportForm").show();

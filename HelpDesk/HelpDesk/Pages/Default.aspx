@@ -10,6 +10,7 @@
     <script type="text/javascript" src="../Scripts/moment-with-locales.min.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.validate.min.js"></script>
     <script type="text/javascript" src="../Scripts/IsCurrentUserMemberOfGroup.js"></script>
+    <script type="text/javascript" src="../Scripts/getCurrentUser.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.js"></script>
 
@@ -33,10 +34,7 @@
     <div class="bootstrap-scope">
         <div class="bootstrap-html">
             <div id="main" class="bootstrap-body">
-                <div id="supportButton" hidden="true">
-                    <input id="pressButtonSupport" type="button" class="btn btn-primary" value="Подать заявку"/>
-                </div>
-                <div id="supportForm" hidden="true">
+                <div id="supportForm">
                     <label>Пожалуйста, заполните форму</label>
                     <br><br>
                     <form>
@@ -137,110 +135,6 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div id ="tablesBoss" hidden="true">
-                        <h2>Новые заявки</h2>
-                        <br/>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th align="center">#</th>
-                                    <th align="center" style ="width:100px;">Дата Создания</th>
-                                    <th align="center" style ="width:100px;">Время</th>
-                                    <th align="center"  style ="width:200px;">Автор</th>
-                                    <th align="center" style ="width:500px;">Описание</th>
-                                    <th align="center"  style ="width:200px;">Срочность</th>
-                                    <th align="center"  style ="width:200px;">Категория</th>
-                                    <th align="center"  style ="width:200px;">Приложенный файл</th>
-                                    <th align="center" style ="width:200px;">Принять на выполнение</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                     <td></td>
-                                    <td><button class="acceptIssue">Принять</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p>&nbsp;</p>
-                        <hr/>
-                        <h2>Принятые заявки</h2>
-                        <br/>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th align="center">#</th>
-                                    <th align="center" style ="width:100px;">Дата Создания</th>
-                                    <th align="center" style ="width:100px;">Время</th>
-                                    <th align="center"  style ="width:200px;">Автор</th>
-                                    <th align="center" style ="width:500px;">Описание</th>
-                                    <th align="center"  style ="width:200px;">Срочность</th>
-                                    <th align="center"  style ="width:200px;">Приложенный файл</th>
-                                    <th align="center">Сотрудник ИТ отдела</th>
-                                    <th align="center">Выполняется с</th>
-                                    <th align="center">Выполнено</th>
-                                    <th align="center">Комментарий</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p>&nbsp;</p>
-                        <hr/>
-                        <h2>Выполненные заявки</h2>
-                        <br/>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th align="center">#</th>
-                                    <th align="center" style ="width:100px;">Дата Создания</th>
-                                    <th align="center" style ="width:100px;">Время</th>
-                                    <th align="center"  style ="width:200px;">Автор</th>
-                                    <th align="center" style ="width:500px;">Описание</th>
-                                    <th align="center"  style ="width:200px;">Срочность</th>
-                                    <th align="center"  style ="width:200px;">Категория</th>
-                                    <th align="center">Оценка</th>
-                                    <th align="center">Комментарий пользователя</th>
-                                    <th align="center">Принята</th>
-                                    <th align="center">Выполнена</th>
-                                    <th align="center">Сотрудник ИТ отдела</th>
-                                    <th align="center">Комментарий сотрудника ИТ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td align="center">Otto</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
