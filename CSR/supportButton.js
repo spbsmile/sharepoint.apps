@@ -44,7 +44,7 @@ $(document).ready(function () {
           console.log("support form open");
          window.open("http://app-3028e036e9355b.apps.com/sites/testdev/HelpDesk/Pages/Default.aspx?SPHostUrl=http%3A%2F%2Fdevsp%2Fsites%2Ftestdev&SPLanguage=ru-RU&SPClientTag=0&SPProductNumber=15%2E0%2E4763%2E1000&SPAppWebUrl=http%3A%2F%2Fapp-3028e036e9355b%2EApps%2Ecom%2Fsites%2Ftestdev%2FHelpDesk");
     });
-}); //hidden="true">
+}); 
 
 
 
