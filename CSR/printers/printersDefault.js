@@ -25,7 +25,8 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
   }
 
   function init() {
-        SPClientTemplates.TemplateManager.RegisterTemplateOverrides({
+
+    SPClientTemplates.TemplateManager.RegisterTemplateOverrides({
             Templates: {
                 Fields: {
                     "_x0417__x0430__x043c__x0435__x04": {
@@ -50,12 +51,12 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
             },
             ListTemplateType: 120
         });
-    }
+  }
 
-  RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/OfficeDevices/printersLipovaya.js"), init);
+  RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/OfficeDevices/printersDefault.js"), init);
   init();
   
-     function renderReplaceField(ctx) {
+  function renderReplaceField(ctx) {
         var html = "";
         html += '<input type="button" value="?—?°???µ????N‚N?" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
         html += '<div id ="modalReplaceWindow' + ctx.CurrentItem.ID + '\";>';
@@ -77,3 +78,5 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
     }
 
 });
+ 
+
