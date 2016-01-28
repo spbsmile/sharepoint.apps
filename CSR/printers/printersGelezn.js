@@ -11,20 +11,21 @@ var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
 var whogiveFieldName = "_x041a__x0442__x043e__x0020__x04";
 var commentFieldName = "_x041a__x043e__x043c__x043c__x04";
 var actionFieldName = "Action";
+var isColorFieldName = "IsColor";
 var threshold = 5;
 
-var currentUser = null;
+var currentUser = null;//df
 var currentUserId = null;
 
 var isClosed = true;
 
-SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
+SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
-  function getBaseHtml(ctx) {
-    return SPClientTemplates["_defaultTemplates"].Fields.default.all.all[ctx.CurrentFieldSchema.FieldType][ctx.BaseViewID](ctx);
-  }
+    function getBaseHtml(ctx) {
+        return SPClientTemplates["_defaultTemplates"].Fields.default.all.all[ctx.CurrentFieldSchema.FieldType][ctx.BaseViewID](ctx);
+    }
 
- function init() {
+    function init() {
         SPClientTemplates.TemplateManager.RegisterTemplateOverrides({
             Templates: {
                 Fields: {
@@ -33,6 +34,19 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
                     },
                     "_x0414__x0430__x0442__x0430__x00": {
                         View: renderVersionsField,
+                    }
+                    ,
+                    "_x041a__x0430__x0440__x0442__x04": {
+                        View: renderCartrigeField,
+                    },
+                    "LinkTitle": {
+                        View: renderName,
+                    },
+                    "_x0424__x0438__x043b__x0438__x04": {
+                        View: renderFilial,
+                    },
+                    "IP_x002d__x0430__x0434__x0440__x": {
+                        View: renderFilial,
                     }
                 },
             },
@@ -51,13 +65,35 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
             ListTemplateType: 120
         });
     }
+
+    RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/OfficeDevices/printersGelezn.js"), init);
+    init();
   
-  RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/OfficeDevices/printersGelezn.js"), init);
-  init();
-  
-  function renderReplaceField(ctx) {
+ 	function renderFilial(ctx) {
+      if (ctx.CurrentItem[isColorFieldName] === "Да" && ctx.CurrentItem["Color"] !== "Black"){
+      	return " ";
+      }
+      return  ctx.CurrentItem[ctx.CurrentFieldSchema.Name];
+    }
+
+    function renderName(ctx) {
+ 		if (ctx.CurrentItem[isColorFieldName] === "Да" && ctx.CurrentItem["Color"] != "Black"){
+      		return " ";
+      	}
+        return ctx.CurrentItem["Title"]; 
+    }
+
+    function renderCartrigeField(ctx) {
+        var value = ctx.CurrentItem[catridgeFieldName];
+        if (ctx.CurrentItem[isColorFieldName] === "Да") {
+            return ctx.CurrentItem[catridgeFieldName] + '&nbsp;<img src="http://server-sp-it/sites/wiki/Style%20Library/printers/img_colors/cartridge_' + ctx.CurrentItem["Color"] + '\.png" alt="Confidential Document" title="Confidential Document"/>';
+        }
+        return ctx.CurrentItem[catridgeFieldName];
+    }
+
+    function renderReplaceField(ctx) {
         var html = "";
-        html += '<input type="button" value="?—?°???µ????N‚N?" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
+        html += '<input type="button" value="Заменить" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
         html += '<div id ="modalReplaceWindow' + ctx.CurrentItem.ID + '\";>';
         html += '<div id="dialogTextReplace' + ctx.CurrentItem.ID + '\";>';
         html += "";
