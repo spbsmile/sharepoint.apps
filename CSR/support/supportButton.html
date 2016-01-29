@@ -1,54 +1,51 @@
+<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/support/settings.js"></script>
 <script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/jquery-ui.min.js"></script>
-<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/jquery.validate.min.js"></script>
-<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/jquery.SPServices-0.7.1a.min.js"></script>
-<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/jquery.SPWidgets.min.js"></script>
+<script type="text/javascript"
+        src="http://devsp/sites/testdev/Style%20Library/corelibs/jquery.validate.min.js"></script>
+<script type="text/javascript"
+        src="http://devsp/sites/testdev/Style%20Library/corelibs/jquery.SPServices-0.7.1a.min.js"></script>
+<script type="text/javascript"
+        src="http://devsp/sites/testdev/Style%20Library/corelibs/jquery.SPWidgets.min.js"></script>
 <script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/getCurrentUser.js"></script>
-<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/IsCurrentUserMemberOfGroup.js"></script>
+<script type="text/javascript"
+        src="http://devsp/sites/testdev/Style%20Library/corelibs/IsCurrentUserMemberOfGroup.js"></script>
 <script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/camljs.js"></script>
 <script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/moment.min.js"></script>
-<script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/moment-with-locales.min.js"></script>
+<script type="text/javascript"
+        src="http://devsp/sites/testdev/Style%20Library/corelibs/moment-with-locales.min.js"></script>
 <script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/query.js"></script>
 <script type="text/javascript" src="http://devsp/sites/testdev/Style%20Library/corelibs/utils.js"></script>
 
-<script> 
-//владельцы
-var bossGroupId = 5;
-//участники
-var supportGroupId = 7;
-//посетители
-var guestGroupId = 6;
 
-$(document).ready(function () {
+<script>
+    $(document).ready(function () {
+        function IsCurrentUserWithContributePerms() {
+            IsCurrentUserMemberOfGroup(settings.getBossGroupId, function (isCurrentUserInGroup) {
+                if (isCurrentUserInGroup) {
 
-  function IsCurrentUserWithContributePerms() {
-        IsCurrentUserMemberOfGroup(bossGroupId, function (isCurrentUserInGroup) {
-            if (isCurrentUserInGroup) {
+                }
+                else {
+                    IsCurrentUserMemberOfGroup(setting.getSupportGroupId, function (isCurrentUserInGroup) {
+                        if (isCurrentUserInGroup) {
+                            $("#tableSupportUser").show();
+                        }
+                        else {
+                            $("#supportButton").show();
+                            $("#tableGuestUser").show();
+                        }
+                    });
+                }
+            });
+        }
 
-            }
-            else {
-                IsCurrentUserMemberOfGroup(supportGroupId, function (isCurrentUserInGroup) {
-                    if (isCurrentUserInGroup) {
-                        $("#tableSupportUser").show();
-                    }
-                    else {
-                        $("#supportButton").show();
-                        $("#tableGuestUser").show();
-                    }
-                });
-            }
+        $("#pressButtonSupport").click(function () {
+            console.log("support form open");
+            window.open("http://app-3028e036e9355b.apps.com/sites/testdev/HelpDesk/Pages/Default.aspx?SPHostUrl=http%3A%2F%2Fdevsp%2Fsites%2Ftestdev&SPLanguage=ru-RU&SPClientTag=0&SPProductNumber=15%2E0%2E4763%2E1000&SPAppWebUrl=http%3A%2F%2Fapp-3028e036e9355b%2EApps%2Ecom%2Fsites%2Ftestdev%2FHelpDesk");
         });
-    }
-
-   $("#pressButtonSupport").click(function () {
-          console.log("support form open");
-         window.open("http://app-3028e036e9355b.apps.com/sites/testdev/HelpDesk/Pages/Default.aspx?SPHostUrl=http%3A%2F%2Fdevsp%2Fsites%2Ftestdev&SPLanguage=ru-RU&SPClientTag=0&SPProductNumber=15%2E0%2E4763%2E1000&SPAppWebUrl=http%3A%2F%2Fapp-3028e036e9355b%2EApps%2Ecom%2Fsites%2Ftestdev%2FHelpDesk");
     });
-}); 
-
-
 
 </script>
- <div id="supportButton" >
-                    <input id="pressButtonSupport" type="button"  value="Подать заявку"/>
- </div>
+<div id="supportButton">
+    <input id="pressButtonSupport" type="button" value="пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"/>
+</div>

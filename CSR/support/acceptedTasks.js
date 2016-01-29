@@ -1,8 +1,11 @@
 // The file has been created, saved into "/Style Library/support/"
 // and attached to the XLV via JSLink property.
 
+var itemType;
+SP.SOD.registerSod('SPClientTemplates', "http://devsp/sites/testdev/Style%20Library/corelibs/clienttemplates.js");
+SP.SOD.registerSod('settings', "http://devsp/sites/testdev/Style%20Library/support/settings.js");
 
-SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
+SP.SOD.loadMultiple(['SPClientTemplates', 'settings'], function () {
 
   function getBaseHtml(ctx) {
     return SPClientTemplates["_defaultTemplates"].Fields.default.all.all[ctx.CurrentFieldSchema.FieldType][ctx.BaseViewID](ctx);
@@ -10,9 +13,8 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
 
   function init() {
     
-    console.log(listTitleResolvedTasks);
-    itemType = getItemTypeForListName(listTitleResolvedTasks);
-
+    console.log("hello !" + settings().listTitle_ResolvedTasks);
+    itemType = getItemTypeForListName(settings().listTitle_ResolvedTasks);
     SPClientTemplates.TemplateManager.RegisterTemplateOverrides({
      
       Templates: {
@@ -52,7 +54,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
 
 function clickCloseTask(itemId, d, time, authId, discription, whoResolved)
 {
-    removeItem(itemId, "e0b71fd6-9fbb-454b-85ee-d06b86a9de31");
+    removeItem(itemId, settings().listId_AcceptedTasks);
     var itemData = {
         "__metadata": {
             "type": itemType,
@@ -75,7 +77,7 @@ function clickCloseTask(itemId, d, time, authId, discription, whoResolved)
 		//"CommEmpIT"
         //"CommAuthor"
     };
-    addItem("416eed23-4138-4e10-bd1c-4af3bbe1aceb", itemData);
+    addItem(settings().listId_ResolvedTasks, itemData);
 }
 
 // Get List Item Type metadata
