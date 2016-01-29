@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Reference the jQueryUI theme's stylesheet on the Google CDN. Here we're using the "Start" theme -->
+    <link type="text/css" rel="stylesheet"
+          href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/start/jquery-ui.css"/>
+
+    <!-- Reference jQuery on the Google CDN -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <!-- Reference jQueryUI on the Google CDN -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <!-- Reference SPServices on cdnjs (Cloudflare) -->
+    <script type="text/javascript"
+            src="http://cdnjs.cloudflare.com/ajax/libs/jquery.SPServices/0.7.1a/jquery.SPServices-0.7.1a.min.js"></script>
+    <script type="text/javascript" src="jquery.appendGrid-1.6.1.js"></script>
+    <link href="jquery.appendGrid-1.6.1.css" rel="stylesheet"/>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+//http://appendgrid.apphb.com/Demo
+<script>
+    /*
+
+     append:	Set to true to hide the `append` button at the bottom or grid.
+     removeLast:	Set to true to hide the `remove` button at the bottom of grid.
+     insert:	Set to true to hide the `insert` button at the end on each row.
+     remove:	Set to true to hide the `remove` button at the end on each row.
+     moveUp:	TheSet to true to hide the `move up` button at the end on each row.
+     moveDown:	Set to true to h
+     */
+    $(document).ready(function () {
+        $("#dialogaddprinter").dialog({
+            resizable: false,
+            modal: true,
+            width: 600,
+            buttons: [{text: "Добавить", click: addPrinterToList}],
+            autoOpen: false
+        });
+
+        $("#opendialogaddprinter").click(function () {
+            $('#tblAppendGrid').appendGrid({
+                caption: 'Названия картриджей',
+                initRows: 4,
+               // useSubPanel: false,
+                columns: [
+                    { name: 'Цвет', display: 'Цвет', type: 'color',value: "#B0171F", ctrlAttr: { maxlength: 100, readonly:"readonly"}, ctrlCss: { width: '100px'}
+
+                    },
+                    { name: 'Имя', display: 'Имя', type: 'text',value: "f", ctrlAttr: { maxlength: 1, readonly:"readonly" }, ctrlCss: { width: '160px'} },
+                    { name: 'Origin', display: 'Имя из существующих', type: 'select', ctrlOptions: { 0: '{Выбрать}', 1: 'Hong Kong', 2: 'Taiwan', 3: 'Japan', 4: 'Korea', 5: 'US', 6: 'Others'} }
+                ],
+                hideButtons: {
+                    remove: true,
+                    removeLast: true,
+                    append: true,
+                    insert:true,
+                    moveUp: true,
+                    moveDown: true
+                }
+            });
+            $("#dialogaddprinter").dialog("open");
+        });
+
+        function addPrinterToList() {
+            console.log("add printer");
+        }
+
+
+    });
+
+
+</script>
+
+
+<div>
+    <input class="inner" type="button" value="Добавить принтер" id="opendialogaddprinter">
+</div>
+
+
+<div id="dialogaddprinter" title="Добавление принтера">
+    <div id="contentaddprinter">
+        <div><label>Название принтера&nbsp;</label><input id="nameprinter"></div>
+        <label for="printerIsColor">Цветной принтер ?</label>
+        <div>
+            <select id="printerIsColor" class="form-control">
+                <option>Нет</option>
+                <option>Да</option>
+            </select>
+        </div>
+        <br>
+        <!--
+        <label>Названия картриджей:</label>
+        <div><label> Красный </label><input id="magento"></div>
+        <div><label> Черный </label><input id="black"></div>
+        <div><label> Синий  </label><input id="blue"></div>
+        <div><label> Желтый  </label><input id="yellow"></div>
+        -->
+        <table id="tblAppendGrid">
+        </table>
+
+    </div>
+</div>
+
+
+</body>
+</html>
