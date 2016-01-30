@@ -42,16 +42,36 @@
         });
 
         $("#opendialogaddprinter").click(function () {
-            $('#tblAppendGrid').appendGrid({
-                caption: 'Названия картриджей',
-                initRows: 4,
-               // useSubPanel: false,
+           
+             $('#tblPrinterAppendGrid').appendGrid({
+                caption: 'Данные принтера',
+                initRows: 1,
                 columns: [
-                    { name: 'Цвет', display: 'Цвет', type: 'color',value: "#B0171F", ctrlAttr: { maxlength: 100, readonly:"readonly"}, ctrlCss: { width: '100px'}
+                    { name: 'Filial', display: 'Филиал', type: 'text', ctrlCss: { width: '100px'}
 
                     },
-                    { name: 'Имя', display: 'Имя', type: 'text',value: "f", ctrlAttr: { maxlength: 1, readonly:"readonly" }, ctrlCss: { width: '160px'} },
-                    { name: 'Origin', display: 'Имя из существующих', type: 'select', ctrlOptions: { 0: '{Выбрать}', 1: 'Hong Kong', 2: 'Taiwan', 3: 'Japan', 4: 'Korea', 5: 'US', 6: 'Others'} }
+                    { name: 'Name', display: 'Имя', type: 'text',  ctrlCss: { width: '160px'} },
+                    { name: 'Ip', display: 'Ip', type: 'text'}
+                ],
+                hideButtons: {
+                    remove: true,
+                    removeLast: true,
+                    append: true,
+                    insert:true,
+                    moveUp: true,
+                    moveDown: true
+                }
+            }); 
+       
+            $('#tblCartridgeAppendGrid').appendGrid({
+                caption: 'Названия картриджей',
+                initRows: 4,
+                columns: [
+                    { name: 'Color', display: 'Цвет', type: 'text', ctrlAttr: { maxlength: 100}, ctrlCss: { width: '100px'}
+
+                    },
+                    { name: 'Name', display: 'Имя', type: 'text', ctrlCss: { width: '160px'} },
+                    { name: 'NameFromExist', display: 'Имя из существующих', type: 'select', ctrlOptions: { 0: '{Выбрать}', 1: 'Hong Kong', 2: 'Taiwan', 3: 'Japan', 4: 'Korea', 5: 'US', 6: 'Others'} }
                 ],
                 hideButtons: {
                     remove: true,
@@ -84,6 +104,12 @@
 <div id="dialogaddprinter" title="Добавление принтера">
     <div id="contentaddprinter">
         <div><label>Название принтера&nbsp;</label><input id="nameprinter"></div>
+       
+       <table id="tblPrinterAppendGrid">
+        </table>
+
+       
+       
         <label for="printerIsColor">Цветной принтер ?</label>
         <div>
             <select id="printerIsColor" class="form-control">
@@ -92,14 +118,8 @@
             </select>
         </div>
         <br>
-        <!--
-        <label>Названия картриджей:</label>
-        <div><label> Красный </label><input id="magento"></div>
-        <div><label> Черный </label><input id="black"></div>
-        <div><label> Синий  </label><input id="blue"></div>
-        <div><label> Желтый  </label><input id="yellow"></div>
-        -->
-        <table id="tblAppendGrid">
+       
+        <table id="tblCartridgeAppendGrid">
         </table>
 
     </div>
