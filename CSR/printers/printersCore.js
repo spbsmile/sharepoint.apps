@@ -4,17 +4,17 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
         if ($("#dialogTextReplace" + itemID).length == 0) {
             $("#modalReplaceWindow" + itemID).append('<div id ="dialogTextReplace' + itemID + '\";</div>');
         }
-        jQuery("#dialogTextReplace" + itemID).append('<label>Кому выдать:</label> <div> <input name="users" id="users" value="" /> Комментарий:<textarea id="comment" rows="4" name="text"></textarea>');
+        jQuery("#dialogTextReplace" + itemID).append('<label>пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ:</label> <div> <input name="users" id="users" value="" /> пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:<textarea id="comment" rows="4" name="text"></textarea>');
         $("input[name='users']").pickSPUser();
-        var clientContext = new SP.ClientContext(siteUrl);
-        var list = clientContext.get_web().get_lists().getById(listId);
+        var clientContext = new SP.ClientContext(settings.getSiteUrl);
+        var list = clientContext.get_web().get_lists().getById(settings.getListId);
         isClosed = true;
 
         $(function () {
             $("#modalReplaceWindow" + itemID).dialog({
                 buttons: [
                     {
-                        text: "Заменить",
+                        text: "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
                         click: function () {
 
                             isClosed = false;
@@ -22,7 +22,7 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                                 currentUserId = user.id;
                             })
 
-                            var caml = queryByUniqueTitle(catridgeFieldName, cartridgesName);
+                            var caml = queryByUniqueTitle(settingsgetCatridgeFieldName, cartridgesName);
                             var collListItems = list.getItems(caml);
 
                             clientContext.load(collListItems);
@@ -31,10 +31,10 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                                     var enumerator = collListItems.getEnumerator();
                                     while (enumerator.moveNext()) {
                                         var item = enumerator.get_current();
-                                        item.set_item(catridgeCountFieldName, cartridgesCount - 1);
-                                        item.set_item(actionFieldName, "Замена");
-                                        item.set_item(commentFieldName, $("#comment").val() + "Выдан: " + $("#users").val());
-                                        item.set_item(whogiveFieldName, currentUserId);
+                                        item.set_item(settingsgetCatridgeCountFieldName, cartridgesCount - 1);
+                                        item.set_item(settings.getActionFieldName, "пїЅпїЅпїЅпїЅпїЅпїЅ");
+                                        item.set_item(settings.getCommentFieldName, $("#comment").val() + "пїЅпїЅпїЅпїЅпїЅ: " + $("#users").val());
+                                        item.set_item(settings.getWhogiveFieldName, currentUserId);
                                         if (item.get_id() == itemID) {
                                             // item.set_item(replaceDateFieldName,  $.now().toString());
                                         }
@@ -50,7 +50,7 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                         }
                     }
                 ],
-                title: 'Заменить картридж: ' + cartridgesName,
+                title: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ' + cartridgesName,
                 width: 600,
                 modal: true,
                 resizable: false,
@@ -75,15 +75,15 @@ function clickVersionButton(itemID, cartrigeName) {
     if ($("#dialogText" + itemID).length === 0) {
         jQuery("#modalWindow" + itemID).append('<div id ="dialogText' + itemID + '\";</div>');
     }
-    jQuery("#dialogText" + itemID).append('<table border="1"> <caption>История изменений:</caption> <thead><tr><th>Дата</th><th>Действие</th><th>Количество</th><th>Кто выдал</th><th>Комментарий</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
+    jQuery("#dialogText" + itemID).append('<table border="1"> <caption>пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:</caption> <thead><tr><th>пїЅпїЅпїЅпїЅ</th><th>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</th><th>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</th><th>пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ</th><th>пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
     moment.locale(window.navigator.userLanguage || window.navigator.language);
-    RecordVersionCollection(cartridgeCountStorage, itemID, catridgeCountFieldName);
-    RecordVersionCollection(actionStorage, itemID, actionFieldName);
-    RecordVersionCollection(whogiveStorage, itemID, whogiveFieldName);
-    RecordVersionCollection(commentStoage, itemID, commentFieldName);
+    RecordVersionCollection(cartridgeCountStorage, itemID, settingsgetCatridgeCountFieldName);
+    RecordVersionCollection(actionStorage, itemID, settings.getActionFieldName);
+    RecordVersionCollection(whogiveStorage, itemID, settings.getWhogiveFieldName);
+    RecordVersionCollection(commentStoage, itemID, settings.getCommentFieldName);
 
     for (var i = 0; i <= threshold - 1; i++) {
-        var localAction = actionStorage[i] === undefined ? "Замена" : actionStorage[i].value;
+        var localAction = actionStorage[i] === undefined ? "пїЅпїЅпїЅпїЅпїЅпїЅ" : actionStorage[i].value;
         if (cartridgeCountStorage[i] == undefined) {
             if (i == 0) {
                 jQuery("#dialogText" + itemID).remove();
@@ -98,7 +98,7 @@ function clickVersionButton(itemID, cartrigeName) {
 
     $(function () {
         $("#modalWindow" + itemID).dialog({
-            title: 'Картридж: ' + cartrigeName,
+            title: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ' + cartrigeName,
             width: 600,
             modal: true,
             resizable: false,

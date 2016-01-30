@@ -1,22 +1,7 @@
 // The file has been created, saved into "/Style Library/OfficeDevices/"
 // and attached to the XLV via JSLink property.
 
-var siteUrl = "http://server-sp-it/sites/wiki";
-
-var listId = "629c7c86-dd24-4337-b01a-48a6da811cc5";
-var replaceDateFieldName = "_x0414__x0430__x0442__x0430__x00";
-var replaceButtonFieldName = "_x0417__x0430__x043c__x0435__x04";
-var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
-var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
-var whogiveFieldName = "_x041a__x0442__x043e__x0020__x04";
-var commentFieldName = "_x041a__x043e__x043c__x043c__x04";
-var actionFieldName = "Action";
-var isColorFieldName = "IsColor";
-var threshold = 5;
-
-var currentUser = null;//df
 var currentUserId = null;
-
 var isClosed = true;
 
 SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
@@ -53,7 +38,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
             OnPostRender: function (ctx) {
                 var rows = ctx.ListData.Row;
                 for (var i = 0; i < rows.length; i++) {
-                    if (IsCriticalCount(rows[i][catridgeFieldName], rows[i][catridgeCountFieldName])) {
+                    if (IsCriticalCount(rows[i][settings.getCatridgeFieldName], rows[i][settings.getCatridgeCountFieldName])) {
                         var rowElementId = GenerateIIDForListItem(ctx, rows[i]);
                         var tr = document.getElementById(rowElementId);
                         if (tr != null) {
@@ -68,32 +53,32 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
     RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/OfficeDevices/printersGelezn.js"), init);
     init();
-  
- 	function renderFilial(ctx) {
-      if (ctx.CurrentItem[isColorFieldName] === "Да" && ctx.CurrentItem["Color"] !== "Black"){
-      	return " ";
-      }
-      return  ctx.CurrentItem[ctx.CurrentFieldSchema.Name];
+
+    function renderFilial(ctx) {
+        if (ctx.CurrentItem[settings.getIsColorFieldName] === "пїЅпїЅ" && ctx.CurrentItem["Color"] !== "Black") {
+            return " ";
+        }
+        return ctx.CurrentItem[ctx.CurrentFieldSchema.Name];
     }
 
     function renderName(ctx) {
- 		if (ctx.CurrentItem[isColorFieldName] === "Да" && ctx.CurrentItem["Color"] != "Black"){
-      		return " ";
-      	}
-        return ctx.CurrentItem["Title"]; 
+        if (ctx.CurrentItem[settings.getIsColorFieldName] === "пїЅпїЅ" && ctx.CurrentItem["Color"] != "Black") {
+            return " ";
+        }
+        return ctx.CurrentItem["Title"];
     }
 
     function renderCartrigeField(ctx) {
-        var value = ctx.CurrentItem[catridgeFieldName];
-        if (ctx.CurrentItem[isColorFieldName] === "Да") {
-            return ctx.CurrentItem[catridgeFieldName] + '&nbsp;<img src="http://server-sp-it/sites/wiki/Style%20Library/printers/img_colors/cartridge_' + ctx.CurrentItem["Color"] + '\.png" alt="Confidential Document" title="Confidential Document"/>';
+        var value = ctx.CurrentItem[settings.getCatridgeFieldName];
+        if (ctx.CurrentItem[settings.getIsColorFieldName] === "пїЅпїЅ") {
+            return ctx.CurrentItem[settings.getCatridgeFieldName] + '&nbsp;<img src="http://server-sp-it/sites/wiki/Style%20Library/printers/img_colors/cartridge_' + ctx.CurrentItem["Color"] + '\.png" alt="Confidential Document" title="Confidential Document"/>';
         }
-        return ctx.CurrentItem[catridgeFieldName];
+        return ctx.CurrentItem[settings.getCatridgeFieldName];
     }
 
     function renderReplaceField(ctx) {
         var html = "";
-        html += '<input type="button" value="Заменить" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
+        html += '<input type="button" value="пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[settings.getCatridgeFieldName] + '\',\'' + ctx.CurrentItem[settings.getCatridgeCountFieldName] + '\')" />';
         html += '<div id ="modalReplaceWindow' + ctx.CurrentItem.ID + '\";>';
         html += '<div id="dialogTextReplace' + ctx.CurrentItem.ID + '\";>';
         html += "";
@@ -103,7 +88,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
     function renderVersionsField(ctx) {
         var html = "";
-        html += '<input type="button" value="' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\" onClick="clickVersionButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\')" />';
+        html += '<input type="button" value="' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\" onClick="clickVersionButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[settings.getCatridgeFieldName] + '\')" />';
         html += '<div id ="modalWindow' + ctx.CurrentItem.ID + '\";>';
         html += '<div id="dialogText' + ctx.CurrentItem.ID + '\";>';
         html += "";
