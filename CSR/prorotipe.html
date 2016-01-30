@@ -21,17 +21,8 @@
 </head>
 <body>
 
-//http://appendgrid.apphb.com/Demo
 <script>
-    /*
 
-     append:	Set to true to hide the `append` button at the bottom or grid.
-     removeLast:	Set to true to hide the `remove` button at the bottom of grid.
-     insert:	Set to true to hide the `insert` button at the end on each row.
-     remove:	Set to true to hide the `remove` button at the end on each row.
-     moveUp:	TheSet to true to hide the `move up` button at the end on each row.
-     moveDown:	Set to true to h
-     */
     $(document).ready(function () {
         $("#dialogaddprinter").dialog({
             resizable: false,
@@ -47,11 +38,12 @@
                 caption: 'Данные принтера',
                 initRows: 1,
                 columns: [
-                    { name: 'Filial', display: 'Филиал', type: 'text', ctrlCss: { width: '100px'}
+                    { name: 'Filial', display: 'Филиал', type: 'text', ctrlCss: { width: '160px'}
 
                     },
                     { name: 'Name', display: 'Имя', type: 'text',  ctrlCss: { width: '160px'} },
-                    { name: 'Ip', display: 'Ip', type: 'text'}
+                    { name: 'Ip', display: 'Ip', type: 'text',  ctrlCss: { width: '140px'} },
+                    { name: 'Room', display: 'Комната', type: 'text'}
                 ],
                 hideButtons: {
                     remove: true,
@@ -67,11 +59,11 @@
                 caption: 'Названия картриджей',
                 initRows: 4,
                 columns: [
-                    { name: 'Color', display: 'Цвет', type: 'text', ctrlAttr: { maxlength: 100}, ctrlCss: { width: '100px'}
+                    { name: 'Color', display: 'Цвет', type: 'text', ctrlAttr: { maxlength: 100, readonly:"readonly"}, ctrlCss: { width: '100px'}
 
                     },
                     { name: 'Name', display: 'Имя', type: 'text', ctrlCss: { width: '160px'} },
-                    { name: 'NameFromExist', display: 'Имя из существующих', type: 'select', ctrlOptions: { 0: '{Выбрать}', 1: 'Hong Kong', 2: 'Taiwan', 3: 'Japan', 4: 'Korea', 5: 'US', 6: 'Others'} }
+                    { name: 'NameFromExist', display: 'Имя из существующих', type: 'select', ctrlOptions: { 0: '{Выбрать}', 1: ''} }
                 ],
                 hideButtons: {
                     remove: true,
@@ -82,11 +74,26 @@
                     moveDown: true
                 }
             });
+            $('#tblCartridgeAppendGrid').appendGrid('setCtrlValue', 'Color', 0, 'Синий');
+            $('#tblCartridgeAppendGrid').appendGrid('setCtrlValue', 'Color', 1, 'Красный');
+            $('#tblCartridgeAppendGrid').appendGrid('setCtrlValue', 'Color', 2, 'Желтый');
+            $('#tblCartridgeAppendGrid').appendGrid('setCtrlValue', 'Color', 3, 'Черный');
             $("#dialogaddprinter").dialog("open");
         });
 
         function addPrinterToList() {
-            console.log("add printer");
+            var namePrinter = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Name', 1);
+            var filial = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Filial', 1);
+            var iP = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Ip', 1);
+            var room = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Room', 1);
+            console.log("namePrinter");
+            console.log("iP");
+
+            var nameBluerCart = $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 0);
+            var nameRedCart = $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 1);
+            var nameYellowCart = $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 2);
+            var nameBlackCart = $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 3);
+
         }
 
 
@@ -103,22 +110,12 @@
 
 <div id="dialogaddprinter" title="Добавление принтера">
     <div id="contentaddprinter">
-        <div><label>Название принтера&nbsp;</label><input id="nameprinter"></div>
-       
-       <table id="tblPrinterAppendGrid">
+        <br>
+        <table id="tblPrinterAppendGrid">
         </table>
 
-       
-       
-        <label for="printerIsColor">Цветной принтер ?</label>
-        <div>
-            <select id="printerIsColor" class="form-control">
-                <option>Нет</option>
-                <option>Да</option>
-            </select>
-        </div>
+       <br>
         <br>
-       
         <table id="tblCartridgeAppendGrid">
         </table>
 

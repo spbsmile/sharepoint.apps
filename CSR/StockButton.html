@@ -2,6 +2,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css"
           href="http://server-sp-it/sites/wiki/Style%20Library/Printers/jquery-ui.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="http://server-sp-it/sites/wiki/Style%20Library/corelibs/jquery.appendGrid-1.6.1.css"/>
 
     <script type="text/javascript"
             src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/jquery-1.7.2.min.js"></script>
@@ -23,6 +25,9 @@
             src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/moment-with-locales.min.js"></script>
     <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/query.js"></script>
     <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/utils.js"></script>
+
+    <script type="text/javascript"
+            src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/jquery.appendGrid-1.6.1.js"></script>
     <script type="text/javascript"
             src="http://server-sp-it/sites/wiki/Style%20Library/Printers/printersCore.js"></script>
     <style>
@@ -61,6 +66,7 @@
         var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
         var actionFieldName = "Action";
         var editingGroupId = 41;
+        var listType;
 
         $(document).ready(function () {
 
@@ -89,15 +95,8 @@
                 autoOpen: false
             });
 
-            $("#dialogaddprinter").dialog({
-                resizable: false,
-                modal: true,
-                width: 600,
-                buttons:[{text:"Добавить", click: addPrinterToList}],
-                autoOpen: false
-            });
-
             $("#opener2").click(function () {
+                //$("#dialog2").show();
                 if ($('#mySelect').has('option').length <= 0) {
                     addItemsDataToDialog();
                 }
@@ -105,6 +104,7 @@
             });
 
             $("#openstatistics").click(function () {
+                //$("#dialogstatistics").show();
                 $("#dialogstatistics").dialog("open");
             });
 
@@ -123,9 +123,6 @@
                 }
             });
 
-            function addPrinterToList() {
-                console.log("add printer");
-            }
 
             function addDataToTable() {
                 if (!$('#dialogform').valid()) return;
@@ -180,6 +177,143 @@
                     }, error: onQueryFailed
                 });
             }
+
+            $("#dialogaddprinter").dialog({
+                resizable: false,
+                modal: true,
+                width: 600,
+                buttons: [{text: "Добавить", click: addPrinterToList}],
+                autoOpen: false
+            });
+
+            $("#opendialogaddprinter").click(function () {
+
+                $('#tblPrinterAppendGrid').appendGrid({
+                    caption: 'Данные принтера',
+                    initRows: 1,
+                    columns: [
+                        {
+                            name: 'Filial', display: 'Филиал', type: 'text', ctrlCss: {width: '160px'}
+
+                        },
+                        {name: 'Name', display: 'Имя', type: 'text', ctrlCss: {width: '160px'}},
+                        {name: 'Ip', display: 'Ip', type: 'text', ctrlCss: {width: '140px'}},
+                        {name: 'Room', display: 'Комната', type: 'text'}
+                    ],
+                    hideButtons: {
+                        remove: true,
+                        removeLast: true,
+                        append: true,
+                        insert: true,
+                        moveUp: true,
+                        moveDown: true
+                    }
+                });
+
+                $('#tblCartridgeAppendGrid').appendGrid({
+                    caption: 'Названия картриджей',
+                    initRows: 4,
+                    columns: [
+                        {
+                            name: 'Color',
+                            display: 'Цвет',
+                            type: 'text',
+                            ctrlAttr: {maxlength: 100, readonly: "readonly"},
+                            ctrlCss: {width: '100px'}
+
+                        },
+                        {name: 'Name', display: 'Имя', type: 'text', ctrlCss: {width: '160px'}},
+                        {
+                            name: 'NameFromExist',
+                            display: 'Имя из существующих',
+                            type: 'select',
+                            ctrlOptions: {0: '{Выбрать}', 1: ''}
+                        }
+                    ],
+                    hideButtons: {
+                        remove: true,
+                        removeLast: true,
+                        append: true,
+                        insert: true,
+                        moveUp: true,
+                        moveDown: true
+                    }
+                });
+                $('#tblCartridgeAppendGrid').appendGrid('setCtrlValue', 'Color', 0, 'Синий');
+                $('#tblCartridgeAppendGrid').appendGrid('setCtrlValue', 'Color', 1, 'Красный');
+                $('#tblCartridgeAppendGrid').appendGrid('setCtrlValue', 'Color', 2, 'Желтый');
+                $('#tblCartridgeAppendGrid').appendGrid('setCtrlValue', 'Color', 3, 'Черный');
+                $("#dialogaddprinter").dialog("open");
+            });
+
+            function addPrinterToList() {
+                var namePrinter = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Name', 1);
+                var filial = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Filial', 1);
+                var iP = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Ip', 1);
+                var room = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Room', 1);
+
+
+                var nameBluerCart = $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 0);
+                var nameRedCart = $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 1);
+                var nameYellowCart = $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 2);
+                var nameBlackCart = $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 3);
+
+                var colors = ["Blue", "magenta", "Yellow", "Black"];
+
+                /*for (i = 0; i = <3;i++)
+                 {
+                 }*/
+                var countCartriges = 4;
+                addColorPrinters(listId, itemData);
+            }
+
+            function getItemData(namePrinter, isColor, color, choiceCartridge, choiceFilial) {
+                var itemData = {
+                    "__metadata": {
+                        "type": "SP.Data.List3ListItem",
+                        "Title": "",
+                        "IsColor": "",
+                        "Color": "",
+                        "OData__x041a__x0430__x0440__x0442__x04": "",
+                        "OData__x0424__x0438__x043b__x0438__x04": ""
+                    },
+                    "Title": namePrinter,
+                    "IsColor": isColor,
+                    "Color": color,
+                    "OData__x041a__x0430__x0440__x0442__x04": choiceCartridge,
+                    "OData__x0424__x0438__x043b__x0438__x04": choiceFilial
+                };
+                return itemData;
+            }
+
+            function addColorPrinters(listId, itemData, indexCartridge, countCartridges) {
+                $.ajax({
+                    url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists(guid'" + listId + "')/items",
+                    type: "POST",
+                    contentType: "application/json;odata=verbose",
+                    data: JSON.stringify(itemData),
+                    headers: {
+                        "Accept": "application/json;odata=verbose",
+                        "X-RequestDigest": $("#__REQUESTDIGEST").val()
+                    },
+                    success: function (sender, args) {
+                        console.log("success");
+                        indexCartridge = indexCartridge - 1;
+                        console.log("success" + indexCartridge + " indexCartrige");
+                        if (indexCartridge < countCartridges) {
+                            //addColorPrinters(listId,)
+                        } else {
+                            location.reload();
+                        }
+                    },
+                    error: onError
+                });
+            }
+
+            // Display error messages.
+            function onError(error) {
+                console.log(error.responseText);
+            }
         });
     </script>
 </head>
@@ -196,26 +330,22 @@
     </form>
 </div>
 
-<div id="dialogstatistics" title="Общая статистика картриджей">
-    <div id="contentstatistics"></div>
-</div>
-
 <div id="dialogaddprinter" title="Добавление принтера">
     <div id="contentaddprinter">
-        <div><label>Название принтера</label><input id="nameprinter"></div>
-        <label for="printerIsColor">Цветной принтер ?: </label>
-        <div>
-            <select id="printerIsColor" class="form-control">
-                <option>Нет</option>
-                <option>Да</option>
-            </select>
-        </div>
-        <div><label>Добавить название красного картриджа(новый или из существующих)</label><input id="magento"></div>
-        <div><label>Добавить название черного картриджа(новый или из существующих)</label><input id="black"></div>
-        <div><label>Добавить название синего картриджа(новый или из существующих)</label><input id="blue"></div>
-        <div><label>Добавить название желтого картриджа(новый или из существующих)</label><input id="yellow"></div>
+        <br>
+        <table id="tblPrinterAppendGrid">
+        </table>
+
+        <br>
+        <br>
+        <table id="tblCartridgeAppendGrid">
+        </table>
 
     </div>
+</div>
+
+<div id="dialogstatistics" title="Общая статистика картриджей">
+    <div id="contentstatistics"></div>
 </div>
 
 <div>
