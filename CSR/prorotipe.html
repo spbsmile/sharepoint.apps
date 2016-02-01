@@ -95,18 +95,24 @@
             var nameBlackCart = $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 3);
 
         }
-
-
     });
 
+    $(function() {
+        $('#tblCartridgeAppendGrid').hide();
+        $('#printerIsColor').change(function(){
+            if($('#printerIsColor').val() == 'Да') {
+                $('#tblCartridgeAppendGrid').show();
+            } else {
+                $('#tblCartridgeAppendGrid').hide();
+            }
+        });
+    });
 
 </script>
-
 
 <div>
     <input class="inner" type="button" value="Добавить принтер" id="opendialogaddprinter">
 </div>
-
 
 <div id="dialogaddprinter" title="Добавление принтера">
     <div id="contentaddprinter">
@@ -114,11 +120,19 @@
         <table id="tblPrinterAppendGrid">
         </table>
 
+        <br>
+        <div>
+        <label for="printerIsColor">Цветной принтер ?</label>
+            <select id="printerIsColor" class="form-control">
+                <option>Нет</option>
+                <option>Да</option>
+            </select>
+        </div>
+
        <br>
         <br>
         <table id="tblCartridgeAppendGrid">
         </table>
-
     </div>
 </div>
 
