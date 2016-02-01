@@ -3,12 +3,14 @@ function settings()
 {
     var module = [];
     module.siteUrl = "http://server-sp-it/sites/wiki/";
-    module.listId = "e032d241-fbc2-4efb-b5bf-48b7aeaf3e67";
+    module.listId = "629c7c86-dd24-4337-b01a-48a6da811cc5";
     module.threshold = 20;
     module.editingGroupId = 41;
     module.actionFieldName  = "Action";
-    module.catridgeFieldName = "4f71156b-0221-45e8-8166-7ccca783813f";
-    module.catridgeCountFieldName = 5;
+    
+  
+    module.catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
+    module.catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
     //на складе
     module.remainFieldName =  "_x041e__x0441__x0442__x0430__x04";
     // общее число выданных
