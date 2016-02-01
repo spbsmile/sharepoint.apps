@@ -6,8 +6,8 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
         }
         jQuery("#dialogTextReplace" + itemID).append('<label>Кому выдать:</label> <div> <input name="users" id="users" value="" /> Комментарий:<textarea id="comment" rows="4" name="text"></textarea>');
         $("input[name='users']").pickSPUser();
-        var clientContext = new SP.ClientContext(siteUrl);
-        var list = clientContext.get_web().get_lists().getById(listId);
+        var clientContext = new SP.ClientContext(settings().siteUrl);
+        var list = clientContext.get_web().get_lists().getById(settings().listId);
         isClosed = true;
 
         $(function () {
@@ -22,7 +22,7 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                                 currentUserId = user.id;
                             })
 
-                            var caml = queryByUniqueTitle(catridgeFieldName, cartridgesName);
+                            var caml = queryByUniqueTitle(settings().catridgeFieldName, cartridgesName);
                             var collListItems = list.getItems(caml);
 
                             clientContext.load(collListItems);
@@ -31,10 +31,11 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                                     var enumerator = collListItems.getEnumerator();
                                     while (enumerator.moveNext()) {
                                         var item = enumerator.get_current();
-                                        item.set_item(catridgeCountFieldName, cartridgesCount - 1);
-                                        item.set_item(actionFieldName, "Замена");
-                                        item.set_item(commentFieldName, $("#comment").val() + "Выдан: " + $("#users").val());
-                                        item.set_item(whogiveFieldName, currentUserId);
+                                        item.set_item(settings().catridgeCountFieldName, cartridgesCount - 1);
+                                        item.set_item(settings().actionFieldName, "Замена");
+                                        var addtext = $("#users").val() ===""?"":"Выдан: " + $("#users").val();
+                                        item.set_item(settings().commentFieldName, $("#comment").val() + addtext + "_");
+                                        item.set_item(settings().whogiveFieldName, currentUserId);
                                         if (item.get_id() == itemID) {
                                             // item.set_item(replaceDateFieldName,  $.now().toString());
                                         }
@@ -77,13 +78,21 @@ function clickVersionButton(itemID, cartrigeName) {
     }
     jQuery("#dialogText" + itemID).append('<table border="1"> <caption>История изменений:</caption> <thead><tr><th>Дата</th><th>Действие</th><th>Количество</th><th>Кто выдал</th><th>Комментарий</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
     moment.locale(window.navigator.userLanguage || window.navigator.language);
-    RecordVersionCollection(cartridgeCountStorage, itemID, catridgeCountFieldName);
-    RecordVersionCollection(actionStorage, itemID, actionFieldName);
-    RecordVersionCollection(whogiveStorage, itemID, whogiveFieldName);
-    RecordVersionCollection(commentStoage, itemID, commentFieldName);
+    RecordVersionCollection(cartridgeCountStorage, itemID, settings().catridgeCountFieldName);
+    RecordVersionCollection(actionStorage, itemID, settings().actionFieldName);
+    RecordVersionCollection(whogiveStorage, itemID, settings().whogiveFieldName);
+    RecordVersionCollection(commentStoage, itemID, settings().commentFieldName);
 
     for (var i = 0; i <= threshold - 1; i++) {
-        var localAction = actionStorage[i] === undefined ? "Замена" : actionStorage[i].value;
+      var localAction;
+      if(i == 0 && actionStorage[i] === undefined)
+      {
+        localAction = "Добавлен";
+        console.log("hello added");
+      }else
+      {
+        localAction = actionStorage[i] === undefined ? "Замена" : actionStorage[i].value;
+      }
         if (cartridgeCountStorage[i] == undefined) {
             if (i == 0) {
                 jQuery("#dialogText" + itemID).remove();
@@ -113,7 +122,7 @@ function RecordVersionCollection(arrayData, itemId, fieldName) {
     $().SPServices({
         operation: "GetVersionCollection",
         async: false,
-        strlistID: listId,
+        strlistID: settings().listId,
         strlistItemID: itemId,
         strFieldName: fieldName,
         completefunc: function (xData, Status) {
@@ -130,7 +139,7 @@ function RecordVersionCollection(arrayData, itemId, fieldName) {
                     value: $(this).attr(fieldName),
                     timeUpdate: moment($(this).attr("Modified")).format('LLL')
                 });
-                if (i >= threshold) {
+                if (i >= settings().threshold) {
                     return false;
                 }
             });
