@@ -2,6 +2,9 @@
  * Created by Administrator on 31.01.2016.
  */
 
+$(document).ready(function () {
+
+
 $("#dialogform").validate({
     rules: {
         pswd: {
@@ -16,3 +19,5 @@ $("#dialogform").validate({
         }
     }
 });
+  
+});  

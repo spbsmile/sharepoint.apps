@@ -2,6 +2,8 @@
  * Created by Administrator on 31.01.2016.
  */
 
+$(document).ready(function () {
+
 $("#dialog2").dialog({
     resizable: false,
     modal: true,
@@ -19,10 +21,10 @@ $("#opener2").click(function () {
 function addDataToList() {
     if (!$('#dialogform').valid()) return;
     var selectedValue = $("#mySelect option:selected").text();
-    var clientContext = new SP.ClientContext(siteUrl);
-    var list = clientContext.get_web().get_lists().getById(listId);
+    var clientContext = new SP.ClientContext(settings().siteUrl);
+    var list = clientContext.get_web().get_lists().getById(settings().listId);
 
-    var caml = queryByUniqueTitle(catridgeFieldName, selectedValue);
+    var caml = queryByUniqueTitle(settings().catridgeFieldName, selectedValue);
     var collListItems = list.getItems(caml);
 
     clientContext.load(collListItems);
@@ -31,8 +33,8 @@ function addDataToList() {
             var enumerator = collListItems.getEnumerator();
             while (enumerator.moveNext()) {
                 var item = enumerator.get_current();
-                item.set_item(catridgeCountFieldName, (item.get_item(catridgeCountFieldName) + parseInt($("#countinput").val())));
-                item.set_item(actionFieldName, "Привезено " + parseInt($("#countinput").val()) + " картриджей");
+                item.set_item(settings().catridgeCountFieldName, (item.get_item(settings().catridgeCountFieldName) + parseInt($("#countinput").val())));
+                item.set_item(settings().actionFieldName, "Привезено " + parseInt($("#countinput").val()) + " картриджей");
                 item.update();
             }
             clientContext.executeQueryAsync(function () {
@@ -48,7 +50,7 @@ function addDataToList() {
 
 function addItemsDataToDialog() {
     $.ajax({
-        url: "http://server-sp-it/sites/wiki/" + "/_api/web/lists(guid'" + listId + "')/items",
+        url: settings().siteUrl + "/_api/web/lists(guid'" + settings().listId + "')/items",
         method: "GET",
         headers: {"Accept": "application/json; odata=verbose"},
         success: function (data) {
@@ -69,3 +71,5 @@ function addItemsDataToDialog() {
         }, error: onQueryFailed
     });
 }
+  
+       });  
