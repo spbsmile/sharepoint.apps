@@ -5,19 +5,19 @@
 $(document).ready(function () {
 
 
-$("#dialogform").validate({
-    rules: {
-        pswd: {
-            required: true,
-            digits: true
+    $("#dialogform").validate({
+        rules: {
+            pswd: {
+                required: true,
+                digits: true
+            }
+        },
+        messages: {
+            pswd: {
+                required: "Поле 'Количество' обязательно для заполнения",
+                digits: "Должны быть цифры"
+            }
         }
-    },
-    messages: {
-        pswd: {
-            required: "Поле 'Количество' обязательно для заполнения",
-            digits: "Должны быть цифры"
-        }
-    }
-});
-  
+    });
+
 });  

@@ -152,7 +152,7 @@ $(document).ready(function () {
             });
 
             if (categoryTC.length == 0) {
-            //
+                //
                 categoryChoices.push(cartridges[index]);
                 categoryChoiceField.set_choices(categoryChoices);
                 categoryChoiceField.updateAndPushChanges();

@@ -1,5 +1,4 @@
-function removeItem(itemId, listId)
-{
+function removeItem(itemId, listId) {
     $.ajax({
         url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists(guid'" + listId + "')/items(" + itemId + ")",
         type: "POST",
@@ -12,7 +11,7 @@ function removeItem(itemId, listId)
             "X-HTTP-Method": "DELETE"
         },
 
-        success: function(sender, args) {
+        success: function (sender, args) {
             console.log("hello remove item");
         },
         error: onError
@@ -30,7 +29,7 @@ function addItem(listId, itemData) {
             "Accept": "application/json;odata=verbose",
             "X-RequestDigest": $("#__REQUESTDIGEST").val()
         },
-        success: function(sender, args) {
+        success: function (sender, args) {
             location.reload();
         },
         error: onError
