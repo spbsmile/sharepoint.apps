@@ -13,7 +13,7 @@ $(document).ready(function () {
 
     $("#opener2").click(function () {
         if ($('#mySelect').has('option').length <= 0) {
-            addItemsDataToDialog();
+            addToSelectAllCartriges('#mySelect');
         }
         $("#dialog2").dialog("open");
     });
@@ -48,7 +48,7 @@ $(document).ready(function () {
         $("#dialog2").dialog("close");
     }
 
-    function addItemsDataToDialog() {
+    function addToSelectAllCartriges(idSelector) {
         $.ajax({
             url: settings().siteUrl + "/_api/web/lists(guid'" + settings().listId + "')/items",
             method: "GET",
@@ -63,7 +63,7 @@ $(document).ready(function () {
                     }
                 }
                 $.each(cartridgesData, function (key, value) {
-                    $('#mySelect')
+                    $(idSelector)
                         .append($("<option></option>")
                             .attr("value", key)
                             .text(value));

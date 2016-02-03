@@ -4,7 +4,6 @@
 
 $(document).ready(function () {
 
-
     $("#dialogform").validate({
         rules: {
             pswd: {
@@ -19,5 +18,22 @@ $(document).ready(function () {
             }
         }
     });
+	/*
+    $.validator.addClassRules('album', {
+        required: true,
+        minlength: 2
+    });
 
+    $.validator.addClassRules('price', {
+        required: true,
+        number: true,
+        min: 0
+    });
+
+    // Initialize validation plugin
+    $("#tblPrinterAppendGrid").validate({
+        errorLabelContainer: '#ulError',
+        wrapper: 'li'
+    });
+    */
 });  

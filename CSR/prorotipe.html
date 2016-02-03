@@ -33,43 +33,54 @@
         });
 
         $("#opendialogaddprinter").click(function () {
-           
-             $('#tblPrinterAppendGrid').appendGrid({
+
+            $('#tblPrinterAppendGrid').appendGrid({
                 caption: 'Данные принтера',
                 initRows: 1,
                 columns: [
-                    { name: 'Filial', display: 'Филиал', type: 'text', ctrlCss: { width: '160px'}
+                    {
+                        name: 'Filial', display: 'Филиал', type: 'text', ctrlCss: {width: '160px'}
 
                     },
-                    { name: 'Name', display: 'Имя', type: 'text',  ctrlCss: { width: '160px'} },
-                    { name: 'Ip', display: 'Ip', type: 'text',  ctrlCss: { width: '140px'} },
-                    { name: 'Room', display: 'Комната', type: 'text'}
+                    {name: 'Name', display: 'Имя', type: 'text', ctrlCss: {width: '160px'}},
+                    {name: 'Ip', display: 'Ip', type: 'text', ctrlCss: {width: '140px'}},
+                    {name: 'Room', display: 'Комната', type: 'text'}
                 ],
                 hideButtons: {
                     remove: true,
                     removeLast: true,
                     append: true,
-                    insert:true,
+                    insert: true,
                     moveUp: true,
                     moveDown: true
                 }
-            }); 
-       
+            });
+
             $('#tblCartridgeAppendGrid').appendGrid({
                 caption: 'Названия картриджей',
                 initRows: 4,
                 columns: [
-                    { name: 'Color', display: 'Цвет', type: 'text', ctrlAttr: { maxlength: 100, readonly:"readonly"}, ctrlCss: { width: '100px'}
+                    {
+                        name: 'Color',
+                        display: 'Цвет',
+                        type: 'text',
+                        ctrlAttr: {maxlength: 100, readonly: "readonly"},
+                        ctrlCss: {width: '100px'}
 
                     },
-                    { name: 'Name', display: 'Имя', type: 'text', ctrlCss: { width: '160px'} },
-                    { name: 'NameFromExist', display: 'Имя из существующих', type: 'select', ctrlOptions: { 0: '{Выбрать}', 1: ''} }
+                    {name: 'Name', display: 'Имя', type: 'text', ctrlCss: {width: '160px'}},
+                    {
+                        name: 'NameFromExist',
+                        display: 'Имя из существующих',
+                        type: 'select',
+                        ctrlOptions: {0: '{Выбрать}', 1: ''}
+                    }
                 ],
                 hideButtons: {
                     remove: true,
                     removeLast: true,
                     append: true,
-                    insert:true,
+                    insert: true,
                     moveUp: true,
                     moveDown: true
                 }
@@ -97,13 +108,15 @@
         }
     });
 
-    $(function() {
+    $(function () {
         $('#tblCartridgeAppendGrid').hide();
-        $('#printerIsColor').change(function(){
-            if($('#printerIsColor').val() == 'Да') {
+        $('#printerIsColor').change(function () {
+            if ($('#printerIsColor').val() == 'Да') {
                 $('#tblCartridgeAppendGrid').show();
+                $('#noColorCartridgeGrid').hide();
             } else {
                 $('#tblCartridgeAppendGrid').hide();
+                $('#noColorCartridgeGrid').show();
             }
         });
     });
@@ -122,14 +135,21 @@
 
         <br>
         <div>
-        <label for="printerIsColor">Цветной принтер ?</label>
+            <label for="printerIsColor">Цветной принтер ?</label>
             <select id="printerIsColor" class="form-control">
                 <option>Нет</option>
                 <option>Да</option>
             </select>
         </div>
-
-       <br>
+        <br>
+        <div id="noColorCartridgeGrid">
+            <div> <label> Новый картридж:</label>   <input id=" inputNewNoColorCartridge"></div>
+            <br>
+            <form >
+                <div><label>Или выбрать из имеющихся:</label>
+                <select id="selectNoColorCartridge"></select></div>
+            </form>
+        </div>
         <br>
         <table id="tblCartridgeAppendGrid">
         </table>

@@ -115,6 +115,8 @@ $(document).ready(function () {
 
     function addPrinterToList() {
 
+        //todo check on validate
+        //todo loop for cartridges. more them 4
         var colors = ["Blue", "magenta", "Yellow", "Black"];
         var cartridges = [$('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 0),
             $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 1),
@@ -128,13 +130,55 @@ $(document).ready(function () {
         data.room = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Room', 1);
 
         var index = 0;
-        addValueChoiceRecursion(cartridges, index, cartridges.length, function () {
+        addValuesToFieldChoiceRecursion(cartridges, index, cartridges.length, function () {
             var index = 0;
             addPrintersRecursion(settings().listId, data, colors, cartridges, index, cartridges.length);
         });
     }
 
-    function addValueChoiceRecursion(cartridges, index, length, callback) {
+    $(function () {
+        addToSelectAllCartriges("#selectNoColorCartridge");
+        $('#tblCartridgeAppendGrid').hide();
+        $('#printerIsColor').change(function () {
+            if ($('#printerIsColor').val() == 'Да') {
+                $('#tblCartridgeAppendGrid').show();
+                $('#noColorCartridgeGrid').hide();
+                //addToSelectAllCartriges();
+                //addToSelectAllCartriges();
+                //addToSelectAllCartriges();
+            } else {
+                $('#tblCartridgeAppendGrid').hide();
+                $('#noColorCartridgeGrid').show();
+            }
+        });
+    });
+  
+  // files:this, addcartridge. equal methods  
+  	function addToSelectAllCartriges(idSelector) {
+        $.ajax({
+            url: settings().siteUrl + "/_api/web/lists(guid'" + settings().listId + "')/items",
+            method: "GET",
+            headers: { "Accept": "application/json; odata=verbose" },
+            success: function (data) {
+                var items = data.d.results;
+                var cartridgesData = [];
+                var cartridgeInternalField = "OData__x041a__x0430__x0440__x0442__x04";
+                for (var i = 0; i < items.length; i++) {
+                    if ($.inArray(items[i][cartridgeInternalField], cartridgesData) === -1 && items[i][cartridgeInternalField] != null) {
+                        cartridgesData.push(items[i][cartridgeInternalField]);
+                    }
+                }
+                $.each(cartridgesData, function (key, value) {
+                    $(idSelector)
+                        .append($("<option></option>")
+                            .attr("value", key)
+                            .text(value));
+                });
+            }, error: onQueryFailed
+        });
+    }
+
+    function addValuesToFieldChoiceRecursion(cartridges, index, length, callback) {
         //todo extracted
         var context = new SP.ClientContext.get_current();
         var cldList = context.get_web().get_lists().getById(settings().listId);
@@ -160,7 +204,7 @@ $(document).ready(function () {
                     index = ++index;
                     if (index < length) {
                         console.log("success addValueChoiceRecursion" + index + " index < length - 1");
-                        addValueChoiceRecursion(cartridges, index, length, callback);
+                        addValuesToFieldChoiceRecursion(cartridges, index, length, callback);
                     } else {
                         console.log("success addValueChoiceRecursion" + index + " else");
                         if (typeof callback === 'function' && callback) {
@@ -216,7 +260,6 @@ $(document).ready(function () {
         };
         return itemData;
     }
-
 
     // Display error messages.
     function onError(error) {

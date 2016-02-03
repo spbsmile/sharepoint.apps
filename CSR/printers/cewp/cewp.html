@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css"
           href="http://server-sp-it/sites/wiki/Style%20Library/corelibs/jquery.appendGrid-1.6.1.css"/>
     <link rel="stylesheet" type="text/css"
-          href="http://server-sp-it/sites/wiki/Style%20Library/Printers/cewp.css"/>
+          href="http://server-sp-it/sites/wiki/Style%20Library/Printers/cewp/cewp.css"/>
 
 
 
@@ -35,11 +35,11 @@
     <script type="text/javascript"
             src="http://server-sp-it/sites/wiki/Style%20Library/Printers/printersCore.js"></script>
     <script type="text/javascript"
-            src="http://server-sp-it/sites/wiki/Style%20Library/Printers/validate.js"></script>
+            src="http://server-sp-it/sites/wiki/Style%20Library/Printers/cewp/validate.js"></script>
     <script type="text/javascript"
-            src="http://server-sp-it/sites/wiki/Style%20Library/Printers/addPrinter.js"></script>
+            src="http://server-sp-it/sites/wiki/Style%20Library/Printers/cewp/addPrinter.js"></script>
     <script type="text/javascript"
-            src="http://server-sp-it/sites/wiki/Style%20Library/Printers/addCartridge.js"></script>
+            src="http://server-sp-it/sites/wiki/Style%20Library/Printers/cewp/addCartridge.js"></script>
     <script>
 
         var listId = "629c7c86-dd24-4337-b01a-48a6da811cc5";
@@ -72,8 +72,6 @@
             $("#openstatistics").click(function () {
                 $("#dialogstatistics").dialog("open");
             });
-
-
         });
     </script>
 </head>
@@ -90,17 +88,32 @@
     </form>
 </div>
 
-<div id="dialogaddprinter" title="Добавление принтера">
+<div id="dialogaddprinter" title="Добавление принтера" hidden="true">
     <div id="contentaddprinter">
         <br>
         <table id="tblPrinterAppendGrid">
         </table>
 
         <br>
+        <div>
+            <label for="printerIsColor">Цветной принтер ?</label>
+            <select id="printerIsColor" class="form-control">
+                <option>Нет</option>
+                <option>Да</option>
+            </select>
+        </div>
+        <br>
+        <div id="noColorCartridgeGrid">
+            <div> <label> Новый картридж:</label>   <input id=" inputNewNoColorCartridge"></div>
+            <br>
+            <form >
+                <div><label>Или выбрать из имеющихся:</label>
+                    <select id="selectNoColorCartridge"></select></div>
+            </form>
+        </div>
         <br>
         <table id="tblCartridgeAppendGrid">
         </table>
-
     </div>
 </div>
 
