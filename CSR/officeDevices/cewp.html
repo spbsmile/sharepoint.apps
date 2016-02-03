@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" type="text/css"
+          href="http://server-sp-it/sites/wiki/Style%20Library/officedevices2/cewp/cewp.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="http://server-sp-it/sites/wiki/Style%20Library/Printers/jquery-ui.min.css"/>
+
+    <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/jquery.SPServices-0.7.1a.min.js"></script>
+    <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/jquery.SPWidgets.min.js"></script>
+    <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/getCurrentUser.js"></script>
+    <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/IsCurrentUserMemberOfGroup.js"></script>
+    <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/camljs.js"></script>
+    <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/moment.min.js"></script>
+    <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/query.js"></script>
+    <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/corelibs/utils.js"></script>
+
+    <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/officedevices2/settings.js"></script>
+    <script type="text/javascript" src="http://server-sp-it/sites/wiki/Style%20Library/officedevices2/cewp/addDevice.js"></script>
+
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="dialog2" title="Введите данные" class="ui-widget" hidden="true">
+    <form id="mainform" name="mainform">
+
+    </form>
+    <form id="dialogform">
+        <div><label>Название:</label></div>
+        <div><select id="mySelect"></select></div>
+       <br>
+        <div><label> Количество:&nbsp;</label><input id="countinput" name="pswd"/></div>
+    </form>
+</div>
+
+<div>
+    <input class="inner" type="button" value="Принять" id="opendialogaddDevice" style="width:100px">
+</div>
+
+</body>
+</html>

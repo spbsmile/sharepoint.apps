@@ -1,25 +1,7 @@
 // The file has been created, saved into "/Style Library/OfficeDevices/"
 // and attached to the XLV via JSLink property.
 
-var siteUrl = "http://server-sp-it/sites/wiki/";
-var listId = "e032d241-fbc2-4efb-b5bf-48b7aeaf3e67";
-
-//на складе
-var remainFieldName = "_x041e__x0441__x0442__x0430__x04";//
-// общее число выданных
-var numberofissuedFieldName = "_x041e__x0431__x0449__x0435__x04";//
-// получатель
-var reseivedFieldName = "_x041a__x043e__x043c__x0443__x00";//
-//выдано
-var getoutFieldName = "_x0412__x044b__x0434__x0430__x04";
-// кто выдал
-var whogiveFieldName = "_x041a__x0442__x043e__x0020__x04";//
-//комментарий
-var commentFieldName = "_x041a__x043e__x043c__x043c__x04";//
-
 var currentUserId = null ;
-
-var threshold = 20;
 var isClosed = true;
 
 SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
@@ -30,6 +12,8 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
 
     function init() {
         SPClientTemplates.TemplateManager.RegisterTemplateOverrides({
+
+            OnPreRender: InitValueScripts,
 
             Templates: {
                 Fields: {
@@ -46,6 +30,17 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
         });
     }
 
+    function InitValueScripts(renderCtx) {
+        SP.SOD.executeOrDelayUntilScriptLoaded(loadContext, 'sp.js');
+        function loadContext() {
+
+            var context = SP.ClientContext.get_current();
+            getCurrentUser(context, function (user) {
+                currentUserId = user.get_id();
+            });
+        }
+    }
+
     function renderGetOut(ctx) {
         var html = "";
         html += '<input type="button" value="Выдать" onClick="clickDialogGetOut(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Title"] + '\')" />';
@@ -58,7 +53,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
 
     function renderViewHistory(ctx) {
         var html = "";
-        html += '<input type="button" value="Посмотреть историю выдачи" onClick="clickViewHistory(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Title"] + '\')" />';
+        html += '<input type="button" value="Посмотреть историю" onClick="clickViewHistory(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem["Title"] + '\')" />';
         html += '<div id ="mdViewHistory' + ctx.CurrentItem.ID + '\";>';
         html += '<div id="dialogTextHistory' + ctx.CurrentItem.ID + '\";>';
         html += "";
@@ -76,28 +71,36 @@ function clickViewHistory(itemID, itemName) {
     var resievedFeildsStorage = [];
     var whogiveStorage = [];
     var commentStorage = [];
+    var actionStorage = [];
+    var remainStorage = [];
 
     if ($("#dialogTextHistory" + itemID).length === 0) {
         $("#mdViewHistory" + itemID).append('<div id ="dialogTextHistory' + itemID + '\";</div>');
     }
-    jQuery("#dialogTextHistory" + itemID).append('<table border="1"> <thead><tr><th>Дата</th><th>Получатели</th><th>Количество выданных</th><th>Кто выдал</th><th>Комментарий</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
+    jQuery("#dialogTextHistory" + itemID).append('<table border="1"> <thead><tr><th>Дата</th><th>Получатели</th><th>Количество выданных</th><th>ИТ сотрудник</th><th>Комментарий</th><th>На складе</th><th>Действие</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
     moment.locale(window.navigator.userLanguage || window.navigator.language);
-    RecordVersionCollection(getOutFeildsStorage, itemID, getoutFieldName);
-    RecordVersionCollection(resievedFeildsStorage, itemID, reseivedFieldName);
-    RecordVersionCollection(whogiveStorage, itemID, whogiveFieldName);
-    RecordVersionCollection(commentStorage, itemID, commentFieldName);
+    RecordVersionCollection(getOutFeildsStorage, itemID, settings().getoutFieldName);
+    RecordVersionCollection(resievedFeildsStorage, itemID, settings().reseivedFieldName);
+    RecordVersionCollection(whogiveStorage, itemID, settings().whogiveFieldName);
+    RecordVersionCollection(commentStorage, itemID, settings().commentFieldName);
+    RecordVersionCollection(actionStorage, itemID, settings().actionFieldName);
+    RecordVersionCollection(remainStorage, itemID, settings().remainFieldName);
 
-    for (var i = 0; i <= threshold - 1; i++) {
+    for (var i = 0; i <= settings().threshold - 1; i++) {
         // (moment($(this).attr("Modified")) > moment("2016-01-11T10:04:24Z"))
-        if (getOutFeildsStorage[i] == undefined) {
+        if (getOutFeildsStorage[i] == undefined && actionStorage[i] == undefined) {
             if (i == 0) {
                 jQuery("#dialogTextHistory" + itemID).remove();
             }
             break;
         }
-        var person = (whogiveStorage[i] === undefined || whogiveStorage[i].value === undefined) ? "  " : whogiveStorage[i].value;
+        var personResieved = (resievedFeildsStorage[i] === undefined || resievedFeildsStorage[i].value === undefined) ? "  " : resievedFeildsStorage[i].value;
+        var personIt = (whogiveStorage[i] === undefined || whogiveStorage[i].value === undefined) ? "  " : whogiveStorage[i].value;
         var comment = (commentStorage[i] === undefined || commentStorage[i].value === undefined) ? "  " : commentStorage[i].value;
-        $('#table' + itemID).append("<tr><td>" + getOutFeildsStorage[i].timeUpdate + "</td><td>" + resievedFeildsStorage[i].value + "</td><td>" + getOutFeildsStorage[i].value + "</td><td>" + person + "</td><td>" + comment + "</td></tr>");
+        var action = (actionStorage[i] === undefined || actionStorage[i].value === undefined) ? "  " : actionStorage[i].value;
+        var timeUpdate = (getOutFeildsStorage[i] === undefined || getOutFeildsStorage[i].value === undefined) ? actionStorage[i].timeUpdate : getOutFeildsStorage[i].timeUpdate;
+        var countGetOut = (getOutFeildsStorage[i] === undefined || getOutFeildsStorage[i].value === undefined) ? " " : getOutFeildsStorage[i].value;
+        $('#table' + itemID).append("<tr><td>" + timeUpdate + "</td><td>" + personResieved + "</td><td>" + countGetOut + "</td><td>" + personIt + "</td><td>" + comment + "</td><td>" + remainStorage[i].value + "</td><td>" + action + "</td></tr>");
     }
 
     $(function() {
@@ -129,21 +132,20 @@ function clickDialogGetOut(itemID, itemName) {
 
                         isClosed = false;
 
-                        var clientContext = new SP.ClientContext(siteUrl);
-                        GetCurrentUser(clientContext, function(user) {
-                            currentUserId = user.id;
-                        })
-                        var list = clientContext.get_web().get_lists().getById(listId);
+                        var clientContext = new SP.ClientContext(settings().siteUrl);
+                        var list = clientContext.get_web().get_lists().getById(settings().listId);
                         var item = list.getItemById(itemID);
                         var h = $(this);
                         clientContext.load(item);
+
                         clientContext.executeQueryAsync(function() {
-                                item.set_item(remainFieldName, item.get_item(remainFieldName) - parseInt($("#countdevice" + itemID).val()));
-                                item.set_item(numberofissuedFieldName, item.get_item(numberofissuedFieldName) + parseInt($("#countdevice" + itemID).val()));
-                                item.set_item(getoutFieldName, parseInt($("#countdevice" + itemID).val()));
-                                item.set_item(reseivedFieldName, $("#users").val());
-                                item.set_item(commentFieldName, $("#comment").val() + "_");
-                                item.set_item(whogiveFieldName, currentUserId);
+                                item.set_item(settings().remainFieldName, item.get_item(settings().remainFieldName) - parseInt($("#countdevice" + itemID).val()));
+                                item.set_item(settings().numberofissuedFieldName, item.get_item(settings().numberofissuedFieldName) + parseInt($("#countdevice" + itemID).val()));
+                                item.set_item(settings().getoutFieldName, parseInt($("#countdevice" + itemID).val()));
+                                item.set_item(settings().reseivedFieldName, $("#users").val());
+                                item.set_item(settings().commentFieldName, $("#comment").val() + "_");
+                                item.set_item(settings().actionFieldName, "Выдано");
+                                item.set_item(settings().whogiveFieldName, currentUserId);
                                 item.update();
                                 clientContext.executeQueryAsync(
                                     function()
@@ -176,7 +178,7 @@ function RecordVersionCollection(arrayData, itemId, fieldName) {
     $().SPServices({
         operation: "GetVersionCollection",
         async: false,
-        strlistID: listId,
+        strlistID: settings().listId,
         strlistItemID: itemId,
         strFieldName: fieldName,
         completefunc: function(xData, Status) {
@@ -185,7 +187,7 @@ function RecordVersionCollection(arrayData, itemId, fieldName) {
                     value: $(this).attr(fieldName),
                     timeUpdate: moment($(this).attr("Modified")).format('LLL')
                 });
-                if (i >= threshold) {
+                if (i >= settings().threshold) {
                     return false;
                 }
             });
