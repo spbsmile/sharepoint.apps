@@ -1,19 +1,8 @@
 // The file has been created, saved into "/Style Library/OfficeDevices/"
 // and attached to the XLV via JSLink property.
 
-var siteUrl = "http://server-sp-it/sites/wiki";
-
-var listId = "629c7c86-dd24-4337-b01a-48a6da811cc5";
-var replaceDateFieldName = "_x0414__x0430__x0442__x0430__x00";
-var replaceButtonFieldName = "_x0417__x0430__x043c__x0435__x04";
 var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
 var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
-var whogiveFieldName = "_x041a__x0442__x043e__x0020__x04";
-var commentFieldName = "_x041a__x043e__x043c__x043c__x04";
-var actionFieldName = "Action";
-var threshold = 5;
-
-var currentUser = null;
 var currentUserId = null;
 
 var isClosed = true;
@@ -27,6 +16,9 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
   function init() {
 
     SPClientTemplates.TemplateManager.RegisterTemplateOverrides({
+      
+      		OnPreRender: InitValueScripts,
+      
             Templates: {
                 Fields: {
                     "_x0417__x0430__x043c__x0435__x04": {
@@ -52,13 +44,24 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
             ListTemplateType: 120
         });
   }
+  
+  function InitValueScripts(renderCtx) {
+        SP.SOD.executeOrDelayUntilScriptLoaded(loadContext, 'sp.js');
+        function loadContext() {
+
+            var context = SP.ClientContext.get_current();
+            getCurrentUser(context, function (user) {
+                currentUserId = user.get_id();
+            });
+        }
+    }
 
   RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/OfficeDevices/printersDefault.js"), init);
   init();
   
   function renderReplaceField(ctx) {
         var html = "";
-        html += '<input type="button" value="?—?°???µ????N‚N?" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
+        html += '<input type="button" value="Çàìåíèòü" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[settings().catridgeFieldName] + '\',\'' + ctx.CurrentItem[settings().catridgeCountFieldName] + '\')" />';
         html += '<div id ="modalReplaceWindow' + ctx.CurrentItem.ID + '\";>';
         html += '<div id="dialogTextReplace' + ctx.CurrentItem.ID + '\";>';
         html += "";
@@ -68,7 +71,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
 
     function renderVersionsField(ctx) {
         var html = "";
-        html += '<input type="button" value="' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\" onClick="clickVersionButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\')" />';
+        html += '<input type="button" value="' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\" onClick="clickVersionButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[settings().catridgeFieldName] + '\')" />';
         html += '<div id ="modalWindow' + ctx.CurrentItem.ID + '\";>';
         html += '<div id="dialogText' + ctx.CurrentItem.ID + '\";>';
         html += "";
