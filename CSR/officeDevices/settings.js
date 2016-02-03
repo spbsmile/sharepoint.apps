@@ -1,6 +1,8 @@
 /**
  * Created by M_Zabiyakin on 02.02.2016.
+   Настройки оффисной техники.
  */
+
 function settings()
 {
     var module = [];
@@ -8,6 +10,7 @@ function settings()
     module.listId = "e032d241-fbc2-4efb-b5bf-48b7aeaf3e67";
     module.threshold = 20;
 
+    module.editingGroupId = 41;
     //на складе
     module.remainFieldName =  "_x041e__x0441__x0442__x0430__x04";
     // общее число выданных
