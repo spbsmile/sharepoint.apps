@@ -1,20 +1,9 @@
 // The file has been created, saved into "/Style Library/OfficeDevices/"
 // and attached to the XLV via JSLink property.
 
-var siteUrl = "http://server-sp-it/sites/wiki";
-
-var listId = "629c7c86-dd24-4337-b01a-48a6da811cc5";
-var replaceDateFieldName = "_x0414__x0430__x0442__x0430__x00";
-var replaceButtonFieldName = "_x0417__x0430__x043c__x0435__x04";
 var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
 var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
-var whogiveFieldName = "_x041a__x0442__x043e__x0020__x04";
-var commentFieldName = "_x041a__x043e__x043c__x043c__x04";
-var actionFieldName = "Action";
-var isColorFieldName = "IsColor";
-var threshold = 5;
 
-var currentUser = null;//df
 var currentUserId = null;
 
 var isClosed = true;
@@ -70,30 +59,30 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
     init();
   
  	function renderFilial(ctx) {
-      if (ctx.CurrentItem[isColorFieldName] === "Да" && ctx.CurrentItem["Color"] !== "Black"){
+      if (ctx.CurrentItem[settings().isColorFieldName] === "Да" && ctx.CurrentItem["Color"] !== "Black"){
       	return " ";
       }
       return  ctx.CurrentItem[ctx.CurrentFieldSchema.Name];
     }
 
     function renderName(ctx) {
- 		if (ctx.CurrentItem[isColorFieldName] === "Да" && ctx.CurrentItem["Color"] != "Black"){
+ 		if (ctx.CurrentItem[settings().isColorFieldName] === "Да" && ctx.CurrentItem["Color"] != "Black"){
       		return " ";
       	}
         return ctx.CurrentItem["Title"]; 
     }
 
     function renderCartrigeField(ctx) {
-        var value = ctx.CurrentItem[catridgeFieldName];
-        if (ctx.CurrentItem[isColorFieldName] === "Да") {
-            return ctx.CurrentItem[catridgeFieldName] + '&nbsp;<img src="http://server-sp-it/sites/wiki/Style%20Library/printers/img_colors/cartridge_' + ctx.CurrentItem["Color"] + '\.png" alt="Confidential Document" title="Confidential Document"/>';
+        var value = ctx.CurrentItem[settings().catridgeFieldName];
+        if (ctx.CurrentItem[settings().isColorFieldName] === "Да") {
+            return ctx.CurrentItem[settings().catridgeFieldName] + '&nbsp;<img src="http://server-sp-it/sites/wiki/Style%20Library/printers/img_colors/cartridge_' + ctx.CurrentItem["Color"] + '\.png" alt="Confidential Document" title="Confidential Document"/>';
         }
-        return ctx.CurrentItem[catridgeFieldName];
+        return ctx.CurrentItem[settings().catridgeFieldName];
     }
 
     function renderReplaceField(ctx) {
         var html = "";
-        html += '<input type="button" value="Заменить" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\',\'' + ctx.CurrentItem[catridgeCountFieldName] + '\')" />';
+        html += '<input type="button" value="Заменить" onClick="clickReplaceButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[settings().catridgeFieldName] + '\',\'' + ctx.CurrentItem[settings().catridgeCountFieldName] + '\')" />';
         html += '<div id ="modalReplaceWindow' + ctx.CurrentItem.ID + '\";>';
         html += '<div id="dialogTextReplace' + ctx.CurrentItem.ID + '\";>';
         html += "";
@@ -103,7 +92,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
 
     function renderVersionsField(ctx) {
         var html = "";
-        html += '<input type="button" value="' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\" onClick="clickVersionButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[catridgeFieldName] + '\')" />';
+        html += '<input type="button" value="' + ctx.CurrentItem[ctx.CurrentFieldSchema.Name] + '\" onClick="clickVersionButton(\'' + ctx.CurrentItem.ID + '\',\'' + ctx.CurrentItem[settings().catridgeFieldName] + '\')" />';
         html += '<div id ="modalWindow' + ctx.CurrentItem.ID + '\";>';
         html += '<div id="dialogText' + ctx.CurrentItem.ID + '\";>';
         html += "";
@@ -111,7 +100,6 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function () {
         html += "</div>";
         return html;
     }
-
 });
 
 

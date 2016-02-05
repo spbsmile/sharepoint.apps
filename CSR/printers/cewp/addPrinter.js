@@ -117,17 +117,17 @@ $(document).ready(function () {
 
         //todo check on validate
         //todo loop for cartridges. more them 4
-        var colors = ["Blue", "magenta", "Yellow", "Black"];
+        var colors = ["Blue", "red", "Yellow", "Black"];
         var cartridges = [$('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 0),
             $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 1),
             $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 2),
             $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 3)];
 
         var data = [];
-        data.namePrinter = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Name', 1);
-        data.filial = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Filial', 1);
-        data.ip = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Ip', 1);
-        data.room = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Room', 1);
+        data.namePrinter = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Name', 0);
+        data.filial = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Filial', 0);
+        data.ip = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Ip', 0);
+        data.room = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Room', 0);
 
         var index = 0;
         addValuesToFieldChoiceRecursion(cartridges, index, cartridges.length, function () {
@@ -203,27 +203,28 @@ $(document).ready(function () {
                 context.executeQueryAsync(function () {
                     index = ++index;
                     if (index < length) {
-                        console.log("success addValueChoiceRecursion" + index + " index < length - 1");
                         addValuesToFieldChoiceRecursion(cartridges, index, length, callback);
                     } else {
-                        console.log("success addValueChoiceRecursion" + index + " else");
                         if (typeof callback === 'function' && callback) {
-                            console.log("callback" + " typeof callback === 'function' && callback");
                             callback();
                         }
                     }
                 }, onQueryFailed);
+            }else {
+            	if (typeof callback === 'function' && callback) {
+                            callback();
+                        }
             }
         }, onQueryFailed);
     }
 
     function addPrintersRecursion(listId, data, colors, cartridges, index, length) {
-
+		console.log(data.namePrinter);
         $.ajax({
             url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists(guid'" + listId + "')/items",
             type: "POST",
             contentType: "application/json;odata=verbose",
-            data: JSON.stringify(getItemData(data.nameprinter, true, colors[index], cartridges[index], data.filial)),
+            data: JSON.stringify(getItemData(data.namePrinter, true, colors[index], cartridges[index], data.filial, data.room, data.ip)),
             headers: {
                 "Accept": "application/json;odata=verbose",
                 "X-RequestDigest": $("#__REQUESTDIGEST").val()
@@ -242,7 +243,7 @@ $(document).ready(function () {
         });
     }
 
-    function getItemData(namePrinter, isColor, color, choiceCartridge, choiceFilial) {
+    function getItemData(namePrinter, isColor, color, choiceCartridge, choiceFilial, room, ip) {
         var itemData = {
             "__metadata": {
                 "type": "SP.Data.List3ListItem",
@@ -250,13 +251,15 @@ $(document).ready(function () {
                 "IsColor": "",
                 "Color": "",
                 "OData__x041a__x0430__x0440__x0442__x04": "",
-                "OData__x0424__x0438__x043b__x0438__x04": ""
+                "OData__x0424__x0438__x043b__x0438__x04": ""//,
+                //"_x041a__x043e__x043c__x043d__x04":""
             },
             "Title": namePrinter,
             "IsColor": isColor,
             "Color": color,
             "OData__x041a__x0430__x0440__x0442__x04": choiceCartridge,
-            "OData__x0424__x0438__x043b__x0438__x04": choiceFilial
+            "OData__x0424__x0438__x043b__x0438__x04": choiceFilial//,
+           // "_x041a__x043e__x043c__x043d__x04": room
         };
         return itemData;
     }

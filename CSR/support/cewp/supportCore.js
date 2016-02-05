@@ -18,7 +18,6 @@ function removeItem(itemId, listId) {
     });
 }
 
-
 function addItem(listId, itemData) {
     $.ajax({
         url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists(guid'" + listId + "')/items",

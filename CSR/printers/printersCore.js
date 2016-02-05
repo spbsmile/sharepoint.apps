@@ -1,4 +1,4 @@
-function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
+function clickReplaceButton(itemID, cartridgesName, cartridgesCount, isColor) {
     
     if (cartridgesCount >= 1) {
         if ($("#dialogTextReplace" + itemID).length == 0) {
@@ -28,6 +28,15 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount) {
                             var enumerator = collListItems.getEnumerator();
                             while (enumerator.moveNext()) {
                                 var item = enumerator.get_current();
+                              
+                               if(isColor && item.get_item("IsColor") === "Нет"){
+                                 continue;
+                               }
+                              if(!isColor && item.get_item("IsColor") === "Да"){
+                              	 continue;
+                              }
+                              
+                              
                                 item.set_item(settings().catridgeCountFieldName, cartridgesCount - 1);
                                 item.set_item(settings().actionFieldName, "Замена");
                                 var addtext = $("#users").val() === "" ? "" : "Выдан: " + $("#users").val();
