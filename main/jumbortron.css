@@ -1,0 +1,57 @@
+/* Move down content because we have a fixed navbar that is 50px tall body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}*/
+
+.navbar-collapse {
+	padding-top: 45px;
+}
+.artbut { border: 1px solid #7E7E7E;
+	padding: 3px 15px;
+	border-radius:30px !important;
+	background-image: -webkit-linear-gradient(270deg,rgba(233,233,233,1.00) 0%,rgba(159,159,159,1.00) 100%);
+	background-image: -moz-linear-gradient(270deg,rgba(233,233,233,1.00) 0%,rgba(159,159,159,1.00) 100%);
+	background-image: -o-linear-gradient(270deg,rgba(233,233,233,1.00) 0%,rgba(159,159,159,1.00) 100%);
+	background-image: linear-gradient(180deg,rgba(233,233,233,1.00) 0%,rgba(159,159,159,1.00) 100%);
+	color: #444 !important;
+	text-shadow:#ebebeb 1px 1px 0px;
+	font-size: 16px;
+	width:auto; text-align:center; margin:0 10px;
+}
+/*
+.artbut:hover { background:#E3E3E3 !important; color: #444 !important;
+	text-shadow:#ebebeb 1px 1px 0px;  cursor:pointer; border: 1px solid #fff;}
+
+.whtr{ margin-top:-60px; }
+.newsdate { background:#cdd2d4; display:table-cell; padding:5px 10px}
+*/
+
+.artbg { background: url(img/background.jpg) #EDEDED; background-position:center; background-size:cover; height:300px;}
+
+.bootstrap-scope .navbar.over
+{
+	position:relative;
+	/*z-index:500;*/
+}
+
+/*
+.nopaddingright{ padding-right:0 !important} 
+	
+	
+.calend { width:300px; height:400px; box-shadow:#D5D5D5 0px 0px 6px; border-radius:20px;}
+
+.calendup { width:100%; height:50%; background:url(img/caledfon.png) bottom; background-size:cover;  border-radius:20px 20px 0 0;}
+
+.calendup span { color:#fff; font-size:2.2em; text-align:center; width:120px; }
+.countdata {font-size:4em; top:20px}
+.datt {margin:20px 0 0 20px;}
+
+ .time { border: 2px solid #fff; border-radius:200px; padding:30px 1px; margin:30px 20px 20px 20px;}
+
+
+.calenddown {width:auto; height:45%; padding:5%;}
+
+.calenddown th  { border:#E3E3E3 1px solid; text-align:right;  padding:0 5px; } 
+.calenddown tr td { background:#ebebeb; margin:2px; border:1px solid #fff;  padding:0 5px; text-align:right;  }
+
+h2{ display:block; border-bottom:#BFBFBF 1px solid; font-weight:100 !important; font-size:40px;}
