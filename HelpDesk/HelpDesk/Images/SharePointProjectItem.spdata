@@ -17,5 +17,7 @@
     <ProjectItemFile Source="images\ui-icons_ef8c08_256x240.png" Target="Images\images\" Type="ElementFile" />
     <ProjectItemFile Source="images\ui-icons_ffd27a_256x240.png" Target="Images\images\" Type="ElementFile" />
     <ProjectItemFile Source="images\ui-icons_ffffff_256x240.png" Target="Images\images\" Type="ElementFile" />
+    <ProjectItemFile Source="background.jpg" Target="Images\" Type="ElementFile" />
+    <ProjectItemFile Source="logo.png" Target="Images\" Type="ElementFile" />
   </Files>
 </ProjectItem>

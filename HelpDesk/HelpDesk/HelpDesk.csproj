@@ -41,12 +41,14 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="Content\rivs.master" />
     <None Include="packages.config" />
     <None Include="Pages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{da89ef4a-5066-4a69-9d8d-87d7bfed21c5}</SharePointProjectItemId>
     </None>
     <Content Include="Content\bootstrap-scope.css" />
     <Content Include="Content\bootstrap-scope.min.css" />
+    <Content Include="Content\filterTasks.css" />
     <Content Include="Content\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
     <Content Include="Content\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
     <Content Include="Content\images\ui-bg_flat_10_000000_40x100.png" />
@@ -62,6 +64,8 @@
     <Content Include="Content\images\ui-icons_ffd27a_256x240.png" />
     <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\jumbortron.css" />
+    <Content Include="Images\background.jpg" />
     <Content Include="Images\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
     <Content Include="Images\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
     <Content Include="Images\images\ui-bg_flat_10_000000_40x100.png" />
@@ -76,6 +80,7 @@
     <Content Include="Images\images\ui-icons_ef8c08_256x240.png" />
     <Content Include="Images\images\ui-icons_ffd27a_256x240.png" />
     <Content Include="Images\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Images\logo.png" />
     <Content Include="Pages\Elements.xml" />
     <Content Include="Pages\Default.aspx" />
   </ItemGroup>
@@ -86,6 +91,7 @@
     </None>
     <Content Include="Scripts\App.js" />
     <Content Include="Scripts\Elements.xml" />
+    <Content Include="Scripts\filterTasks.js" />
     <Content Include="Scripts\getCurrentUser.js" />
     <Content Include="Scripts\IsCurrentUserMemberOfGroup.js" />
     <Content Include="Scripts\jquery-1.10.2.intellisense.js" />

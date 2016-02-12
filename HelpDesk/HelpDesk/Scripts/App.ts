@@ -10,36 +10,25 @@ var context = null;
 var web = null;
 var currentUserId = null;
 
-var listName = "Tickets";
-var listGuid = "4f71156b-0221-45e8-8166-7ccca783813f";
+var listIdNewClaims = "416125a4-154d-48ef-8403-d0e448c221ec";
+var listIdAcceptedClaims = "96b8b010-bc84-42d4-a6b7-c2d584e4b87f";
+var listIdResolvedClaims = "ba62ba90-6c45-44dd-b236-2b2e37d01fbe";
+
 var itemType: string;
 
 var appWebUrl: string, hostWebUrl: string;
 
-//владельцы
-var bossGroupId = 5;
-//участники
-var supportGroupId = 7;
-//посетители
-var guestGroupId = 6;
-
 $(document).ready(() => {
 
-    itemType = getItemTypeForListName(listName);
     hostWebUrl = decodeURIComponent(getQueryStringParameter("SPHostUrl"));
+    console.log(hostWebUrl + " hostWebUrl");
     appWebUrl = decodeURIComponent(getQueryStringParameter("SPAppWebUrl"));
+    console.log(appWebUrl + " appWebUrl");
     var scriptbase = hostWebUrl + "/_layouts/15/";
-
+    console.log(scriptbase);
     SP.SOD.registerSod("sp.requestExecutor.js", "/_layout/15/sp.requestExecutor.js");
-    SP.SOD.executeFunc("sp.requestExecutor.js", "SP.RequestExecutor", () => {
-        $.getScript(scriptbase + "SP.RequestExecutor.js",
-            () => {
-                $.getScript(scriptbase + "SP.js",
-                    () => { $.getScript(scriptbase + "SP.RequestExecutor.js") }
-                );
-            }
-        );
-    });
+    console.log("after registerSod");
+    $.getScript(scriptbase + "SP.RequestExecutor.js");
 
     context = SP.ClientContext.get_current();
     web = context.get_web();
@@ -49,7 +38,6 @@ $(document).ready(() => {
         $("#supportForm").show();
     });
 
-   // moment.locale(window.navigator.userLanguage || window.navigator.language);
     getCurrentUser(context, user => {
         currentUserId = user.get_id();
     });
@@ -68,22 +56,51 @@ $(document).ready(() => {
     }); 
 
     $("#sendTicket").click(() => {
-        if (!$('#dialogform').valid()) return;
+        //if (!$('#dialogform').valid()) return;
         if ((<HTMLInputElement>$('#getFile').get(0)).files.length === 0) {
              addItem(null);    
         } else {
             uploadFileaddItem();
         }
     });
+
+    SP.SOD.executeOrDelayUntilScriptLoaded(() => {
+        showTable(listIdNewClaims, "#panelSendClaims", "#tableSendClaims");
+        showTable(listIdAcceptedClaims, "", "");
+        showTable(listIdResolvedClaims, "", "");
+    }, 'SP.RequestExecutor.js');
 });
 
 
-function addItem(itemIDlkf) {
-    var dt = new Date();
+function showTable(listId, panelId, tableId) {
+    var executor = new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl);
+
+    executor.executeAsync({
+        url: appWebUrl + "/_api/SP.AppContextSite(@target)/web/lists(guid'" + listId + "')/items?$select=Author0/Title,Date,Discription,Time &$expand=Author0&$filter=Author0/Id eq 1&@target='http://devsp/support' ",
+        method: "GET",
+        headers: { "Accept": "application/json; odata=verbose" },
+        success(data) {
+            var jsonObject = JSON.parse(data.body.toString());
+            if (jsonObject.d.results.length > 0) { $(panelId).show(); }
+            for (var i = 0; i < jsonObject.d.results.length; i++) {
+                var result = jsonObject.d.results[i];
+                $(tableId).append("<tr><td>" + i + "</td><td>" + result.Date + "</td><td>" + result.Time + "</td><td>" + result.Discription + "</td></tr>");
+            }
+            console.log(jsonObject);
+        },
+        error: onError
+    });
+}
+
+
+function addItem(fileId) {
+   var executor = new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl);
+  
+   var dt = new Date();
     var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
     var item = {
         "__metadata": {
-            "type": itemType,
+            "type": "SP.Data.ListListItem",
             "Discription": "",
             "urgently": "",
             "category": "",
@@ -96,31 +113,37 @@ function addItem(itemIDlkf) {
         "urgently": $("#urgentlyValue").val(),
         "category": $("#category").val(),
         "Data": moment().format("LLL"),
-        "Time": time,//moment().format("h:mm"),
+        "Time": time, //moment().format("h:mm"),
         "kkId": currentUserId,
-        "attachfileId": itemIDlkf
+        "attachfileId": fileId
     };
 
-    $.ajax({
-        url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists(guid'" + listGuid + "')/items",
-        type: "POST",
-        contentType: "application/json;odata=verbose",
-        data: JSON.stringify(item),
-        headers: {
-            "Accept": "application/json;odata=verbose",
-            "X-RequestDigest": $("#__REQUESTDIGEST").val()
-        },
-        success(sender, args) {
-            $("#modalDialog").dialog(
-            {
-                title: "Сообщение успешно отправлено",
-                modal: true,
-                resizable: false,
-                width:400
-            });
-        },
-        error: onError
-    });
+    var url = appWebUrl +
+        "/_api/SP.AppContextSite(@target)/web/lists(guid'" + listIdNewClaims + "')/items?@target='" +
+        "http://devsp/support" + "'";
+ 
+    executor.executeAsync(
+        {
+            url: url,
+            method: "POST",
+            body: JSON.stringify(item),
+            headers: {
+                "accept": "application/json;odata=verbose",
+                "content-type": "application/json;odata=verbose",
+                "X-RequestDigest": jQuery("#__REQUESTDIGEST").val()
+            },
+            success() {
+                $("#modalDialog").dialog(
+                {
+                    title: "Сообщение успешно отправлено",
+                    modal: true,
+                    resizable: false,
+                    width: 400
+                });
+            },
+            error: onError
+        }
+    );
 }
 
 // Display error messages. 

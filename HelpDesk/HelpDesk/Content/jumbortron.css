@@ -1,0 +1,24 @@
+
+.navbar-collapse {
+	padding-top: 45px;
+}
+.artbut { border: 1px solid #7E7E7E;
+	padding: 3px 15px;
+	border-radius:30px !important;
+	background-image: -webkit-linear-gradient(270deg,rgba(233,233,233,1.00) 0%,rgba(159,159,159,1.00) 100%);
+	background-image: -moz-linear-gradient(270deg,rgba(233,233,233,1.00) 0%,rgba(159,159,159,1.00) 100%);
+	background-image: -o-linear-gradient(270deg,rgba(233,233,233,1.00) 0%,rgba(159,159,159,1.00) 100%);
+	background-image: linear-gradient(180deg,rgba(233,233,233,1.00) 0%,rgba(159,159,159,1.00) 100%);
+	color: #444 !important;
+	text-shadow:#ebebeb 1px 1px 0px;
+	font-size: 16px;
+	width:auto; text-align:center; margin:0 10px;
+}
+
+.artbg { background: url(../Images/background.jpg) #EDEDED; background-position:center; background-size:cover; height:300px;}
+
+.bootstrap-scope .navbar.over
+{
+	position:relative;
+}
+
