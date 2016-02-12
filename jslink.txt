@@ -25,7 +25,7 @@ $( document ).ready(function() {
 <script type="text/javascript" src="/Style%20Library/corelibs/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="/Style%20Library/corelibs/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/Style%20Library/corelibs/jquery.validate.min.js"></script>
-<script type="text/javascript" src="/Style%20Library/corelibs/jquery.SPServices-0.7.1a.min.js"></script>
+<script type="text/javascript" src="/Style%20Library/corelibs/jquery.SPServices-2014.02.min"></script>
 <script type="text/javascript" src="/Style%20Library/corelibs/jquery.SPWidgets.min.js"></script>
 <script type="text/javascript" src="/Style%20Library/corelibs/getCurrentUser.js"></script>
 <script type="text/javascript" src="/Style%20Library/corelibs/IsCurrentUserMemberOfGroup.js"></script>
@@ -34,3 +34,6 @@ $( document ).ready(function() {
 <script type="text/javascript" src="/Style%20Library/corelibs/moment-with-locales.min.js"></script>
 <script type="text/javascript" src="/Style%20Library/corelibs/query.js"></script>
 <script type="text/javascript" src="/Style%20Library/corelibs/utils.js"></script> -->
+
+example:
+<script type="text/javascript">RegisterSod("browserScript", "\u002f_layouts\u002f15\u002fie55up.debug.js?rev=PQu1JhKbcKfdj9SljFHb9w\u00253D\u00253D");RegisterSodDep("browserScript", "strings.js");</script>
