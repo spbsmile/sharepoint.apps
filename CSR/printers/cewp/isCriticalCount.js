@@ -1,6 +1,7 @@
 /**
  * Created by M_Zabiyakin on 04.02.2016.
  */
+
 function IsCriticalCount(cartrigeName, cartrigeCount) {
     switch (cartrigeName) {
         case "TK-1140":
