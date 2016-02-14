@@ -121,7 +121,7 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Отправленные Заявки</h3>
                             </div>
-                            <table class="table table-hover" >
+                            <table id="tableSend" class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -147,7 +147,7 @@
                     <div class="col-md-6" style="padding-left: 5px; padding-top: 44px;">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Заявки на рассмотрении</h3>
+                                <h3 class="panel-title">Заявки На Рассмотрении</h3>
                             </div>
                             <table class="table table-hover" >
                                 <thead>

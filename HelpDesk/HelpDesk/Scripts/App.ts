@@ -65,9 +65,9 @@ $(document).ready(() => {
     });
 
     SP.SOD.executeOrDelayUntilScriptLoaded(() => {
-        showTable(listIdNewClaims, "#panelSendClaims", "#tableSendClaims");
-        showTable(listIdAcceptedClaims, "", "");
-        showTable(listIdResolvedClaims, "", "");
+        showTable(listIdNewClaims, "#panelSendClaims", "#tbodySendClaims");
+        showTable(listIdAcceptedClaims, "#panelAcceptedClaims", "#tbodyAcceptedClaims");
+        showTable(listIdResolvedClaims, "#panelResolvedClaims", "#tbodyResolvedClaims");
     }, 'SP.RequestExecutor.js');
 });
 
@@ -76,15 +76,18 @@ function showTable(listId, panelId, tableId) {
     var executor = new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl);
 
     executor.executeAsync({
-        url: appWebUrl + "/_api/SP.AppContextSite(@target)/web/lists(guid'" + listId + "')/items?$select=Author0/Title,Date,Discription,Time &$expand=Author0&$filter=Author0/Id eq 1&@target='http://devsp/support' ",
+        url: appWebUrl + "/_api/SP.AppContextSite(@target)/web/lists(guid'" + listId + "')/items?$select=Author0/Title,Date,Discription,Time,category,urgently &$expand=Author0&$filter=Author0/Id eq 1&@target='http://devsp/support' ",
         method: "GET",
         headers: { "Accept": "application/json; odata=verbose" },
         success(data) {
             var jsonObject = JSON.parse(data.body.toString());
-            if (jsonObject.d.results.length > 0) { $(panelId).show(); }
-            for (var i = 0; i < jsonObject.d.results.length; i++) {
-                var result = jsonObject.d.results[i];
-                $(tableId).append("<tr><td>" + i + "</td><td>" + result.Date + "</td><td>" + result.Time + "</td><td>" + result.Discription + "</td></tr>");
+            var results = jsonObject.d.results; 
+            if (results.length > 0) { $(panelId).show(); }
+            for (var i = 0; i < results.length; i++) {
+                var result = results[i];
+                //todo added: urgently , category
+                var index = i + 1;
+                $(tableId).append("<tr><td>" + index + "</td><td>" + result.Date + "</td><td>" + result.Time + "</td><td>" + result.Discription + "</td><td>" + result.urgently + "</td><td>" + result.category + "</td></tr>");
             }
             console.log(jsonObject);
         },
@@ -133,6 +136,7 @@ function addItem(fileId) {
                 "X-RequestDigest": jQuery("#__REQUESTDIGEST").val()
             },
             success() {
+                $("#tableSend tbody").prepend("<tr><td>" + "0" + "</td><td>" + moment().format("LLL") + "</td><td>" + time + "</td><td>" + $("#discription").val() + "</td><td>" + $("#urgentlyValue").val() + "</td><td>" + $("#category").val() + "</td></tr>");
                 $("#modalDialog").dialog(
                 {
                     title: "Сообщение успешно отправлено",
