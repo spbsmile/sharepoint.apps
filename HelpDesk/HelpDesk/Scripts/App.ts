@@ -69,6 +69,14 @@ $(document).ready(() => {
         showTable(listIdAcceptedClaims, "#panelAcceptedClaims", "#tbodyAcceptedClaims");
         showTable(listIdResolvedClaims, "#panelResolvedClaims", "#tbodyResolvedClaims");
     }, 'SP.RequestExecutor.js');
+    
+     SP.SOD.executeOrDelayUntilScriptLoaded(() => {
+         moment.locale(window.navigator.userLanguage || window.navigator.language);
+         //todo add moment time zone lib
+         //moment().tz("Europe/Moscow").format();
+        
+    }, 'moment.js');
+      
 });
 
 
@@ -98,7 +106,7 @@ function showTable(listId, panelId, tableId) {
 
 function addItem(fileId) {
    var executor = new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl);
-  
+   //todo deleted new Date();
    var dt = new Date();
     var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
     var item = {

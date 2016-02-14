@@ -16,6 +16,7 @@
 
      <script type="text/javascript" src="../Scripts/moment.min.js"></script>
     <script type="text/javascript" src="../Scripts/moment-with-locales.js"></script>
+    <script type="text/javascript" src="../Scripts/moment-timezone.min.js"></script>
     <link rel="Stylesheet" type="text/css" href="../Content/bootstrap-scope.min.css" />
     <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
 

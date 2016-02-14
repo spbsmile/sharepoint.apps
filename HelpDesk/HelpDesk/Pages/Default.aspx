@@ -8,6 +8,7 @@
     <script type="text/javascript" src="../Scripts/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../Scripts/moment.min.js"></script>
     <script type="text/javascript" src="../Scripts/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="../Scripts/moment-timezone.min.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.validate.min.js"></script>
     <script type="text/javascript" src="../Scripts/IsCurrentUserMemberOfGroup.js"></script>
     <script type="text/javascript" src="../Scripts/getCurrentUser.js"></script>

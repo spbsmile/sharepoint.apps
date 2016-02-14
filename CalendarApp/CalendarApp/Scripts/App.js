@@ -4,6 +4,8 @@ ExecuteOrDelayUntilScriptLoaded(initializePage, "sp.js");
 
 function initializePage() {
     $(document).ready(function () {
+        //todo add moment time zone lib
+        //moment().tz("Europe/Moscow").format();
         moment.locale(window.navigator.userLanguage || window.navigator.language);
         displayTime();
     });
