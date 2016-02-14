@@ -40,14 +40,11 @@
             src="http://server-sp-it/sites/wiki/Style%20Library/Printers/cewp/addPrinter.js"></script>
     <script type="text/javascript"
             src="http://server-sp-it/sites/wiki/Style%20Library/Printers/cewp/addCartridge.js"></script>
+     <script type="text/javascript"
+            src="http://server-sp-it/sites/wiki/Style%20Library/Printers/cewp/getStatistics.js"></script>
+    
     <script>
 
-        var listId = "629c7c86-dd24-4337-b01a-48a6da811cc5";
-        var siteUrl = "http://server-sp-it/sites/wiki";
-        var catridgeFieldName = "_x041a__x0430__x0440__x0442__x04";
-        var catridgeCountFieldName = "_x041a__x043e__x043b__x0438__x04";
-        var actionFieldName = "Action";
-        var editingGroupId = 41;
         var listType;
 
         $(document).ready(function () {
@@ -56,6 +53,7 @@
                 IsCurrentUserMemberOfGroup(editingGroupId, function (isCurrentUserInGroup) {
                     if (isCurrentUserInGroup) {
                         console.log("isCurrentUserInGroup");
+                        //todo rename opener2
                         $("#opener2").show();
                     }
                 });
@@ -63,15 +61,7 @@
 
             ExecuteOrDelayUntilScriptLoaded(IsCurrentUserWithContributePerms, 'SP.js');
 
-            $("#dialogstatistics").dialog({
-                resizable: false,
-                modal: true,
-                autoOpen: false
-            });
-
-            $("#openstatistics").click(function () {
-                $("#dialogstatistics").dialog("open");
-            });
+            
         });
     </script>
 </head>
@@ -104,7 +94,7 @@
         </div>
         <br>
         <div id="noColorCartridgeGrid">
-            <div> <label> Новый картридж:</label>   <input id=" inputNewNoColorCartridge"></div>
+            <div> <label> Новый картридж:</label>   <input id="inputNewNoColorCartridge"></div>
             <br>
             <form >
                 <div><label>Или выбрать из имеющихся:</label>
@@ -118,10 +108,28 @@
 </div>
 
 <div id="dialogstatistics" title="Общая статистика картриджей">
-    <div id="contentstatistics"></div>
+    <div id="contentstatistics">
+        <label>Альфа версия, возможны ошибки</label>
+        <label>Статистика по картриджам за месяц с сегодняшнего дня</label>
+        <table>
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Выдано</th>
+                    <th>Полученно</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyStatistiscMonth">
+
+            </tbody>
+        </table>
+
+
+    </div>
 </div>
 
 <div>
+    //todo rename opener2
     <input class="innerbutton" type="button" value="Добавить " id="opener2" hidden="true">
     <input class="inner " type="button" value="Общая статистика по картриджам" id="openstatistics">
     <input class="inner" type="button" value="Добавить принтер" id="opendialogaddprinter">
