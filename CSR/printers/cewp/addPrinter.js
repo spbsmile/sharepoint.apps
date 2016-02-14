@@ -114,26 +114,32 @@ $(document).ready(function () {
     });
 
     function addPrinterToList() {
-
-        //todo check on validate
-        //todo loop for cartridges. more them 4
-        var colors = ["Blue", "red", "Yellow", "Black"];
-        var cartridges = [$('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 0),
-            $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 1),
-            $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 2),
-            $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 3)];
-
+        //todo temp id '#printerIsColor'
+        var isColor = false;    
+      
         var data = [];
         data.namePrinter = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Name', 0);
         data.filial = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Filial', 0);
         data.ip = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Ip', 0);
         data.room = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Room', 0);
 
-        var index = 0;
-        addValuesToFieldChoiceRecursion(cartridges, index, cartridges.length, function () {
-            var index = 0;
-            addPrintersRecursion(settings().listId, data, colors, cartridges, index, cartridges.length);
-        });
+        if(isColor){
+            //todo check on validate
+            //todo loop for cartridges. more them 4
+            var colors = ["Blue", "red", "Yellow", "Black"];
+            
+            var cartridges = [$('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 0),
+            $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 1),
+            $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 2),
+            $('#tblCartridgeAppendGrid').appendGrid('getCtrlValue', 'Name', 3)];
+           
+            addValuesToFieldChoiceRecursion(cartridges, 0, cartridges.length, function () {
+                 addPrintersRecursion(settings().listId, data, colors, cartridges,  0, cartridges.length);
+             });    
+        }else{
+              //todo id 
+              addPrintersRecursion(settings().listId, data, ["Black"], [$("#inputNewNoColorCartridge").val()], 0, 1); 
+        }
     }
 
     $(function () {
@@ -218,7 +224,7 @@ $(document).ready(function () {
         }, onQueryFailed);
     }
 
-    function addPrintersRecursion(listId, data, colors, cartridges, index, length) {
+    function addPrintersRecursion(listId, data, colors, cartridges, index, lengthRecursion) {
 		console.log(data.namePrinter);
         $.ajax({
             url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists(guid'" + listId + "')/items",
@@ -232,9 +238,9 @@ $(document).ready(function () {
             success: function (sender, args) {
                 index = ++index;
 
-                if (index < length) {
+                if (index < lengthRecursion) {
                     console.log("success " + index);
-                    addPrintersRecursion(listId, data, colors, cartridges, index, length);
+                    addPrintersRecursion(listId, data, colors, cartridges, index, lengthRecursion);
                 } else {
                     location.reload();
                 }
