@@ -9,6 +9,7 @@
     <script type="text/javascript" src="../Scripts/moment.min.js"></script>
     <script type="text/javascript" src="../Scripts/moment-with-locales.min.js"></script>
     <script type="text/javascript" src="../Scripts/moment-timezone.min.js"></script>
+   <!-- <script type="text/javascript" src="../Scripts/moment-timezone-with-data.min.js"></script> -->
     <script type="text/javascript" src="../Scripts/jquery.validate.min.js"></script>
     <script type="text/javascript" src="../Scripts/IsCurrentUserMemberOfGroup.js"></script>
     <script type="text/javascript" src="../Scripts/getCurrentUser.js"></script>
@@ -188,7 +189,7 @@
                                         <th>Срочность</th>
                                         <th>Категория</th>
                                         <th>Приложенный файл</th>
-                                        <th>Статус</th>
+                                        <th>Действие</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbodyResolvedClaims">

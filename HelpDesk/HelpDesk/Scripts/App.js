@@ -55,17 +55,20 @@ $(document).ready(function () {
             uploadFileaddItem();
         }
     });
+    moment.locale(window.navigator.userLanguage || window.navigator.language);
     SP.SOD.executeOrDelayUntilScriptLoaded(function () {
-        showTable(listIdNewClaims, "#panelSendClaims", "#tbodySendClaims");
+        //todo 400 (Bad Request)
+        showTable(listIdNewClaims, "#panelSendClaims", "#tbodySendClaims", '<input type="button"  value="Отозвать Заявку" >');
         //showTable(listIdAcceptedClaims, "#panelAcceptedClaims", "#tbodyAcceptedClaims");
-        showTable(listIdResolvedClaims, "#panelResolvedClaims", "#tbodyResolvedClaims");
+        showTable(listIdResolvedClaims, "#panelResolvedClaims", "#tbodyResolvedClaims", '<input type="button"  value="Переоткрыть Заявку" >');
     }, 'SP.RequestExecutor.js');
     SP.SOD.executeOrDelayUntilScriptLoaded(function () {
+        console.log("init moment");
         moment.locale(window.navigator.userLanguage || window.navigator.language);
         moment().tz("Europe/Moscow").format();
-    }, 'moment.js');
+    }, "../Scripts/moment.min.js");
 });
-function showTable(listId, panelId, tableId) {
+function showTable(listId, panelId, tableId, buttonHtml) {
     var executor = new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl);
     executor.executeAsync({
         url: appWebUrl + "/_api/SP.AppContextSite(@target)/web/lists(guid'" + listId + "')/items?$select=Author0/Title,Date,Discription,Time &$expand=Author0&$filter=Author0/Id eq 1&@target='http://devsp/support'",
@@ -79,41 +82,39 @@ function showTable(listId, panelId, tableId) {
             }
             for (var i = 0; i < results.length; i++) {
                 var result = results[i];
-                $(tableId).append("<tr><td>" + (i + 1) + "</td><td>" + result.Date + "</td><td>" + result.Time + "</td><td>" + result.Discription + "</td><td>" + result.urgently + "</td><td>" + result.category + "</td></tr>");
+                var rowId = "row" + i;
+                $(tableId).append("<tr id=\"" + rowId + "\"><td>" + (i + 1) + "</td><td>" + result.Date + "</td><td>" + result.Time + "</td><td>" + result.Discription + "</td><td>" + result.urgently + "</td><td>" + result.category + "</td><td>N/A</td><td id=\"buttoncell" + i + listId + "\"></td></tr>");
+                var button = $(buttonHtml);
+                button.click((function (id, r) { return function () {
+                    reopenClaim(id, getItemData(r.urgently, r.category, r.Discription, null, "Переоткрытие Заявки"));
+                }; })(rowId, result));
+                button.appendTo('#buttoncell' + i + listId);
             }
             console.log(jsonObject);
         },
         error: onError
     });
 }
-function addItem(fileId) {
+function reopenClaim(rowId, itemData) {
+    //todo reopen with comment and atach file too
+    var id = "#" + rowId;
+    console.log(id);
+    $(id).remove();
+    addItem(itemData);
+}
+function recallClaim() {
+}
+function removeItem() {
+}
+function addItem(itemData) {
     var executor = new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl);
-    var item = {
-        "__metadata": {
-            "type": "SP.Data.ListListItem",
-            "Discription": "",
-            "urgently": "",
-            "category": "",
-            "Data": "",
-            "Time": "",
-            "kk": "",
-            "AttachFileNew": ""
-        },
-        "Discription": $("#discription").val(),
-        "urgently": $("#urgentlyValue").val(),
-        "category": $("#category").val(),
-        "Data": moment().format("LLL"),
-        "Time": moment().format("h:mm"),
-        "kkId": currentUserId,
-        "AttachFileNewId": fileId
-    };
     var url = appWebUrl +
         "/_api/SP.AppContextSite(@target)/web/lists(guid'" + listIdNewClaims + "')/items?@target='" +
         "http://devsp/support" + "'";
     executor.executeAsync({
         url: url,
         method: "POST",
-        body: JSON.stringify(item),
+        body: JSON.stringify(itemData),
         headers: {
             "accept": "application/json;odata=verbose",
             "content-type": "application/json;odata=verbose",
@@ -131,6 +132,28 @@ function addItem(fileId) {
         },
         error: onError
     });
+}
+function getItemData(urgently, category, discription, fileId, comment) {
+    var item = {
+        "__metadata": {
+            "type": "SP.Data.ListListItem",
+            "Discription": "",
+            "urgently": "",
+            "category": "",
+            "Data": "",
+            "Time": "",
+            "kk": "",
+            "AttachFileNew": ""
+        },
+        "Discription": comment + discription,
+        "urgently": urgently,
+        "category": category,
+        "Data": moment().format("LLL"),
+        "Time": moment().format("h:mm"),
+        "kkId": currentUserId,
+        "AttachFileNewId": fileId
+    };
+    return item;
 }
 // Display error messages. 
 function onError(error) {
@@ -156,7 +179,7 @@ function uploadFileaddItem() {
             //getItem.
             getItem.done(function (listItem, status, xhr) {
                 console.log('file uploaded and updated');
-                addItem(listItem.d.ID);
+                addItem(getItemData($("#urgentlyValue").val(), $("#category").val(), $("#discription").val(), listItem.d.ID, ""));
                 console.log(listItem.d.ID + " id ");
             });
             getItem.fail(onError);
