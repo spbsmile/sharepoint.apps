@@ -84,7 +84,7 @@ function showTable(listId, panelId, tableId) {
     var executor = new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl);
 
     executor.executeAsync({
-        url: appWebUrl + "/_api/SP.AppContextSite(@target)/web/lists(guid'" + listId + "')/items?$select=Author0/Title,Date,Discription,Time &$expand=Author0&$filter=Author0/Id eq 1&@target='http://devsp/support' ",
+        url: appWebUrl + "/_api/SP.AppContextSite(@target)/web/lists(guid'" + listId + "')/items?$select=Author0/Title,Date,Discription,Time &$expand=Author0&$filter=Author0/Id eq 1&@target='http://devsp/support'",
         method: "GET",
         headers: { "Accept": "application/json; odata=verbose" },
         success(data) {
@@ -114,7 +114,7 @@ function addItem(fileId) {
             "Data": "",
             "Time": "",
             "kk": "",
-            "attachfile": ""
+            "AttachFileNew": ""
         },
         "Discription": $("#discription").val(),
         "urgently": $("#urgentlyValue").val(),
@@ -122,7 +122,7 @@ function addItem(fileId) {
         "Data": moment().format("LLL"),
         "Time": moment().format("h:mm"),
         "kkId": currentUserId,
-        "attachfileId": fileId
+        "AttachFileNewId": fileId
     };
 
     var url = appWebUrl +
