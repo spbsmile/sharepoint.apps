@@ -49,17 +49,19 @@ $(document).ready(function () {
     $("#sendTicket").click(function () {
         //if (!$('#dialogform').valid()) return;
         if ($('#getFile').get(0).files.length === 0) {
-            addItem(null);
+            addItem(getItemData($("#urgentlyValue").val(), $("#category").val(), $("#discription").val(), null, ""));
         }
         else {
             uploadFileaddItem();
         }
     });
-    moment.locale(window.navigator.userLanguage || window.navigator.language);
+    //todo bug amd
+    //moment.locale(window.navigator.userLanguage || window.navigator.language);
     SP.SOD.executeOrDelayUntilScriptLoaded(function () {
-        //todo 400 (Bad Request)
-        showTable(listIdNewClaims, "#panelSendClaims", "#tbodySendClaims", '<input type="button"  value="Отозвать Заявку" >');
+        //todo 400 (Bad Request) когда нет элементов ! //bug field Data Date and author kk author0
+        //showTable(listIdNewClaims, "#panelSendClaims", "#tbodySendClaims", '<input type="button"  value="Отозвать Заявку" >');
         //showTable(listIdAcceptedClaims, "#panelAcceptedClaims", "#tbodyAcceptedClaims");
+        //todo хотя тут ошибки не дает
         showTable(listIdResolvedClaims, "#panelResolvedClaims", "#tbodyResolvedClaims", '<input type="button"  value="Переоткрыть Заявку" >');
     }, 'SP.RequestExecutor.js');
     SP.SOD.executeOrDelayUntilScriptLoaded(function () {
@@ -100,6 +102,10 @@ function reopenClaim(rowId, itemData) {
     var id = "#" + rowId;
     console.log(id);
     $(id).remove();
+    //$('#tabId tbody').find('tr').length;
+    /* if ("#tbodyResolvedClaims") {
+         $("#panelResolvedClaims").hide();
+     } */
     addItem(itemData);
 }
 function recallClaim() {
