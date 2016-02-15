@@ -7,8 +7,6 @@
     <File Path="Scripts\moment.js" Url="Scripts/moment.js" ReplaceContent="TRUE" />
     <File Path="Scripts\moment-with-locales.min.js" Url="Scripts/moment-with-locales.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\moment-with-locales.js" Url="Scripts/moment-with-locales.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\moment\moment.d.ts" Url="Scripts/typings/moment/moment.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\moment\moment-node.d.ts" Url="Scripts/typings/moment/moment-node.d.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\sharepoint\SharePoint.d.ts" Url="Scripts/typings/sharepoint/SharePoint.d.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\jquery\jquery.d.ts" Url="Scripts/typings/jquery/jquery.d.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\App.js" Url="Scripts/App.js" ReplaceContent="TRUE" />
@@ -25,5 +23,15 @@
     <File Path="Scripts\IsCurrentUserMemberOfGroup.ts" Url="Scripts/IsCurrentUserMemberOfGroup.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\getCurrentUser.js" Url="Scripts/getCurrentUser.js" ReplaceContent="TRUE" />
     <File Path="Scripts\getCurrentUser.ts" Url="Scripts/getCurrentUser.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-timezone.min.js" Url="Scripts/moment-timezone.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-timezone.js" Url="Scripts/moment-timezone.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-timezone-with-data.min.js" Url="Scripts/moment-timezone-with-data.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-timezone-with-data.js" Url="Scripts/moment-timezone-with-data.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-timezone-with-data-2010-2020.min.js" Url="Scripts/moment-timezone-with-data-2010-2020.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-timezone-with-data-2010-2020.js" Url="Scripts/moment-timezone-with-data-2010-2020.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-timezone-utils.js" Url="Scripts/moment-timezone-utils.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\moment-timezone\moment-timezone.d.ts" Url="Scripts/typings/moment-timezone/moment-timezone.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\moment\moment.d.ts" Url="Scripts/typings/moment/moment.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\moment\moment-node.d.ts" Url="Scripts/typings/moment/moment-node.d.ts" ReplaceContent="TRUE" />
   </Module>
 </Elements>

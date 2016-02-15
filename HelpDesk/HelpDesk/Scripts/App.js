@@ -1,6 +1,9 @@
 ///<reference path="typings/jquery/jquery.d.ts" />
 ///<reference path="typings/sharepoint/SharePoint.d.ts" />
 ///<reference path="typings/moment/moment.d.ts" />
+///<reference path="typings/moment-timezone/moment-timezone.d.ts" />
+///<reference path="IsCurrentUserMemberOfGroup.ts" />
+///<reference path="getCurrentUser.ts" />
 ///<reference path="typings/jqueryui/jqueryui.d.ts" />
 ///<reference path="typings/jquery.validation/jquery.validation.d.ts" />
 "use strict";
@@ -53,10 +56,14 @@ $(document).ready(function () {
         }
     });
     SP.SOD.executeOrDelayUntilScriptLoaded(function () {
-        showTable(listIdNewClaims, "#panelSendClaims", "#tableSendClaims");
-        showTable(listIdAcceptedClaims, "", "");
-        showTable(listIdResolvedClaims, "", "");
+        showTable(listIdNewClaims, "#panelSendClaims", "#tbodySendClaims");
+        //showTable(listIdAcceptedClaims, "#panelAcceptedClaims", "#tbodyAcceptedClaims");
+        showTable(listIdResolvedClaims, "#panelResolvedClaims", "#tbodyResolvedClaims");
     }, 'SP.RequestExecutor.js');
+    SP.SOD.executeOrDelayUntilScriptLoaded(function () {
+        moment.locale(window.navigator.userLanguage || window.navigator.language);
+        moment().tz("Europe/Moscow").format();
+    }, 'moment.js');
 });
 function showTable(listId, panelId, tableId) {
     var executor = new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl);
@@ -66,12 +73,13 @@ function showTable(listId, panelId, tableId) {
         headers: { "Accept": "application/json; odata=verbose" },
         success: function (data) {
             var jsonObject = JSON.parse(data.body.toString());
-            if (jsonObject.d.results.length > 0) {
+            var results = jsonObject.d.results;
+            if (results.length > 0) {
                 $(panelId).show();
             }
-            for (var i = 0; i < jsonObject.d.results.length; i++) {
-                var result = jsonObject.d.results[i];
-                $(tableId).append("<tr><td>" + i + "</td><td>" + result.Date + "</td><td>" + result.Time + "</td><td>" + result.Discription + "</td></tr>");
+            for (var i = 0; i < results.length; i++) {
+                var result = results[i];
+                $(tableId).append("<tr><td>" + (i + 1) + "</td><td>" + result.Date + "</td><td>" + result.Time + "</td><td>" + result.Discription + "</td><td>" + result.urgently + "</td><td>" + result.category + "</td></tr>");
             }
             console.log(jsonObject);
         },
@@ -80,8 +88,6 @@ function showTable(listId, panelId, tableId) {
 }
 function addItem(fileId) {
     var executor = new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl);
-    var dt = new Date();
-    var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
     var item = {
         "__metadata": {
             "type": "SP.Data.ListListItem",
@@ -97,7 +103,7 @@ function addItem(fileId) {
         "urgently": $("#urgentlyValue").val(),
         "category": $("#category").val(),
         "Data": moment().format("LLL"),
-        "Time": time,
+        "Time": moment().format("h:mm"),
         "kkId": currentUserId,
         "attachfileId": fileId
     };
@@ -114,6 +120,8 @@ function addItem(fileId) {
             "X-RequestDigest": jQuery("#__REQUESTDIGEST").val()
         },
         success: function () {
+            $("#panelSendClaims").show();
+            $("#tableSend tbody").prepend("<tr><td>" + "0" + "</td><td>" + moment().format("LLL") + "</td><td>" + moment().format("h:mm") + "</td><td>" + $("#discription").val() + "</td><td>" + $("#urgentlyValue").val() + "</td><td>" + $("#category").val() + "</td></tr>");
             $("#modalDialog").dialog({
                 title: "Сообщение успешно отправлено",
                 modal: true,
@@ -132,7 +140,7 @@ function onError(error) {
 // You can upload files up to 2 GB with the REST API.
 function uploadFileaddItem() {
     // Define the folder path for this example.
-    var serverRelativeUrlToFolder = '/sites/testdev/DocLib/';
+    var serverRelativeUrlToFolder = '/support/DocLib/';
     // Get test values from the file input and text input page controls.
     // The display name must be unique every time you run the example.
     var fileInput = $('#getFile');
