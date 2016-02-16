@@ -24,13 +24,14 @@ var appWebUrl: string, hostWebUrl: string;
 $(document).ready(() => {
 
     hostWebUrl = decodeURIComponent(getQueryStringParameter("SPHostUrl"));
-    console.log(hostWebUrl + " hostWebUrl");
     appWebUrl = decodeURIComponent(getQueryStringParameter("SPAppWebUrl"));
-    console.log(appWebUrl + " appWebUrl");
     var scriptbase = hostWebUrl + "/_layouts/15/";
-    console.log(scriptbase);
     SP.SOD.registerSod("sp.requestExecutor.js", "/_layout/15/sp.requestExecutor.js");
-    console.log("after registerSod");
+    SP.SOD.registerSod("moment.min.js", "../Scripts/moment.min.js");
+    SP.SOD.registerSod("moment-with-locales.min.js", "../Scripts/moment-with-locales.min.js");
+    SP.SOD.registerSod("moment-timezone.min.js", "../Scripts/moment-timezone.min.js");
+    SP.SOD.registerSodDep("moment-with-locales.min.js", "moment.min.js");
+    SP.SOD.registerSodDep("moment-timezone.min.js", "moment-with-locales.min.js");
     $.getScript(scriptbase + "SP.RequestExecutor.js");
 
     context = SP.ClientContext.get_current();
@@ -67,23 +68,20 @@ $(document).ready(() => {
             uploadFileaddItem();
         }
     });
-    //todo bug amd
-    //moment.locale(window.navigator.userLanguage || window.navigator.language);
 
     SP.SOD.executeOrDelayUntilScriptLoaded(() => {
         //todo 400 (Bad Request) когда нет элементов ! //bug field Data Date and author kk author0
         //showTable(listIdNewClaims, "#panelSendClaims", "#tbodySendClaims", '<input type="button"  value="Отозвать Заявку" >');
         //showTable(listIdAcceptedClaims, "#panelAcceptedClaims", "#tbodyAcceptedClaims");
-        //todo хотя тут ошибки не дает
         showTable(listIdResolvedClaims, "#panelResolvedClaims", "#tbodyResolvedClaims", '<input type="button"  value="Переоткрыть Заявку" >');
-      
-    }, 'SP.RequestExecutor.js');
-    
-    SP.SOD.executeOrDelayUntilScriptLoaded(() => {
-         console.log("init moment");
-         moment.locale(window.navigator.userLanguage || window.navigator.language);
-         moment().tz("Europe/Moscow").format();
-    }, "../Scripts/moment.min.js");
+    }, "SP.RequestExecutor.js");
+
+    SP.SOD.loadMultiple(["moment.min.js", "moment-with-locales.min.js", "moment-timezone.min.js"],
+        () => { 
+            moment.tz.add("Europe/Moscow|MSK MSD MSK|-30 -40 -40|01020|1BWn0 1qM0 WM0 8Hz0|16e6");
+            moment.locale(window.navigator.userLanguage || window.navigator.language);
+            console.log(moment().format("LLL"));
+        });
 });
 
 

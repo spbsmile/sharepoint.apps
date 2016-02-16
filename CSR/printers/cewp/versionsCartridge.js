@@ -12,7 +12,7 @@ function clickVersionButton(itemID, cartrigeName) {
         jQuery("#modalWindow" + itemID).append('<div id ="dialogText' + itemID + '\";</div>');
     }
     jQuery("#dialogText" + itemID).append('<table border="1"> <caption>История изменений:</caption> <thead><tr><th>Дата</th><th>Действие</th><th>Количество</th><th>Кто выдал</th><th>Комментарий</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
-    moment.locale(window.navigator.userLanguage || window.navigator.language);
+    
     RecordVersionCollection(cartridgeCountStorage, itemID, settings().catridgeCountFieldName);
     RecordVersionCollection(actionStorage, itemID, settings().actionFieldName);
     RecordVersionCollection(whogiveStorage, itemID, settings().whogiveFieldName);

@@ -15,6 +15,8 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
   }
 
   function init() {
+    
+    InitMoment();
 
     SPClientTemplates.TemplateManager.RegisterTemplateOverrides({
       
@@ -39,7 +41,10 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
                     },
                     "IP_x002d__x0430__x0434__x0440__x": {
                         View: renderFilialP,
-                    }
+                    },
+                  "URL":{
+                    View: renderFilialP,
+                  }
                 },
             },
             OnPostRender: function (ctx) {
@@ -66,7 +71,25 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
                 currentUserId = user.get_id();
             });
         }
+    	
     }
+  
+  function InitMoment()
+  {
+    	console.log("Init moment");
+    	SP.SOD.registerSod("moment.min.js", "http://server-sp-it/sites/wiki/Style%20Library/corelibs/moment.min.js");
+    	SP.SOD.registerSod("moment-with-locales.min.js", "http://server-sp-it/sites/wiki/Style%20Library/corelibs/moment-with-locales.min.js");
+    	SP.SOD.registerSod("moment-timezone.min.js", "http://server-sp-it/sites/wiki/Style%20Library/corelibs/moment-timezone.min.js");
+        SP.SOD.registerSodDep("moment-with-locales.min.js", "moment.min.js");
+        SP.SOD.registerSodDep("moment-timezone.min.js", "moment-with-locales.min.js");
+    	
+     SP.SOD.loadMultiple(["moment.min.js", "moment-with-locales.min.js", "moment-timezone.min.js"],
+        () => { 
+            moment.tz.add("Europe/Moscow|MSK MSD MSK|-30 -40 -40|01020|1BWn0 1qM0 WM0 8Hz0|16e6");
+            moment.locale(window.navigator.userLanguage || window.navigator.language);
+        });
+    
+  }
 
   RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~siteCollection/Style Library/OfficeDevices/printersDefault.js"), init);
   init();
@@ -87,7 +110,7 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
 
     function renderCartrigeField(ctx) {
         if (ctx.CurrentItem["IsColor"] === "Да") {
-            return ctx.CurrentItem[settings().catridgeFieldName] + '&nbsp;<img src="http://server-sp-it/sites/wiki/Style%20Library/printers/img_colors/cartridge_' + ctx.CurrentItem["Color"] + '\.png" alt="Confidential Document" title="Confidential Document"/>';
+            return ctx.CurrentItem[settings().catridgeFieldName] + '&nbsp;<img src="http://server-sp-it/sites/wiki/Style%20Library/printers/img_colors/cartridge_' + ctx.CurrentItem["Color"] + '\.png" alt="Цвет Картриджа" title="Цвет Картриджа"/>';
         }
         return ctx.CurrentItem[settings().catridgeFieldName];
     }
@@ -115,5 +138,6 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
     }
 
 });
- 
+
+
 

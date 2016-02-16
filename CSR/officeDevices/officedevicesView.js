@@ -11,6 +11,9 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
     }
 
     function init() {
+      
+      	InitMoment();
+      
         SPClientTemplates.TemplateManager.RegisterTemplateOverrides({
 
             OnPreRender: InitValueScripts,
@@ -40,6 +43,23 @@ SP.SOD.executeFunc("clienttemplates.js", "SPClientTemplates", function() {
             });
         }
     }
+  
+  function InitMoment()
+  {
+    	console.log("Init moment");
+    	SP.SOD.registerSod("moment.min.js", "http://server-sp-it/sites/wiki/Style%20Library/corelibs/moment.min.js");
+    	SP.SOD.registerSod("moment-with-locales.min.js", "http://server-sp-it/sites/wiki/Style%20Library/corelibs/moment-with-locales.min.js");
+    	SP.SOD.registerSod("moment-timezone.min.js", "http://server-sp-it/sites/wiki/Style%20Library/corelibs/moment-timezone.min.js");
+        SP.SOD.registerSodDep("moment-with-locales.min.js", "moment.min.js");
+        SP.SOD.registerSodDep("moment-timezone.min.js", "moment-with-locales.min.js");
+    	
+     SP.SOD.loadMultiple(["moment.min.js", "moment-with-locales.min.js", "moment-timezone.min.js"],
+        () => { 
+            moment.tz.add("Europe/Moscow|MSK MSD MSK|-30 -40 -40|01020|1BWn0 1qM0 WM0 8Hz0|16e6");
+            moment.locale(window.navigator.userLanguage || window.navigator.language);
+        });
+    
+  }
 
     function renderGetOut(ctx) {
         var html = "";
@@ -78,7 +98,6 @@ function clickViewHistory(itemID, itemName) {
         $("#mdViewHistory" + itemID).append('<div id ="dialogTextHistory' + itemID + '\";</div>');
     }
     jQuery("#dialogTextHistory" + itemID).append('<table border="1"> <thead><tr><th>Дата</th><th>Получатели</th><th>Количество выданных</th><th>ИТ сотрудник</th><th>Комментарий</th><th>На складе</th><th>Действие</th></tr></thead> <tbody id="table' + itemID + '\"></tbody></table>');
-    moment.locale(window.navigator.userLanguage || window.navigator.language);
     RecordVersionCollection(getOutFeildsStorage, itemID, settings().getoutFieldName);
     RecordVersionCollection(resievedFeildsStorage, itemID, settings().reseivedFieldName);
     RecordVersionCollection(whogiveStorage, itemID, settings().whogiveFieldName);
