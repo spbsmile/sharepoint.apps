@@ -57,10 +57,8 @@ $(document).ready(function () {
         }
     });
     SP.SOD.executeOrDelayUntilScriptLoaded(function () {
-        //todo 400 (Bad Request) когда нет элементов ! //bug field Data Date and author kk author0
-        //showTable(listIdNewClaims, "#panelSendClaims", "#tbodySendClaims", '<input type="button"  value="Отозвать Заявку" >');
-        //showTable(listIdAcceptedClaims, "#panelAcceptedClaims", "#tbodyAcceptedClaims");
-        showTable(listIdResolvedClaims, "#panelResolvedClaims", "#tbodyResolvedClaims", '<input type="button"  value="Переоткрыть Заявку" >');
+        showTable(listIdNewClaims, "#panelSendClaims", "#tbodySendClaims", '<input type="button"  value="Отозвать Заявку" >', true, "kk", '/Title,Discription,Time');
+        showTable(listIdResolvedClaims, "#panelResolvedClaims", "#tbodyResolvedClaims", '<input type="button"  value="Переоткрыть Заявку" >', false, "Author0", "/Title,Date,Discription,Time");
     }, "SP.RequestExecutor.js");
     SP.SOD.loadMultiple(["moment.min.js", "moment-with-locales.min.js", "moment-timezone.min.js"], function () {
         moment.tz.add("Europe/Moscow|MSK MSD MSK|-30 -40 -40|01020|1BWn0 1qM0 WM0 8Hz0|16e6");
@@ -68,10 +66,10 @@ $(document).ready(function () {
         console.log(moment().format("LLL"));
     });
 });
-function showTable(listId, panelId, tableId, buttonHtml) {
+function showTable(listId, panelId, tableId, buttonHtml, isTableNewClaims, fieldAuthor, fields) {
     var executor = new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl);
     executor.executeAsync({
-        url: appWebUrl + "/_api/SP.AppContextSite(@target)/web/lists(guid'" + listId + "')/items?$select=Author0/Title,Date,Discription,Time &$expand=Author0&$filter=Author0/Id eq 1&@target='http://devsp/support'",
+        url: appWebUrl + "/_api/SP.AppContextSite(@target)/web/lists(guid'" + listId + "')/items?$select=" + fieldAuthor + fields + "&$expand=" + fieldAuthor + "&$filter=" + fieldAuthor + "/Id eq 1&@target='http://devsp/support'",
         method: "GET",
         headers: { "Accept": "application/json; odata=verbose" },
         success: function (data) {
@@ -86,7 +84,12 @@ function showTable(listId, panelId, tableId, buttonHtml) {
                 $(tableId).append("<tr id=\"" + rowId + "\"><td>" + (i + 1) + "</td><td>" + result.Date + "</td><td>" + result.Time + "</td><td>" + result.Discription + "</td><td>" + result.urgently + "</td><td>" + result.category + "</td><td>N/A</td><td id=\"buttoncell" + i + listId + "\"></td></tr>");
                 var button = $(buttonHtml);
                 button.click((function (id, r) { return function () {
-                    reopenClaim(id, getItemData(r.urgently, r.category, r.Discription, null, "Переоткрытие Заявки"));
+                    if (isTableNewClaims) {
+                        recallClaim();
+                    }
+                    else {
+                        reopenClaim(id, getItemData(r.urgently, r.category, r.Discription, null, "Переоткрытие Заявки"));
+                    }
                 }; })(rowId, result));
                 button.appendTo('#buttoncell' + i + listId);
             }
