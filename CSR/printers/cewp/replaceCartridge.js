@@ -28,18 +28,14 @@ function clickReplaceButton(itemID, cartridgesName, cartridgesCount, isColor) {
                             clientContext.load(collListItems);
 
                             clientContext.executeQueryAsync(function () {
-                                    var enumerator = collListItems.getEnumerator();
+                                    var enumerator = collListItems.getEnumerator(); 
                                     while (enumerator.moveNext()) {
                                         var item = enumerator.get_current();
 
-                                        if (isColor && item.get_item("IsColor") === "Нет") {
+                                        if (isColor && item.get_item("IsColor") === "Нет" || !isColor && item.get_item("IsColor") === "Да") {
                                             continue;
                                         }
-                                        if (!isColor && item.get_item("IsColor") === "Да") {
-                                            continue;
-                                        }
-
-
+                                        
                                         item.set_item(settings().catridgeCountFieldName, cartridgesCount - 1);
                                         item.set_item(settings().actionFieldName, "Замена");
                                         var addtext = $("#users").val() === "" ? "" : "Выдан: " + $("#users").val();

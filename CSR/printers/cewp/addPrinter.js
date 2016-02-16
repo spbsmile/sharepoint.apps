@@ -14,6 +14,24 @@ $(document).ready(function () {
         }],
         autoOpen: false
     });
+  
+  	//init
+     $(function () {
+        addToSelectAllCartriges("#selectNoColorCartridge", false);
+        $('#tblCartridgeAppendGrid').hide();
+        $('#printerIsColor').change(function () {
+            if ($('#printerIsColor').val() == 'Да') {
+                $('#tblCartridgeAppendGrid').show();
+                $('#noColorCartridgeGrid').hide();
+                //addToSelectAllCartriges();
+                //addToSelectAllCartriges();
+                //addToSelectAllCartriges();
+            } else {
+                $('#tblCartridgeAppendGrid').hide();
+                $('#noColorCartridgeGrid').show();
+            }
+        });
+    });
 
     $("#opendialogaddprinter").click(function () {
 
@@ -24,11 +42,11 @@ $(document).ready(function () {
                 {
                     name: 'Filial',
                     display: 'Филиал',
-                    type: 'text',
+                    type: 'select',
                     ctrlCss: {
                         width: '160px'
-                    }
-
+                    },
+                    ctrlOptions: 'Железноводская;Липовая;Уральская'
                 },
                 {
                     name: 'Name',
@@ -114,16 +132,16 @@ $(document).ready(function () {
     });
 
     function addPrinterToList() {
-        //todo temp id '#printerIsColor'
-        var isColor = false;    
       
-        var data = [];
+      	var isColor = $("#printerIsColor option:selected").text();
+       
+     	var data = [];
         data.namePrinter = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Name', 0);
         data.filial = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Filial', 0);
         data.ip = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Ip', 0);
         data.room = $('#tblPrinterAppendGrid').appendGrid('getCtrlValue', 'Room', 0);
 
-        if(isColor){
+        if(isColor === "Да"){
             //todo check on validate
             //todo loop for cartridges. more them 4
             var colors = ["Blue", "red", "Yellow", "Black"];
@@ -142,25 +160,10 @@ $(document).ready(function () {
         }
     }
 
-    $(function () {
-        addToSelectAllCartriges("#selectNoColorCartridge");
-        $('#tblCartridgeAppendGrid').hide();
-        $('#printerIsColor').change(function () {
-            if ($('#printerIsColor').val() == 'Да') {
-                $('#tblCartridgeAppendGrid').show();
-                $('#noColorCartridgeGrid').hide();
-                //addToSelectAllCartriges();
-                //addToSelectAllCartriges();
-                //addToSelectAllCartriges();
-            } else {
-                $('#tblCartridgeAppendGrid').hide();
-                $('#noColorCartridgeGrid').show();
-            }
-        });
-    });
+ 
   
   // files:this, addcartridge. equal methods  
-  	function addToSelectAllCartriges(idSelector) {
+  	function addToSelectAllCartriges(idSelector, isColor) {
         $.ajax({
             url: settings().siteUrl + "/_api/web/lists(guid'" + settings().listId + "')/items",
             method: "GET",
@@ -170,6 +173,9 @@ $(document).ready(function () {
                 var cartridgesData = [];
                 var cartridgeInternalField = "OData__x041a__x0430__x0440__x0442__x04";
                 for (var i = 0; i < items.length; i++) {
+                    if(!isColor && items[i]["IsColor"] || isColor && !items[i]["IsColor"]){  
+                                 continue;
+                    }   
                     if ($.inArray(items[i][cartridgeInternalField], cartridgesData) === -1 && items[i][cartridgeInternalField] != null) {
                         cartridgesData.push(items[i][cartridgeInternalField]);
                     }
@@ -224,7 +230,7 @@ $(document).ready(function () {
         }, onQueryFailed);
     }
 
-    function addPrintersRecursion(listId, data, colors, cartridges, index, lengthRecursion) {
+    function addPrintersRecursion(listId, data, colors, cartridges, index, length) {
 		console.log(data.namePrinter);
         $.ajax({
             url: _spPageContextInfo.siteAbsoluteUrl + "/_api/web/lists(guid'" + listId + "')/items",
@@ -238,9 +244,9 @@ $(document).ready(function () {
             success: function (sender, args) {
                 index = ++index;
 
-                if (index < lengthRecursion) {
+                if (index < length) {
                     console.log("success " + index);
-                    addPrintersRecursion(listId, data, colors, cartridges, index, lengthRecursion);
+                    addPrintersRecursion(listId, data, colors, cartridges, index, length);
                 } else {
                     location.reload();
                 }
@@ -268,14 +274,5 @@ $(document).ready(function () {
            // "_x041a__x043e__x043c__x043d__x04": room
         };
         return itemData;
-    }
-
-    // Display error messages.
-    function onError(error) {
-        console.log(error.responseText);
-    }
-
-    function onQueryFailed(sender, args) {
-        console.log('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
     }
 });

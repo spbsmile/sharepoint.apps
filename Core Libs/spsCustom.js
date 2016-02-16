@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    //todo settings threshold callback refactor
+    //todo add filter callback refactor
     function RecordVersionCollection(arrayData, itemId, fieldName) {
         $().SPServices({
             operation: "GetVersionCollection",
