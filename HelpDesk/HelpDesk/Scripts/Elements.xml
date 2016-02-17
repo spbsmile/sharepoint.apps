@@ -33,5 +33,8 @@
     <File Path="Scripts\typings\moment-timezone\moment-timezone.d.ts" Url="Scripts/typings/moment-timezone/moment-timezone.d.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\moment\moment.d.ts" Url="Scripts/typings/moment/moment.d.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\moment\moment-node.d.ts" Url="Scripts/typings/moment/moment-node.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\bootstrap\bootstrap.d.ts" Url="Scripts/typings/bootstrap/bootstrap.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\bootstrap.min.js" Url="Scripts/bootstrap.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\bootstrap.js" Url="Scripts/bootstrap.js" ReplaceContent="TRUE" />
   </Module>
 </Elements>
