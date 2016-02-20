@@ -9,14 +9,17 @@
     <script type="text/javascript" src="../Scripts/jquery.validate.min.js"></script>
     <script type="text/javascript" src="../Scripts/IsCurrentUserMemberOfGroup.js"></script>
     <script type="text/javascript" src="../Scripts/getCurrentUser.js"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
-    <script type="text/javascript" src="/_layouts/15/sp.js"></script>
+    <script type="text/javascript" src="/_layouts/15/sp.js"></script> 
 
     <!-- Добавьте свои стили CSS в следующий файл -->
     <link rel="Stylesheet" type="text/css" href="../Content/jumbortron.css" />
     <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
     <link rel="stylesheet" type="text/css" href="../Content/jquery-ui.min.css" />
-    <link href="../Content/bootstrap-scope.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../Content/bootstrap-scope.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../Content/font-awesome.css"/> 
+    <link rel="stylesheet" type="text/css" href="../Content/hint.css"/> 
 
     <!-- Добавьте свой код JavaScript в следующий файл -->
     <script type="text/javascript" src="../Scripts/App.js"></script>
@@ -33,9 +36,10 @@
     <div class="bootstrap-scope">
         <div class="bootstrap-html">
             <div id="main" class="bootstrap-body">
+
                 <div class="col-md-2"></div>
                 <div id="supportButton">
-                    <input id="pressButtonSupport" type="button" class="btn btn-primary" value="Подать заявку">
+                    <input id="pressButtonSupport" type="button" class="btn btn-primary hint--bottom-left hint--info" data-hint="Вы сами справились с задачей" value="Подать заявку">
                 </div>
                 <div id="supportForm" hidden="true">
                     <!-- <div class="col-md-2"></div> -->
@@ -114,7 +118,7 @@
                 <div id="panelSendClaims" hidden="true">
                     <div class="clearfix"></div>
                     <div class="col-md-2"></div>
-                    <div class="col-md-6" style="padding-left: 5px; padding-top: 44px;">
+                    <div class="col-md-8" style="padding-left: 5px; padding-top: 44px;">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Отправленные Заявки</h3>
@@ -130,6 +134,7 @@
                                         <th>Категория</th>
                                         <th>Приложенный файл</th>
                                         <th>Статус</th>
+                                        <th>Действие</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbodySendClaims">
@@ -139,15 +144,15 @@
                     </div>
                 </div>
 
-                <div id="panelAcceptedClaims" hidden="true">
+                <div id="panelResolvedClaims" hidden="true">
                     <div class="clearfix"></div>
                     <div class="col-md-2"></div>
-                    <div class="col-md-6" style="padding-left: 5px; padding-top: 44px;">
+                    <div class="col-md-8" style="padding-left: 5px; padding-top: 44px;">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Заявки На Рассмотрении</h3>
+                                <h3 class="panel-title">Выполненные Заявки</h3>
                             </div>
-                            <table class="table table-hover" >
+                            <table id="tableResolved" class="table table-hover" >
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -158,39 +163,33 @@
                                         <th>Категория</th>
                                         <th>Приложенный файл</th>
                                         <th>Статус</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbodyAcceptedClaims">
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="panelResolvedClaims" hidden="true">
-                    <div class="clearfix"></div>
-                    <div class="col-md-2"></div>
-                    <div class="col-md-6" style="padding-left: 5px; padding-top: 44px;">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Выполненные Заявки</h3>
-                            </div>
-                            <table class="table table-hover" >
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Дата Создания</th>
-                                        <th>Время</th>
-                                        <th>Описание</th>
-                                        <th>Срочность</th>
-                                        <th>Категория</th>
-                                        <th>Приложенный файл</th>
                                         <th>Действие</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbodyResolvedClaims">
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Оповещение</h4>
+                            </div>
+                            <div class="modal-body">
+                                 <ul id="loader" class="fa-ul">
+                                     <!--<i class="fa fa-spinner fa-spin"></i>-->
+                                    <li><i class="fa-li fa fa-spinner fa-spin"></i>Отправка Заявки</li>
+                                </ul>
+                                <div id="msgResultLoader" hidden="true"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -3,8 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="moment.min.js"></script>
+    <script type="text/javascript" src="moment-with-locales.min.js"></script>
+    <script src="moment-timezone-with-data.min.js"></script>
+
 </head>
 <body>
+Hello
+<script>
+    $(document).ready(function () {
+        moment.tz.add("Europe/Moscow|MSK MSD MSK|-30 -40 -40|01020|1BWn0 1qM0 WM0 8Hz0|16e6");
+        moment.locale(window.navigator.userLanguage || window.navigator.language);
 
+        console.log(moment().format("LLL")); //17 февраля 2016 г., 16:36
+        console.log(moment().format("HH:mm"));//16:30
+        console.log(moment().format("LL")); //17 февраля 2016 г.
+        console.log(moment().format("L")); //17.02.2016
+        console.log(moment().format("l")); //17.2.2016
+        console.log(moment().format("DD-MM-YYYY"));//19-02-2016
+    });
+</script>
 </body>
 </html>

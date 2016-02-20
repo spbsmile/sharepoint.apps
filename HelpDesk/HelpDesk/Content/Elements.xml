@@ -22,5 +22,11 @@
     <File Path="Content\rivs.master" Url="_catalogs/masterpage/rivs.master" Type="GhostableInLibrary"></File>
     <File Path="Content\jumbortron.css" Url="Content/jumbortron.css" ReplaceContent="TRUE" />
     <File Path="Content\filterTasks.css" Url="Content/filterTasks.css" ReplaceContent="TRUE" />
+    <File Path="Content\font-awesome.min.css" Url="Content/font-awesome.min.css" ReplaceContent="TRUE" />
+    <File Path="Content\font-awesome.css" Url="Content/font-awesome.css" ReplaceContent="TRUE" />
+    <File Path="Content\hint.base.css" Url="Content/hint.base.css" ReplaceContent="TRUE" />
+    <File Path="Content\hint.base.min.css" Url="Content/hint.base.min.css" ReplaceContent="TRUE" />
+    <File Path="Content\hint.css" Url="Content/hint.css" ReplaceContent="TRUE" />
+    <File Path="Content\hint.min.css" Url="Content/hint.min.css" ReplaceContent="TRUE" />
   </Module>
 </Elements>

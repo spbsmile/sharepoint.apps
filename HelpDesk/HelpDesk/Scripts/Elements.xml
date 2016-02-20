@@ -3,12 +3,7 @@
   <Module Name="Scripts">
     <File Path="Scripts\jquery-1.10.2.intellisense.js" Url="Scripts/jquery-1.10.2.intellisense.js" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\microsoft-ajax\microsoft.ajax.d.ts" Url="Scripts/typings/microsoft-ajax/microsoft.ajax.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\moment.min.js" Url="Scripts/moment.min.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\moment.js" Url="Scripts/moment.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\moment-with-locales.min.js" Url="Scripts/moment-with-locales.min.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\moment-with-locales.js" Url="Scripts/moment-with-locales.js" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\sharepoint\SharePoint.d.ts" Url="Scripts/typings/sharepoint/SharePoint.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\jquery\jquery.d.ts" Url="Scripts/typings/jquery/jquery.d.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\App.js" Url="Scripts/App.js" ReplaceContent="TRUE" />
     <File Path="Scripts\App.ts" Url="Scripts/App.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\jquery-2.2.0.min.map" Url="Scripts/jquery-2.2.0.min.map" ReplaceContent="TRUE" />
@@ -31,10 +26,15 @@
     <File Path="Scripts\moment-timezone-with-data-2010-2020.js" Url="Scripts/moment-timezone-with-data-2010-2020.js" ReplaceContent="TRUE" />
     <File Path="Scripts\moment-timezone-utils.js" Url="Scripts/moment-timezone-utils.js" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\moment-timezone\moment-timezone.d.ts" Url="Scripts/typings/moment-timezone/moment-timezone.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\moment\moment.d.ts" Url="Scripts/typings/moment/moment.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\typings\moment\moment-node.d.ts" Url="Scripts/typings/moment/moment-node.d.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\bootstrap\bootstrap.d.ts" Url="Scripts/typings/bootstrap/bootstrap.d.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\bootstrap.min.js" Url="Scripts/bootstrap.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\bootstrap.js" Url="Scripts/bootstrap.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\moment\moment.d.ts" Url="Scripts/typings/moment/moment.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\moment\moment-node.d.ts" Url="Scripts/typings/moment/moment-node.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment.min.js" Url="Scripts/moment.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment.js" Url="Scripts/moment.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-with-locales.min.js" Url="Scripts/moment-with-locales.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-with-locales.js" Url="Scripts/moment-with-locales.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\typings\jquery\jquery.d.ts" Url="Scripts/typings/jquery/jquery.d.ts" ReplaceContent="TRUE" />
   </Module>
 </Elements>

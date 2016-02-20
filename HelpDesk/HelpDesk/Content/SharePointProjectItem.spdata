@@ -23,5 +23,11 @@
     <ProjectItemFile Source="rivs.master" Target="Content\" Type="ElementFile" />
     <ProjectItemFile Source="jumbortron.css" Target="Content\" Type="ElementFile" />
     <ProjectItemFile Source="filterTasks.css" Target="Content\" Type="ElementFile" />
+    <ProjectItemFile Source="font-awesome.min.css" Target="Content\" Type="ElementFile" />
+    <ProjectItemFile Source="font-awesome.css" Target="Content\" Type="ElementFile" />
+    <ProjectItemFile Source="hint.base.css" Target="Content\" Type="ElementFile" />
+    <ProjectItemFile Source="hint.base.min.css" Target="Content\" Type="ElementFile" />
+    <ProjectItemFile Source="hint.css" Target="Content\" Type="ElementFile" />
+    <ProjectItemFile Source="hint.min.css" Target="Content\" Type="ElementFile" />
   </Files>
 </ProjectItem>
