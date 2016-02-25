@@ -84,6 +84,9 @@
             </select>
         </div>
         <div><label> Количество:</label><input id="countinput" name="pswd"/></div>
+        <ul id="loaderAddCartridges" class="fa-ul" hidden="true">
+            <li><i class="fa-li fa fa-spinner fa-spin"></i>Добавление</li>
+        </ul>
     </form>
 </div>
 
@@ -107,7 +110,7 @@
 
         <br>
         <!-- div - color -->
-        <div>
+        <div id="countCartr" hidden="true">
             <label for="countcolorsPrinter">Выберете количество картриджей</label>
             <select id="countcolorsPrinter" class="form-control">
                 <option>2</option>
@@ -135,6 +138,9 @@
         <!-- div - data cartridges of printer -->
         <table id="tblCartridgeAppendGrid">
         </table>
+        <ul id="loaderAddPrinter" class="fa-ul" hidden="true">
+            <li><i class="fa-li fa fa-spinner fa-spin"></i>Добавление</li>
+        </ul>
     </div>
 </div>
 
