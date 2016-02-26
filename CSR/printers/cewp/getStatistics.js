@@ -3,24 +3,27 @@ $(document).ready(function () {
     var cartridgesStats = {};
     var namesCartridges = [];
     var myLineChart = null;
+    var myLineAddedCartridgesChart = null;
 
     $("#dialogstatistics").dialog({
         resizable: false,
         modal: true,
-        width: 900,
+        width: 1600,
+        height: 800,
         autoOpen: false
     });
 
     $("#openstatistics").click(function () {
         if (myLineChart != null) myLineChart.destroy();
+        if (myLineAddedCartridgesChart != null) myLineAddedCartridgesChart.destroy();
         receiveStatistics();
         $("#loader").show();
         $("#dialogstatistics").dialog("open");
     });
 
-    function addChartExample(datasets) {
+    function addChart(datasets, chartId, lineChart) {
 
-        var ctx = document.getElementById("myChart").getContext("2d");
+        var ctx = document.getElementById(chartId).getContext("2d");
 
         var options = {
 
@@ -32,7 +35,7 @@ $(document).ready(function () {
 
             // ** Required if scaleOverride is true **
             // Number - The number of steps in a hard coded scale
-            scaleSteps: 15,
+            scaleSteps: 12,
             // Number - The value jump in the hard coded scale
             scaleStepWidth: 1,
             // Number - The scale starting value
@@ -92,7 +95,7 @@ $(document).ready(function () {
             datasets: datasets
         };
 
-        myLineChart = new Chart(ctx).Line(data, options);
+        lineChart = new Chart(ctx).Line(data, options);
     }
 
     function receiveStatistics() {
@@ -112,7 +115,7 @@ $(document).ready(function () {
                 for (var i = 0; i < items.length; i++) {
                     var uniqueProperty = items[i][cartridgeInternalField];
 
-                    if (items[i][cartridgeInternalField] != null && typeof (unique[uniqueProperty]) == "undefined") {
+                    if (items[i][cartridgeInternalField] != null && typeof (unique[uniqueProperty]) == "undefined" && items[i][cartridgeInternalField] != "Тестовый вариант") {
                         cartridgesData.push({
                             name: items[i][cartridgeInternalField],
                             id: items[i]["ID"]//,
@@ -125,38 +128,57 @@ $(document).ready(function () {
                 for (var i = 0; i < cartridgesData.length; i++) {
                     writeStatisticsCartridge(cartridgesData[i].id, cartridgesData[i].name);
                 }
-                /* for (var i = 0; i < Object.keys(cartridgesStats).length; i++) {
+                /*  for (var i = 0; i < Object.keys(cartridgesStats).length; i++) {
                  for (var j = 0; j < 12; j++) {
-                 console.log("Картридж:" + namesCartridges[i] + "В месяце: " + listMonth[j] + " Добавлено: " + cartridgesStats[namesCartridges[i]][j].countAdded + " Сделано замен: " + cartridgesStats[namesCartridges[i]][j].countReplace);
+                 console.log("Картридж:" + namesCartridges[i] + "В месяце: " + j + " Добавлено: " + cartridgesStats[namesCartridges[i]][j].countAdded + " Сделано замен: " + cartridgesStats[namesCartridges[i]][j].countReplace);
                  }
-                 } */
+                 }*/
 
-                var datasetValue = [];
-                for (var i = 0; i < Object.keys(cartridgesStats).length; i++) {
-                    var data = [];
-                    for (var j = 0; j < 7; j++) {
-                        data.push(cartridgesStats[namesCartridges[i]][j].countReplace);
-                    }
-                    datasetValue[i] = {
-                        label: namesCartridges[i],
-                        fillColor: "rgba(220,220,220,0.2)",
-                        strokeColor: "rgba(220,220,220,1)",
-                        pointColor: "rgba(220,220,220,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(220,220,220,1)",
-                        data: data
-                    }
-                }
+                var datasetReplaceCartridges = [];
+                writeDataSetChart(datasetReplaceCartridges, true);
+                var datasetAddedCartrides = [];
+                writeDataSetChart(datasetAddedCartrides, false);
+
+                addChart(datasetReplaceCartridges, "chartReplacements", myLineChart);
+                addChart(datasetAddedCartrides, "сhartAdded", myLineAddedCartridgesChart);
                 $("#loader").hide();
-                addChartExample(datasetValue);
             },
             error: onQueryFailed
         });
     }
 
+    function writeDataSetChart(datasetChart, isReplaceChart) {
+        //filter on empty data
+        /* for (var i = 0; i < Object.keys(cartridgesStats).length; i++) {
+
+         } */
+
+
+        for (var i = 0; i < Object.keys(cartridgesStats).length; i++) {
+            var data = [];
+            for (var j = 0; j < 7; j++) {
+                if (isReplaceChart) {
+                    data.push(cartridgesStats[namesCartridges[i]][j].countReplace);
+                } else {
+                    data.push(cartridgesStats[namesCartridges[i]][j].countAdded);
+                }
+            }
+            datasetChart[i] = {
+                label: namesCartridges[i],
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: data
+            }
+        }
+    }
+
     // проходить по полю количество , сравнивать с предыдущим, если уменьшилось, считать что действие - выдано
     function writeStatisticsCartridge(itemId, nameCartridge) {
+
         var dataEachMonth = [];
         for (var i = 0; i < 12; i++) {
             dataEachMonth.push({
@@ -166,6 +188,7 @@ $(document).ready(function () {
                 count: "0"
             });
         }
+        var prevMonth = 0;
         $().SPServices({
             operation: "GetVersionCollection",
             async: false,
@@ -173,22 +196,25 @@ $(document).ready(function () {
             strlistItemID: itemId,
             strFieldName: settings().catridgeCountFieldName,
             completefunc: function (xData, Status) {
+
                 $(xData.responseText).find("Version").each(function (i) {
+
                     if (moment($(this).attr("Modified")).isAfter(moment().format('2016-01-01'))) {
                         //DD-MM-YYYY
                         var currentMonth = parseInt(moment($(this).attr("Modified")).format("M") - 1);
-
                         var currentCount = parseInt($(this).attr(settings().catridgeCountFieldName));
                         var prevCount = 0;
-                        if (currentMonth != 0) {
-                            prevCount = parseInt(dataEachMonth[currentMonth].count);
+                        if (i != 0) {
+                            prevCount = parseInt(dataEachMonth[prevMonth].count);
                         }
                         if (prevCount < currentCount) {
                             dataEachMonth[currentMonth].countReplace++;
                         } else if (prevCount > currentCount) {
-                            console.log("COUNT ADD" + (prevCount - currentCount));
+                            //console.log("COUNT ADD " +  " prev count " + prevCount + " current count " + currentCount + " name cart: " + nameCartridge + " month ");
                             dataEachMonth[currentMonth].countAdded += (prevCount - currentCount);
                         }
+                        dataEachMonth[currentMonth].count = currentCount;
+                        prevMonth = currentMonth;
                     }
                 });
                 namesCartridges.push(nameCartridge);

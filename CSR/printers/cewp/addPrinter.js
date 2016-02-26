@@ -40,6 +40,7 @@ $(document).ready(function () {
         var delta = targetCount - currentCount;
         if (delta > 0) {
             $('#tblCartridgeAppendGrid').appendGrid('appendRow', delta);
+            assignFieldsToCartridges(currentCount, delta);
         } else {
             for (var i = 0; i < (-delta); i++) {
                 $('#tblCartridgeAppendGrid').appendGrid('removeRow', 0);
@@ -94,23 +95,53 @@ $(document).ready(function () {
                 moveDown: true
             }
         });
-
         initMetaColorCartridges(4);
 
-        $('#tblCartridgeAppendGrid').appendGrid('setCtrlValue', 'Color', 0, '#0000FF');
-        $('#tblCartridgeAppendGrid').appendGrid('setCtrlValue', 'Color', 1, '#FF0000');
-        $('#tblCartridgeAppendGrid').appendGrid('setCtrlValue', 'Color', 2, '#FFFF00');
-        $('#tblCartridgeAppendGrid').appendGrid('setCtrlValue', 'Color', 3, '#000000');
-        addToTagSelectAllUniqueNamesCartrige("#tblCartridgeAppendGrid_NameFromExist_1", true);
-        addToTagSelectAllUniqueNamesCartrige("#tblCartridgeAppendGrid_NameFromExist_2", true);
-        addToTagSelectAllUniqueNamesCartrige("#tblCartridgeAppendGrid_NameFromExist_3", true);
-        addToTagSelectAllUniqueNamesCartrige("#tblCartridgeAppendGrid_NameFromExist_4", true);
         $("select#countcolorsPrinter").val("4");
         $("#dialogaddprinter").dialog("open");
     });
 
     function pushSelectValueToAll() {
         //tblCartridgeAppendGrid_NameFromExist_2
+    }
+
+    function assignFieldsToCartridges(startIndex, countCartridges) {
+        for (var i = startIndex; i < startIndex + countCartridges; i++) {
+            var color = colorsOrder(i);
+            $('#tblCartridgeAppendGrid').appendGrid('setCtrlValue', 'Color', i, color);
+            var index = i + 1;
+            var id = "#tblCartridgeAppendGrid_NameFromExist_" + index;
+            if ($(id).children('option').length > 1) continue;
+            addToTagSelectAllUniqueNamesCartrige(id, true);
+        }
+    }
+
+    function colorsOrder(index) {
+        switch (index) {
+            case 0:
+                return '#0000FF';
+                break;
+            case 1:
+                return '#FF0000';
+                break;
+            case 2:
+                return '#FFFF00';
+                break;
+            case 3:
+                return '#000000';
+                break;
+            case 4:
+                return "#C0C0C0";
+                break;
+            case 5:
+                return '#000000';
+                break;
+            case 6:
+                return '#000000';
+                break;
+            default:
+                return 6;
+        }
     }
 
     // data cartridges of printer
@@ -150,6 +181,7 @@ $(document).ready(function () {
                 moveDown: true
             }
         });
+        assignFieldsToCartridges(0, countCartridges);
     }
 
     function addPrinterToList() {
@@ -179,38 +211,6 @@ $(document).ready(function () {
             //todo id
             addItemPrinterCloneRecursion(settings().listId, data, ["Black"], [$("#inputNewNoColorCartridge").val()], 0, 1);
         }
-    }
-
-    // files:this, addcartridge. equal methods
-    function addToTagSelectAllUniqueNamesCartrige(idSelector, isColor) {
-        $.ajax({
-            url: settings().siteUrl + "/_api/web/lists(guid'" + settings().listId + "')/items",
-            method: "GET",
-            headers: {"Accept": "application/json; odata=verbose"},
-            success: function (data) {
-                var items = data.d.results;
-                var cartridgesData = [];
-                var cartridgeInternalField = "OData__x041a__x0430__x0440__x0442__x04";
-                for (var i = 0; i < items.length; i++) {
-                    if (!isColor && items[i]["IsColor"] || isColor && !items[i]["IsColor"]) {
-                        continue;
-                    }
-                    if ($.inArray(items[i][cartridgeInternalField], cartridgesData) === -1 && items[i][cartridgeInternalField] != null) {
-                        cartridgesData.push(items[i][cartridgeInternalField]);
-                    }
-                }
-                $.each(cartridgesData, function (key, value) {
-                    $(idSelector)
-                        .append($("<option></option>")
-                            .attr("value", key)
-                            .text(value));
-                });
-            }, error: onQueryFailed
-        });
-    }
-
-    function getAllUniqueNamesCartrige(idSelector, isColor) {
-
     }
 
     function pushNamesCartridgeToFieldChoiceRecursion(cartridges, index, length, callback) {
@@ -276,6 +276,34 @@ $(document).ready(function () {
                 }
             },
             error: onQueryFailed
+        });
+    }
+
+    // files:this, addcartridge. equal methods
+    function addToTagSelectAllUniqueNamesCartrige(idSelector, isColor) {
+        $.ajax({
+            url: settings().siteUrl + "/_api/web/lists(guid'" + settings().listId + "')/items",
+            method: "GET",
+            headers: {"Accept": "application/json; odata=verbose"},
+            success: function (data) {
+                var items = data.d.results;
+                var cartridgesData = [];
+                var cartridgeInternalField = "OData__x041a__x0430__x0440__x0442__x04";
+                for (var i = 0; i < items.length; i++) {
+                    if (!isColor && items[i]["IsColor"] || isColor && !items[i]["IsColor"]) {
+                        continue;
+                    }
+                    if ($.inArray(items[i][cartridgeInternalField], cartridgesData) === -1 && items[i][cartridgeInternalField] != null) {
+                        cartridgesData.push(items[i][cartridgeInternalField]);
+                    }
+                }
+                $.each(cartridgesData, function (key, value) {
+                    $(idSelector)
+                        .append($("<option></option>")
+                            .attr("value", key)
+                            .text(value));
+                });
+            }, error: onQueryFailed
         });
     }
 
