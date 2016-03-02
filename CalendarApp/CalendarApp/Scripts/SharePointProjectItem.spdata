@@ -11,5 +11,12 @@
     <ProjectItemFile Source="moment.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="moment-with-locales.min.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="moment-with-locales.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="moment-timezone.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="moment-timezone.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="moment-timezone-with-data.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="moment-timezone-with-data.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="moment-timezone-with-data-2010-2020.min.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="moment-timezone-with-data-2010-2020.js" Target="Scripts\" Type="ElementFile" />
+    <ProjectItemFile Source="moment-timezone-utils.js" Target="Scripts\" Type="ElementFile" />
   </Files>
 </ProjectItem>

@@ -10,5 +10,12 @@
     <File Path="Scripts\moment.js" Url="Scripts/moment.js" ReplaceContent="TRUE" />
     <File Path="Scripts\moment-with-locales.min.js" Url="Scripts/moment-with-locales.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\moment-with-locales.js" Url="Scripts/moment-with-locales.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-timezone.min.js" Url="Scripts/moment-timezone.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-timezone.js" Url="Scripts/moment-timezone.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-timezone-with-data.min.js" Url="Scripts/moment-timezone-with-data.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-timezone-with-data.js" Url="Scripts/moment-timezone-with-data.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-timezone-with-data-2010-2020.min.js" Url="Scripts/moment-timezone-with-data-2010-2020.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-timezone-with-data-2010-2020.js" Url="Scripts/moment-timezone-with-data-2010-2020.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\moment-timezone-utils.js" Url="Scripts/moment-timezone-utils.js" ReplaceContent="TRUE" />
   </Module>
 </Elements>
