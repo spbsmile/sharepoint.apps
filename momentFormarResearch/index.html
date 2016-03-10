@@ -22,7 +22,14 @@ Hello
         console.log(moment().format("LL")); //17 февраля 2016 г.
         console.log(moment().format("L")); //17.02.2016
         console.log(moment().format("l")); //17.2.2016
-        console.log(moment().format("DD-MM-YYYY"));//19-02-2016
+        console.log(moment().format("DD-MM-YYYY"));//19-02-2016/02-03-2016
+
+        console.log(moment().format("DD"));// 02
+        console.log(moment().format("MMMM"));// март
+
+        console.log(moment().format("MMM Do YY")); //март 2-го 16
+        moment().format("LT LL"); //14:34 2 марта 2016
+        alert(moment().format("D MMMM")); // 2 марта
     });
 </script>
 </body>
