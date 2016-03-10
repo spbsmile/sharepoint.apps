@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ClientWebPart Name="ClientWebPart1"
-                 Title="CalendarWebPartApp"
+  <ClientWebPart Name="ClientWebPartCalendar"
+                 Title="Calendar"
                  Description="Описание"
                  DefaultWidth="450"
                  DefaultHeight="550">

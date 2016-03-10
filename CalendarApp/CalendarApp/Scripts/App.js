@@ -1,20 +1,18 @@
 ﻿'use strict';
 
-ExecuteOrDelayUntilScriptLoaded(initializePage, "sp.js");
+$(document).ready(function () {
 
-function initializePage() {
-    $(document).ready(function () {
-        //todo add moment time zone lib
-        //moment().tz("Europe/Moscow").format();
-        moment.locale(window.navigator.userLanguage || window.navigator.language);
-        displayTime();
-    });
+    moment.tz.add("Europe/Moscow|MSK MSD MSK|-30 -40 -40|01020|1BWn0 1qM0 WM0 8Hz0|16e6");
+    moment.locale(window.navigator.userLanguage || window.navigator.language);
+    displayTime();
+    var currentDate = moment().format("D MMMM").toString(); // 2 марта
+    var array = currentDate.split(" ");
+    $('#MonthNow').html(array[1]);
+});
 
-    function displayTime() {
-        $('#DayNow').html(moment().format("D"));
-        $('#TimeNow').html(moment().format('HH:mm'));
-        $('#MonthNow').html(moment().format("MMMM"));
+function displayTime() {
+    $('#DayNow').html(moment().format("D"));
+    $('#TimeNow').html(moment().format('HH:mm'));
 
-        setTimeout(displayTime, 1000);
-    }
+    setTimeout(displayTime, 1000);
 }

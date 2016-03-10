@@ -8,18 +8,21 @@
 <html>
 <head>
     <title></title>
+    
+    <script type="text/javascript" src="../Scripts/moment.min.js"></script>
+    <script type="text/javascript" src="../Scripts/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="../Scripts/moment-timezone.min.js"></script>
 
     <script type="text/javascript" src="../Scripts/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/_layouts/15/MicrosoftAjax.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.js"></script>
-
-     <script type="text/javascript" src="../Scripts/moment.min.js"></script>
-    <script type="text/javascript" src="../Scripts/moment-with-locales.js"></script>
-    <script type="text/javascript" src="../Scripts/moment-timezone.min.js"></script>
     <link rel="Stylesheet" type="text/css" href="../Content/bootstrap-scope.min.css" />
     <link rel="Stylesheet" type="text/css" href="../Content/App.css" />
-
+    
+     <!-- Добавьте свой код JavaScript в следующий файл -->
+    <script type="text/javascript" src="../Scripts/App.js"></script>
+   
     <script type="text/javascript">
         // Согласование стиля клиентской веб-части со стилем хост-сайта.
         (function () {
@@ -51,18 +54,17 @@
                 <div class="col-md-4 col-md-offset-1 nopaddingright">
                     <div class="calend pull-right over">
                         <div class="calendup">
-                            <p>
-                                <span class="datt pull-left">
-                                    <span id = "DayNow" class="countdata">22</span>
-                                    <br id ="MonthNow">
-                                    Декабря</span>
-                            </p>
+                            <div class="datt pull-left">
+                                <div>
+                                    <span class="datt" id="DayNow">3</span></div>
+                                <div>
+                                    <span class="datt" id="MonthNow">Март</span></div>
+                            </div>
                             <span class="time pull-right">
-                                <p id ="TimeNow">
-                                    11:11
-                                </p>
+                                <p id="TimeNow">11:12</p>
                             </span>
                         </div>
+
                         <div class="calenddown">
                             <table border="0" width="100%">
                                 <tr>
