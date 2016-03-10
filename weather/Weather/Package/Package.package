@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="3e89365f-7a68-4755-8eff-2afb6e6be2e1" solutionId="3e89365f-7a68-4755-8eff-2afb6e6be2e1" resetWebServer="false" sharePointProductVersion="15.0" name="Weather" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <projectItems>
+    <projectItemReference itemId="1a5a5eef-1ee3-47bd-891c-c63e8479987b" />
+  </projectItems>
+</package>
