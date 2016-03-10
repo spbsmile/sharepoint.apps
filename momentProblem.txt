@@ -1,8 +1,0 @@
-//moment.locale(window.navigator.userLanguage || window.navigator.language);
-    //var input = "2013-06-10T10:40:00.000+04:00";
-    //moment.parseZone(input);
-    //moment.tz("13:00", "HH:mm", "Europe/London").tz("Europe/Moscow").format();
-    //moment().tz("Europe/Moscow").format();
-    //moment.tz.add("Europe/Moscow|MSK MSD MSK|-30 -40 -40|01020|1BWn0 1qM0 WM0 8Hz0|16e6");
-    // moment.locale(window.navigator.userLanguage || window.navigator.language);
-    //moment().tz("Europe/Moscow").format();
