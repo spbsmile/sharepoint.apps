@@ -1,0 +1,21 @@
+#MSOZoneCell_WebPartWPQ4{
+    width: 300px;
+    float: left;
+}
+
+#MSOZoneCell_WebPartWPQ2{
+    width: 700px;
+}
+
+#MSOZoneCell_WebPartWPQ3{
+    width: 700px;
+}
+
+.ms-searchCenter-result-main{
+    float: none;
+}
+
+.ms-searchCenter-result-main .ms-webpartzone-cell{
+ margin-left: 25%;
+}
+
