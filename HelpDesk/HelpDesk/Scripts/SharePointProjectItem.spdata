@@ -5,8 +5,6 @@
     <ProjectItemFile Source="jquery-1.10.2.intellisense.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="typings\microsoft-ajax\microsoft.ajax.d.ts" Target="Scripts\typings\microsoft-ajax\" Type="ElementFile" />
     <ProjectItemFile Source="typings\sharepoint\SharePoint.d.ts" Target="Scripts\typings\sharepoint\" Type="ElementFile" />
-    <ProjectItemFile Source="App.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="App.ts" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="jquery-2.2.0.min.map" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="jquery-2.2.0.min.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="jquery-2.2.0.js" Target="Scripts\" Type="ElementFile" />
@@ -15,10 +13,6 @@
     <ProjectItemFile Source="jquery-ui.min.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="jquery.validate.min.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="typings\jquery.validation\jquery.validation.d.ts" Target="Scripts\typings\jquery.validation\" Type="ElementFile" />
-    <ProjectItemFile Source="IsCurrentUserMemberOfGroup.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="IsCurrentUserMemberOfGroup.ts" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="getCurrentUser.js" Target="Scripts\" Type="ElementFile" />
-    <ProjectItemFile Source="getCurrentUser.ts" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="moment-timezone.min.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="moment-timezone.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="moment-timezone-with-data.min.js" Target="Scripts\" Type="ElementFile" />
@@ -37,5 +31,25 @@
     <ProjectItemFile Source="moment-with-locales.min.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="moment-with-locales.js" Target="Scripts\" Type="ElementFile" />
     <ProjectItemFile Source="typings\jquery\jquery.d.ts" Target="Scripts\typings\jquery\" Type="ElementFile" />
+    <ProjectItemFile Source="core\App.js" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\App.ts" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\getCurrentUser.js" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\getCurrentUser.ts" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\uploadFile.js" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\uploadFile.ts" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\addClaim.js" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\addClaim.ts" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\displayClaimsCurrentUser.js" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\displayClaimsCurrentUser.ts" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\logs.js" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\logs.ts" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\utils.js" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\utils.ts" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\recallClaim.js" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\recallClaim.ts" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\IsCurrentUserMemberOfGroup.js" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\IsCurrentUserMemberOfGroup.ts" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\addRowToTableClaims.ts" Target="Scripts\core\" Type="ElementFile" />
+    <ProjectItemFile Source="core\addRowToTableClaims.js" Target="Scripts\core\" Type="ElementFile" />
   </Files>
 </ProjectItem>

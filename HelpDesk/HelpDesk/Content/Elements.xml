@@ -19,7 +19,6 @@
     <File Path="Content\images\ui-icons_ef8c08_256x240.png" Url="Content/images/ui-icons_ef8c08_256x240.png" ReplaceContent="TRUE" />
     <File Path="Content\images\ui-icons_ffd27a_256x240.png" Url="Content/images/ui-icons_ffd27a_256x240.png" ReplaceContent="TRUE" />
     <File Path="Content\images\ui-icons_ffffff_256x240.png" Url="Content/images/ui-icons_ffffff_256x240.png" ReplaceContent="TRUE" />
-    <File Path="Content\rivs.master" Url="_catalogs/masterpage/rivs.master" Type="GhostableInLibrary"></File>
     <File Path="Content\jumbortron.css" Url="Content/jumbortron.css" ReplaceContent="TRUE" />
     <File Path="Content\filterTasks.css" Url="Content/filterTasks.css" ReplaceContent="TRUE" />
     <File Path="Content\font-awesome.min.css" Url="Content/font-awesome.min.css" ReplaceContent="TRUE" />
@@ -28,5 +27,7 @@
     <File Path="Content\hint.base.min.css" Url="Content/hint.base.min.css" ReplaceContent="TRUE" />
     <File Path="Content\hint.css" Url="Content/hint.css" ReplaceContent="TRUE" />
     <File Path="Content\hint.min.css" Url="Content/hint.min.css" ReplaceContent="TRUE" />
+    <File Path="Content\rivs.master" Url="Content/rivs.master" ReplaceContent="TRUE" />
+    <File Path="Content\weather-icons.min.css" Url="Content/weather-icons.min.css" ReplaceContent="TRUE" />
   </Module>
 </Elements>

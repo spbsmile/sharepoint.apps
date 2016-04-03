@@ -4,8 +4,6 @@
     <File Path="Scripts\jquery-1.10.2.intellisense.js" Url="Scripts/jquery-1.10.2.intellisense.js" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\microsoft-ajax\microsoft.ajax.d.ts" Url="Scripts/typings/microsoft-ajax/microsoft.ajax.d.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\sharepoint\SharePoint.d.ts" Url="Scripts/typings/sharepoint/SharePoint.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\App.js" Url="Scripts/App.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\App.ts" Url="Scripts/App.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\jquery-2.2.0.min.map" Url="Scripts/jquery-2.2.0.min.map" ReplaceContent="TRUE" />
     <File Path="Scripts\jquery-2.2.0.min.js" Url="Scripts/jquery-2.2.0.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\jquery-2.2.0.js" Url="Scripts/jquery-2.2.0.js" ReplaceContent="TRUE" />
@@ -14,10 +12,6 @@
     <File Path="Scripts\jquery-ui.min.js" Url="Scripts/jquery-ui.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\jquery.validate.min.js" Url="Scripts/jquery.validate.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\jquery.validation\jquery.validation.d.ts" Url="Scripts/typings/jquery.validation/jquery.validation.d.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\IsCurrentUserMemberOfGroup.js" Url="Scripts/IsCurrentUserMemberOfGroup.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\IsCurrentUserMemberOfGroup.ts" Url="Scripts/IsCurrentUserMemberOfGroup.ts" ReplaceContent="TRUE" />
-    <File Path="Scripts\getCurrentUser.js" Url="Scripts/getCurrentUser.js" ReplaceContent="TRUE" />
-    <File Path="Scripts\getCurrentUser.ts" Url="Scripts/getCurrentUser.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\moment-timezone.min.js" Url="Scripts/moment-timezone.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\moment-timezone.js" Url="Scripts/moment-timezone.js" ReplaceContent="TRUE" />
     <File Path="Scripts\moment-timezone-with-data.min.js" Url="Scripts/moment-timezone-with-data.min.js" ReplaceContent="TRUE" />
@@ -36,5 +30,25 @@
     <File Path="Scripts\moment-with-locales.min.js" Url="Scripts/moment-with-locales.min.js" ReplaceContent="TRUE" />
     <File Path="Scripts\moment-with-locales.js" Url="Scripts/moment-with-locales.js" ReplaceContent="TRUE" />
     <File Path="Scripts\typings\jquery\jquery.d.ts" Url="Scripts/typings/jquery/jquery.d.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\App.js" Url="Scripts/core/App.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\App.ts" Url="Scripts/core/App.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\getCurrentUser.js" Url="Scripts/core/getCurrentUser.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\getCurrentUser.ts" Url="Scripts/core/getCurrentUser.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\uploadFile.js" Url="Scripts/core/uploadFile.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\uploadFile.ts" Url="Scripts/core/uploadFile.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\addClaim.js" Url="Scripts/core/addClaim.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\addClaim.ts" Url="Scripts/core/addClaim.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\displayClaimsCurrentUser.js" Url="Scripts/core/displayClaimsCurrentUser.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\displayClaimsCurrentUser.ts" Url="Scripts/core/displayClaimsCurrentUser.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\logs.js" Url="Scripts/core/logs.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\logs.ts" Url="Scripts/core/logs.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\utils.js" Url="Scripts/core/utils.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\utils.ts" Url="Scripts/core/utils.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\recallClaim.js" Url="Scripts/core/recallClaim.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\recallClaim.ts" Url="Scripts/core/recallClaim.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\IsCurrentUserMemberOfGroup.js" Url="Scripts/core/IsCurrentUserMemberOfGroup.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\IsCurrentUserMemberOfGroup.ts" Url="Scripts/core/IsCurrentUserMemberOfGroup.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\addRowToTableClaims.ts" Url="Scripts/core/addRowToTableClaims.ts" ReplaceContent="TRUE" />
+    <File Path="Scripts\core\addRowToTableClaims.js" Url="Scripts/core/addRowToTableClaims.js" ReplaceContent="TRUE" />
   </Module>
 </Elements>

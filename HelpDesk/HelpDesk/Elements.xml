@@ -7,5 +7,10 @@
     <File Path="fonts\fontawesome-webfont.ttf" Url="fonts/fontawesome-webfont.ttf" ReplaceContent="TRUE" />
     <File Path="fonts\fontawesome-webfont.svg" Url="fonts/fontawesome-webfont.svg" ReplaceContent="TRUE" />
     <File Path="fonts\fontawesome-webfont.eot" Url="fonts/fontawesome-webfont.eot" ReplaceContent="TRUE" />
+    <File Path="font\weathericons-regular-webfont.eot" Url="font/weathericons-regular-webfont.eot" ReplaceContent="TRUE" />
+    <File Path="font\weathericons-regular-webfont.svg" Url="font/weathericons-regular-webfont.svg" ReplaceContent="TRUE" />
+    <File Path="font\weathericons-regular-webfont.ttf" Url="font/weathericons-regular-webfont.ttf" ReplaceContent="TRUE" />
+    <File Path="font\weathericons-regular-webfont.woff" Url="font/weathericons-regular-webfont.woff" ReplaceContent="TRUE" />
+    <File Path="font\weathericons-regular-webfont.woff2" Url="font/weathericons-regular-webfont.woff2" ReplaceContent="TRUE" />
   </Module>
 </Elements>

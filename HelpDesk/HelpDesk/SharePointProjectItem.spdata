@@ -8,5 +8,10 @@
     <ProjectItemFile Source="fonts\fontawesome-webfont.ttf" Target="fonts\" Type="ElementFile" />
     <ProjectItemFile Source="fonts\fontawesome-webfont.svg" Target="fonts\" Type="ElementFile" />
     <ProjectItemFile Source="fonts\fontawesome-webfont.eot" Target="fonts\" Type="ElementFile" />
+    <ProjectItemFile Source="font\weathericons-regular-webfont.eot" Target="font\" Type="ElementFile" />
+    <ProjectItemFile Source="font\weathericons-regular-webfont.svg" Target="font\" Type="ElementFile" />
+    <ProjectItemFile Source="font\weathericons-regular-webfont.ttf" Target="font\" Type="ElementFile" />
+    <ProjectItemFile Source="font\weathericons-regular-webfont.woff" Target="font\" Type="ElementFile" />
+    <ProjectItemFile Source="font\weathericons-regular-webfont.woff2" Target="font\" Type="ElementFile" />
   </Files>
 </ProjectItem>

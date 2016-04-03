@@ -1,14 +1,20 @@
 ﻿<%-- Следующие 4 строки представляют собой директивы ASP.NET, необходимые при использовании компонентов SharePoint --%>
 
-<%@ Page Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" MasterPageFile="~site/_catalogs/masterpage/rivs.master" Language="C#" %>
+<%@ Page Inherits="Microsoft.SharePoint.WebPartPages.WebPartPage, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" MasterPageFile="../Content/rivs.master" Language="C#" %>
 
 <%-- Разметка и скрипт из следующего элемента Content будут помещены в элемент <head> страницы --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
     <script type="text/javascript" src="../Scripts/jquery-2.2.0.min.js"></script>
     <script type="text/javascript" src="../Scripts/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="../Scripts/IsCurrentUserMemberOfGroup.js"></script>
-    <script type="text/javascript" src="../Scripts/getCurrentUser.js"></script>
+    <script type="text/javascript" src="../Scripts/core/IsCurrentUserMemberOfGroup.js"></script>
+    <script type="text/javascript" src="../Scripts/core/getCurrentUser.js"></script>
+    <script type="text/javascript" src="../Scripts/core/uploadFile.js"></script>
+    <script type="text/javascript" src="../Scripts/core/recallClaim.js"></script>
+    <script type="text/javascript" src="../Scripts/core/displayClaimsCurrentUser.js"></script>
+    <script type="text/javascript" src="../Scripts/core/addClaim.js"></script>
+     <script type="text/javascript" src="../Scripts/core/utils.js"></script>
+    <script type="text/javascript" src="../Scripts/core/logs.js"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.js"></script> 
@@ -20,9 +26,10 @@
     <link rel="stylesheet" type="text/css" href="../Content/bootstrap-scope.min.css"/>
     <link rel="stylesheet" type="text/css" href="../Content/font-awesome.css"/> 
     <link rel="stylesheet" type="text/css" href="../Content/hint.css"/> 
+    <link rel="stylesheet" type="text/css" href="../Content/weather-icons.min.css"/>   
 
     <!-- Добавьте свой код JavaScript в следующий файл -->
-    <script type="text/javascript" src="../Scripts/App.js"></script>
+    <script type="text/javascript" src="../Scripts/core/App.js"></script>
 </asp:Content>
 
 <%-- Разметка из следующего элемента Content будет помещена в элемент TitleArea страницы --%>
@@ -32,6 +39,8 @@
 
 <%-- Разметка и скрипт из следующего элемента Content будут помещены в элемент <body> страницы --%>
 <asp:Content ContentPlaceHolderID="PlaceHolderMain" runat="server">
+    
+    <div class="ms-rtestate-field"><span class="ms-rteFontSize-5"><span class="ms-rteFontSize-6" style="margin-left: 45%">&#8203;&#8203;</span>&#8203;Техподдержка&#8203;&#8203;&#8203;&nbsp;&#8203;</span></div>
 
     <div class="bootstrap-scope">
         <div class="bootstrap-html">
@@ -65,7 +74,7 @@
                             <div class="form-group">
                                 <label for="discription">Описание</label>
                                 <div>
-                                    <textarea style="height: 155px; margin: 0px -2.67188px 0px 0px; width: 618px;" class="form-control" id="discription" rows="3" name="pswd"></textarea>
+                                    <textarea style="height: 155px; margin: 0px -2.67188px 0px 0px; width: 618px; resize: none;" class="form-control" id="discription" rows="3" name="pswd" ></textarea>
                                 </div>
                             </div>
 
@@ -173,8 +182,8 @@
                     </div>
                 </div>
 
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" role="dialog">
+                <!-- Modal send claim -->
+                <div class="modal fade" id="modalSendClaim" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -182,7 +191,6 @@
                             </div>
                             <div class="modal-body">
                                  <ul id="loader" class="fa-ul">
-                                     <!--<i class="fa fa-spinner fa-spin"></i>-->
                                     <li><i class="fa-li fa fa-spinner fa-spin"></i>Отправка Заявки</li>
                                 </ul>
                                 <div id="msgResultLoader" hidden="true"></div>
@@ -193,6 +201,29 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Modal recall claim  -->
+                <div class="modal fade" id="modalCallClaim" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Отменить заявку</h4>
+                            </div>
+
+                            <div class="modal-body">
+                                
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                
+                
 
             </div>
         </div>

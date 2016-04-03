@@ -20,7 +20,6 @@
     <ProjectItemFile Source="images\ui-icons_ef8c08_256x240.png" Target="Content\images\" Type="ElementFile" />
     <ProjectItemFile Source="images\ui-icons_ffd27a_256x240.png" Target="Content\images\" Type="ElementFile" />
     <ProjectItemFile Source="images\ui-icons_ffffff_256x240.png" Target="Content\images\" Type="ElementFile" />
-    <ProjectItemFile Source="rivs.master" Target="Content\" Type="ElementFile" />
     <ProjectItemFile Source="jumbortron.css" Target="Content\" Type="ElementFile" />
     <ProjectItemFile Source="filterTasks.css" Target="Content\" Type="ElementFile" />
     <ProjectItemFile Source="font-awesome.min.css" Target="Content\" Type="ElementFile" />
@@ -29,5 +28,7 @@
     <ProjectItemFile Source="hint.base.min.css" Target="Content\" Type="ElementFile" />
     <ProjectItemFile Source="hint.css" Target="Content\" Type="ElementFile" />
     <ProjectItemFile Source="hint.min.css" Target="Content\" Type="ElementFile" />
+    <ProjectItemFile Source="rivs.master" Target="Content\" Type="ElementFile" />
+    <ProjectItemFile Source="weather-icons.min.css" Target="Content\" Type="ElementFile" />
   </Files>
 </ProjectItem>
