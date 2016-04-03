@@ -1,54 +1,91 @@
 ﻿using System;
-using System.Globalization;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading;
 using System.Web.UI;
-using System.Xml;
-using System.Xml.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace Weather.ControlTemplates.Weather
 {
+    //todo async/await
     public partial class UserControl1 : UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //МОСКВА
-            //УЧАЛЫ
-            //ЕРЕВАН
-            //ЭРДЕНЕТ
-            //ТАШКЕНТ
-            //by ip
-            var weburl =
-                 "http://api.openweathermap.org/data/2.5/weather?lang=ru&q=Saint%20Petersburg&appid=44db6a862fba0b067b1930da0d769e98&mode=xml";
+            var spbId = "498817";
+            var mscId = "524901";
+            var erevanId = "616051";
+            var erdenetId = "2031405";
+            var uchalyId = "479704";
+            var tashkentId = "1512569";
 
-            var rdr = new XmlTextReader(weburl);
-            var xd = XDocument.Load(rdr);
-
-            var nodeWeather = from c in xd.Descendants("weather") select c;
-            foreach (var xAttribute in nodeWeather.Attributes())
+            try
             {
-                if (xAttribute.Name == "value")
+                using (var wc = new WebClient())
                 {
-                    weatherDiscription.Text = xAttribute.Value;
-                }else if (xAttribute.Name == "number")
-                {
-                    i.Attributes.Add("class", "wi wi-fw wi-owm-day-" + xAttribute.Value);
+                    var data =
+                        wc.DownloadData(
+                            "http://api.openweathermap.org/data/2.5/group?lang=ru&id=+ " + spbId + "," + mscId + "," + erevanId +
+                            "," + erdenetId + "," + uchalyId + "," + tashkentId +
+                            "&units=metric&appid=20a2e62715e21640afbebd96e0a5972d");
+
+                    var jResult = JObject.Parse(Encoding.UTF8.GetString(data));
+
+                    for (var i = 0; i < 6; i++)
+                    {
+                        if (i == 0)
+                        {
+                            spbWeatherIcon.Attributes.Add("class",
+                                "wi wi-fw wi-owm-day-" + jResult["list"][i]["weather"][0]["id"]);
+                            spbWeatherDescription.Text = jResult["list"][i]["weather"][0]["description"].ToString();
+                            spbWeatherDegrees.Text = jResult["list"][i]["main"]["temp"] + "&deg;C";
+                            spbIconDuplicat.Attributes.Add("class",
+                                "wi wi-fw wi-owm-day-" + jResult["list"][i]["weather"][0]["id"]);
+                            spbDescriptionDuplicat.Text = jResult["list"][i]["weather"][0]["description"].ToString();
+                            spbDegreesDuplicat.Text = jResult["list"][i]["main"]["temp"] + "&deg;C";
+                        }
+                        else if (i == 1)
+                        {
+                            mscWeatherIcon.Attributes.Add("class",
+                                "wi wi-fw wi-owm-day-" + jResult["list"][i]["weather"][0]["id"]);
+                            mscWeatherDescription.Text = jResult["list"][i]["weather"][0]["description"].ToString();
+                            mscWeatherDegrees.Text = jResult["list"][i]["main"]["temp"] + "&deg;C";
+                        }
+                        else if (i == 2)
+                        {
+                            erevanWeatherIcon.Attributes.Add("class",
+                                "wi wi-fw wi-owm-day-" + jResult["list"][i]["weather"][0]["id"]);
+                            erevanWeatherDescription.Text = jResult["list"][i]["weather"][0]["description"].ToString();
+                            erevanWeatherDegrees.Text = jResult["list"][i]["main"]["temp"] + "&deg;C";
+                        }
+                        else if (i == 3)
+                        {
+                            erdenetWeatherIcon.Attributes.Add("class",
+                                "wi wi-fw wi-owm-day-" + jResult["list"][i]["weather"][0]["id"]);
+                            erdenetWeatherDescription.Text = jResult["list"][i]["weather"][0]["description"].ToString();
+                            erdenetWeatherGegrees.Text = jResult["list"][i]["main"]["temp"] + "&deg;C";
+                        }
+                        else if (i == 4)
+                        {
+                            uchalyWeatherIcon.Attributes.Add("class",
+                                "wi wi-fw wi-owm-day-" + jResult["list"][i]["weather"][0]["id"]);
+                            uchalyWeatherDescription.Text = jResult["list"][i]["weather"][0]["description"].ToString();
+                            uchalyWeatherDegrees.Text = jResult["list"][i]["main"]["temp"] + "&deg;C";
+                        }
+                        else if (i == 5)
+                        {
+                            tashkentWeatherIcon.Attributes.Add("class",
+                                "wi wi-fw wi-owm-day-" + jResult["list"][i]["weather"][0]["id"]);
+                            tashkentWeatherDescription.Text = jResult["list"][i]["weather"][0]["description"].ToString();
+                            tashkentWeatherDergrees.Text = jResult["list"][i]["main"]["temp"] + "&deg;C";
+                        }
+                    }
                 }
             }
-
-            var nodeTemperature = from c in xd.Descendants("temperature") select c;
-            foreach (var xAttribute in nodeTemperature.Attributes())
+            catch (WebException ex)
             {
-                if (xAttribute.Name == "value")
-                {
-                    float f;
-                    float.TryParse(xAttribute.Value, NumberStyles.Any, new CultureInfo("en-US"), out f);
-                    var value = Math.Round(f - 273.16);
-                    degValue.Text = value > 0 ? "+" + value + "&deg;C" : value + "&deg;C";
-                }
+                spbDescriptionDuplicat.Text = ex.Message;
             }
+            
         }
     }
 }
