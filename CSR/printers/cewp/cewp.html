@@ -147,13 +147,18 @@
 <!-- div - statistics -->
 <div id="dialogstatistics" title="Общая статистика картриджей" hidden="true">
     <div id="contentstatistics">
-        <label>Раняя версия, возможны ошибки</label>
-        <p>некоторые данные по цветным не корректны</p>
-        <label>Статистика Замен</label>
         <ul id="loader" class="fa-ul">
             <li><i class="fa-li fa fa-spinner fa-spin"></i>Подготовка</li>
         </ul>
-        <canvas id="myChart" width="818" height="409"></canvas>
+        <div class="wrapper">
+            <label>Статистика Замен</label>
+            <canvas id="chartReplacements" width="718" height="609"></canvas>
+        </div>
+        <div class="wrapper" style="width:50px; height:609px"></div>
+        <div class="wrapper">
+            <label>Статистика Добавлений</label>
+            <canvas id="сhartAdded" width="718" height="609"></canvas>
+        </div>
     </div>
 </div>
 

@@ -2,12 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34022a8f-df2c-474e-b1ea-5905e63c2476" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/printers/cewp/replaceCartridge.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/printers/cewp/spsCustom.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/printers/cewp/versionCartridge.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/printers/printersCore.js" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/printers/img_colors/cartridge_alfa.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/printers/img_colors/cartridge_cadrirov.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/printers/cewp/addPrinter/AddValueToFieldChoice.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/printers/cewp/addPrinter/colorOrder.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/printers/cewp/addPrinter/initialization.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../momentProblem.txt" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/printers/cewp/addPrinter.js" afterPath="$PROJECT_DIR$/printers/cewp/addPrinter/addPrinter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/printers/img_colors/cartridge_red.png" afterPath="$PROJECT_DIR$/printers/img_colors/cartridge_red.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/workspace.xml" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/printers/cewp/cewp.html" afterPath="$PROJECT_DIR$/printers/cewp/cewp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../CalendarApp/CalendarApp/Scripts/App.js" afterPath="$PROJECT_DIR$/../CalendarApp/CalendarApp/Scripts/App.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../CalendarApp/CalendarApp/Scripts/Elements.xml" afterPath="$PROJECT_DIR$/../CalendarApp/CalendarApp/Scripts/Elements.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../CalendarApp/CalendarApp/Scripts/SharePointProjectItem.spdata" afterPath="$PROJECT_DIR$/../CalendarApp/CalendarApp/Scripts/SharePointProjectItem.spdata" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../CalendarApp/CalendarApp/Scripts/moment-with-locales.js" afterPath="$PROJECT_DIR$/../CalendarApp/CalendarApp/Scripts/moment-with-locales.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../CalendarApp/CalendarApp/Scripts/moment-with-locales.min.js" afterPath="$PROJECT_DIR$/../CalendarApp/CalendarApp/Scripts/moment-with-locales.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../CalendarApp/CalendarApp/Scripts/moment.js" afterPath="$PROJECT_DIR$/../CalendarApp/CalendarApp/Scripts/moment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../CalendarApp/CalendarApp/Scripts/moment.min.js" afterPath="$PROJECT_DIR$/../CalendarApp/CalendarApp/Scripts/moment.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../CalendarApp/CalendarApp/packages.config" afterPath="$PROJECT_DIR$/../CalendarApp/CalendarApp/packages.config" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../HelpDesk/HelpDesk/Scripts/App.js" afterPath="$PROJECT_DIR$/../HelpDesk/HelpDesk/Scripts/App.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../HelpDesk/HelpDesk/Scripts/App.ts" afterPath="$PROJECT_DIR$/../HelpDesk/HelpDesk/Scripts/App.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../WeatherApp/WeatherApp/Scripts/App.js" afterPath="$PROJECT_DIR$/../WeatherApp/WeatherApp/Scripts/App.js" />
     </list>
     <ignored path="CSR.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,11 +44,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="permissions.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/printers/cewp/permissions.js">
+      <file leaf-file-name="addPrinter.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/printers/cewp/addPrinter/addPrinter.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+              <caret line="280" column="44" selection-start-line="280" selection-start-column="33" selection-end-line="280" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clienttemplates.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../Core Libs/clienttemplates.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.68591225">
+              <caret line="1800" column="50" selection-start-line="1800" selection-start-column="50" selection-end-line="1800" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="initialization.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/printers/cewp/addPrinter/initialization.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
               <folding>
                 <element signature="e#0#48#0" expanded="false" />
               </folding>
@@ -40,78 +76,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="isCriticalCount.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/printers/cewp/isCriticalCount.js">
+      <file leaf-file-name="addValueToFieldChoice.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/printers/cewp/addPrinter/addValueToFieldChoice.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+              <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
               <folding>
-                <element signature="n#!!doc;n#IsCriticalCount#0" expanded="false" />
+                <element signature="n#!!doc;n#pushNamesCartridgeToFieldChoiceRecursion#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spsCustom.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/printers/cewp/spsCustom.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42592594">
-              <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="versionCartridge.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/printers/cewp/versionCartridge.js">
+      <file leaf-file-name="colorOrder.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/printers/cewp/addPrinter/colorOrder.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
               <folding>
-                <element signature="e#0#50#0" expanded="false" />
+                <element signature="n#!!doc;n#colorsOrder#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="printersDefault.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/printers/printersDefault.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="validate.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/printers/cewp/validate.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="replaceCartridge.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/printers/cewp/replaceCartridge.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#50#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addCartridge.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/printers/cewp/addCartridge.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="31" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -162,6 +146,11 @@
         <option value="$PROJECT_DIR$/printers/cewp/replaceCartridge.js" />
         <option value="$PROJECT_DIR$/printers/cewp/versionCartridge.js" />
         <option value="$PROJECT_DIR$/printers/cewp/spsCustom.js" />
+        <option value="$PROJECT_DIR$/printers/cewp/addPrinter/colorOrder.js" />
+        <option value="$PROJECT_DIR$/printers/cewp/addPrinter/AddValueToFieldChoice.js" />
+        <option value="$PROJECT_DIR$/printers/cewp/addPrinter/initialization.js" />
+        <option value="$PROJECT_DIR$/printers/cewp/addPrinter/addPrinter.js" />
+        <option value="$PROJECT_DIR$/../Core Libs/clienttemplates.js" />
       </list>
     </option>
   </component>
@@ -252,6 +241,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSR" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CSR" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="printers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cewp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="addPrinter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -263,15 +274,15 @@
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../momentFormarResearch" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\sharepoint.apps\CSR\printers\cewp\addPrinter" />
       <recent name="C:\sharepoint.apps\CSR\printers\cewp" />
       <recent name="C:\sharepoint.apps\CSR\support\cewp" />
       <recent name="C:\sharepoint.apps\CSR\officeDevices\cewp" />
       <recent name="C:\sharepoint.apps\CSR\officeDevices" />
-      <recent name="C:\sharepoint.apps\CSR" />
     </key>
   </component>
   <component name="RunManager">
@@ -338,25 +349,25 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="1" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16859852" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -378,6 +389,60 @@
     <entry file="file://$PROJECT_DIR$/printers/cewp/permissions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#48#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/printers/cewp/isCriticalCount.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc;n#IsCriticalCount#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/printers/printersDefault.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/printers/cewp/validate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/printers/cewp/replaceCartridge.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc;n#clickReplaceButton#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/printers/cewp/addCartridge.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/printers/cewp/permissions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
           <folding>
             <element signature="e#0#48#0" expanded="false" />
@@ -395,14 +460,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/printers/cewp/spsCustom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="63" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/printers/cewp/permissions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -423,7 +480,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/printers/cewp/addPrinter.js">
+    <entry file="file://$PROJECT_DIR$/printers/cewp/addPrinter/addPrinter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="143" column="42" selection-start-line="143" selection-start-column="42" selection-end-line="143" selection-end-column="42" />
@@ -479,13 +536,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/printers/cewp/spsCustom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/officeDevices/officedevicesView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -511,13 +561,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-26.884615">
           <caret line="108" column="7" selection-start-line="108" selection-start-column="7" selection-end-line="108" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/printers/cewp/addPrinter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="139" column="44" selection-start-line="0" selection-start-column="0" selection-end-line="247" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -654,22 +697,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/printers/cewp/versionCartridge.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#50#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/printers/cewp/replaceCartridge.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
-            <element signature="e#0#50#0" expanded="false" />
+            <element signature="n#!!doc;n#clickReplaceButton#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -690,10 +723,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/printers/cewp/spsCustom.js">
+    <entry file="file://$PROJECT_DIR$/printers/cewp/getStatistics.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42592594">
-          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1456489541429" expanded="true" signature="3000:3045" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/printers/cewp/addPrinter/addValueToFieldChoice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+          <folding>
+            <element signature="n#!!doc;n#pushNamesCartridgeToFieldChoiceRecursion#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/printers/cewp/addPrinter/colorOrder.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+          <folding>
+            <element signature="n#!!doc;n#colorsOrder#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/printers/cewp/addPrinter/initialization.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#48#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/printers/cewp/addPrinter/addPrinter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="280" column="44" selection-start-line="280" selection-start-column="33" selection-end-line="280" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Core Libs/clienttemplates.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68591225">
+          <caret line="1800" column="50" selection-start-line="1800" selection-start-column="50" selection-end-line="1800" selection-end-column="50" />
           <folding />
         </state>
       </provider>

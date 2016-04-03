@@ -1,9 +1,14 @@
+/**
+ * Created by M_Zabiyakin on 31.03.2016.
+ */
 $(document).ready(function () {
 
-    var cartridgesStats = {};
-    var namesCartridges = [];
+    var devicesStats = {};
+    var namesDevices = [];
+    var devicesCategory = [];
+
     var myLineChart = null;
-    var myLineAddedCartridgesChart = null;
+    var myLineAddedDevicesChart = null;
 
     $("#dialogstatistics").dialog({
         resizable: false,
@@ -15,7 +20,7 @@ $(document).ready(function () {
 
     $("#openstatistics").click(function () {
         if (myLineChart != null) myLineChart.destroy();
-        if (myLineAddedCartridgesChart != null) myLineAddedCartridgesChart.destroy();
+        if (myLineAddedDevicesChart != null) myLineAddedDevicesChart.destroy();
         receiveStatistics();
         $("#loader").show();
         $("#dialogstatistics").dialog("open");
@@ -35,7 +40,7 @@ $(document).ready(function () {
 
             // ** Required if scaleOverride is true **
             // Number - The number of steps in a hard coded scale
-            scaleSteps: 12,
+            scaleSteps: 20,
             // Number - The value jump in the hard coded scale
             scaleStepWidth: 1,
             // Number - The scale starting value
@@ -84,7 +89,7 @@ $(document).ready(function () {
             datasetFill: true,
 
             //Number - Spacing between each of the X value sets
-            barValueSpacing: 5,
+            barValueSpacing: 3,
 
             // Number - Tooltip label font size in pixels
             tooltipFontSize: 9,
@@ -105,7 +110,7 @@ $(document).ready(function () {
     }
 
     function receiveStatistics() {
-        console.log("receiveStatistics");
+
         $.ajax({
             url: settings().siteUrl + "/_api/web/lists(guid'" + settings().listId + "')/items",
             method: "GET",
@@ -114,21 +119,20 @@ $(document).ready(function () {
             },
             success: function (data) {
                 var items = data.d.results;
-                var unique = {};
+
                 var itemsData = [];
-                var cartridgeInternalField = "OData__x041a__x0430__x0440__x0442__x04";
+                var categoryDeviceInternalField = "OData__x041a__x0430__x0442__x0435__x04";
 
                 for (var i = 0; i < items.length; i++) {
-                    var uniqueProperty = items[i][cartridgeInternalField];
+                    var nameCategory = items[i][categoryDeviceInternalField];
 
-                    if (items[i][cartridgeInternalField] != null && typeof (unique[uniqueProperty]) == "undefined" && items[i][cartridgeInternalField] != "Тестовый вариант") {
+                    if (items[i][categoryDeviceInternalField] != null && nameCategory === "Периферия и расх материалы") {
                         itemsData.push({
-                            name: items[i][cartridgeInternalField],
+                            name: items[i]["Title"],
                             id: items[i]["ID"]//,
                             // colorSpecification:
                         });
                     }
-                    unique[uniqueProperty] = 0;
                 }
 
                 for (var i = 0; i < itemsData.length; i++) {
@@ -146,7 +150,7 @@ $(document).ready(function () {
                 writeDataSetChart(datasetAddedItems, false);
 
                 addChart(datasetReplaceItems, "chartReplacements", myLineChart);
-                addChart(datasetAddedItems, "сhartAdded", myLineAddedCartridgesChart);
+                addChart(datasetAddedItems, "сhartAdded", myLineAddedDevicesChart);
                 $("#loader").hide();
             },
             error: onQueryFailed
@@ -160,17 +164,17 @@ $(document).ready(function () {
          } */
 
 
-        for (var i = 0; i < Object.keys(cartridgesStats).length; i++) {
+        for (var i = 0; i < Object.keys(devicesStats).length; i++) {
             var data = [];
             for (var j = 0; j < 7; j++) {
                 if (isReplaceChart) {
-                    data.push(cartridgesStats[namesCartridges[i]][j].countReplace);
+                    data.push(devicesStats[namesDevices[i]][j].countReplace);
                 } else {
-                    data.push(cartridgesStats[namesCartridges[i]][j].countAdded);
+                    data.push(devicesStats[namesDevices[i]][j].countAdded);
                 }
             }
             datasetChart[i] = {
-                label: namesCartridges[i],
+                label: namesDevices[i],
                 fillColor: "rgba(220,220,220,0.2)",
                 strokeColor: "rgba(220,220,220,1)",
                 pointColor: "rgba(220,220,220,1)",
@@ -200,7 +204,7 @@ $(document).ready(function () {
             async: false,
             strlistID: settings().listId,
             strlistItemID: itemId,
-            strFieldName: settings().catridgeCountFieldName,
+            strFieldName: settings().remainFieldName,
             completefunc: function (xData, Status) {
 
                 $(xData.responseText).find("Version").each(function (i) {
@@ -208,7 +212,7 @@ $(document).ready(function () {
                     if (moment($(this).attr("Modified")).isAfter(moment().format('2016-01-01'))) {
                         //DD-MM-YYYY
                         var currentMonth = parseInt(moment($(this).attr("Modified")).format("M") - 1);
-                        var currentCount = parseInt($(this).attr(settings().catridgeCountFieldName));
+                        var currentCount = parseInt($(this).attr(settings().remainFieldName));
                         var prevCount = 0;
                         if (i != 0) {
                             prevCount = parseInt(dataEachMonth[prevMonth].count);
@@ -223,8 +227,8 @@ $(document).ready(function () {
                         prevMonth = currentMonth;
                     }
                 });
-                namesCartridges.push(itemName);
-                cartridgesStats[itemName] = dataEachMonth;
+                namesDevices.push(itemName);
+                devicesStats[itemName] = dataEachMonth;
             }
         });
     }
