@@ -1,37 +1,61 @@
 /**
  * Created by M_Zabiyakin on 04.02.2016.
  */
-$(document).ready(function () {
+var isMember = null;
 
-    $("#clickemployee").click(function () {
+SP.SOD.executeFunc('mQuery.js', 'm$', function () {
+    m$.ready(function () {
 
-        window.open("");
-    });
+        m$("clickemployee").click(function (e) {
+            window.location = "http://devsp/sites/search/Pages/employee.aspx"
+        })
 
-    $("#clicknews").click(function () {
+        m$("clicknews").click(function (e) {
+            window.location = "http://devsp/news";
+        })
 
-        window.open("");
-    });
+        m$("clickdocuments").click(function (e) {
+            window.location = "";
+        })
 
-    $("#clickdocuments").click(function () {
+        m$("clickorders").click(function (e) {
+            window.location = "";
+        })
 
-        window.open("");
-    });
+        m$("clickforum").click(function (e) {
+            var prevDepartment = "";
+            $("#peopleDirectory > tbody > tr").eq(key + i - 2).after("<tr class='menudepheader'> <td> " + prevDepartment + " </td> <td></td> <td></td><td></td><td></td><td></td></tr>");
+        })
 
-    $("#clickorders").click(function () {
+        m$("clicksupport").click(function (e) {
+            if (isMember) {
+                window.location = "http://devsp/support/";
+            } else {
+                window.location = "http://app-fadb9767380056.apps.com/support/HelpDesk/Pages/Default.aspx?SPHostUrl=http%3A%2F%2Fdevsp%2Fsupport&SPLanguage=ru-RU&SPClientTag=1&SPProductNumber=15.0.4763.1000&SPAppWebUrl=http%3A%2F%2Fapp-fadb9767380056.Apps.com%2Fsupport%2FHelpDesk";
+            }
+        })
 
-        window.open("");
-    });
+        function isMemberofSharepointGroup(whatgroup) {
 
-    $("#clickforum").click(function () {
+            $().SPServices({
+                operation: "GetGroupCollectionFromUser",
+                userLoginName: $().SPServices.SPGetCurrentUser(),
+                async: false,
+                completefunc: function (xData, Status) {
 
-        window.open("");
-    });
+                    if ($(xData.responseXML).find("Group[Name='" + whatgroup + "']").length == 1) {
+                        isMember = true;
+                    } else {
+                        isMember = false;
+                    }
+                }
+            });
+        }
 
-    $("#clicksupport").click(function () {
+        isMemberofSharepointGroup("SupportOwner");
 
-        window.open("");
-    });
-});
+    })
+})
+
 
 
