@@ -20,25 +20,193 @@
 
 /* Place custom styles below */
 
-
-.calend.pull-right.over {
-    float: none!important;
+.time {
+    width: 120px;
+    float: right;
+    border: 2px solid #fff;
+    border-radius: 200px; 
+    height: 120px;
+    text-align: center;
+    line-height: 120px;
+    font-size: 35px;
 }
 
-.nopaddingright{ padding-right:0 !important} 
+.birthday_current {
+    color: #e66b6b;
+    text-decoration: none;
+    
+    background-image: url(../images/birthday.png);
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    
+    text-align: center;
+    vertical-align: middle;
+    font-style: normal;
+    font-weight: bold;
+    border: thin solid #e66b6b;
+}
 
-.calend { width:300px; height:400px; box-shadow:#D5D5D5 0px 0px 6px; border-radius:20px;}
-
-.calendup { width:100%; height:50%; background:url(..\\Images\\caledfon.png) bottom; background-size:cover;  border-radius:20px 20px 0 0;}
-
-.calendup span { color:#fff; font-size:2.2em; text-align:center; width:120px; }
-.countdata {font-size:4em; top:20px}
-.datt {margin:20px 0 0 20px;}
-
- .time { border: 2px solid #fff; border-radius:200px; padding:30px 1px; margin:30px 20px 20px 20px;}
 
 
-.calenddown {width:auto; height:45%; padding:5%;}
+.calendar.test {
+    padding: 5%;
+    width: 350px;
+}
+/*
+.birthday {
+    color: #e66b6b;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    font-style: italic;
+    font-weight: bold;
+}*/
 
-.calenddown th  { border:#E3E3E3 1px solid; text-align:right;  padding:0 5px; } 
-.calenddown tr td { background:#ebebeb; margin:2px; border:1px solid #fff;  padding:0 5px; text-align:right;  }
+/*  color: #e66b6b ;
+        border: thin solid #e66b6b;
+*/
+.birthday {
+
+    background-image: url(../images/birthday.png);
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+}
+
+.congratulateText {
+    text-align: center;
+    clear: both;
+    margin-top: 4px;
+}
+
+
+/*  font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px; 
+    
+    text-align: center;
+    font-style: italic;
+
+*/
+.fio {
+    
+    color: #666666;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/*copy past*/ 
+/* font: 87.5%/1.5em 'Lato', sans-serif; */
+
+body {
+    background: #ccc;
+    margin: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td {
+    padding: 0;
+}
+/*
+.container {
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}*/
+
+.calendar-container {
+    position: relative;
+    width: 390px;
+}
+
+.calendar-container header {
+    border-radius: 1em 1em 0 0;
+    background: #e66b6b;
+    color: #fff;
+    padding: 3em 2em;
+    height: 160px;
+}
+
+.day {
+    font-size: 5em;
+    font-weight: 600;
+    line-height: 1em;
+}
+
+.month {
+    font-size: 4em;
+    line-height: 1em;
+    text-transform: lowercase;
+}
+
+.calendar {
+    background: #fff;
+    border-radius: 0 0 1em 1em;
+    -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, .2), 0 3px 1px #fff;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, .2), 0 3px 1px #fff;
+    color: #555;
+    display: inline-block;
+    padding: 2em;
+}
+
+/* color: #e66b6b;*/
+.calendar thead {
+   
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.footer {
+    margin-right: 50px;
+    margin-top: 20px;
+}
+
+.calendar td {
+    padding: .5em 1em;
+    text-align: center;
+}
+
+.calendar tbody td:hover {
+    background: #cacaca;
+    color: #fff;
+}
+
+.current-day {
+    color: #e66b6b ;
+    border: thin solid #e66b6b ;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.prev-month,
+.next-month {
+    color: #cacaca;
+}
+
+.ring-left,
+.ring-right {
+    position: absolute;
+    top: 213px;
+}
+
+.ring-left { left: 2em; }
+.ring-right { right: 2em; }
+
+.ring-left:before,
+.ring-left:after,
+.ring-right:before,
+.ring-right:after {
+    background: #fff;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 3px 1px rgba(0, 0, 0, .3), 0 -1px 1px rgba(0, 0, 0, .2);
+    box-shadow: 0 3px 1px rgba(0, 0, 0, .3), 0 -1px 1px rgba(0, 0, 0, .2);
+    content: "";
+    display: inline-block;
+    margin: 8px;
+    height: 32px;
+    width: 8px;
+}
+

@@ -57,6 +57,8 @@
     <Content Include="Content\bootstrap-scope.css" />
     <Content Include="Content\bootstrap-scope.min.css" />
     <Content Include="Images\caledfon.png" />
+    <Content Include="Images\birthday.png" />
+    <Content Include="Images\social.png" />
     <Content Include="Pages\ClientWebPart1.aspx" />
     <Content Include="Pages\Elements.xml" />
   </ItemGroup>

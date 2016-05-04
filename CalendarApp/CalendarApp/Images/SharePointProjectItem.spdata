@@ -4,5 +4,7 @@
     <ProjectItemFile Source="Elements.xml" Target="Images\" Type="ElementManifest" />
     <ProjectItemFile Source="AppIcon.png" Target="Images\" Type="ElementFile" />
     <ProjectItemFile Source="caledfon.png" Target="Images\" Type="ElementFile" />
+    <ProjectItemFile Source="social.png" Target="Images\" Type="ElementFile" />
+    <ProjectItemFile Source="birthday.png" Target="Images\" Type="ElementFile" />
   </Files>
 </ProjectItem>

@@ -1,5 +1,8 @@
 ﻿'use strict';
 
+var appweburl;
+var hostWebUrl;
+
 $(document).ready(function () {
 
     moment.tz.add("Europe/Moscow|MSK MSD MSK|-30 -40 -40|01020|1BWn0 1qM0 WM0 8Hz0|16e6");
@@ -15,4 +18,11 @@ function displayTime() {
     $('#TimeNow').html(moment().format('HH:mm'));
 
     setTimeout(displayTime, 1000);
+   
 }
+
+
+
+
+
+
