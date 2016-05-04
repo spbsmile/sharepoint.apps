@@ -37,9 +37,11 @@
 <SharePoint:ScriptLink language="javascript" name="suitelinks.js" OnDemand="true" runat="server" Localizable="false" />
 <SharePoint:CustomJSUrl runat="server" />
 <SharePoint:SoapDiscoveryLink runat="server">
+
 <SharePoint:ScriptLink language="javascript" name="SP.Search.js" OnDemand="true" runat="server" Localizable="false" />
 <SharePoint:ScriptLink language="javascript" name="CustomjsLibs/jquery-2.1.4.min.js" Defer="false" runat="server" Localizable="false" />
-<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/searchRightTopCorner.js" Defer="false" runat="server" Localizable="false" />
+<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/jquery.SPServices-2014.02.min.js" Defer="false" runat="server" Localizable="false" />
+<!--<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/searchRightTopCorner.js" Defer="false" runat="server" Localizable="false" /> -->
 <SharePoint:ScriptLink language="javascript" name="CustomjsLibs/bootstrap.min.js" Defer="false" runat="server" Localizable="false" />
 
 </SharePoint:SoapDiscoveryLink>
@@ -86,36 +88,27 @@
 			<div class="bootstrap-html">
 				<div class="bootstrap-body">
                        
-                            <nav class="navbar over navbar-inverse navbar-fixed-top" style="background-color: rgba( 239,239,239,239 ); border-color:rgba( 239,239,239,239 );">
+                          <nav id="navigationPanel" class="navbar navbar-inverse navbar-fixed-top" style="margin-right: 16px; margin-top: 30px; background-color: rgba( 239,239,239,239 ); border-color:rgba( 239,239,239,239 );">
                                 <div class="container" style="height: 120px">
 									<div class="navbar-header">
 										<a class="navbar-brand" href="http://devsp/" alt="Внешний сайт">
-										<img src="../images/logo.png" width="210" height="95" alt="Главная страница" href="#" />
+										<img src="/_catalogs/masterpage/rivs/img/logo.png" width="210" height="95" alt="Главная страница" href="#" />
 										</a></div>
 									<div id="navbar" class="navbar-collapse collapse">
 										<div class="row">
 											<a class="btn btn-default" href="http://devsp/sites/search/Pages/employee.aspx" role="button">
 											Сотрудники</a>
-											<a class="btn btn-default" href="http://devsp/news" role="button">
+											<a class="btn btn-default" href="http://devsp/sites/news/default.aspx" role="button">
 											Новости</a>
-											<a class="btn btn-default disabled" href="#" role="button">
+											<a class="btn btn-default" href="http://devsp/sites/documents/default.aspx" role="button">
 											Документы</a>
-											<a class="btn btn-default disabled" href="#" role="button">
+											<a class="btn btn-default" href="http://devsp/%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%8B" role="button">
 											Приказы</a>
-											<a class="btn btn-default disabled" href="#" role="button">
+											<a class="btn btn-default" href="http://devsp/sites/forum/SitePages/%D0%94%D0%BE%D0%BC%D0%B0%D1%88%D0%BD%D1%8F%D1%8F%20%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B0.aspx" role="button">
 											Форум</a>
 											<button type="button" class="btn btn-default" id="clicksupport">
 											Техподдержка</button>
 											<demo:UserControl1 id="UserControl1" runat="server" />
-											<div id="navsearch" class="hint--bottom-left hint--info" data-hint="Поиск не настроен и нет контента, по учетке Забиякин дает результат, по другим - нет" style="width: 250px; float: right; margin-right: -440px;">
-												<div class="input-group">
-													<textarea id="textSearch" rows="1" style="resize:none;" class="form-control" placeholder="Поиск"></textarea>
-													<div class="input-group-btn">
-														<button id="btnSearchNav" class="btn btn-default" type="button" data-toggle="modal" data-target="#modalSearchResult">
-														<i class="glyphicon glyphicon-search">
-														</i></button></div>
-												</div>
-											</div>
 										</div>
 									</div>
 									<!--/.navbar-collapse --></div>
@@ -141,7 +134,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="jumbotron artbg">
+					<div class="jumbotron artbg " style="margin-top:140px">
 					</div>
 				</div>
 			</div>
@@ -159,36 +152,56 @@
 </div>
 
 <SharePoint:AjaxDelta id="DeltaFormDigest" BlockElement="true" runat="server"><asp:ContentPlaceHolder id="PlaceHolderFormDigest" runat="server"><SharePoint:formdigest runat="server" /></asp:ContentPlaceHolder></SharePoint:AjaxDelta></SharePoint:SharePointForm><SharePoint:AjaxDelta id="DeltaPlaceHolderUtilityContent" runat="server"><asp:ContentPlaceHolder id="PlaceHolderUtilityContent" runat="server" /></SharePoint:AjaxDelta><asp:ContentPlaceHolder id="PlaceHolderPageTitle" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderTitleAreaClass" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderTitleBreadcrumb" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderGlobalNavigationSiteMap" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderGlobalNavigation" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderSearchArea" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderLeftNavBar" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderHorizontalNav" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderTopNavBar" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderLeftNavBarDataSource" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderCalendarNavigator" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderLeftActions" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderLeftNavBarTop" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderSiteName" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderPageTitleInTitleArea" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderPageDescription" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderPageImage" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderTitleLeftBorder" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderMiniConsole" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderTitleRightMargin" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderTitleAreaSeparator" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderNavSpacer" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderLeftNavBarBorder" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderBodyLeftBorder" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderBodyRightMargin" Visible="False" runat="server" /><asp:ContentPlaceHolder id="WSSDesignConsole" Visible="False" runat="server" /><asp:ContentPlaceHolder id="SPNavigation" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderQuickLaunchTop" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderQuickLaunchBottom" Visible="False" runat="server" /></body>
-<script>//<![CDATA[
-        SP.SOD.executeFunc('sp.js', 'sp.runtime.js', isSupportMemberCurrentUser);  
-		
-		function isSupportMemberCurrentUser()
-		{
-			var isMember = null;
-			function check(whatgroup) {
-            	$().SPServices({
-                	operation: "GetGroupCollectionFromUser",
-                	userLoginName: $().SPServices.SPGetCurrentUser(),
-                	async: true,
-                	completefunc: function (xData, Status) {
-                    	if ($(xData.responseXML).find("Group[Name='" + whatgroup + "']").length == 1) {
-                        	isMember = true;
-                    	} else {
-                        	isMember = false;
-                    	}
-                    	$("#clicksupport").click(function () {
-            				if (isMember) {
-                				window.location = "http://devsp/support/";
-            				} else {
-                				window.location = "http://app-fadb9767380056.apps.com/support/HelpDesk/Pages/Default.aspx?SPHostUrl=http%3A%2F%2Fdevsp%2Fsupport&SPLanguage=ru-RU&SPClientTag=1&SPProductNumber=15.0.4763.1000&SPAppWebUrl=http%3A%2F%2Fapp-fadb9767380056.Apps.com%2Fsupport%2FHelpDesk";
-            					}
-        					})
-                		}
-            		});
-        		}
-        	
-        	check("SupportOwner");
-       }
-//]]></script>
+<script>
+
+$("#ctl00_PlaceHolderLeftNavBar_PlaceHolderQuickLaunchBottom_idNavLinkViewAll").hide();
+$('#RibbonContainer-TabRowRight').hide();
+$('#suiteBarButtons').hide();
+$('#s4-ribbonrow').hide();
+/*
+var isMember = null;
+$().SPServices({
+    operation: "GetGroupCollectionFromUser",
+    userLoginName: $().SPServices.SPGetCurrentUser(),
+    async: true,
+    completefunc: function(xData, Status) {
+        if ($(xData.responseXML).find("Group[Name='" + "SupportOwner" + "']").length == 1) {
+            console.log("hello spservice");
+            isMember = true;
+        } else {
+            isMember = false;
+        }
+        $("#clicksupport").click(function () {
+            console.log("hello click");
+            if (isMember) {
+                window.location = "http://devsp/support/";
+            } else {
+                window.location = "http://app-fadb97673800f0.apps.com/support/HelpDesk/Pages/Default.aspx?SPHostUrl=http%3A%2F%2Fdevsp%2Fsupport&SPLanguage=ru-RU&SPClientTag=1&SPProductNumber=15%2E0%2E4763%2E1000&SPAppWebUrl=http%3A%2F%2Fapp-fadb97673800f0%2EApps%2Ecom%2Fsupport%2FHelpDesk";
+            }
+        })
+    }
+});
+
+
+$().SPServices({
+    operation: "GetGroupCollectionFromUser",
+    userLoginName: $().SPServices.SPGetCurrentUser(),
+    async: true,
+    completefunc: function(xData, Status) {
+        if ($(xData.responseXML).find("Group[ID='" + "4" + "']").length == 1) {
+            $('#RibbonContainer-TabRowRight').show();
+            $('#suiteBarButtons').show();
+            $('#s4-ribbonrow').show();
+            $('#s4-ribbonrow').css({
+                "height": "initial"
+            });
+            $("#navigationPanel").css({
+                "margin-top": "60px"
+            });
+        }
+    }
+});
+*/
+</script>
 
 </SharePoint:SPHtmlTag>

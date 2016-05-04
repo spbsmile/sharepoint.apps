@@ -8,7 +8,7 @@ function uploadFileaddItem() {
     var fileInput = $("#getFile");
     // Get the file name from the file input control on the page.
     var parts = fileInput[0].value.split("\\");
-    var fileName = parts[parts.length - 1];
+    fileName = parts[parts.length - 1];
     // Initiate method calls using jQuery promises.
     // Get the local file as an array buffer.
     var getFile = getFileBuffer();
@@ -23,8 +23,8 @@ function uploadFileaddItem() {
                 var changeItem = updateListItem(listItem.d.__metadata);
                 changeItem.done(function () {
                     console.log("file uploaded and updated");
+                    addClaim(getItemData($("#urgentlyValue").val(), $("#category option:selected").text(), $("#discription").val(), listItem.d.ID, ""));
                 });
-                addClaim(getItemData($("#urgentlyValue").val(), $("#category").val(), $("#discription").val(), listItem.d.ID, ""));
             });
             getItem.fail(onError);
         });

@@ -1,10 +1,7 @@
 ﻿function displayClaimsCurrentUser(listId, panelId, tableId, buttonHtml, typeTable, fieldAuthor, fields, tooltipText, statusClaim) {
 
-
-
-
     (new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl)).executeAsync({
-        url: appWebUrl + "/_api/SP.AppContextSite(@target)/web/lists(guid'" + listId + "')/items?$select=" + "AttachFileNew/Title," + fieldAuthor + fields + "&$expand=" + "AttachFileNew," + fieldAuthor + "&$filter=" + fieldAuthor + "/Id eq " + currentUserId + "&@target='http://devsp/support'",
+        url: appWebUrl + "/_api/SP.AppContextSite(@target)/web/lists(guid'" + listId + "')/items?$select=" + "AttachFileNew/Title," + fieldAuthor + fields + "&$expand=" + "Author,AttachFileNew," + fieldAuthor + "&$filter=" + fieldAuthor + "/Id eq " + currentUserId + "&@target='http://devsp/support'",
         method: "GET",
         headers: { "Accept": "application/json; odata=verbose" },
         success(data) {
@@ -22,17 +19,17 @@
                     <td>${r.Discription}</td>
                     <td>${typeTable === TableClaims.New ? r.urgently : typeTable === TableClaims.Accepted ? r.Priority : r.urgently}</td> 
                     <td>${typeTable === TableClaims.New ? r.category : typeTable === TableClaims.Accepted ? r.Category : r.category}</td> 
-                    <td>${(r.AttachFileNew === undefined || r.AttachFileNew["Title"] === undefined) ? "  " : r.AttachFileNew["Title"]}                  
+                    <td>${(r.AttachFileNew === undefined || r.AttachFileNew["Title"] === undefined) ? "  " : r.AttachFileNew["Title"]}</td>            
                     <td>${statusClaim}</td>
+                    <td>${typeTable === TableClaims.New ? " " : r.Author.Title }</td>
                     <td id="buttoncell${rowIndex}${listId}" class="hint--bottom-left hint--info" data-hint="${tooltipText}"</td>
                 </tr>`);
                 assignCallbackClaimButton(listId, buttonHtml, rowIndex, r, typeTable, r.ID);
             }
-            console.log(jsonObject);
         },
-        error: onError
+        error: onQueryFailed
     });
-}
+}// <td id="buttoncell${rowIndex}${listId}" class="hint--bottom-left hint--info" data-hint="${tooltipText}"</td>
 
 function assignCallbackClaimButton(listId, buttonHtml, rowIndex, data, typeTable, newId) {
     var button = $(buttonHtml);

@@ -30,10 +30,14 @@ var tooltipBtnResolvedClaim = "Если проблема повторно обн
 var tooltipBtnNewClaim = "Если Вы сами справились с задачей";
 var btnNewClaim = '<input type="button"  value="Отозвать Заявку">';
 var btnResolvedClaim = '<input type="button"  value="Переоткрыть Заявку" >';
+
 var listFieldsNewClaimsTable = "/Title,ID,DateTextVersionField,Discription,Time,urgently,category";
-var listFieldsAcceptedClaimsTable = "/Title,ID,DateCreate,Discription,TimeCreate,Priority,Category";
-var listFieldsResolvedClaimsTable = "/Title,ID,Date,Discription,Time,urgently,category";
+var listFieldsAcceptedClaimsTable = "/Title,ID,DateCreate,Discription,TimeCreate,Priority,Category,Author/Title";
+var listFieldsResolvedClaimsTable = "/Title,ID,Date,Discription,Time,urgently,category,Author/Title";
+
 var statusClaim = ["Принята", "В Работе", "Выполнена"];
+
+var fileName = " ";
 
 enum TableClaims {
     New,
@@ -63,7 +67,7 @@ $(document).ready(() => {
         context.load(currentUser);
         context.executeQueryAsync(() => {
                 currentUserId = currentUser.get_id();
-                displayClaimsCurrentUser(listIdNewClaims, "#panelSendClaims", "#tbodySendClaims", btnNewClaim, TableClaims.New, "kk", listFieldsNewClaimsTable, tooltipBtnNewClaim, statusClaim[0]);
+                displayClaimsCurrentUser(listIdNewClaims, "#panelSendClaims", "#tbodySendClaims", btnNewClaim, TableClaims.New, "Author", listFieldsNewClaimsTable, tooltipBtnNewClaim, statusClaim[0]);
                 displayClaimsCurrentUser(listIdAcceptedClaims, "#panelSendClaims", "#tbodySendClaims", btnNewClaim, TableClaims.Accepted, "Author0", listFieldsAcceptedClaimsTable, tooltipBtnNewClaim, statusClaim[1]);
                 displayClaimsCurrentUser(listIdResolvedClaims, "#panelResolvedClaims", "#tbodyResolvedClaims", btnResolvedClaim, TableClaims.Resolved, "Author0", listFieldsResolvedClaimsTable, tooltipBtnResolvedClaim, statusClaim[2]);
             },
@@ -94,9 +98,10 @@ $(document).ready(() => {
 
     $("#sendTicket").click(() => {
         //if (!$('#dialogform').valid()) return;
+        //processSendEmails("d");
         $("#modalSendClaim").modal();
         if ((<HTMLInputElement>$("#getFile").get(0)).files.length === 0) {
-            addClaim(getItemData($("#urgentlyValue").val(), $("#category").val(), $("#discription").val(), null, ""));
+            addClaim(getItemData($("#urgentlyValue").val(), $("#category option:selected").text(), $("#discription").val(), null, ""));
         } else {
             uploadFileaddItem();
         }
@@ -106,12 +111,28 @@ $(document).ready(() => {
         $("#pressButtonSupport").hide();
         $("#supportForm").show();
     });
+
+    allHideDescription();
 });
 
 //todo open dialog
 function reopenClaim(rowSelectorId, itemData) {
     removeRow(rowSelectorId, "#panelResolvedClaims", "#tableResolved");
     addClaim(itemData);
+}
+
+$(document).on('change', '#category', () => {
+
+    var id = $("#category").val();
+    allHideDescription();
+    $("#" + id).show();
+});
+
+//temp hack. 
+function allHideDescription() {
+    for (var i = 1; i <= 6; i++) {
+        $("#" + i).hide();
+    }
 }
 
 function removeRow(rowId, panelId, tableId) {
@@ -121,8 +142,51 @@ function removeRow(rowId, panelId, tableId) {
     }
 }
 
+/*
 
+function processSendEmails(parameters) {
+    var from = 'M_Zabiyakin@rivs.ru',
+        to = 'm_laberko@rivs.ru',
+        body = 'Hello World Body',
+        subject = 'Hello World Subject';
 
+    sendEmails(from, to, body, subject);
+}
 
+function sendEmails(from, to, body, subject) {
+    var siteurl = _spPageContextInfo.webServerRelativeUrl;
+    var urlTemplate = siteurl + "/_api/SP.Utilities.Utility.SendEmail";
+    $.ajax({
+        contentType: 'application/json',
+        url: urlTemplate,
+        type: "POST",
+        data: JSON.stringify({
+            'properties': {
+                '__metadata': {
+                    'type': 'SP.Utilities.EmailProperties'
+                },
+                'From': from,
+                'To': {
+                    'results': [to]
+                },
+                'Body': body,
+                'Subject': subject
+            }
+        }),
+        headers: {
+            "Accept": "application/json;odata=verbose",
+            "content-type": "application/json;odata=verbose",
+            "X-RequestDigest": jQuery("#__REQUESTDIGEST").val()
+        },
+        success(data) {
+            alert('Email Sent Successfully');
+        },
+        error(err) {
+            alert('Error in sending Email: ' + JSON.stringify(err));
+        }
+    });
+}
+
+*/
 
 

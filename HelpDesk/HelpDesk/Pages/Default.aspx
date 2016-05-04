@@ -16,6 +16,7 @@
      <script type="text/javascript" src="../Scripts/core/utils.js"></script>
     <script type="text/javascript" src="../Scripts/core/logs.js"></script>
     <script type="text/javascript" src="../Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="../Scripts/searchRightTopCorner.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
     <script type="text/javascript" src="/_layouts/15/sp.js"></script> 
 
@@ -60,13 +61,13 @@
                                 <label for="category">Выберите категорию</label>
                                 <div>
                                     <select id="category" class="form-control">
-                                        <option>...</option>
-                                        <option>Починка оборудования</option>
-                                        <option>Починка ПО</option>
-                                        <option>Интернет</option>
-                                        <option>Lync</option>
-                                        <option>Документы</option>
-                                        <option>Другое</option>
+                                        <option value="#">...</option>
+                                        <option value="1">Оборудование</option>
+                                        <option value="2">Починка ПО</option>
+                                        <option value="3">Интернет</option>
+                                        <option value="4">Skype for Business</option>
+                                        <option value="5">Документы</option>
+                                        <option value="6">Другое</option>
                                     </select>
                                 </div>
                             </div>
@@ -82,10 +83,11 @@
                                 <label for="urgentlyValue">Определите срочность:</label>
                                 <div>
                                     <select id="urgentlyValue" class="form-control">
-                                        <option>В течении дня</option>
-                                        <option>В течении 1 часа</option>
-                                        <option>В течении 2 часов</option>
-                                        <option>В течении 4 часов</option>
+                                        <option>Срочно</option>
+                                        <option>В течение 1 часа</option>
+                                        <option>В течение 2 часов</option>
+                                        <option>В течение 4 часов</option>
+                                        <option>В течение дня</option>
                                     </select>
                                 </div>
                             </div>
@@ -105,17 +107,41 @@
                                 <div class="panel-footer">
                                     Добро пожаловать на страницу техподдержки.
                                     <p>Через обратную форму Вы можете отправить нам заявку.</p>
+                                </div>
+                                <div id="1" class="panel-footer">
+                                    <p>Оборудование</p>
                                     <p>
-                                        Инструкция по 1 пункту.
+                                        Описание
                                     </p>
+                                </div>
+                                <div id="2"  class="panel-footer">
+                                    <p>Починка ПО</p>
                                     <p>
-                                        Инструкция по 2 пункту.
+                                        Описание
                                     </p>
+                                </div>
+                                <div id="3"  class="panel-footer">
+                                    <p>Интернет</p>
                                     <p>
-                                        Инструкция по 3 пункту.
+                                        Описание
                                     </p>
+                                </div>
+                                <div id="4" class="panel-footer">
+                                    <p>Skype for Business</p>
                                     <p>
-                                        Инструкция по 4 пункту.
+                                        Описание
+                                    </p>
+                                </div>
+                                <div id="5" class="panel-footer">
+                                    <p>Документы</p>
+                                    <p>
+                                        Описание
+                                    </p>
+                                </div>
+                                <div id="6" class="panel-footer">
+                                    <p>Другое</p>
+                                    <p>
+                                        Описание
                                     </p>
                                 </div>
                             </div>
@@ -143,6 +169,7 @@
                                         <th>Категория</th>
                                         <th>Приложенный файл</th>
                                         <th>Статус</th>
+                                        <th>Сотрудник ИТ</th>
                                         <th>Действие</th>
                                     </tr>
                                 </thead>
@@ -172,6 +199,7 @@
                                         <th>Категория</th>
                                         <th>Приложенный файл</th>
                                         <th>Статус</th>
+                                        <th>Сотрудник ИТ</th>
                                         <th>Действие</th>
                                     </tr>
                                 </thead>

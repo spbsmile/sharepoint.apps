@@ -50,5 +50,6 @@
     <File Path="Scripts\core\IsCurrentUserMemberOfGroup.ts" Url="Scripts/core/IsCurrentUserMemberOfGroup.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\core\addRowToTableClaims.ts" Url="Scripts/core/addRowToTableClaims.ts" ReplaceContent="TRUE" />
     <File Path="Scripts\core\addRowToTableClaims.js" Url="Scripts/core/addRowToTableClaims.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\searchRightTopCorner.js" Url="Scripts/searchRightTopCorner.js" ReplaceContent="TRUE" />
   </Module>
 </Elements>

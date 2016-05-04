@@ -3,7 +3,7 @@
 <App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest"
      Name="HelpDesk"
      ProductID="{da89ef4a-5066-4a69-9d8d-87d7bfed21c5}"
-     Version="2.0.0.0"
+     Version="3.0.0.0"
      SharePointMinVersion="15.0.0.0"
 >
   <Properties>
@@ -14,7 +14,7 @@
   <AppPrincipal>
     <Internal />
   </AppPrincipal>
-  <AppPermissionRequests>
+  <AppPermissionRequests AllowAppOnlyPolicy="false">
     <AppPermissionRequest Scope="http://sharepoint/content/sitecollection" Right="FullControl" />
   </AppPermissionRequests>
 </App>

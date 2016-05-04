@@ -13,14 +13,13 @@ function addClaim(itemData) {
         success: function (data) {
             var jsonObject = JSON.parse(data.body.toString());
             executeHandler("Заявка Отправлена!");
-            //$("#panelSendClaims").is(":visible"); 
             if (!$("#panelSendClaims").is(":visible")) {
-                displayClaimsCurrentUser(listIdNewClaims, "#panelSendClaims", "#tbodySendClaims", btnNewClaim, TableClaims.New, "kk", listFieldsNewClaimsTable, tooltipBtnNewClaim, statusClaim[0]);
+                displayClaimsCurrentUser(listIdNewClaims, "#panelSendClaims", "#tbodySendClaims", btnNewClaim, TableClaims.New, "Author", listFieldsNewClaimsTable, tooltipBtnNewClaim, statusClaim[0]);
             }
             else {
                 //todo move to file "addRowToTableClaims"
                 var rowIndex = 0;
-                $("#tableSend tbody").prepend("<tr>\n                            <td>" + rowIndex + "</td>\n                            <td>" + moment().format("LL") + "</td>\n                            <td>" + moment().format("HH:mm") + "</td>\n                            <td>" + $("#discription").val() + "</td>\n                            <td>" + $("#urgentlyValue").val() + "</td>\n                            <td>" + $("#category").val() + "</td>\n                            <td> </td>\n                            <td>" + statusClaim[0] + "</td>\n                            <td id=\"buttoncell" + rowIndex + listIdNewClaims + "\" class=\"hint--bottom-left hint--info\" data-hint=\"" + tooltipBtnNewClaim + "\"< /td>\n                        </tr>");
+                $("#tableSend tbody").prepend("<tr id=\"" + "row" + rowIndex + "\">\n                            <td>" + rowIndex + "</td>\n                            <td>" + moment().format("L") + "</td>\n                            <td>" + moment().format("HH:mm") + "</td>\n                            <td>" + $("#discription").val() + "</td>\n                            <td>" + $("#urgentlyValue").val() + "</td>\n                            <td>" + $("#category option:selected").text() + "</td>\n                            <td>" + fileName + "</td> \n                            <td>" + statusClaim[0] + "</td>\n                            <td>" + " " + "</td> \n                            <td id=\"buttoncell" + rowIndex + listIdNewClaims + "\" class=\"hint--bottom-left hint--info\" data-hint=\"" + tooltipBtnNewClaim + "\"< /td>\n                        </tr>");
                 assignCallbackClaimButton(listIdNewClaims, btnNewClaim, rowIndex, null, TableClaims.New, jsonObject.d.ID);
             }
         },
@@ -47,7 +46,6 @@ function getItemData(urgently, category, discription, fileId, comment) {
             "category": "",
             "DateTextVersionField": "",
             "Time": "",
-            "kk": "",
             "AttachFileNew": ""
         },
         "Discription": comment + discription,
@@ -55,7 +53,6 @@ function getItemData(urgently, category, discription, fileId, comment) {
         "category": category,
         "DateTextVersionField": moment().format("L"),
         "Time": moment().format("HH:mm"),
-        "kkId": currentUserId,
         "AttachFileNewId": fileId
     };
     return item;
