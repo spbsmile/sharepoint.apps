@@ -1,0 +1,244 @@
+<script type="text/javascript" src="/Style%20Library/corelibs/moment.min.js"></script>
+<script type="text/javascript" src="/Style%20Library/corelibs/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="/Style%20Library/corelibs/moment-timezone.min.js"></script>
+
+
+<script>
+
+    var currentIterateMonth = null;
+    var dataEmployee = null;
+
+    $(document).ready(function () {
+
+        moment.tz.add("Europe/Moscow|MSK MSD MSK|-30 -40 -40|01020|1BWn0 1qM0 WM0 8Hz0|16e6");
+        moment.locale(window.navigator.userLanguage || window.navigator.language);
+        displayTime();
+        var currentDate = moment().format("D MMMM").toString(); // 2 марта
+        var array = currentDate.split(" ");
+        $('#MonthNow').html(array[1]);
+        $('#DayNow').html(moment().format("D"));
+
+        var currentMonth = parseInt(moment().format('M') - 1);
+        currentIterateMonth = currentMonth;
+        var startDateInt = moment([moment().format('YYYY'), currentMonth]).format("d");
+        setCellCalendar(startDateInt, currentMonth);
+
+        $.ajax({
+            url: "http://devsp/_api/search/query?querytext='*'&trimduplicates=true&enablequeryrules=false&rowlimit=500&bypassresulttypes=true&selectproperties='Title%2cJobTitle%2cDepartment%2cBirthday%2cPictureURL'&sourceid='b09a7990-05ea-4af9-81ef-edfab16c4e31'&clienttype='ContentSearchRegular'",
+            method: "GET",
+            headers: {
+                "Accept": "application/json;odata=verbose",
+                "X-RequestDigest": $("#__REQUESTDIGEST").val()
+            },
+            success: successHandler,
+            error: errorHandler
+        });
+
+        $("#btnPrevMonth").click(function () {
+            currentIterateMonth--;
+            setMonthIterate(currentIterateMonth);
+            return false;
+        });
+
+        $("#btnNextMonth").click(function () {
+            currentIterateMonth++;
+            setMonthIterate(currentIterateMonth);
+            return false;
+        });
+    });
+
+    function displayTime() {
+        $('#TimeNow').html(moment().format('HH:mm'));
+        setTimeout(displayTime, 1000);
+    }
+
+    function setMonthIterate(indexMonth) {
+        $('#DayNow').html("");
+        setCellCalendar(moment([moment().format('YYYY'), indexMonth]).format("d"), indexMonth);
+        $('#MonthNow').html(moment(new Date(2012, indexMonth, 04)).format("MMMM"));
+    }
+
+    function defineBirthdays(indexMonth, data) {
+        var footerInit = false;
+        var indexFirstDayOfMonthInWeek = moment([moment().format('YYYY'), indexMonth]).format("d");
+
+        for (var i = 0; i < data.length; i++) {
+            var birthday = data[i].Cells.results[5].Value;
+            if (moment(birthday, 'DD.MM.YYYY').isValid() && moment(birthday, 'DD.MM.YYYY').month() === moment().month()) {
+                var name = data[i].Cells.results[2].Value;
+                var numberDay = moment(birthday, 'DD.MM.YYYY').format('D');
+                var indexCell = (parseInt(numberDay) + parseInt(indexFirstDayOfMonthInWeek) - 2);
+                var id = "#cell_" + indexCell;
+
+                if (moment().format('D') === numberDay) {
+                    if (!footerInit) {
+                        $("#footer").append('<div class="congratulateText"> <h1> Поздравляем! </h1> </div>');
+                        footerInit = true;
+                    }
+
+                    $(id).addClass('birthday_current');
+                    var department = data[i].Cells.results[4].Value;
+                    var job = data[i].Cells.results[3].Value;
+                    var pictureUrl = data[i].Cells.results[6].Value;
+
+                    congratulateToday(name, job, department, pictureUrl);
+
+                } else {
+                    $(id).addClass('birthday');
+                    var prevName = $(id).prop("title") && $(id).prop("title").split(':')[1] ? ", " + $(id).prop("title").split(':')[1] : " ";
+                    $(id).attr('title', 'День Рождения: ' + name + prevName);
+                }
+            }
+        }
+    }
+
+    function successHandler(data) {
+        var currentMonth = parseInt(moment().format('M') - 1);
+
+        var results = data.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results;
+        defineBirthdays(currentMonth, results);
+
+        var h = $("#WebPartctl00_ctl42_g_5b8f247a_ca13_4731_ab0d_453413761b75").height() - 400;
+        console.log(h);
+        $("#MSOZoneCell_WebPartctl00_ctl42_g_5490d60f_9d22_42de_9a1b_cfcec5546ba5").css('padding-bottom', h + 'px');
+    }
+
+    function setCellCalendar(shiftStartDate, currentMonth) {
+
+        var prevMonth = (currentMonth - 1);
+
+        var prevMonthDayValue = moment(moment([moment().format('YYYY'), prevMonth])).daysInMonth();
+        for (var i = shiftStartDate - 2; i >= 0; i--) {
+            var id = "#cell_" + i;
+            $(id).text(prevMonthDayValue--);
+            $(id).addClass('prev-month');
+        }
+
+        var interval = parseInt(shiftStartDate) + parseInt(moment().daysInMonth());
+        var currentMonthDayValue = 1;
+        var lastCellIndex = 0;
+        for (var i = shiftStartDate; i < interval; i++) {
+            var id = "#cell_" + (i - 1);
+            lastCellIndex = (i - 1);
+            $(id).text(currentMonthDayValue++);
+        }
+
+        var nextMonthDayValue = 1;
+        for (var i = (lastCellIndex + 1); i <= 34; i++) {
+            var id = "#cell_" + i;
+            $(id).text(nextMonthDayValue++);
+            $(id).addClass('next-month');
+        }
+    }
+
+
+    function congratulateToday(name, jobTitle, department, photo) {
+
+        if (photo) {
+            $("#footer").append('<div class="congratulateText"> <p> <img src=' + photo.replace(/ /g, '%20') + ' class="photo_left"></p> </div>');
+        }
+
+        $("#footer").append('<div class="congratulateText fio"> <h3><strong> ' + name + ' </strong></h3> </div>');
+
+        $("#footer").append('<div class="congratulateText"> <h3> ' + department + ' </h3> </div>');
+        $("#footer").append('<div class="congratulateText"> <h3> ' + jobTitle + ' </h3></div>');
+    }
+
+    // Function to handle the error event.
+    // Prints the error message to the page.
+    function errorHandler(data, errorCode, errorMessage) {
+        document.getElementById("internal").innerText =
+                "Could not complete cross-domain call: " + errorMessage;
+    }
+
+</script>
+
+<div class="calendar-panel">
+    <div class="calendar-container">
+        <header>
+            <div>
+                <div class="time" id="TimeNow">15:45</div>
+                <div id="DayNow" class="day">18</div>
+            </div>
+            <div id="MonthNow" class="month">August</div>
+            <div style=" margin-top: 5px;">
+                <button id="btnPrevMonth" type="submit" class="btnIterateMonth">
+                    <i class="fa fa-chevron-left fa-lg"></i></button>
+                <button id="btnNextMonth" type="submit" class="btnIterateMonth">
+                    <i class="fa fa-chevron-right fa-lg"></i></button>
+            </div>
+        </header>
+        <div class="calendar test">
+            <table>
+                <thead>
+                <tr>
+                    <th>пн</th>
+                    <th>вт</th>
+                    <th>ср</th>
+                    <th>чт</th>
+                    <th>пт</th>
+                    <th>сб</th>
+                    <th>вс</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td id="cell_0">1</td>
+                    <td id="cell_1">2</td>
+                    <td id="cell_2">3</td>
+                    <td id="cell_3">4</td>
+                    <td id="cell_4">5</td>
+                    <td id="cell_5">6</td>
+                    <td id="cell_6">7</td>
+                </tr>
+                <tr>
+                    <td id="cell_7">11</td>
+                    <td id="cell_8">12</td>
+                    <td id="cell_9">13</td>
+                    <td id="cell_10">14</td>
+                    <td id="cell_11">15</td>
+                    <td id="cell_12">16</td>
+                    <td id="cell_13">17</td>
+                </tr>
+                <tr>
+                    <td id="cell_14">18</td>
+                    <td id="cell_15">19</td>
+                    <td id="cell_16">20</td>
+                    <td id="cell_17">21</td>
+                    <td id="cell_18">22</td>
+                    <td id="cell_19">23</td>
+                    <td id="cell_20">24</td>
+                </tr>
+                <tr>
+                    <td id="cell_21"></td>
+                    <td id="cell_22"></td>
+                    <td id="cell_23"></td>
+                    <td id="cell_24"></td>
+                    <td id="cell_25"></td>
+                    <td id="cell_26"></td>
+                    <td id="cell_27"></td>
+                </tr>
+                <tr>
+                    <td id="cell_28"></td>
+                    <td id="cell_29"></td>
+                    <td id="cell_30"></td>
+                    <td id="cell_31"></td>
+                    <td id="cell_32"></td>
+                    <td id="cell_33"></td>
+                    <td id="cell_34"></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="ring-left"></div>
+        <div class="ring-right"></div>
+
+    </div>
+    <div id="footer" class="footer">
+    </div>
+</div>
+
+
