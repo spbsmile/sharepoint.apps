@@ -30,10 +30,10 @@
             </div>
             <div class="modal-body">
 
-                <table align="center" style="width: 400px;" >
+                <table align="center" style="width: 444px;">
                     <tbody>
                         <tr>
-                            <td align="center">
+                            <td align="center" style="width: 164px;">
                                 <strong>Санкт-Петербург</strong>
                                 <br>
                                 <br>
@@ -42,8 +42,9 @@
                                 <asp:Label ID="spbDescriptionDuplicat" runat="server" Text="Label"></asp:Label>
                                 <br>
                                 <asp:Label ID="spbDegreesDuplicat" runat="server" Text="Label"></asp:Label>
-                                <br>                                
-                            </td> 
+                                <br>
+                            </td>
+                            
                             <td align="center">
                                 <strong>Москва</strong>
                                 <br>
@@ -55,7 +56,28 @@
                                 <asp:Label ID="mscWeatherDegrees" runat="server" Text="Label"></asp:Label>
                                 <br>
                             </td>
-                            <td align="center" >
+
+                            <td align="center">
+                                <strong>Магнитогорск</strong>
+                                <br>
+                                <br>
+                                <i runat="server" id="magnitogorskWeatherIcon"></i>
+                                <br>
+                                <asp:Label ID="magnitogorskWeatherDescription" runat="server" Text="Label"></asp:Label>
+                                <br>
+                                <asp:Label ID="magnitogorskWeatherDegrees" runat="server" Text="Label"></asp:Label>
+                                <br>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table align="center" style="width: 540px; margin-top: 10px;">
+                    <tbody>
+                        <tr>
+
+                            <td align="center" style="width: 134px;">
                                 <strong>Учалы</strong>
                                 <br>
                                 <br>
@@ -66,9 +88,8 @@
                                 <asp:Label ID="uchalyWeatherDegrees" runat="server" Text="Label"></asp:Label>
                                 <br>
                             </td>
-                        </tr>
-                        <tr>
-                            <td align="center" >
+                        
+                            <td align="center" style="width: 134px;">
                                 <strong>Ереван</strong>
                                 <br>
                                 <br>
@@ -79,7 +100,7 @@
                                 <asp:Label ID="erevanWeatherDegrees" runat="server" Text="Label"></asp:Label>
                                 <br>
                             </td>
-                            <td align="center" >
+                            <td align="center" style="width: 134px;">
                                 <strong>Эрденет</strong>
                                 <br>
                                 <br>
@@ -89,9 +110,8 @@
                                 <br>
                                 <asp:Label ID="erdenetWeatherGegrees" runat="server" Text="Label"></asp:Label>
                                 <br>
-                                
                             </td>
-                            <td align="center" >
+                            <td align="center" style="width: 134px;">
                                 <strong>Ташкент</strong>
                                 <br>
                                 <br>

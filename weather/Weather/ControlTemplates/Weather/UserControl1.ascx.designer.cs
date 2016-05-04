@@ -94,6 +94,33 @@ namespace Weather.ControlTemplates.Weather {
         protected global::System.Web.UI.WebControls.Label mscWeatherDegrees;
         
         /// <summary>
+        /// magnitogorskWeatherIcon control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl magnitogorskWeatherIcon;
+        
+        /// <summary>
+        /// magnitogorskWeatherDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label magnitogorskWeatherDescription;
+        
+        /// <summary>
+        /// magnitogorskWeatherDegrees control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label magnitogorskWeatherDegrees;
+        
+        /// <summary>
         /// uchalyWeatherIcon control.
         /// </summary>
         /// <remarks>
