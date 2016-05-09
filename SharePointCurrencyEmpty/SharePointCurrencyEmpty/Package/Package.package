@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="e13cdcee-9aaa-40a6-a076-eababfee4ac1" solutionId="e13cdcee-9aaa-40a6-a076-eababfee4ac1" resetWebServer="false" sharePointProductVersion="15.0" name="SharePointCurrencyEmpty" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <customAssembly location="EntityFramework.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll" />
+  </assemblies>
+  <features>
+    <featureReference itemId="0251173a-a334-4308-8bb7-bfa0a53cb3b6" />
+  </features>
+</package>
