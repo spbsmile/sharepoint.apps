@@ -12,11 +12,9 @@ namespace SqlCurrencyConsole
     {
         static void Main(string[] args)
         {
-            var daysInterval = 150;
+            var daysInterval = 0;
 
-            var dateForButton = DateTime.Now.AddDays(-1);
-
-            string str = "Data Source= DEVSP; Initial Catalog=CurrencySP2013;"
+            var str = "Data Source= DEVSP; Initial Catalog=CurrencySP2013;"
             + "Integrated Security=True";
             // ReadOrderData(str);
 
@@ -33,19 +31,21 @@ namespace SqlCurrencyConsole
 
             using (var db = new CurrencySP2013Entities())
             {
-                var date = DateTime.Now;//.AddDays(-1);
-                var dateStr = date.ToString("dd/MM/yyyy");
+                for (var i = daysInterval; i >= 0; i--)
+                {
+                    var date = DateTime.Now.AddDays(-i);
+                    var dateStr = date.ToString("dd/MM/yyyy");
 
-                var weburl = "http://www.cbr.ru/scripts/XML_daily.asp?date_req=" + dateStr;
-                var rdr = new XmlTextReader(weburl);
-                var xd = XDocument.Load(rdr);
+                    var weburl = "http://www.cbr.ru/scripts/XML_daily.asp?date_req=" + dateStr;
+                    var rdr = new XmlTextReader(weburl);
+                    var xd = XDocument.Load(rdr);
 
-                //FullWriteDBDescription(db, xd);
-                WriteValuesToDB(db, xd, dateStr);
+                    //FullWriteDBDescription(db, xd);
+                    WriteValuesToDB(db, xd, dateStr);
+                }
+                
                 db.SaveChanges();
             }
-
-           
 
             Console.WriteLine("end");
             Console.ReadKey();
