@@ -9,48 +9,31 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
 {
     public partial class VisualWebCurrUserControl : UserControl
     {
-        //todo . \
-        /*
-         if (!IsPostBack)
-         {
-            // put codes here
-         }
-        */
+        private const string Connect = "Data Source= server-spbe; Initial Catalog=CurrencySP2013;"
+                                                + "Integrated Security=True";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //BtnDatechange.Attributes.Add("onclick", "return false;");
-
-            var str = "Data Source= DEVSP; Initial Catalog=CurrencySP2013;"
-           + "Integrated Security=True";
-
-            using (var db = new CurrencySP2013Entities())
+            if (!IsPostBack)
             {
-                var dateStr = dtDatePicker.Text;//DateTime.Now.ToString("dd/MM/yyyy");
-                var rowIndex = 0;
-                foreach (var valitesCode in GetAllOurIdOfCurrency(db))
-                {
-                    var filterPrimKey = dateStr + valitesCode.Trim();
-                    ReadOrderData(filterPrimKey, str, rowIndex);
-                    rowIndex++;
-                }
+                ReadDataFromSql(DateTime.Now.ToString("dd/MM/yyyy"));
             }
         }
 
         protected void BtnDatechange_Click(object sender, EventArgs e)
         {
-            var dateStr = dtDatePicker.Text;
+            ReadDataFromSql(dtDatePicker.Text.Replace(@"\", "."));
+        }
 
-            var str = "Data Source= DEVSP; Initial Catalog=CurrencySP2013;"
-          + "Integrated Security=True";
-
+        private void ReadDataFromSql(string date)
+        {
             using (var db = new CurrencySP2013Entities())
             {
                 var rowIndex = 0;
                 foreach (var valitesCode in GetAllOurIdOfCurrency(db))
                 {
-                    var filterPrimKey = dateStr + valitesCode.Trim();
-                    ReadOrderData(filterPrimKey, str, rowIndex);
+                    var filterPrimKey = date + valitesCode.Trim();
+                    ReadOrderData(filterPrimKey, Connect, rowIndex);
                     rowIndex++;
                 }
             }
@@ -248,6 +231,54 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
                 nominal20.Text = record[2].ToString();
                 name20.Text = record[3].ToString();
                 value20.Text = record[4].ToString();
+            }
+            else if (rowIndex == 21)
+            {
+                numCode21.Text = record[0].ToString();
+                charCode21.Text = record[1].ToString();
+                nominal21.Text = record[2].ToString();
+                name21.Text = record[3].ToString();
+                value21.Text = record[4].ToString();
+            }
+            else if (rowIndex == 22)
+            {
+                numCode22.Text = record[0].ToString();
+                charCode22.Text = record[1].ToString();
+                nominal22.Text = record[2].ToString();
+                name22.Text = record[3].ToString();
+                value22.Text = record[4].ToString();
+            }
+            else if (rowIndex == 23)
+            {
+                numCode23.Text = record[0].ToString();
+                charCode23.Text = record[1].ToString();
+                nominal23.Text = record[2].ToString();
+                name23.Text = record[3].ToString();
+                value23.Text = record[4].ToString();
+            }
+            else if (rowIndex == 24)
+            {
+                numCode24.Text = record[0].ToString();
+                charCode24.Text = record[1].ToString();
+                nominal24.Text = record[2].ToString();
+                name24.Text = record[3].ToString();
+                value24.Text = record[4].ToString();
+            }
+            else if (rowIndex == 25)
+            {
+                numCode25.Text = record[0].ToString();
+                charCode25.Text = record[1].ToString();
+                nominal25.Text = record[2].ToString();
+                name25.Text = record[3].ToString();
+                value25.Text = record[4].ToString();
+            }
+            else if (rowIndex == 26)
+            {
+                numCode26.Text = record[0].ToString();
+                charCode26.Text = record[1].ToString();
+                nominal26.Text = record[2].ToString();
+                name26.Text = record[3].ToString();
+                value26.Text = record[4].ToString();
             }
         }
     }
