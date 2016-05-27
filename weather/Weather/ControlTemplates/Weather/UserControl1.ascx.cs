@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Net;
 using System.Text;
 using System.Web.UI;
@@ -9,8 +12,73 @@ namespace Weather.ControlTemplates.Weather
     //todo async/await
     public partial class UserControl1 : UserControl
     {
+        private const string Connect = "Data Source= server-spbe; Initial Catalog=CurrencySP2013;"
+                                                + "Integrated Security=True";
+
+        private void ReadDataFromSql(string date)
+        {
+            var rowIndex = 0;
+            foreach (var valitesCode in GetAllOurIdOfCurrency())
+            {
+                var filterPrimKey = date + valitesCode.Trim();
+                ReadOrderData(filterPrimKey, Connect, rowIndex);
+                rowIndex++;
+            }
+        }
+
+        private void ReadOrderData(string filterPrimkey, string connectionString, int rowIndex)
+        {
+            var queryString =
+              "SELECT numcode, charcode, nominal, name, value FROM dbo.values_history inner join dbo.description on  dbo.description.id = dbo.values_history.id WHERE dbo.values_history.primkey ='" + filterPrimkey + "' ;";
+
+            using (var connection =
+                       new SqlConnection(connectionString))
+            {
+                var command =
+                    new SqlCommand(queryString, connection);
+                connection.Open();
+
+                var reader = command.ExecuteReader();
+
+                // Call Read before accessing data.
+                while (reader.Read())
+                {
+                    ReadSingleRow((IDataRecord)reader, rowIndex);
+                }
+
+                // Call Close when done reading.
+                reader.Close();
+            }
+        }
+
+        private IEnumerable<string> GetAllOurIdOfCurrency()
+        {
+            return new[]
+            {
+                "R01235  ", "R01239"
+            };
+        }
+
+        private void ReadSingleRow(IDataRecord record, int rowIndex)
+        {
+            if (rowIndex == 0)
+            {
+                //USD
+                USDcurrency.Text = record[4].ToString();
+            }
+            else if (rowIndex == 1)
+            {
+                //EUR
+                EURcurrency.Text = record[4].ToString();
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            // block code for currency: USD, 
+            ReadDataFromSql(DateTime.Now.ToString("dd/MM/yyyy"));
+
+            // block code for weather
             var spbId = "498817";
             var mscId = "524901";
             var erevanId = "616051";

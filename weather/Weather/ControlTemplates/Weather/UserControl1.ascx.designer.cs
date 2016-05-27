@@ -40,6 +40,24 @@ namespace Weather.ControlTemplates.Weather {
         protected global::System.Web.UI.WebControls.Label spbWeatherDegrees;
         
         /// <summary>
+        /// USDcurrency control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label USDcurrency;
+        
+        /// <summary>
+        /// EURcurrency control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label EURcurrency;
+        
+        /// <summary>
         /// spbIconDuplicat control.
         /// </summary>
         /// <remarks>

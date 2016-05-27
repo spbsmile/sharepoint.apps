@@ -6,19 +6,21 @@
 <%@ Import Namespace="Microsoft.SharePoint" %>
 <%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UserControl1.ascx.cs" Inherits="Weather.ControlTemplates.Weather.UserControl1" %>
-<style>
-    .wi-fw {
-        transform: scale(2, 2);
-    }
-</style>
+<SharePoint:CssRegistration Name="/_layouts/15/CustomCss/weather.css" runat="server" />
 
-<div id="weatherCont" style="float: right; padding-right: 150px;">
-    <i runat="server" id="spbWeatherIcon"></i>
-    <p>
+<div id="weatherCont">
+    <div id="weatherIcon"><i runat="server" id="spbWeatherIcon"></i></div>
+    <div id="weatherTitleCity">Санкт-Петербург</div>
+    <div id="weatherDis">
         <asp:Label ID="spbWeatherDescription" runat="server" Text="Label"></asp:Label>
         <asp:Label ID="spbWeatherDegrees" runat="server" Text="Label"></asp:Label>
-    </p>
-    <a href="#" id="weatherOtherСityes" data-toggle="modal" data-target="#myModal">Другие города</a>
+    </div>
+    <div id="weatherCity">
+    <a href="#" id="weatherOtherСityes" data-toggle="modal" data-target="#myModal">другие города</a></div>
+    <div id="currency" style="display: none">
+         <asp:Label ID="USDcurrency" runat="server"></asp:Label>
+         <asp:Label ID="EURcurrency" runat="server"></asp:Label>
+    </div>
 </div>
 
 <!-- Modal -->
@@ -26,14 +28,14 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Погода на сегодня</h4>
+                <h4 class="modal-title" id="myModalLabel">Погода на сегодня</h4>     
             </div>
             <div class="modal-body">
 
-                <table align="center" style="width: 444px;">
+                <table id="weatherTableTop" align="center">
                     <tbody>
                         <tr>
-                            <td align="center" style="width: 164px;">
+                            <td style="width: 164px;">
                                 <strong>Санкт-Петербург</strong>
                                 <br>
                                 <br>
@@ -45,7 +47,7 @@
                                 <br>
                             </td>
                             
-                            <td align="center">
+                            <td>
                                 <strong>Москва</strong>
                                 <br>
                                 <br>
@@ -57,7 +59,7 @@
                                 <br>
                             </td>
 
-                            <td align="center">
+                            <td>
                                 <strong>Магнитогорск</strong>
                                 <br>
                                 <br>
@@ -73,11 +75,11 @@
                     </tbody>
                 </table>
 
-                <table align="center" style="width: 540px; margin-top: 10px;">
+                <table id="weatherTableBottom" align="center">
                     <tbody>
                         <tr>
 
-                            <td align="center" style="width: 134px;">
+                            <td>
                                 <strong>Учалы</strong>
                                 <br>
                                 <br>
@@ -89,7 +91,7 @@
                                 <br>
                             </td>
                         
-                            <td align="center" style="width: 134px;">
+                            <td>
                                 <strong>Ереван</strong>
                                 <br>
                                 <br>
@@ -100,7 +102,7 @@
                                 <asp:Label ID="erevanWeatherDegrees" runat="server" Text="Label"></asp:Label>
                                 <br>
                             </td>
-                            <td align="center" style="width: 134px;">
+                            <td>
                                 <strong>Эрденет</strong>
                                 <br>
                                 <br>
@@ -111,7 +113,7 @@
                                 <asp:Label ID="erdenetWeatherGegrees" runat="server" Text="Label"></asp:Label>
                                 <br>
                             </td>
-                            <td align="center" style="width: 134px;">
+                            <td>
                                 <strong>Ташкент</strong>
                                 <br>
                                 <br>
