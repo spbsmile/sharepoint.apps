@@ -50,6 +50,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.SharePoint" />
@@ -64,10 +65,21 @@
       <DependentUpon>UserControl1.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisualWebPartTimeWeather\VisualWebPartTimeWeather.cs" />
+    <Compile Include="VisualWebPartTimeWeather\VisualWebPartTimeWeatherUserControl.ascx.cs">
+      <DependentUpon>VisualWebPartTimeWeatherUserControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VisualWebPartTimeWeather\VisualWebPartTimeWeatherUserControl.ascx.designer.cs">
+      <DependentUpon>VisualWebPartTimeWeatherUserControl.ascx.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ControlTemplates\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1a5a5eef-1ee3-47bd-891c-c63e8479987b}</SharePointProjectItemId>
+    </None>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{766ebeff-40bd-4cae-a8be-0fb69ad7c10b}</FeatureId>
     </None>
     <None Include="key.snk" />
     <None Include="packages.config">
@@ -80,12 +92,19 @@
       <DependentUpon>Package.package</DependentUpon>
       <SubType>Designer</SubType>
     </None>
+    <None Include="VisualWebPartTimeWeather\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{744ee257-fec3-4544-86f1-1a13fc23a4c1}</SharePointProjectItemId>
+    </None>
+    <None Include="VisualWebPartTimeWeather\VisualWebPartTimeWeather.webpart" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ControlTemplates\Weather\UserControl1.ascx" />
+    <Content Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </Content>
+    <Content Include="VisualWebPartTimeWeather\Elements.xml" />
+    <Content Include="VisualWebPartTimeWeather\VisualWebPartTimeWeatherUserControl.ascx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

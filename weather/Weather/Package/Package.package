@@ -3,6 +3,9 @@
   <assemblies>
     <customAssembly location="Newtonsoft.Json.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll" />
   </assemblies>
+  <features>
+    <featureReference itemId="766ebeff-40bd-4cae-a8be-0fb69ad7c10b" />
+  </features>
   <projectItems>
     <projectItemReference itemId="1a5a5eef-1ee3-47bd-891c-c63e8479987b" />
   </projectItems>
