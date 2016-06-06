@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="clocks.css"/>
+    <script type="text/javascript" src="clocks_weather_valutes.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div>
+    <!-- kentay -->
+    <article id="kentay_clock" class="clock">
+        <h2 id="kentay_title"> Кентау</h2>
+        <div class="hours-container">
+            <div id="Asia/Almaty_hours" class="hours" style="transform: rotateZ(394deg);"></div>
+        </div>
+        <div class="minutes-container" data-second-angle="222">
+            <div id="Asia/Almaty_minutes" class="minutes" style="transform: rotateZ(48deg);"></div>
+        </div>
+        <div class="seconds-container">
+            <div id="Asia/Almaty_seconds" class="seconds" style="transform: rotateZ(222deg);"></div>
+        </div>
+        <!--->
+        <br>
+        <i runat="server" id="kentayWeatherIcon_View"></i>
+        <br>
+        <div id="kentayWeatherDescription_View"></div>
+        <br>
+        <div id="kentayWeatherDegrees_View"></div>
+        <br>
+    </article>
+
+    <!-- uchaly -->
+    <article id="yekaterinburg_clock" class="clock">
+        <h2 id="yekaterinburg_title">Учалы</h2>
+        <div>
+            <div class="hours-container">
+                <div id="Asia/Yekaterinburg_hours" class="hours" style="transform: rotateZ(394deg);"></div>
+            </div>
+            <div class="minutes-container" data-second-angle="222">
+                <div id="Asia/Yekaterinburg_minutes" class="minutes" style="transform: rotateZ(48deg);"></div>
+            </div>
+            <div class="seconds-container">
+                <div id="Asia/Yekaterinburg_seconds" class="seconds" style="transform: rotateZ(222deg);"></div>
+            </div>
+            <!--->
+        </div>
+
+        <br>
+        <i id="uchalyWeatherIcon_View"></i>
+        <br>
+        <div id="uchalyWeatherDescription_View"></div>
+        <br>
+        <div id="uchalyWeatherDegrees_View"></div>
+        <br>
+    </article>
+
+    <!-- saint petersburg -->
+    <article id="spb_clock" class="clock">
+        <h2 id="spb_title">Санкт-Петербург</h2>
+        <!--  <div class="hours-container">
+              <div id="Europe/Moscow_hours" class="hours" style="transform: rotateZ(334deg);"></div>
+          </div> -->
+        <div class="minutes-container" data-second-angle="222">
+            <div id="Europe/Moscow_minutes" class="minutes" style="transform: rotateZ(48deg);"></div>
+        </div>
+        <div class="seconds-container">
+            <div id="Europe/Moscow_seconds" class="seconds" style="transform: rotateZ(222deg);"></div>
+        </div>
+        <!--->
+        <br>
+        <i id="spbIconDuplicat_View"></i>
+        <br>
+        <div id="spbDescriptionDuplicat_View"></div>
+        <br>
+        <div id="spbDegreesDuplicat_View"></div>
+        <br>
+    </article>
+</div>
+
+<table id="" align="center">
+    <thead>
+    <tr>
+        <td>
+            Санкт-Петербург
+        </td>
+        <td>
+            Учалы
+        </td>
+        <td>
+            Кентау
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td >
+            <div class="hours-container">
+                <div id="Europe/Moscow_hours" class="hours" style="transform: rotateZ(334deg);"></div>
+            </div>
+        </td>
+
+        <td >
+
+        </td>
+
+        <td >
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+</body>
+</html>
+
+
+
+
+

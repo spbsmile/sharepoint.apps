@@ -1,10 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<style>
+    #navigationPanel {
+        margin-right: 15px;
+    }
 
-</body>
-</html>
+    .newsHover:hover {
+        background-color: #ddd;
+    }
+</style>
+<div id="test1">
+    <h2 class="newsTitle">КУРСЫ ВАЛЮТ</h2>
+    <div id="titleCurrencyToday" class="menublock"></div>
+    <table id="tableCurrency" border="0" align="center" class="courses" style="font-weight:normal">
+        <tbody>
+        <tr>
+            <td><img src="/_layouts/15/CustomCss/img_currency/USD.gif"></td>
+            <td>Доллар США&nbsp</td>
+            <td width="60">
+                <div id="USDcurrency" align="right"></div>
+            </td>
+            <!-- <td><img src="/_layouts/15/CustomCss/img_currency/down.gif" alt="Изменение 0"></td> -->
+        </tr>
+        <tr>
+            <td><img src="/_layouts/15/CustomCss/img_currency/EUR.gif"></td>
+            <td>Евро&nbsp</td>
+            <td width="60">
+                <div id="EURcurrency" align="right"></div>
+            </td>
+            <!-- <td><img src="/_layouts/15/CustomCss/img_currency/down.gif" alt="Изменение 0"></td> -->
+        </tr>
+        </tbody>
+    </table>
+    <div class="menublock2">
+        <a class="ssilka1" align="center" href="/Pages/currency.aspx">полный список курсов</a>
+    </div>
+</div>
+
+<div id="test2" style="
+    float: left;
+    margin-left: 200px;
+"><h2 class="newsTitle" style="margin-bottom: 10px;">НОВОСТИ</h2>
+
+    <script>
+        jQuery.ajax({
+            url: "http://intranet/sites/news/_api/web/lists/GetByTitle('Posts')/Items?&$top=3&$orderby=Created%20desc&$select=Title,Created,Body,ID",
+            type: "GET",
+            headers: {"Accept": "application/json; odata=verbose"},
+            success: doSuccess,
+            error: onError
+        });
+
+        function doSuccess(data) {
+            var results = data.d.results;
+            for (var i = 0; i < results.length; i++) {
+                var r = results[i];
+                var id = "news" + i;
+                $("#resultsDivNews").append('<div id="' + id + '\" class="newsHover">' +
+                        '<p class="newsdate">' + moment(r.Created).format("YYYY-MM-DD") + '</p> ' +
+                        '<h1 id="' + id + "title" + '">  ' + r.Title + '</h1> ' +
+                        '   <hr> </div>');
+
+                $("#" + id).on('click', function () {
+                    console.log(click);
+                    var selector = (typeof($(this).attr('id')) !== 'undefined' || $(this).attr('id') !== null) ? '#' + $(this).attr('id') :  '.' + $(this).attr('class');
+                    var text = $(selector + "title").text();
+                    $("#myModalLabelNews").text("Новости: " + text);
+                    $('#modalNews').modal('show')
+                });
+            }
+        }
+
+        // Display error messages.
+        function onError(error) {
+            console.log(error.responseText);
+        }
+
+        $(document).ready(function () {
+            $("#USDcurrency").text($("#ctl00_UserControl1_USDcurrency").text());
+            $("#EURcurrency").text($("#ctl00_UserControl1_EURcurrency").text());
+            var timeNow = moment().format("L");
+            $("#titleCurrencyToday").text("Курс ЦБ РФ на " + timeNow);
+        });
+
+    </script>
+
+
+    <div id="resultsDivNews">
+    </div>
+</div>
+
+<div class="bootstrap-scope">
+    <div class="bootstrap-html">
+        <div class="bootstrap-body">
+
+            <!-- Modal -->
+            <div class="modal fade" id="modalNews" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabelNews"></h4>
+                        </div>
+                        <div class="modal-body" id="modal-body-news">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

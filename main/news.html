@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="news.css"/>
+    <title>Новости Ривс</title>
+
+
+</head>
+<body>
+
+<link type="text/css" rel="stylesheet" href="news.css"/>
+
+
+<h2 class="newsTitle" style="margin-bottom: 10px;">НОВОСТИ</h2>
+
+
+<script>
+    //var listId = "975a1904-9f60-4a87-9e5c-1b962b46069b";
+    jQuery.ajax({
+                url: "http://devsp/sites/news/_api/web/lists/GetByTitle('Posts')/Items?&$top=3&$orderby=Created%20desc&$select=Title,Created,Body",
+                type: "GET",
+                headers: { "Accept": "application/json; odata=verbose" },
+                success: doSuccess,
+                error: doError
+    });
+
+    function doSuccess(data){
+        console.log(data);
+        var results = data.d.results;
+        for (var i = 0; i < results.length; i++) {
+            var r = results[i];
+            $("#resultsDivNews").append('<div>' +
+                    '<p class="newsdate">' + r.Created + '</p> ' +
+
+
+
+                    '<h1>  ' + r.Title + '</h1> ' +
+                    //'  ' + r.Body + '' +
+                    '<p><a  href="' + "http://devsp/sites/news/Lists/Posts/Post.aspx?ID=" + r.ID + '" role="button">Подробнее »</a></p>' +
+                    '</div>');
+        }
+    }
+
+    function doError() {
+      console.log("fail");
+    }
+
+</script>
+
+<div>
+    <p class="newsdate">2 ИЮЛЯ 2015</p>
+
+    <h1>Обновление LYNC</h1>
+    Вближайшее время будет производиться автоматическое обновление Lync.<p></p>
+    <p><a class="btn btn-default" href="#" role="button">Подробнее »</a></p>
+    <hr>
+
+    <p class="newsdate">2 ИЮЛЯ 2015</p>
+
+    <h1>Обновление LYNC</h1>
+    Вближайшее время будет производиться автоматическое обновление Lync.<p></p>
+    <p><a class="btn btn-default" href="#" role="button">Подробнее »</a></p>
+    <hr>
+</div>
+
+</body>
+</html>

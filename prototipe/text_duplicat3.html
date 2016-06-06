@@ -1,117 +1,63 @@
-<link  type="text/css" rel="stylesheet" href="/_layouts/15/CustomCss/1.devsp/clocks.css" />
-<script type="text/javascript" src="/_layouts/15/CustomjsLibs/1.devsp/clocks_weather_valutes.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="moment.min.js"></script>
+   <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.4/moment-timezone-utils.js"></script> -->
+    <link type="text/css" rel="stylesheet" href="clocks.css"/>
+    <script type="text/javascript" src="clocks_weather_valutes.js"></script>
 
-<div>
-    <!-- kentay -->
-    <article id="kentay_clock" class="clock">
-        <h2 id="kentay_title"> Кентау</h2>
-        <div class="hours-container">
-            <div id="Asia/Almaty_hours" class="hours" style="transform: rotateZ(394deg);"></div>
-        </div>
-        <div class="minutes-container" data-second-angle="222">
-            <div id="Asia/Almaty_minutes" class="minutes" style="transform: rotateZ(48deg);"></div>
-        </div>
-        <div class="seconds-container">
-            <div id="Asia/Almaty_seconds" class="seconds" style="transform: rotateZ(222deg);"></div>
-        </div>
-    </article>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
 
-    <!-- uchaly -->
-    <article id="yekaterinburg_clock" class="clock">
-        <h2 id="yekaterinburg_title">Учалы</h2>
-        <div class="hours-container">
-            <div id="Asia/Yekaterinburg_hours" class="hours" style="transform: rotateZ(394deg);"></div>
-        </div>
-        <div class="minutes-container" data-second-angle="222">
-            <div id="Asia/Yekaterinburg_minutes" class="minutes" style="transform: rotateZ(48deg);"></div>
-        </div>
-        <div class="seconds-container">
-            <div id="Asia/Yekaterinburg_seconds" class="seconds" style="transform: rotateZ(222deg);"></div>
-        </div>
-    </article>
-
-    <!-- saint petersburg -->
-    <article id="spb_clock" class="clock">
-        <h2 id="spb_title">Санкт-Петербург</h2>
-        <div class="hours-container">
-            <div id="Europe/Moscow_hours" class="hours" style="transform: rotateZ(334deg);"></div>
-        </div>
-        <div class="minutes-container" data-second-angle="222">
-            <div id="Europe/Moscow_minutes" class="minutes" style="transform: rotateZ(48deg);"></div>
-        </div>
-        <div class="seconds-container">
-            <div id="Europe/Moscow_seconds" class="seconds" style="transform: rotateZ(222deg);"></div>
-        </div>
-    </article>
-</div>
 
 <table id="" align="center">
+    <thead>
+    <tr>
+        <td>
+            Санкт-Петербург
+        </td>
+        <td>
+            Учалы
+        </td>
+        <td>
+            Кентау
+        </td>
+    </tr>
+    </thead>
     <tbody>
     <tr>
-        <td style="width: 130px;">
-            <br>
-            <i id="spbIconDuplicat_View"></i>
-            <br>
-            <div id="spbDescriptionDuplicat_View"></div>
-            <br>
-            <div id="spbDegreesDuplicat_View"></div>
-            <br>
+        <td >
+            <div class="hours-container">
+                <div id="Asia/Almaty_hours" class="hours" style="transform: rotateZ(394deg);"></div>
+            </div>
+            <div class="minutes-container" data-second-angle="222">
+                <div id="Asia/Almaty_minutes" class="minutes" style="transform: rotateZ(48deg);"></div>
+            </div>
+            <div class="seconds-container">
+                <div id="Asia/Almaty_seconds" class="seconds" style="transform: rotateZ(222deg);"></div>
+            </div>
         </td>
 
-        <td style="width: 110px;">
-            <br>
-            <i id="uchalyWeatherIcon_View"></i>
-            <br>
-            <div id="uchalyWeatherDescription_View"></div>
-            <br>
-            <div id="uchalyWeatherDegrees_View"></div>
-            <br>
+        <td >
+
         </td>
 
-        <td style="width: 110px;">
-            <br>
-            <i runat="server" id="kentayWeatherIcon_View"></i>
-            <br>
-            <div id="kentayWeatherDescription_View"></div>
-            <br>
-            <div id="kentayWeatherDegrees_View"></div>
-            <br>
+        <td >
+
         </td>
     </tr>
     </tbody>
 </table>
 
-<style>
-    .currencyHover:hover {
-        background-color: #ddd;
-    }
-</style>
-<div id="test1">
-    <h2 class="newsTitle">КУРСЫ ВАЛЮТ</h2>
-    <div id="titleCurrencyToday" class="menublock"></div>
-    <table id="tableCurrency" border="0" align="center" class="courses currencyHover" style="font-weight:normal">
-        <tbody>
-        <tr>
-            <td><img src="/_layouts/15/CustomCss/img_currency/USD.gif"></td>
-            <td>Доллар США&nbsp</td>
-            <td width="60">
-                <div id="USDcurrency" align="right"></div>
-            </td>
-            <!-- <td><img src="/_layouts/15/CustomCss/img_currency/down.gif" alt="Изменение 0"></td> -->
-        </tr>
-        <tr>
-            <td><img src="/_layouts/15/CustomCss/img_currency/EUR.gif"></td>
-            <td>Евро&nbsp</td>
-            <td width="60">
-                <div id="EURcurrency" align="right"></div>
-            </td>
-            <!-- <td><img src="/_layouts/15/CustomCss/img_currency/down.gif" alt="Изменение 0"></td> -->
-        </tr>
-        </tbody>
-    </table>
-    <!-- <div class="menublock2">
-         <a class="ssilka1" align="center" href="/Pages/currency.aspx">полный список курсов</a>
-     </div> -->
-</div>
+
+
+</body>
+</html>
+
+
+
 
 

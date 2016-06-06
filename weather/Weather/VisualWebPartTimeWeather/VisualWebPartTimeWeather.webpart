@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Weather.VisualWebPartTimeWeather.VisualWebPartTimeWeather, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Weather - VisualWebPartTimeWeather</property>
+        <property name="Description" type="string">Моя визуальная веб-часть</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>

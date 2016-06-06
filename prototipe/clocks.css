@@ -1,6 +1,6 @@
 ﻿.clock {
 	border-radius: 50%;
-	background: #fff url(/_catalogs/masterpage/rivs/img/ios_clock.svg) no-repeat center;
+	background: #fff url(ios_clock.svg) no-repeat center;
 	background-size: 88%;
 	height: 10em;
 	padding-bottom: 31%;

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="83d60d00-ade8-4535-83d8-2dfae84d4e08" solutionId="83d60d00-ade8-4535-83d8-2dfae84d4e08" resetWebServer="false" sharePointProductVersion="15.0" name="VisualWebPartCurrencyWeather" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <customAssembly location="Newtonsoft.Json.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll" />
+  </assemblies>
+  <features>
+    <featureReference itemId="d5abd93d-a77b-423e-a4fe-de706d1412ce" />
+  </features>
+</package>

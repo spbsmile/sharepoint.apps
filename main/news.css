@@ -1,0 +1,12 @@
+.newsTitle{
+    display: block;
+    border-bottom: #BFBFBF 1px solid;
+    font-weight: 100 !important;
+    font-size: 40px;
+}
+
+.newsdate {
+    background: #cdd2d4;
+    display: table-cell;
+    padding: 5px 10px;
+}
