@@ -1,0 +1,347 @@
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
+}
+
+.custom_jumbotron {
+    content: url("img/background.jpg");
+    width: 100%;
+}
+
+.column {
+    display: inline-block;
+    width: 33%;
+    float: left;
+}
+
+.logo {
+    content: url("img/logo.png");
+    position: absolute;
+    width: auto;
+    top: 100px;
+    left: 50%;
+    margin-left: -550px;
+}
+
+.navigation_container {
+    background-color: grey;
+    position: absolute;
+    left: 50%;
+    margin-left: -600px;
+    height: 50px;
+    width: 1200px;
+}
+
+ul .nav{
+    margin-left: 0px;
+    padding-left: 0px;
+    list-style: none;
+    border-bottom: 1px dashed #000000;
+}
+.nav li{
+    display: inline;
+}
+
+.nav a{
+    display: inline-block;
+    border: 1px solid #000000;
+    border-bottom: none;
+    padding:5px 15px 5px 15px;
+    background-color: #eaeaea;
+    text-decoration: none;
+    color: #333;
+}
+
+.content {
+    /*   margin-top: -100px;*/
+}
+
+/* Calendar  */
+.btnIterateMonth{
+    min-width: 3em;
+    border: none;
+}
+
+.time {
+    width: 120px;
+    float: right;
+    border: 2px solid #fff;
+    border-radius: 200px;
+    height: 120px;
+    text-align: center;
+    line-height: 120px;
+    font-size: 35px;
+}
+
+.day_current{
+    color: #e66b6b;
+    text-decoration: none;
+
+    text-align: center;
+    vertical-align: middle;
+    font-style: normal;
+    font-weight: bold;
+    border: thin solid #e66b6b;
+}
+
+.birthday_current {
+
+    background-image: url(../Calendar/images/birthday.png);
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+
+}
+
+.calendar.test {
+    padding-top: 5%;
+}
+
+.birthday {
+
+    background-image: url(../Calendar/images/birthday.png);
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+}
+
+.congratulateText {
+    text-align: center;
+    clear: both;
+    margin-top: 4px;
+}
+
+.fio {
+
+    color: #666666;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td {
+    padding: 0;
+}
+
+.calendar-container {
+    position: relative;
+}
+
+.calendar-panel{
+    float: right;
+    margin-left: 10%;
+    font-size:  1em;
+    width:320px;
+}
+
+.calendar-container header {
+    border-radius: 1em 1em 0 0;
+    background: #EE352A;
+    color: #fff;
+    padding: 3em 2em;
+    height: 135px;
+}
+
+.day {
+    font-size: 3em;
+    font-weight: 600;
+    line-height: 1em;
+}
+
+.month {
+    font-size: 3em;
+    line-height: 1em;
+    text-transform: lowercase;
+}
+
+.calendar {
+    background: #fff;
+    border-radius: 0 0 1em 1em;
+    -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, .2), 0 3px 1px #fff;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, .2), 0 3px 1px #fff;
+    color: #555;
+    display: inline-block;
+}
+
+.calendar thead {
+
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.footer {
+    margin-top: 10px;
+}
+
+.calendar td {
+    padding: .5em 1em;
+    text-align: center;
+}
+
+.calendar tbody td:hover {
+    background: #cacaca;
+    color: #fff;
+}
+
+.current-day {
+    color: #e66b6b ;
+    border: thin solid #e66b6b ;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.prev-month,
+.next-month {
+    color: #cacaca;
+}
+
+.ring-left,
+.ring-right {
+    position: absolute;
+    top: 205px;
+}
+
+.ring-left { left: 2em; }
+.ring-right { right: 2em; }
+
+.ring-left:before,
+.ring-left:after,
+.ring-right:before,
+.ring-right:after {
+    background: #fff;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 3px 1px rgba(0, 0, 0, .3), 0 -1px 1px rgba(0, 0, 0, .2);
+    box-shadow: 0 3px 1px rgba(0, 0, 0, .3), 0 -1px 1px rgba(0, 0, 0, .2);
+    content: "";
+    display: inline-block;
+    margin: 8px;
+    height: 32px;
+    width: 8px;
+}
+
+/*  clock  */
+
+.clock {
+    border-radius: 50%;
+    background: #fff url(img/ios_clock.svg) no-repeat center;
+    background-size: 88%;
+    height: 10em;
+    padding-bottom: 31%;
+    position: relative;
+    width: 8em;
+}
+
+.clock.simple:after {
+    background: #000;
+    border-radius: 50%;
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 5%;
+    height: 5%;
+    z-index: 10;
+}
+
+.minutes-container, .hours-container, .seconds-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.hours {
+    background: #000;
+    height: 11%;
+    left: 49%;
+    position: absolute;
+    top: 39%;
+    transform-origin: 50% 100%;
+    width: 2.5%;
+}
+
+.minutes {
+    background: #000;
+    height: 15%;
+    left: 49%;
+    position: absolute;
+    top: 35%;
+    transform-origin: 50% 100%;
+    width: 2%;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+
+.hours-container {
+    animation: rotate 43200s infinite linear;
+}
+
+.minutes-container {
+    animation: rotate 3600s infinite linear;
+}
+
+.seconds-container {
+    animation: rotate 60s infinite linear;
+}
+
+#kentay_clock{
+    /*float: right;
+    margin-right: 50px;*/
+}
+
+#kentay_title{
+    /*padding-top: 3em;
+    padding-left: 1.7em;*/
+}
+
+#yekaterinburg_clock{
+    /*	float: right;
+        margin-right: 50px;*/
+}
+
+#yekaterinburg_title{
+    /*padding-top: 3em;
+    padding-left: 1.7em;*/
+}
+
+#spb_clock{
+    /*float: none;
+    margin-left: 5em;*/
+}
+
+#spb_title{
+    width: 140px;
+    /* padding-top: 3em; */
+}
+
+.weather_footer {
+    padding-top: 9em;
+    padding-left: 4em;
+}
+
+#weather_widget:hover {
+    background-color: #ddd;
+}
+
+/* news */
+
+.newsHover:hover {
+    background-color: #ddd;
+}
+
+.newsHover {
+    box-shadow: 0 1px 4px 0px rgba(0,0,0,.75);
+}

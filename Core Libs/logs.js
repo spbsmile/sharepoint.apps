@@ -8,4 +8,10 @@ function onError(error) {
     console.log(error.responseText);
 }
 
+//for cross domain lib
+function errorHandler(data, errorCode, errorMessage) {
+           console.log(
+               "Could not complete cross-domain call: " + errorMessage);
+}
+
 

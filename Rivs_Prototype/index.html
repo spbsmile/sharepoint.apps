@@ -1,10 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="site.css" type="text/css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+
+<div class="inner">
+    <div class="custom_jumbotron">
+    </div>
+    <div class="logo"></div>
+    <div class="navigation_container">
+        <ul class="nav" style="padding-left: 25%">
+            <li>
+                <a href="#">Сотрудники</a>
+            </li>
+            <li>
+                <a href="#">Документы</a>
+            </li>
+            <li>
+                <a href="#">Приказы</a>
+            </li>
+            <li>
+                <a href="#">Форум</a>
+            </li>
+            <li>
+                <a href="#">Техподержка</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <!-- clock  -->
+        <div class="column" style="margin-top: 60px;">
+            <div>
+                <!-- saint petersburg -->
+                <article id="spb_clock" class="clock" style="display: inline-block;padding: 0;height: 210px;">
+                    <header align="center"><h4 id="spb_title">Санкт-Петербург</h4></header>
+                    <div style="
+    /* margin-top: 50px; */
+">
+                        <div class="hours-container">
+                            <div id="Europe/Moscow_hours" class="hours" style="transform: rotateZ(379deg);"></div>
+                        </div>
+                        <div class="minutes-container" data-second-angle="180">
+                            <div id="Europe/Moscow_minutes" class="minutes" style="transform: rotateZ(228deg);"></div>
+                        </div>
+                    </div>
+                    <footer align="center" style="position: absolute;top: 80%;
+    /* padding-top: 20px; */
+">
+                        <i id="spbIconDuplicat_View" class="wi wi-fw wi-owm-day-803 wi-owm-day-802"></i>
+
+                        <div id="spbDescriptionDuplicat_View">слегка облачно</div>
+
+                        <div id="spbDegreesDuplicat_View">12°C</div>
+
+                    </footer>
+                </article>
+
+                <!-- uchaly -->
+                <article id="yekaterinburg_clock" class="clock"
+                         style="display: inline-block;padding: 0;margin:0; height: 210px;">
+                    <header align="center"><h4 id="yekaterinburg_title">Учалы</h4></header>
+                    <div class="hours-container">
+                        <div id="Asia/Yekaterinburg_hours" class="hours" style="transform: rotateZ(439deg);"></div>
+                    </div>
+                    <div class="minutes-container" data-second-angle="180">
+                        <div id="Asia/Yekaterinburg_minutes" class="minutes" style="transform: rotateZ(228deg);"></div>
+                    </div>
+                    <footer align="center" style="position: absolute;top: 80%;">
+                        <i id="uchalyWeatherIcon_View" class="wi wi-fw wi-owm-day-802"></i>
+
+                        <div id="uchalyWeatherDescription_View">слегка облачно</div>
+
+                        <div id="uchalyWeatherDegrees_View">21°C</div>
+                    </footer>
+                </article>
+
+                <!-- kentay -->
+                <article id="kentay_clock" class="clock"
+                         style="display: inline-block;padding: 0;margin:0; height: 210px;">
+                    <header align="center"><h4 id="kentay_title"> Кентау</h4></header>
+                    <div class="hours-container">
+                        <div id="Asia/Almaty_hours" class="hours" style="transform: rotateZ(469deg);"></div>
+                    </div>
+                    <div class="minutes-container" data-second-angle="180">
+                        <div id="Asia/Almaty_minutes" class="minutes" style="transform: rotateZ(228deg);"></div>
+                    </div>
+
+                    <footer align="center" style="position: absolute; top: 80%; left: 33%">
+                        <i id="kentayWeatherIcon_View" class="wi wi-fw wi-owm-day-800"></i>
+
+                        <div id="kentayWeatherDescription_View">ясно</div>
+
+                        <div id="kentayWeatherDegrees_View">29°C</div>
+                    </footer>
+                </article>
+
+                <div id="weather_widget">
+                    <div style="display: inline-block;">
+
+
+                    </div>
+                    <div style="display: inline-block; margin-left: 4em;">
+
+
+                    </div>
+                    <div style="display: inline-block; margin-left: 4em;">
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="currency_widget">
+                <h2 class="currencyTitle">КУРСЫ ВАЛЮТ</h2>
+                <div id="titleCurrencyToday" class="menublock">Курс ЦБ РФ на 06.06.2016</div>
+                <table id="tableCurrency" border="0" align="center" class="courses currencyHover" style="font-weight:normal">
+                    <tbody>
+                    <tr>
+                        <td><img src="/_layouts/15/CustomCss/img_currency/USD.gif"></td>
+                        <td>Доллар США&nbsp;</td>
+                        <td width="60">
+                            <div id="USDcurrency" align="right">66,8529</div>
+                        </td>
+                        <!-- <td><img src="/_layouts/15/CustomCss/img_currency/down.gif" alt="Изменение 0"></td> -->
+                    </tr>
+                    <tr>
+                        <td><img src="/_layouts/15/CustomCss/img_currency/EUR.gif"></td>
+                        <td>Евро&nbsp;</td>
+                        <td width="60">
+                            <div id="EURcurrency" align="right">74,561</div>
+                        </td>
+                        <!-- <td><img src="/_layouts/15/CustomCss/img_currency/down.gif" alt="Изменение 0"></td> -->
+                    </tr>
+                    </tbody>
+                </table>
+                <!-- <div class="menublock2">
+                     <a class="ssilka1" align="center" href="/Pages/currency.aspx">полный список курсов</a>
+                 </div> -->
+            </div>
+
+        </div>
+
+
+
+        <!-- news -->
+        <div class="column" style="margin-top: 60px;">
+            <h1 align="center">Новости</h1>
+            <div id="news1" class="newsHover"><p class="newsdate">2016-04-20</p>
+                <h1 id="news1title"> тестовая запись</h1>
+            </div>
+        </div>
+
+        <!-- calendar -->
+        <div class="column" style="margin-top: 60px;">
+            <div class="calendar-panel">
+                <div class="calendar-container">
+                    <header>
+                        <div>
+                            <div id="DayNow" class="day" align="center">
+                                6 июня
+                                <br>
+
+                                2016г
+
+                            </div>
+                        </div>
+                        <!--        <div style=" margin-top: 5px;">
+                                    <button id="btnPrevMonth" type="submit" class="btnIterateMonth">
+                                        <i class="fa fa-chevron-left fa-lg"></i></button>
+                                    <button id="btnNextMonth" type="submit" class="btnIterateMonth">
+                                        <i class="fa fa-chevron-right fa-lg"></i></button>
+                                </div> -->
+                    </header>
+                    <div class="calendar test">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>пн</th>
+                                <th>вт</th>
+                                <th>ср</th>
+                                <th>чт</th>
+                                <th>пт</th>
+                                <th>сб</th>
+                                <th>вс</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <tr>
+                                <td id="cell_0" class="prev-month">30</td>
+                                <td id="cell_1" class="prev-month">31</td>
+                                <td id="cell_2" class="birthday" title="День Рождения: Савельева Наталья Виталиевна ">
+                                    1
+                                </td>
+                                <td id="cell_3">2</td>
+                                <td id="cell_4" class="birthday" title="День Рождения: Ильинец Андрей Александрович ">
+                                    3
+                                </td>
+                                <td id="cell_5">4</td>
+                                <td id="cell_6">5</td>
+                            </tr>
+                            <tr>
+                                <td id="cell_7" class="day_current">6</td>
+                                <td id="cell_8" class="birthday"
+                                    title="День Рождения: Ткаченко Марина Ивановна,  Рылов Николай Владимирович ">7
+                                </td>
+                                <td id="cell_9">8</td>
+                                <td id="cell_10" class="birthday"
+                                    title="День Рождения: Токарева Галина Николаевна,  Акилов Фарид Яныбаевич ">9
+                                </td>
+                                <td id="cell_11" class="birthday"
+                                    title="День Рождения: Недельский Владимир Геннадьевич ">10
+                                </td>
+                                <td id="cell_12" class="birthday"
+                                    title="День Рождения: Боричева Татьяна Игоревна,  Мартынов Олег Геннадиевич,  Рудь Андрей Сергеевич,  Салдаев Алексей Васильевич ">
+                                    11
+                                </td>
+                                <td id="cell_13" class="birthday" title="День Рождения: Туктарева Елена Николаевна ">
+                                    12
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="cell_14" class="birthday" title="День Рождения: Шмелев Валерий Александрович ">
+                                    13
+                                </td>
+                                <td id="cell_15">14</td>
+                                <td id="cell_16" class="birthday" title="День Рождения: Круглова Марина Сергеевна ">15
+                                </td>
+                                <td id="cell_17" class="birthday" title="День Рождения: Божко Александр Александрович ">
+                                    16
+                                </td>
+                                <td id="cell_18">17</td>
+                                <td id="cell_19" class="birthday" title="День Рождения: Гуцкал Елена Викторовна ">18
+                                </td>
+                                <td id="cell_20" class="birthday" title="День Рождения: Романова Ирина Васильевна ">19
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="cell_21">20</td>
+                                <td id="cell_22">21</td>
+                                <td id="cell_23" class="birthday"
+                                    title="День Рождения: Шайкасимова Регина Айдаровна,  Шумило Тамара Григорьевна,  Абдразаков Азат Валитович,  Ташпулатова Наталья Нематовна ">
+                                    22
+                                </td>
+                                <td id="cell_24" class="birthday" title="День Рождения: Савельев Андрей Геннадьевич ">
+                                    23
+                                </td>
+                                <td id="cell_25" class="birthday" title="День Рождения: Калинчук Нина Петровна ">24</td>
+                                <td id="cell_26" class="birthday" title="День Рождения: Алексеев Роман Александрович ">
+                                    25
+                                </td>
+                                <td id="cell_27">26</td>
+                            </tr>
+                            <tr>
+                                <td id="cell_28" class="birthday" title="День Рождения: Ковальчук Станислав Иванович ">
+                                    27
+                                </td>
+                                <td id="cell_29" class="birthday" title="День Рождения: Шафиева Эльза Ильясовна ">28
+                                </td>
+                                <td id="cell_30" class="birthday"
+                                    title="День Рождения: Ледяева Татьяна Борисовна,  Виньпус Ольга Вячеславовна ">29
+                                </td>
+                                <td id="cell_31" class="birthday"
+                                    title="День Рождения: Наумов Сергей Викторович,  Спыну Александр Юрьевич ">30
+                                </td>
+                                <td id="cell_32" class="next-month">1</td>
+                                <td id="cell_33" class="next-month">2</td>
+                                <td id="cell_34" class="next-month">3</td>
+                            </tr>
+                            <tr>
+                                <td id="cell_35" class="next-month">4</td>
+                                <td id="cell_36" class="next-month">5</td>
+                                <td id="cell_37" class="next-month">6</td>
+                                <td id="cell_38" class="next-month">7</td>
+                                <td id="cell_39" class="next-month">8</td>
+                                <td id="cell_40" class="next-month">9</td>
+                                <td id="cell_41" class="next-month">10</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="ring-left"></div>
+                    <div class="ring-right"></div>
+
+                </div>
+                <div id="footer" class="footer">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
