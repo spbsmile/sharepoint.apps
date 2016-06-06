@@ -44,15 +44,11 @@ function getItemData(urgently, category, discription, fileId, comment) {
             "Discription": "",
             "urgently": "",
             "category": "",
-            "DateTextVersionField": "",
-            "Time": "",
             "AttachFileNew": ""
         },
         "Discription": comment + discription,
         "urgently": urgently,
         "category": category,
-        "DateTextVersionField": moment().format("L"),
-        "Time": moment().format("HH:mm"),
         "AttachFileNewId": fileId
     };
     return item;

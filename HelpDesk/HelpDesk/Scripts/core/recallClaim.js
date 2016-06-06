@@ -19,25 +19,4 @@ function recallClaim(rowId, itemId) {
         },
         error: onError
     });
-    /*
-    (new SP.RequestExecutor(_spPageContextInfo.siteAbsoluteUrl)).executeAsync(
-        {
-            url: appWebUrl +
-            "/_api/SP.AppContextSite(@target)/web/lists(guid'" + listIdNewClaims + "')/items?@target='" +
-            "http://devsp/support" + "'",
-            method: "POST",
-            body: JSON.stringify(itemData),
-            headers: {
-                "accept": "application/json;odata=verbose",
-                "content-type": "application/json;odata=verbose",
-                "X-RequestDigest": jQuery("#__REQUESTDIGEST").val()
-            },
-            success(data) {
-               
-            },
-            error(data) {
-               
-            }
-        }
-    );*/
 }

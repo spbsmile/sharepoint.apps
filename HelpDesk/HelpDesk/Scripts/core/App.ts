@@ -24,7 +24,7 @@ var listIdNewClaims = "416125a4-154d-48ef-8403-d0e448c221ec";
 var listIdAcceptedClaims = "96b8b010-bc84-42d4-a6b7-c2d584e4b87f";
 var listIdResolvedClaims = "ba62ba90-6c45-44dd-b236-2b2e37d01fbe";
 
-var itemType: string;
+//var itemType: string;
 
 var tooltipBtnResolvedClaim = "Если проблема повторно обнаруженна";
 var tooltipBtnNewClaim = "Если Вы сами справились с задачей";
@@ -45,20 +45,20 @@ enum TableClaims {
     Resolved
 }
 
-var appWebUrl: string, hostWebUrl: string;
+//var appWebUrl: string, hostWebUrl: string;
 var context;
 
 $(document).ready(() => {
 
-    hostWebUrl = decodeURIComponent(getQueryStringParameter("SPHostUrl"));
-    appWebUrl = decodeURIComponent(getQueryStringParameter("SPAppWebUrl"));
+    //hostWebUrl = decodeURIComponent(getQueryStringParameter("SPHostUrl"));
+    //appWebUrl = decodeURIComponent(getQueryStringParameter("SPAppWebUrl"));
 
-    SP.SOD.registerSod("moment.min.js", "../Scripts/moment.min.js");
-    SP.SOD.registerSod("moment-with-locales.min.js", "../Scripts/moment-with-locales.min.js");
-    SP.SOD.registerSod("moment-timezone.min.js", "../Scripts/moment-timezone.min.js");
-    SP.SOD.registerSodDep("moment-with-locales.min.js", "moment.min.js");
-    SP.SOD.registerSodDep("moment-timezone.min.js", "moment-with-locales.min.js");
-    $.getScript(hostWebUrl + "/_layouts/15/" + "SP.RequestExecutor.js");
+    //SP.SOD.registerSod("moment.min.js", "../Scripts/moment.min.js");
+    //SP.SOD.registerSod("moment-with-locales.min.js", "../Scripts/moment-with-locales.min.js");
+    //SP.SOD.registerSod("moment-timezone.min.js", "../Scripts/moment-timezone.min.js");
+    //SP.SOD.registerSodDep("moment-with-locales.min.js", "moment.min.js");
+    //SP.SOD.registerSodDep("moment-timezone.min.js", "moment-with-locales.min.js");
+    //$.getScript(hostWebUrl + "/_layouts/15/" + "SP.RequestExecutor.js");
 
     context = SP.ClientContext.get_current();
 
@@ -74,7 +74,7 @@ $(document).ready(() => {
             () => {
                 console.log("fail get current user");
             });
-    }, "SP.RequestExecutor.js");
+    }, "sp.js");
    
 
     SP.SOD.loadMultiple(["moment.min.js", "moment-with-locales.min.js", "moment-timezone.min.js"],

@@ -20,7 +20,7 @@ var currentUserId = null;
 var listIdNewClaims = "416125a4-154d-48ef-8403-d0e448c221ec";
 var listIdAcceptedClaims = "96b8b010-bc84-42d4-a6b7-c2d584e4b87f";
 var listIdResolvedClaims = "ba62ba90-6c45-44dd-b236-2b2e37d01fbe";
-var itemType;
+//var itemType: string;
 var tooltipBtnResolvedClaim = "Если проблема повторно обнаруженна";
 var tooltipBtnNewClaim = "Если Вы сами справились с задачей";
 var btnNewClaim = '<input type="button"  value="Отозвать Заявку">';
@@ -36,17 +36,17 @@ var TableClaims;
     TableClaims[TableClaims["Accepted"] = 1] = "Accepted";
     TableClaims[TableClaims["Resolved"] = 2] = "Resolved";
 })(TableClaims || (TableClaims = {}));
-var appWebUrl, hostWebUrl;
+//var appWebUrl: string, hostWebUrl: string;
 var context;
 $(document).ready(function () {
-    hostWebUrl = decodeURIComponent(getQueryStringParameter("SPHostUrl"));
-    appWebUrl = decodeURIComponent(getQueryStringParameter("SPAppWebUrl"));
-    SP.SOD.registerSod("moment.min.js", "../Scripts/moment.min.js");
-    SP.SOD.registerSod("moment-with-locales.min.js", "../Scripts/moment-with-locales.min.js");
-    SP.SOD.registerSod("moment-timezone.min.js", "../Scripts/moment-timezone.min.js");
-    SP.SOD.registerSodDep("moment-with-locales.min.js", "moment.min.js");
-    SP.SOD.registerSodDep("moment-timezone.min.js", "moment-with-locales.min.js");
-    $.getScript(hostWebUrl + "/_layouts/15/" + "SP.RequestExecutor.js");
+    //hostWebUrl = decodeURIComponent(getQueryStringParameter("SPHostUrl"));
+    //appWebUrl = decodeURIComponent(getQueryStringParameter("SPAppWebUrl"));
+    //SP.SOD.registerSod("moment.min.js", "../Scripts/moment.min.js");
+    //SP.SOD.registerSod("moment-with-locales.min.js", "../Scripts/moment-with-locales.min.js");
+    //SP.SOD.registerSod("moment-timezone.min.js", "../Scripts/moment-timezone.min.js");
+    //SP.SOD.registerSodDep("moment-with-locales.min.js", "moment.min.js");
+    //SP.SOD.registerSodDep("moment-timezone.min.js", "moment-with-locales.min.js");
+    //$.getScript(hostWebUrl + "/_layouts/15/" + "SP.RequestExecutor.js");
     context = SP.ClientContext.get_current();
     SP.SOD.executeOrDelayUntilScriptLoaded(function () {
         var currentUser = context.get_web().get_currentUser();
@@ -59,7 +59,7 @@ $(document).ready(function () {
         }, function () {
             console.log("fail get current user");
         });
-    }, "SP.RequestExecutor.js");
+    }, "sp.js");
     SP.SOD.loadMultiple(["moment.min.js", "moment-with-locales.min.js", "moment-timezone.min.js"], function () {
         moment.tz.add("Europe/Moscow|MSK MSD MSK|-30 -40 -40|01020|1BWn0 1qM0 WM0 8Hz0|16e6");
         moment.locale(window.navigator.userLanguage || window.navigator.language);
