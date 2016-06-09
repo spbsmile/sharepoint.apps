@@ -1,0 +1,212 @@
+@charset "utf-8";
+/* CSS Document */
+
+.clientwebpart-body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+    .clientwebpart-body .clientwebpart-div {
+        margin: 0;
+        padding: 5px;
+        border: 0;
+        position: relative;
+        width: 300px;
+        height: 400px;
+        background-color: #0072C6;
+        color: #FFFFFF;
+        font-size: 14pt;
+    }
+/* */
+#WebPartctl00_ctl42_g_5b8f247a_ca13_4731_ab0d_453413761b75{
+     float: right;
+}
+
+
+.btnIterateMonth{
+   min-width: 3em; 
+   border: none;
+}
+
+.time {
+    width: 120px;
+    float: right;
+    border: 2px solid #fff;
+    border-radius: 200px; 
+    height: 120px;
+    text-align: center;
+    line-height: 120px;
+    font-size: 35px;
+}
+
+.day_current{
+    color: #e66b6b;
+    text-decoration: none;
+   
+    text-align: center;
+    vertical-align: middle;
+    font-style: normal;
+    font-weight: bold;
+    border: thin solid #e66b6b;	
+}
+
+.birthday_current {
+
+    background-image: url(/images/birthday.png);
+    background-repeat: no-repeat;
+    background-position: 100% 100%; 
+    
+}
+
+.calendar.test {
+    padding-top: 5%;
+}
+
+.birthday {
+
+    background-image: url(/images/birthday.png);
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+}
+
+.congratulateText {
+    text-align: center;
+    clear: both;
+    margin-top: 4px;
+}
+
+.fio {
+    
+    color: #666666;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+body {
+  margin: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td {
+    padding: 0;
+}
+
+.calendar-container {
+    position: relative;
+}
+
+.calendar-panel{
+
+margin-left: 10%;
+font-size:  1.14em;
+width:320px;
+}
+
+.calendar-container header {
+    border-radius: 1em 1em 0 0;
+    background: #EE352A;
+    color: #fff;
+    padding: 2.3em 2em;
+}
+
+.day {
+    font-size: 2.7em;
+    font-weight: 600;
+    line-height: 1em;
+}
+
+.month {
+    font-size: 3em;
+    line-height: 1em;
+    text-transform: lowercase;
+}
+
+.calendar {
+    background: #fff;
+    border-radius: 0 0 1em 1em;
+    -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, .2), 0 3px 1px #fff;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, .2), 0 3px 1px #fff;
+    color: #555;
+    display: inline-block;
+}
+
+/* color: #e66b6b;*/
+.calendar thead {
+   
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.footer {
+   margin-top: 10px;
+}
+
+.calendar td {
+    padding: .5em 1em;
+    text-align: center;
+}
+/*
+.calendar tbody td:hover {
+    background: rgba(239,13,16,.5);
+    color: #fff;
+	
+}
+*/
+
+.birthday_current:hover {
+    background: rgba(239,13,16,.5);
+    background-image: url(/images/birthday.png);
+    background-repeat: no-repeat;
+    background-position: 100% 100%; 
+    
+}
+
+.birthday:hover {
+	background: rgba(239,13,16,.5);
+    background-image: url(/images/birthday.png);
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+}
+
+.current-day {
+    color: #e66b6b ;
+    border: thin solid #e66b6b ;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.prev-month,
+.next-month {
+    color: #cacaca;
+}
+
+.ring-left,
+.ring-right {
+    position: absolute;
+    top: 113px;
+}
+
+.ring-left { left: 2em; }
+.ring-right { right: 2em; }
+
+.ring-left:before,
+.ring-left:after,
+.ring-right:before,
+.ring-right:after {
+    background: #fff;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 3px 1px rgba(0, 0, 0, .3), 0 -1px 1px rgba(0, 0, 0, .2);
+    box-shadow: 0 3px 1px rgba(0, 0, 0, .3), 0 -1px 1px rgba(0, 0, 0, .2);
+    content: "";
+    display: inline-block;
+    margin: 8px;
+    height: 32px;
+    width: 8px;
+}
+
+

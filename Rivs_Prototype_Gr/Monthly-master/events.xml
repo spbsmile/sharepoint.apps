@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<monthly>
+
+
+	<event>
+		<id>1</id>
+		<name>Here's an Event</name>
+		<startdate>2016-3-15</startdate>
+		<enddate>2016-3-17</enddate>
+		<starttime>12:00</starttime>
+		<endtime>2:00</endtime>
+		<color>#ffb128</color>
+		<url></url>
+	</event>
+
+	<event>
+		<id>2</id>
+		<name>Another Event</name>
+		<startdate>2016-3-15</startdate>
+		<enddate></enddate>
+		<starttime></starttime>
+		<endtime></endtime>
+		<color>#28cbff</color>
+		<url></url>
+	</event>
+
+	<event>
+		<id>3</id>
+		<name>Another Event</name>
+		<startdate>2016-3-29</startdate>
+		<enddate></enddate>
+		<starttime>9:00</starttime>
+		<endtime>10:00</endtime>
+		<color>#9cc370</color>
+		<url></url>
+	</event>
+
+	<event>
+		<id>4</id>
+		<name>Another Event</name>
+		<startdate>2016-3-2</startdate>
+		<enddate></enddate>
+		<starttime></starttime>
+		<endtime></endtime>
+		<color>#9f4b99</color>
+		<url></url>
+	</event>
+
+
+</monthly>
