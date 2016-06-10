@@ -115,7 +115,7 @@ width:320px;
 }
 
 .day {
-    font-size: 2.7em;
+    font-size: 2.3em;
     font-weight: 600;
     line-height: 1em;
 }
@@ -147,7 +147,7 @@ width:320px;
 }
 
 .calendar td {
-    padding: .5em 1em;
+    padding: .4em 0.89em;
     text-align: center;
 }
 /*
@@ -173,6 +173,10 @@ width:320px;
     background-position: 100% 100%;
 }
 
+th {
+    text-align: center;
+}
+
 .current-day {
     color: #e66b6b ;
     border: thin solid #e66b6b ;
@@ -188,7 +192,7 @@ width:320px;
 .ring-left,
 .ring-right {
     position: absolute;
-    top: 113px;
+    top: 103px;
 }
 
 .ring-left { left: 2em; }
@@ -205,8 +209,8 @@ width:320px;
     content: "";
     display: inline-block;
     margin: 8px;
-    height: 32px;
-    width: 8px;
+    height: 28px;
+    width: 7px;
 }
 
 

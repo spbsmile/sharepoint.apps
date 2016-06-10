@@ -8,6 +8,7 @@
 	height: 7em;
 	padding: 0;
 	margin: 0;
+	opacity: 0.6;
 }
 
 .clock.simple:after {
@@ -43,10 +44,10 @@
 
 .minutes {
 	background: #fff;
-	height: 15%;
+	height: 25%;
 	left: 49%;
 	position: absolute;
-	top: 35%;
+	top: 25%;
 	transform-origin: 50% 100%;
 	width: 2%;
 }
