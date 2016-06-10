@@ -8,10 +8,12 @@
     <title>Intranet</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/experiment.css">
+    <link href="css/calendar.css" rel="stylesheet">
+    <link href="clocks.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script src="/js/simplecalendar.js" type="text/javascript"></script>
     <link rel="stylesheet" href="http://weloveiconfonts.com/api/?family=fontawesome">
-    <link href="css/calendar.css" rel="stylesheet">
+
 
 </head>
 
@@ -75,7 +77,7 @@
 
     .mainMenu {
         height: 30px;
-        margin-top: 70px;
+        margin-top: 80px;
         margin-left: 310px;
         float: left
     }
@@ -340,62 +342,45 @@
         <div class="header_main">
             <div class="logo_search">
                 <div class="logo">
-                    <img src="logo.png"/>
+                    <img src="logo.png">
                 </div>
                 <div class="search">
-                    <a class="searchBtn" href="#">&#xe003;</a>
+                    <a class="searchBtn" href="#"></a>
                     <textarea class="textSearch">Search...</textarea>
                 </div>
 
-                <!--    <div class="headerClocks">
-                        <div id="experiment">
-                            <div id="clock">
-                                <div id="hour"><img src="images/hourHand.png"/></div>
-                                <div id="minute"><img src="images/minuteHand.png"/></div>
-                                <div id="second"><img src="images/secondHand.png"/></div>
-                            </div>
-                        </div>
-                        <div id="experiment">
-                            <div id="clock">
-                                <div id="hour"><img src="images/hourHand.png"/></div>
-                                <div id="minute"><img src="images/minuteHand.png"/></div>
-                                <div id="second"><img src="images/secondHand.png"/></div>
-                            </div>
-                        </div>
-
-                    </div> -->
-
-                <div style="margin-left: 4em">
+            </div>
+            <div class="headerLine2" style="
+    margin-top: 20px;
+">
+                <div style="padding: 0;margin: 0;float: right;padding-right: 10px; padding-top: 10px;">
                     <!-- saint petersburg -->
-                    <article id="spb_clock" class="clock" style="display: inline-block;padding: 0;height: 180px;">
-                        <header align="center"><h2 id="spb_title">Санкт-Петербург</h2></header>
+                    <article id="spb_clock" class="clock" style="display: inline-block; margin-right: 10px;">
+                        <!--<header align="center"><h2 id="spb_title">Санкт-Петербург</h2></header> -->
                         <div>
                             <div class="hours-container">
                                 <div id="Europe/Moscow_hours" class="hours" style="transform: rotateZ(514deg);"></div>
                             </div>
                             <div class="minutes-container" data-second-angle="180">
-                                <div id="Europe/Moscow_minutes" class="minutes"
-                                     style="transform: rotateZ(48deg);"></div>
+                                <div id="Europe/Moscow_minutes" class="minutes" style="transform: rotateZ(48deg);"></div>
                             </div>
                         </div>
                     </article>
 
                     <!-- uchaly -->
-                    <article id="yekaterinburg_clock" class="clock"
-                             style="display: inline-block;padding: 0;height: 180px;">
-                        <header align="center"><h2 id="yekaterinburg_title">Учалы</h2></header>
+                    <article id="yekaterinburg_clock" class="clock" style="display: inline-block;  margin-right: 10px;">
+                        <!--<header align="center"><h2 id="yekaterinburg_title">Учалы</h2></header> -->
                         <div class="hours-container">
                             <div id="Asia/Yekaterinburg_hours" class="hours" style="transform: rotateZ(574deg);"></div>
                         </div>
                         <div class="minutes-container" data-second-angle="180">
-                            <div id="Asia/Yekaterinburg_minutes" class="minutes"
-                                 style="transform: rotateZ(48deg);"></div>
+                            <div id="Asia/Yekaterinburg_minutes" class="minutes" style="transform: rotateZ(48deg);"></div>
                         </div>
                     </article>
 
                     <!-- kentay -->
-                    <article id="kentay_clock" class="clock" style="display: inline-block;padding: 0;height: 180px;">
-                        <header align="center"><h2 id="kentay_title"> Кентау</h2></header>
+                    <article id="kentay_clock" class="clock" style="display: inline-block;">
+                        <!--<header align="center"><h2 id="kentay_title"> Кентау</h2></header> -->
                         <div class="hours-container">
                             <div id="Asia/Almaty_hours" class="hours" style="transform: rotateZ(604deg);"></div>
                         </div>
@@ -404,10 +389,6 @@
                         </div>
                     </article>
                 </div>
-
-            </div>
-            <div class="headerLine2">
-
                 <div class="mainMenu">
                     <div class="mmenuBtn"><a href="#">Сотрудники</a></div>
                     <div class="mmenuBtn"><a href="#">Документы</a></div>

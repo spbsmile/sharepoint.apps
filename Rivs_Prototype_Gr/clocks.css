@@ -1,11 +1,13 @@
 ﻿.clock {
 	border-radius: 50%;
-	background: #fff url(/_catalogs/masterpage/rivs/img/clockBg.png) no-repeat center;
-	background-size: 88%;
-	height: 10em;
+	background: #fff url(images/clockBg.png) no-repeat center;
+	background-size: 100%;
 	padding-bottom: 31%;
 	position: relative;
-	width: 10em;
+	width: 7em;
+	height: 7em;
+	padding: 0;
+	margin: 0;
 }
 
 .clock.simple:after {
@@ -30,7 +32,7 @@
 }
 
 .hours {
-	background: #000;
+	background: #fff;
 	height: 11%;
 	left: 49%;
 	position: absolute;
@@ -40,7 +42,7 @@
 }
 
 .minutes {
-	background: #000;
+	background: #fff;
 	height: 15%;
 	left: 49%;
 	position: absolute;
