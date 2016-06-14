@@ -9,11 +9,51 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
     <link href="css/calendar.css" rel="stylesheet">
-    <link href="css/clocks.css" rel="stylesheet">
+    <link href="css/clocks_red.css" rel="stylesheet">
     <script src="\js\jquery-1.7.2.min.js" type="text/javascript"></script>
 </head>
 
 <body>
+<style>
+    .clock_footer {
+        color: red;
+        opacity: 0.8;
+    }
+
+    .clock {
+        border-radius: 50%;
+        background: url(images/numbers.png) center, url(images/clockBg_without_number.png) no-repeat center;
+        background-size: 100%;
+        padding-bottom: 31%;
+        position: relative;
+        width: 7em;
+        height: 7em;
+        padding: 0;
+        margin: 0;
+        opacity: 0.8;
+    }
+
+    .hours {
+        background: red;
+        height: 11%;
+        left: 49%;
+        position: absolute;
+        top: 39%;
+        transform-origin: 50% 100%;
+        width: 2.5%;
+    }
+
+    .minutes {
+        background: red;
+        height: 25%;
+        left: 49%;
+        position: absolute;
+        top: 25%;
+        transform-origin: 50% 100%;
+        width: 2%;
+    }
+
+</style>
 
 <div class="page">
     <div class="body">
@@ -36,12 +76,10 @@
                         <div id="spb_clock" class="clock">
                             <div>
                                 <div class="hours-container">
-                                    <div id="Europe/Moscow_hours" class="hours"
-                                         style="transform: rotateZ(514deg);"></div>
+                                    <div id="Europe/Moscow_hours" class="hours" style="transform: rotateZ(514deg);"></div>
                                 </div>
                                 <div class="minutes-container" data-second-angle="180">
-                                    <div id="Europe/Moscow_minutes" class="minutes"
-                                         style="transform: rotateZ(48deg);"></div>
+                                    <div id="Europe/Moscow_minutes" class="minutes" style="transform: rotateZ(48deg);"></div>
                                 </div>
                             </div>
                         </div>
@@ -53,12 +91,10 @@
                     <article class="clock_article" style="margin-right: 10px;">
                         <div id="yekaterinburg_clock" class="clock">
                             <div class="hours-container">
-                                <div id="Asia/Yekaterinburg_hours" class="hours"
-                                     style="transform: rotateZ(574deg);"></div>
+                                <div id="Asia/Yekaterinburg_hours" class="hours" style="transform: rotateZ(574deg);"></div>
                             </div>
                             <div class="minutes-container" data-second-angle="180">
-                                <div id="Asia/Yekaterinburg_minutes" class="minutes"
-                                     style="transform: rotateZ(48deg);"></div>
+                                <div id="Asia/Yekaterinburg_minutes" class="minutes" style="transform: rotateZ(48deg);"></div>
                             </div>
                         </div>
                         <footer class="clock_footer" style="
@@ -200,7 +236,7 @@
                                     title="День Рождения: Недельский Владимир Геннадьевич ">10
                                 </td>
                                 <td id="cell_12" class="birthday"
-                                    title="День Рождения: Боричева Татьяна Игоревна,  Мартынов Олег Геннадиевич, Рудь Андрей Сергеевич,  Салдаев Алексей Васильевич ">
+                                    title="День Рождения: Боричева Татьяна Игоревна,  Мартынов Олег Геннадиевич,  Рудь Андрей Сергеевич,  Салдаев Алексей Васильевич ">
                                     11
                                 </td>
                                 <td id="cell_13" class="birthday" title="День Рождения: Туктарева Елена Николаевна ">

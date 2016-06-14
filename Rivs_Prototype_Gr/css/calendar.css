@@ -61,6 +61,7 @@
 
 .calendar.test {
     padding-top: 5%;
+    background-color: rgba(219, 219, 219, .20);
 }
 
 .birthday {
@@ -101,10 +102,9 @@ td {
 }
 
 .calendar-panel{
-
-margin-left: 10%;
-font-size:  1.14em;
-width:320px;
+    margin-left: 10%;
+    font-size:  1.14em;
+    width:320px;
 }
 
 .calendar-container header {
@@ -135,9 +135,7 @@ width:320px;
     display: inline-block;
 }
 
-/* color: #e66b6b;*/
 .calendar thead {
-   
     font-weight: 700;
     text-transform: uppercase;
 }
@@ -147,16 +145,9 @@ width:320px;
 }
 
 .calendar td {
-    padding: .4em 0.89em;
+    padding: .4em 0.73em;
     text-align: center;
 }
-/*
-.calendar tbody td:hover {
-    background: rgba(239,13,16,.5);
-    color: #fff;
-	
-}
-*/
 
 .birthday_current:hover {
     background: rgba(239,13,16,.5);

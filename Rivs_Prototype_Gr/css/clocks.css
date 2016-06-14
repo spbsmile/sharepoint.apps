@@ -1,6 +1,6 @@
 ﻿.clock {
 	border-radius: 50%;
-	background: #fff url(images/clockBg.png) no-repeat center;
+	background: url(../images/numbers_white.png) center, url(../images/clockBg_without_number.png) no-repeat center;
 	background-size: 100%;
 	padding-bottom: 31%;
 	position: relative;
@@ -8,7 +8,7 @@
 	height: 7em;
 	padding: 0;
 	margin: 0;
-	opacity: 0.6;
+	opacity: 0.8;
 }
 
 .clock.simple:after {
@@ -33,7 +33,7 @@
 }
 
 .hours {
-	background: #fff;
+	background: white;
 	height: 11%;
 	left: 49%;
 	position: absolute;
@@ -43,7 +43,7 @@
 }
 
 .minutes {
-	background: #fff;
+	background: white;
 	height: 25%;
 	left: 49%;
 	position: absolute;
