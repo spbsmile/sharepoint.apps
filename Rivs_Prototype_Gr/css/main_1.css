@@ -308,7 +308,6 @@ h1, .h1 {
     height: 120px;
     width: 50%;
     background: url(../new_icons/snow.png) no-repeat center;
-    //background-size: 100%;
 }
 
 .cell_weather_city {
@@ -329,4 +328,35 @@ h1, .h1 {
 
 p {
     margin: 0 0 5px;
+}
+
+.employeeBlock{
+    display: table;
+}
+
+.employeeRow{
+    display: table-row;
+}
+.employeeCell{
+    display: table-cell;
+    width: 130px;
+    border-radius: 0.5em;
+}
+
+.employeeCell img{
+    width: 105px;
+    margin: 4px;
+    border-radius: 0.5em;
+}
+
+.wrap_employeeCell {
+    width: 115px;
+    margin: 5%;
+    background-color: rgba(219, 219, 219, .20);
+    box-shadow: 0 1px 4px 0px rgba(0, 0, 0, .75);
+    border-radius: 0.5em;
+}
+
+.wrap_employeeCell:hover {
+    background-color: rgba(150, 150, 150, .35) !important;
 }
