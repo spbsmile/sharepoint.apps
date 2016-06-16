@@ -1,0 +1,134 @@
+<!DOCTYPE html >
+<html dir="ltr" lang="ru-RU">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=10"/>
+    <meta name="GENERATOR" content="Microsoft SharePoint"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Expires" content="0"/>
+    <title>Intranet</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/employee_org_charts.css">
+    <link href="css/calendar.css" rel="stylesheet">
+    <link href="css/clocks.css" rel="stylesheet">
+    <script src="\js\jquery-1.7.2.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+<div class="page">
+    <div class="body">
+        <!-- here header -->
+        <div class="header_main">
+            <div class="logo_search">
+                <div class="logo">
+                    <img src="images/logo.png">
+                </div>
+                <div class="search">
+                    <a class="searchBtn" href="#"></a>
+                    <textarea class="textSearch">Поиск...</textarea>
+                </div>
+
+            </div>
+            <div class="headerLine2">
+                <div class="clocks_container">
+                    <!-- saint petersburg -->
+                    <article class="clock_article">
+                        <div id="spb_clock" class="clock">
+                            <div>
+                                <div class="hours-container">
+                                    <div id="Europe/Moscow_hours" class="hours"
+                                         style="transform: rotateZ(514deg);"></div>
+                                </div>
+                                <div class="minutes-container" data-second-angle="180">
+                                    <div id="Europe/Moscow_minutes" class="minutes"
+                                         style="transform: rotateZ(48deg);"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="clock_footer">Санкт-Петербург
+                        </footer>
+                    </article>
+
+                    <!-- uchaly -->
+                    <article class="clock_article" style="margin-right: 10px;">
+                        <div id="yekaterinburg_clock" class="clock">
+                            <div class="hours-container">
+                                <div id="Asia/Yekaterinburg_hours" class="hours"
+                                     style="transform: rotateZ(574deg);"></div>
+                            </div>
+                            <div class="minutes-container" data-second-angle="180">
+                                <div id="Asia/Yekaterinburg_minutes" class="minutes"
+                                     style="transform: rotateZ(48deg);"></div>
+                            </div>
+                        </div>
+                        <footer class="clock_footer" style="padding-left: 30px;">Учалы
+                        </footer>
+                    </article>
+
+                    <!-- kentay -->
+                    <article class="clock_article">
+                        <div id="kentay_clock" class="clock">
+                            <div class="hours-container">
+                                <div id="Asia/Almaty_hours" class="hours" style="transform: rotateZ(604deg);"></div>
+                            </div>
+                            <div class="minutes-container" data-second-angle="180">
+                                <div id="Asia/Almaty_minutes" class="minutes" style="transform: rotateZ(48deg);"></div>
+                            </div>
+                        </div>
+                        <footer class="clock_footer" style="padding-left: 30px;">Кентау
+                        </footer>
+                    </article>
+                </div>
+                <div class="mainMenu">
+                    <div class="mmenuBtn"><a href="#">Сотрудники</a></div>
+                    <div class="mmenuBtn"><a href="#">Документы</a></div>
+                    <div class="mmenuBtn"><a href="#">Приказы</a></div>
+                    <div class="mmenuBtn"><a href="#">Форум</a></div>
+                    <div class="mmenuBtn"><a href="#">Техподдержка</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <figure class="org-chart cf">
+                <ul class="administration">
+                    <li>
+                        <ul class="director">
+                            <li>
+                                <a href="#"><span>Director</span></a>
+                                <!--<ul class="subdirector">
+                                    <li><a href="#"><span>Assistante Director</span></a></li>
+                                </ul>-->
+                                <ul class="departments cf">
+                                    <!--
+                                    <li><a href="#"><span>Administration</span></a></li> -->
+
+                                    <li class="department dep-a">
+                                        <a href="#"><span>Department A</span></a>
+                                    </li>
+                                    <li class="department dep-b">
+                                        <a href="#"><span>Department B</span></a>
+                                    </li>
+                                    <li class="department dep-c">
+                                        <a href="#"><span>Department C</span></a>
+                                    </li>
+                                    <li class="department dep-d">
+                                        <a href="#"><span>Department D</span></a>
+                                    </li>
+                                    <li class="department dep-e">
+                                        <a href="#"><span>Department E</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </figure>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+</div>
