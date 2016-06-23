@@ -2,12 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="593381c4-026e-4249-bfc1-b498c471a191" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/main/mainNav.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CSR/printers/printersGelezn.js" afterPath="$PROJECT_DIR$/CSR/printers/printersGelezn.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CSR/printers/settings.js" afterPath="$PROJECT_DIR$/CSR/printers/settings.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CSR/support/cewp/supportCore.js" afterPath="$PROJECT_DIR$/CSR/support/cewp/supportCore.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sample_weather_calendar.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/widgets_control.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/text.html" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Rivs_Prototype_Gr/index_3.html" afterPath="$PROJECT_DIR$/Rivs_Prototype_Gr/index_3Main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rivs_Prototype_Gr/css/calendar.css" afterPath="$PROJECT_DIR$/Rivs_Prototype_Gr/css/calendar.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rivs_Prototype_Gr/css/employee_new.css" afterPath="$PROJECT_DIR$/Rivs_Prototype_Gr/css/employee_new.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rivs_Prototype_Gr/css/main_3.css" afterPath="$PROJECT_DIR$/Rivs_Prototype_Gr/css/main_3.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Rivs_Prototype_Gr/index_employee_new.html" afterPath="$PROJECT_DIR$/Rivs_Prototype_Gr/index_employee_new.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jslink.txt" afterPath="$PROJECT_DIR$/jslink.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/rivs.html" afterPath="$PROJECT_DIR$/main/rivs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/text_duplicat.html" afterPath="$PROJECT_DIR$/text_duplicat.html" />
     </list>
     <ignored path="sharepoint.apps.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,11 +33,64 @@
     <favorites_list name="sharepoint.apps" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index_3Main.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/index_3Main.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1411">
+              <caret line="83" column="18" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="18" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#article#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#article#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#article#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#article#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#article#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#footer#0;n#article#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#article#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#article#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#footer#0;n#article#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#span#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#span#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#span#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#span#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#td#3;n#tr#0;n#table#0;n#div#0;n#span#2;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#td#3;n#tr#1;n#table#0;n#div#0;n#span#2;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sample_weather_calendar.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sample_weather_calendar.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="137" column="33" selection-start-line="137" selection-start-column="33" selection-end-line="137" selection-end-column="33" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#span#1;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#span#1;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#span#1;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#span#1;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#td#3;n#tr#0;n#table#0;n#div#0;n#span#2;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#td#3;n#tr#1;n#table#0;n#div#0;n#span#2;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#9;n#div#1;n#div#3;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#11;n#div#1;n#div#3;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#12;n#div#1;n#div#3;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#14;n#div#1;n#div#3;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#26;n#div#1;n#div#3;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -39,17 +98,71 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/index_1.html" root0="SKIP_INSPECTION" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/main/mainNav.js" />
+        <option value="$PROJECT_DIR$/CalendarApp/index.html" />
+        <option value="$PROJECT_DIR$/CalendarApp/test].js" />
+        <option value="$PROJECT_DIR$/CalendarApp/core.js" />
+        <option value="$PROJECT_DIR$/SharePointCurrencyEmpty/currencyMainPage.html" />
+        <option value="$PROJECT_DIR$/test.js" />
+        <option value="$PROJECT_DIR$/HelpDesk/Cewp.html" />
+        <option value="$PROJECT_DIR$/Core Libs/logs.js" />
+        <option value="$PROJECT_DIR$/CalendarApp/cewp/index.html" />
+        <option value="$PROJECT_DIR$/CalendarApp/cewp/core.js" />
+        <option value="$PROJECT_DIR$/newscurrenceMainPage.html" />
+        <option value="$PROJECT_DIR$/text_duplicat3.html" />
+        <option value="$PROJECT_DIR$/prototipe/f.html" />
+        <option value="$PROJECT_DIR$/text_duplicat.html" />
+        <option value="$PROJECT_DIR$/prototipe/clocks.css" />
+        <option value="$PROJECT_DIR$/prototipe/clocks_weather_valutes.js" />
+        <option value="$PROJECT_DIR$/prototipe/text_duplicat3.html" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype/index.html" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype/site.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype/calendar/js/core.js" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype/calendar/css/calendar.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype/calendar/css/demo2.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype/calendar/css/default.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype/calendar/index.html" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/css/experiment.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/clocks.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/clockindex.html" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/css/clocks_red.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/index_red.html" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/index.html" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/css/main.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/index_1.html" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/css/main_1.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/index_1_2.html" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/css/main_1_2.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/css/main_2.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/index_3.html" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/index_2.html" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/index_5.html" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/css/main_4.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/index_4.html" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/css/clocks_4.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/index_employee.html" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/css/employee_org_charts.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/css/breadcrumbs.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/css/employee_new.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/index_employee_new.html" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/css/calendar.css" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/css/main_3.css" />
+        <option value="$PROJECT_DIR$/widgets_control.js" />
+        <option value="$PROJECT_DIR$/Rivs_Prototype_Gr/index_3Main.html" />
+        <option value="$PROJECT_DIR$/text.html" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" />
-  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
@@ -83,7 +196,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -112,19 +224,74 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
+              <option name="myItemId" value="Rivs_Prototype_Gr" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharepoint.apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharepoint.apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rivs_Prototype_Gr" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharepoint.apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sharepoint.apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rivs_Prototype_Gr" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="C:/Office-UI-Fabric" />
+    <property name="last_opened_file_path" value="C:/Program Files/Common Files/microsoft shared/Web Server Extensions/15/TEMPLATE/LAYOUTS/CustomjsLibs" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\sharepoint.apps\Rivs_Prototype_Gr\images" />
+      <recent name="C:\sharepoint.apps\Rivs_Prototype_Gr\css" />
+      <recent name="C:\sharepoint.apps\Rivs_Prototype\calendar\js" />
+      <recent name="C:\sharepoint.apps\Rivs_Prototype\img" />
+      <recent name="C:\sharepoint.apps\prototipe" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\sharepoint.apps\Rivs_Prototype_Gr" />
+      <recent name="C:\sharepoint.apps\Rivs_Prototype_Gr\css" />
+      <recent name="C:\sharepoint.apps\Rivs_Prototype_Gr\images" />
+      <recent name="C:\sharepoint.apps\Rivs_Prototype_Gr\js" />
+      <recent name="C:\sharepoint.apps\Rivs_Prototype_Gr\new_icons" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -133,14 +300,16 @@
     <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
       <method />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
       <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
       <method />
     </configuration>
     <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
@@ -150,6 +319,7 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
       <tasks />
@@ -160,10 +330,12 @@
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run-script" />
       <scripts />
+      <node-interpreter value="project" />
       <envs />
       <method />
     </configuration>
     <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>C:/Program Files/nodejs/node.exe</node-interpreter>
       <node-options />
       <working-directory>$PROJECT_DIR$</working-directory>
       <pass-parent-env>true</pass-parent-env>
@@ -176,7 +348,9 @@
       <method />
     </configuration>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -185,17 +359,51 @@
       <changelist id="593381c4-026e-4249-bfc1-b498c471a191" name="Default" comment="" />
       <created>1454575156920</created>
       <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
       <updated>1454575156920</updated>
+      <workItem from="1459416275598" duration="88000" />
+      <workItem from="1459428061189" duration="5228000" />
+      <workItem from="1459496232844" duration="6457000" />
+      <workItem from="1459945127544" duration="55000" />
+      <workItem from="1460453243193" duration="4827000" />
+      <workItem from="1460984222066" duration="4346000" />
+      <workItem from="1461319283583" duration="7366000" />
+      <workItem from="1461662288309" duration="1473000" />
+      <workItem from="1461755449079" duration="8518000" />
+      <workItem from="1461770747384" duration="2034000" />
+      <workItem from="1462346591546" duration="961000" />
+      <workItem from="1462958874028" duration="1919000" />
+      <workItem from="1463740390138" duration="21522000" />
+      <workItem from="1464091182277" duration="2502000" />
+      <workItem from="1464163580748" duration="2914000" />
+      <workItem from="1464255595762" duration="12976000" />
+      <workItem from="1464618216961" duration="1854000" />
+      <workItem from="1464693213746" duration="165073000" />
+      <workItem from="1465972999245" duration="21572000" />
+      <workItem from="1466062792630" duration="72178000" />
+      <workItem from="1466666695616" duration="443000" />
     </task>
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="344306000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973656" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20547946" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855567" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -206,10 +414,28 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19704953" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -223,42 +449,287 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main/mainNav.js">
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/17.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/02.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/01.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/07.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/11.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/15.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/19.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/22.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/33.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/36.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/30.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/24.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/20.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/34.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/weathericons/37.png" />
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/css/clocks_red.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+        <state relative-caret-position="243">
+          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/index_red.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="160" column="17" selection-start-line="0" selection-start-column="0" selection-end-line="331" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/css/main_1.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="337" column="23" selection-start-line="0" selection-start-column="0" selection-end-line="361" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/css/clocks.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="31" column="12" selection-start-line="0" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/css/clocks_4.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/css/main_4.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-332">
+          <caret line="57" column="6" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="231" column="46" selection-start-line="231" selection-start-column="46" selection-end-line="231" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/css/employee_org_charts.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="172" column="19" selection-start-line="172" selection-start-column="19" selection-end-line="172" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/css/main_1_2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="348" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="362" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/jquery-1.7.2.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/common.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="194" column="18" selection-start-line="194" selection-start-column="18" selection-end-line="194" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/index_1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="134" column="10" selection-start-line="134" selection-start-column="10" selection-end-line="134" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/index_4.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/index_employee.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/index_2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3247">
+          <caret line="317" column="50" selection-start-line="317" selection-start-column="50" selection-end-line="317" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/css/main_2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="332" column="0" selection-start-line="332" selection-start-column="0" selection-end-line="370" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/css/breadcrumbs.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/index_employee_new.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-288">
+          <caret line="411" column="41" selection-start-line="411" selection-start-column="41" selection-end-line="411" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/css/employee_new.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="361" column="26" selection-start-line="361" selection-start-column="26" selection-end-line="361" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/index_1_2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="282" column="47" selection-start-line="282" selection-start-column="47" selection-end-line="282" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/css/calendar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="101" column="21" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/widgets_control.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="74" column="92" selection-start-line="74" selection-start-column="92" selection-end-line="74" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/images/birthday.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/images/clockBg_without_number_alfa_65.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/images/I_Ukraintsev.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/images/logo_wt.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/images/numbers.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/images/numbers_white.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/images/clockBg.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/images/clockBg_without_number.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/images/Thumbnail_Placeholder.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/images/logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/css/main_3.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="236" column="1" selection-start-line="236" selection-start-column="1" selection-end-line="236" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Rivs_Prototype_Gr/index_3Main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1411">
+          <caret line="83" column="18" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="18" />
           <folding>
-            <element signature="e#0#48#0" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#article#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#article#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#article#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#article#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#article#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#footer#0;n#article#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#article#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#article#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#footer#0;n#article#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#span#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#span#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#span#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#span#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#td#3;n#tr#0;n#table#0;n#div#0;n#span#2;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#td#3;n#tr#1;n#table#0;n#div#0;n#span#2;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Office-UI-Fabric/src/components/NavBar/NavBar.html">
+    <entry file="file://$PROJECT_DIR$/sample_weather_calendar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Office-UI-Fabric/src/components/NavBar/NavBar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17586207">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/mainNav.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24665178">
-          <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+        <state relative-caret-position="459">
+          <caret line="137" column="33" selection-start-line="137" selection-start-column="33" selection-end-line="137" selection-end-column="33" />
           <folding>
-            <element signature="e#0#48#0" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#span#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#span#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#span#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#span#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#td#3;n#tr#0;n#table#0;n#div#0;n#span#2;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#td#3;n#tr#1;n#table#0;n#div#0;n#span#2;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#9;n#div#1;n#div#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#11;n#div#1;n#div#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#12;n#div#1;n#div#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#14;n#div#1;n#div#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#26;n#div#1;n#div#3;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

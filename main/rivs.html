@@ -1,254 +1,202 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--SPG:
+<?xml version="1.0" encoding="utf-8"?><!--SPG:
 
 Этот HTML-файл связан с главной страницей SharePoint (MASTER-файлом) с таким же именем. При наличии связи между файлами изменение MASTER-файла не разрешено, а все операции переименования, перемещения и удаления затрагивают оба файла.
 
-Чтобы создать главную страницу непосредственно из этого HTML-файла, просто измените страницу обычным способом. Используйте генератор фрагментов кода на http://devsp/_layouts/15/ComponentHome.aspx?Url=http%3A%2F%2Fdevsp%2F%5Fcatalogs%2Fmasterpage%2FRivs%2Frivs%2Emaster для создания и настройки полезных объектов SharePoint, а затем скопируйте и вставьте их в виде фрагментов кода HTML в свой HTML-код. Все обновления этого файла будут автоматически синхронизироваться со связанной главной страницей.
+Чтобы создать главную страницу непосредственно из этого HTML-файла, просто измените страницу обычным способом. Используйте генератор фрагментов кода на http://intranet/_layouts/15/ComponentHome.aspx?Url=http%3A%2F%2Fintranet%2F%5Fcatalogs%2Fmasterpage%2FRivs%2Frivs%2Emaster для создания и настройки полезных объектов SharePoint, а затем скопируйте и вставьте их в виде фрагментов кода HTML в свой HTML-код. Все обновления этого файла будут автоматически синхронизироваться со связанной главной страницей.
 
 -->
 <!-- _lcid="1049" _version="15.0.4763" _dal="1" -->
 <!-- _LocalBinding -->
 <!DOCTYPE html[]>
 <html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
-
-<head>
-<meta http-equiv="X-UA-Compatible" content="IE=10" />
-<!--CS: Начало фрагмента кода заголовка-->
-<!--SPM:<%@Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
-<!--SPM:<%@Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
-<!--SPM:<%@ Register TagPrefix="demo" TagName="UserControl1"  src="~/_controltemplates/15/Weather/UserControl1.ascx" %>-->
-<!--SID:00 -->
-<meta name="GENERATOR" content="Microsoft SharePoint" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Expires" content="0" />
-<!--SPM:<SharePoint:RobotsMetaTag runat="server"/>-->
-<!--SPM:<SharePoint:StartScript runat="server"/>-->
-<!--MS:<SharePoint:CssLink runat="server" Version="15">-->
-<!--PS: Начало предварительного просмотра-->
-<link href="http://devsp/_layouts/15/1049/styles/Themable/corev15.css" rel="stylesheet" type="text/css" />
-<link href="http://devsp/_layouts/15/1049/styles/OLD/Themable/layouts.css" rel="stylesheet" type="text/css" />
-<link href="http://devsp/_layouts/15/1049/styles/Themable/searchv15.css" rel="stylesheet" type="text/css" />
-<!--PE: Конец предварительного просмотра-->
-<!--ME:</SharePoint:CssLink>-->
-<!--SPM:<SharePoint:CacheManifestLink runat="server"/>-->
-<!--SPM:<SharePoint:PageRenderMode runat="server" RenderModeType="Standard"/>-->
-<!--SPM:<SharePoint:ScriptLink language="javascript" name="menu.js" OnDemand="true" runat="server" Localizable="false"/>-->
-<!--SPM:<SharePoint:ScriptLink language="javascript" name="MicrosoftAjax.js" OnDemand="true" runat="server" Localizable="false"/>-->
-<!--SPM:<SharePoint:ScriptLink language="javascript" name="core.js" OnDemand="true" runat="server" Localizable="false"/>-->
-<!--SPM:<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/jquery-2.1.4.min.js"  Defer="false" runat="server" Localizable="false"/>-->
-<!--SPM:<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/jquery.SPServices-2014.02.min.js"  Defer="false" runat="server" Localizable="false"/>-->
-<!--SPM:<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/bootstrap.min.js"  Defer="false" runat="server" Localizable="false"/>-->
-<!--SPM:<SharePoint:ScriptLink language="javascript" name="callout.js" OnDemand="true" runat="server" Localizable="false"/>-->
-<!--SPM:<SharePoint:ScriptLink language="javascript" name="sharing.js" OnDemand="true" runat="server" Localizable="false"/>-->
-<!--SPM:<SharePoint:ScriptLink language="javascript" name="suitelinks.js" OnDemand="true" runat="server" Localizable="false"/>-->
-<!--SPM:<SharePoint:CustomJSUrl runat="server"/>-->
-<!--MS:<SharePoint:SoapDiscoveryLink runat="server">-->
-<!--SPM:<SharePoint:ScriptLink language="javascript" name="SP.Search.js"  OnDemand="true" runat="server" Localizable="false"/>-->
-<!--SPM:<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/searchRightTopCorner.js"  Defer="false" runat="server" Localizable="false"/>-->
-<!--PS: Начало представления для просмотра-->
-<link href="http://devsp/_vti_bin/spsdisco.aspx" rel="alternate" type="text/xml" />
-<!--PE: Завершение представления для просмотра-->
-<!--ME:</SharePoint:SoapDiscoveryLink>-->
-<!--MS:<SharePoint:AjaxDelta id="DeltaPlaceHolderAdditionalPageHead" Container="false" runat="server">-->
-<!--MS:<asp:ContentPlaceHolder id="PlaceHolderAdditionalPageHead" runat="server">-->
-<!--ME:</asp:ContentPlaceHolder>-->
-<!--MS:<SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true">-->
-<!--ME:</SharePoint:DelegateControl>-->
-<!--MS:<asp:ContentPlaceHolder id="PlaceHolderBodyAreaClass" runat="server">-->
-<!--ME:</asp:ContentPlaceHolder>-->
-<!--ME:</SharePoint:AjaxDelta>-->
-<!--SPM:<SharePoint:CssRegistration Name="Themable/corev15.css" runat="server"/>-->
-<!--SPM:<SharePoint:AjaxDelta id="DeltaSPWebPartManager" runat="server">-->
-<!--SPM:<WebPartPages:SPWebPartManager runat="server"/>-->
-<!--SPM:</SharePoint:AjaxDelta>-->
-<!--CE: Конец фрагмента кода заголовка-->
-<link rel="stylesheet" href="jumbotron.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="css/bootstrap-scope.min.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="css/weather-icons.min.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" charset="utf-8" />
-<link rel="stylesheet" href="css/hint.min.css" type="text/css" charset="utf-8" />
-<!--[if gte mso 9]><xml>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=10" />
+        <!--CS: Начало фрагмента кода заголовка-->
+        <!--SPM:<%@Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+        <!--SPM:<%@Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+        <!--SPM:<%@ Register TagPrefix="demo" TagName="UserControl1"  src="~/_controltemplates/15/Weather/UserControl1.ascx" %>-->
+        <!--SID:00 -->
+        <meta name="GENERATOR" content="Microsoft SharePoint" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Expires" content="0" />
+        <!--SPM:<SharePoint:RobotsMetaTag runat="server"/>-->
+        <!--SPM:<SharePoint:StartScript runat="server"/>-->
+        <!--MS:<SharePoint:CssLink runat="server" Version="15">-->
+            <!--PS: Начало предварительного просмотра--><link href="http://intranet/_layouts/15/1049/styles/Themable/corev15.css" rel="stylesheet" type="text/css" /><link href="http://intranet/_layouts/15/1049/styles/OLD/Themable/layouts.css" rel="stylesheet" type="text/css" /><link href="http://intranet/_layouts/15/1049/styles/Themable/searchv15.css" rel="stylesheet" type="text/css" /><!--PE: Конец предварительного просмотра-->
+        <!--ME:</SharePoint:CssLink>-->
+        <!--SPM:<SharePoint:CacheManifestLink runat="server"/>-->
+        <!--SPM:<SharePoint:PageRenderMode runat="server" RenderModeType="Standard"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="menu.js" OnDemand="true" runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="MicrosoftAjax.js" OnDemand="true" runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="core.js" OnDemand="true" runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="callout.js" OnDemand="true" runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="sharing.js" OnDemand="true" runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="suitelinks.js" OnDemand="true" runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/jquery-2.1.4.min.js"  Defer="false" runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/jquery.SPServices-2014.02.min.js"  Defer="false" runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/bootstrap.min.js"  Defer="false" runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/searchRightTopCorner.js"  Defer="false" runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/initPermision.js" Defer="false" runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/moment/moment.min.js" Defer="false" runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/moment/moment-with-locales.min.js" Defer="false" runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/moment/moment-timezone.min.js" Defer="false" runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:ScriptLink language="javascript" name="~sitecollection/Style Library/Calendar/core.js" Defer="false"  runat="server" Localizable="false"/>-->
+        <!--SPM:<SharePoint:CustomJSUrl runat="server"/>-->
+        <!--MS:<SharePoint:SoapDiscoveryLink runat="server">-->
+            <!--SPM:<SharePoint:ScriptLink language="javascript" name="SP.Search.js"  OnDemand="true" runat="server" Localizable="false"/>-->
+            <!--PS: Начало представления для просмотра--><link href="http://intranet/_vti_bin/spsdisco.aspx" rel="alternate" type="text/xml" /><!--PE: Завершение представления для просмотра-->
+        <!--ME:</SharePoint:SoapDiscoveryLink>-->
+        <!--MS:<SharePoint:AjaxDelta id="DeltaPlaceHolderAdditionalPageHead" Container="false" runat="server">-->
+            <!--MS:<asp:ContentPlaceHolder id="PlaceHolderAdditionalPageHead" runat="server">-->
+                <!--SPM:<SharePoint:ScriptLink language="javascript" name="~sitecollection/Style Library/Calendar/core.js" Defer="false"  runat="server" Localizable="false"/>-->
+            <!--ME:</asp:ContentPlaceHolder>-->
+            <!--MS:<SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true">-->
+            <!--ME:</SharePoint:DelegateControl>-->
+            <!--MS:<asp:ContentPlaceHolder id="PlaceHolderBodyAreaClass" runat="server">-->
+            <!--ME:</asp:ContentPlaceHolder>-->
+        <!--ME:</SharePoint:AjaxDelta>-->
+        <!--SPM:<SharePoint:CssRegistration Name="Themable/corev15.css" runat="server"/>-->
+        <!--SPM:<SharePoint:CssRegistration Name="/_layouts/15/CustomCss/css/bootstrap-scope.min.css" runat="server"/>-->
+        <!--SPM:<SharePoint:CssRegistration Name="/_layouts/15/CustomCss/jumbotron.css" runat="server"/>-->
+        <!--SPM:<SharePoint:CssRegistration Name="/_layouts/15/CustomCss/css/weather-icons.min.css" runat="server"/>-->
+        <!--SPM:<SharePoint:CssRegistration Name="/_layouts/15/CustomCss/css/font-awesome.min.css" runat="server"/>-->
+        <!--SPM:<SharePoint:CssRegistration Name="/_layouts/15/CustomCss/hint.min.css" runat="server"/>-->
+        <!--SPM:<SharePoint:CssRegistration Name="/_layouts/15/CustomCss/calendar/calendar.css" runat="server"  After="corev15.css"/>-->
+        <!--SPM:<SharePoint:CssRegistration Name="/_layouts/15/CustomCss/1.devsp/news.css" runat="server"/>-->
+        <!--SPM:<SharePoint:CssRegistration Name="/_layouts/15/CustomCss/navigation.css" runat="server"/>-->
+        <!--SPM:<SharePoint:AjaxDelta id="DeltaSPWebPartManager" runat="server">-->
+        <!--SPM:<WebPartPages:SPWebPartManager runat="server"/>-->
+        <!--SPM:</SharePoint:AjaxDelta>-->
+        <!--CE: Конец фрагмента кода заголовка-->
+        <!--[if gte mso 9]><xml>
 <mso:CustomDocumentProperties>
 
 <mso:ContentType msdt:dt="string">Файл конструктора</mso:ContentType>
 <mso:ContentTypeId msdt:dt="string">0x0101000F1C8B9E0EB4BE489F09807B2C53288F0054AD6EF48B9F7B45A142F8173F171BD10003D357F861E29844953D5CAA1D4D8A3A</mso:ContentTypeId>
 <mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
-<mso:HtmlDesignFromMaster msdt:dt="string">http://devsp/_catalogs/masterpage/Rivs/rivs.html, http://devsp/_catalogs/masterpage/Rivs/rivs.html</mso:HtmlDesignFromMaster>
+<mso:HtmlDesignFromMaster msdt:dt="string"></mso:HtmlDesignFromMaster>
 
-<mso:HtmlDesignStatusAndPreview msdt:dt="string">http://devsp/_catalogs/masterpage/Rivs/rivs.html, Преобразование выполнено успешно.</mso:HtmlDesignStatusAndPreview>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">http://intranet/_catalogs/masterpage/Rivs/rivs.html, Преобразование выполнено успешно.</mso:HtmlDesignStatusAndPreview>
+
+
+
 
 <mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
 </mso:CustomDocumentProperties>
 </xml><![endif]-->
-</head>
-
-<body>
-
-<div id="ms-designer-ribbon">
-	<!--SPM:<%@Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
-	<div id="TurnOnAccessibility" style="display: none" class="s4-notdlg noindex">
-		<a id="linkTurnOnAcc" href="#" class="ms-accessible ms-acc-button" onclick="SetIsAccessibilityFeatureEnabled(true);UpdateAccessibilityUI();document.getElementById('linkTurnOffAcc').focus();return false;">
-		<!--MS:<SharePoint:EncodedLiteral runat="server" text="&#60;%$Resources:wss,master_turnonaccessibility%&#62;" EncodeMethod="HtmlEncode">-->
-		<!--ME:</SharePoint:EncodedLiteral>--></a></div>
-	<div id="TurnOffAccessibility" style="display: none" class="s4-notdlg noindex">
-		<a id="linkTurnOffAcc" href="#" class="ms-accessible ms-acc-button" onclick="SetIsAccessibilityFeatureEnabled(false);UpdateAccessibilityUI();document.getElementById('linkTurnOnAcc').focus();return false;">
-		<!--MS:<SharePoint:EncodedLiteral runat="server" text="&#60;%$Resources:wss,master_turnoffaccessibility%&#62;" EncodeMethod="HtmlEncode">-->
-		<!--ME:</SharePoint:EncodedLiteral>--></a></div>
-	<!--SID:02 {Фрагмент кода ленты}-->
-	<!--PS: Начало представления для просмотра-->
-	<div class="DefaultContentBlock" style="background: rgb(0, 114, 198); color: white; width: 100%; padding: 8px; height: 64px; overflow: hidden;">
+    </head>
+    <body>
+        <div id="ms-designer-ribbon">
+            <!--SPM:<%@Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+            <div id="TurnOnAccessibility" style="display: none" class="s4-notdlg noindex">
+                <a id="linkTurnOnAcc" href="#" class="ms-accessible ms-acc-button" onclick="SetIsAccessibilityFeatureEnabled(true);UpdateAccessibilityUI();document.getElementById('linkTurnOffAcc').focus();return false;">
+                    <!--MS:<SharePoint:EncodedLiteral runat="server" text="&#60;%$Resources:wss,master_turnonaccessibility%&#62;" EncodeMethod="HtmlEncode">-->
+                    <!--ME:</SharePoint:EncodedLiteral>-->
+                </a>
+            </div>
+            <div id="TurnOffAccessibility" style="display: none" class="s4-notdlg noindex">
+                <a id="linkTurnOffAcc" href="#" class="ms-accessible ms-acc-button" onclick="SetIsAccessibilityFeatureEnabled(false);UpdateAccessibilityUI();document.getElementById('linkTurnOnAcc').focus();return false;">
+                    <!--MS:<SharePoint:EncodedLiteral runat="server" text="&#60;%$Resources:wss,master_turnoffaccessibility%&#62;" EncodeMethod="HtmlEncode">-->
+                    <!--ME:</SharePoint:EncodedLiteral>-->
+                </a>
+            </div>
+            <!--SID:02 {Фрагмент кода ленты}-->
+            <!--PS: Начало представления для просмотра--><div class="DefaultContentBlock" style="background: rgb(0, 114, 198); color: white; width: 100%; padding: 8px; height: 64px; overflow: hidden;">
 		В режимах предварительного просмотра сайта здесь будет отображаться лента 
-		SharePoint.</div>
-	<!--PE: Завершение представления для просмотра--></div>
-<!--MS:<SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AnonymousUsersOnly">-->
-<!--SPM:<wssucw:Welcome runat="server" EnableViewState="false"/>-->
-<!--ME:</SharePoint:SPSecurityTrimmedControl>-->
-<div id="s4-workspace">
-	<div id="s4-bodyContainer">
-		<div class="bootstrap-scope">
-			<div class="bootstrap-html">
-				<div class="bootstrap-body">
-                       
-                            <nav class="navbar over navbar-inverse navbar-fixed-top" style="background-color: rgba( 239,239,239,239 ); border-color:rgba( 239,239,239,239 );">
-                                <div class="container" style="height: 120px">
-									<div class="navbar-header">
-										<a class="navbar-brand" href="http://devsp/" alt="Внешний сайт">
-										<img src="/_catalogs/masterpage/rivs/img/logo.png" width="210" height="95" alt="Главная страница" href="#" />
-										</a></div>
-									<div id="navbar" class="navbar-collapse collapse">
-										<div class="row">
-											<a class="btn btn-default" href="http://devsp/sites/search/Pages/employee.aspx" role="button">
-											Сотрудники</a>
-											<a class="btn btn-default" href="http://devsp/news" role="button">
-											Новости</a>
-											<a class="btn btn-default disabled" href="#" role="button">
-											Документы</a>
-											<a class="btn btn-default disabled" href="#" role="button">
-											Приказы</a>
-											<a class="btn btn-default disabled" href="#" role="button">
-											Форум</a>
-											<button type="button" class="btn btn-default" id="clicksupport">
-											Техподдержка</button>
-											<!--SPM:<demo:UserControl1  id="UserControl1" runat="server"/>-->
-											<div id="navsearch" class="hint--bottom-left hint--info" data-hint="Поиск не настроен и нет контента, по учетке Забиякин дает результат, по другим - нет" style="width: 250px; float: right; margin-right: -440px;">
-												<div class="input-group">
-													<textarea id="textSearch" rows="1" style="resize: none;" class="form-control" placeholder="Поиск"></textarea>
-													<div class="input-group-btn">
-														<button id="btnSearchNav" class="btn btn-default" type="button" data-toggle="modal" data-target="#modalSearchResult">
-														<i class="glyphicon glyphicon-search">
-														</i></button></div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!--/.navbar-collapse --></div>
-					<button type="button" class="btn btn-default hint--info" data-toggle="modal" data-target="#modalFeedback" style="float: left; margin-left: 50px; margin-top: -70px;" data-hint="Замечания, ошибки, предложения по сайту">
-					Обратная связь</button>
+		SharePoint.</div><!--PE: Завершение представления для просмотра-->
+        </div>
+        <!--MS:<SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AnonymousUsersOnly">-->
+            <!--SPM:<wssucw:Welcome runat="server" EnableViewState="false"/>-->
+        <!--ME:</SharePoint:SPSecurityTrimmedControl>-->
+        <div id="s4-workspace">
+            <div id="s4-bodyContainer">
+                <div class="bootstrap-scope">
+                    <div class="bootstrap-html">
+                        <div class="bootstrap-body">
+                            <nav id="navigationPanel" class="navbar navbar-inverse navbar-fixed-top">
+                                <div id="navcontainer" class="container">
+                                    <div id="navbar" class="navbar-collapse collapse" style="padding-top: 0px;">
+                                        <div class="row">
+                                            <div id="linkSite">
+                                                <a href="http://www.rivs.ru/">www.rivs.ru
+                                                </a>
+                                            </div>
+                                            <a class="" href="http://intranet/Pages/default.aspx" alt="Внешний сайт">
+                                                <img id="nav_logo" src="/_catalogs/masterpage/rivs/img/logo.png" width="210" height="73" alt="Главная страница" href="#" />
+                                            </a>
+                                            <a class="btn btn-default btn-lg" href="http://intranet/sites/search/Pages/employee.aspx" role="button">
+											Сотрудники
+                                            </a>
+                                            <a class="btn btn-default btn-lg" href="http://intranet/sites/documents/default.aspx" role="button">
+											Документы
+                                            </a>
+                                            <a class="btn btn-default btn-lg" href="http://intranet/Pages/Приказы.aspx" role="button">
+											Приказы
+                                            </a>
+                                            <a class="btn btn-default btn-lg" href="http://intranet/sites/forum/SitePages/Домашняя%20страница%20сообщества.aspx" role="button">
+											Форум
+                                            </a>
+                                            <button type="button" class="btn btn-default btn-lg" id="clicksupport">
+											Техподдержка
+                                            </button>
+                                            <div id="navsearch" class="input-group hint--bottom-left hint--info" data-hint="ФИО, Департамент">
+                                                <textarea id="textSearch" rows="1" style="resize: none;" class="form-control" placeholder="Поиск">
+                                                </textarea>
+                                                <div class="input-group-btn">
+                                                    <button id="btnSearchNav" class="btn btn-default" type="button" data-toggle="modal" data-target="#modalSearchResult">
+                                                        <i class="glyphicon glyphicon-search">
+                                                        </i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/.navbar-collapse -->
+                                </div>
                             </nav>
-                            
-                            <!-- modal feedback -->
-					<div class="modal fade" id="modalFeedback" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">?</span></button> -->
-									<h4 class="modal-title" id="exampleModalLabel">
-									Замечания, ошибки, предложения по сайту </h4>
-								</div>
-								<div class="modal-body">
-									<form>
-										<div class="form-group">
-											<label for="recipient-name" class="control-label">
-											Название:</label>
-											<input type="text" class="form-control" id="recipient-name">
-										</div>
-										<div class="form-group">
-											<label for="message-text" class="control-label">
-											Сообщение:</label>
-											<textarea rows="6" class="form-control" id="message-text" style="margin: 0px -1px 0px 0px; height: 147px; width: 568px;"></textarea>
-										</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">
-									Закрыть</button>
-									<button type="button" class="btn btn-primary">
-									Оправить сообщение</button></div>
-							</div>
-						</div>
-					</div>
-					<!-- Modal search top right corner -->
-					<div class="modal fade" id="modalSearchResult" tabindex="-1" role="dialog" aria-labelledby="modalSearchResultLabel">
-						<div class="modal-dialog modal-lg" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h4 class="modal-title" id="modalSearchResultLabel">
-									</h4>
-								</div>
-								<div class="modal-body">
-									<ul id="loaderSearch" class="fa-ul">
-										<li>
-										<i class="fa-li fa fa-spinner fa-spin">
-										</i>обработка запроса</li>
-									</ul>
-									<div id="resultsDiv">
-									</div>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">
-									Закрыть</button></div>
-							</div>
-						</div>
-					</div>
-					<div class="jumbotron artbg">
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--CS: Начало фрагмента кода PlaceHolderMain-->
-		<!--SPM:<%@Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
-		<!--MS:<SharePoint:AjaxDelta id="DeltaPlaceHolderMain" IsMainContent="true" runat="server">-->
-		<!--MS:<asp:ContentPlaceHolder ID="PlaceHolderMain" runat="server">-->
-		<div class="DefaultContentBlock" style="border: medium black solid; background: yellow; color: black;">
+                            <!-- Modal search top right corner -->
+                            <div class="modal fade" id="modalSearchResult" tabindex="-1" role="dialog" aria-labelledby="modalSearchResultLabel">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="modalSearchResultLabel">
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body" style="overflow-y: auto; max-height: calc(100vh - 212px);">
+                                            <ul id="loaderSearch" class="fa-ul">
+                                                <li>
+                                                    <i class="fa-li fa fa-spinner fa-spin">
+                                                    </i>
+обработка запроса                                                 </li>
+                                            </ul>
+                                            <div id="resultsDiv">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+									Закрыть
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="jumbotron" class="jumbotron artbg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--CS: Начало фрагмента кода PlaceHolderMain-->
+                <!--SPM:<%@Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+                <!--MS:<SharePoint:AjaxDelta id="DeltaPlaceHolderMain" IsMainContent="true" runat="server">-->
+                    <!--MS:<asp:ContentPlaceHolder ID="PlaceHolderMain" runat="server">-->
+                        <div class="DefaultContentBlock" style="border: medium black solid; background: yellow; color: black;">
 			Эта область будет заполнена контентом, созданным в макетах страниц.
-		</div>
-		<!--ME:</asp:ContentPlaceHolder>-->
-		<!--ME:</SharePoint:AjaxDelta>-->
-		<!--CE: Конец фрагмента кода PlaceHolderMain--></div>
-</div>
-
-</body>
-<script>
-        SP.SOD.executeFunc('sp.js', 'sp.runtime.js', isSupportMemberCurrentUser);  
 		
-		function isSupportMemberCurrentUser()
-		{
-			var isMember = null;
-			function check(whatgroup) {
-            	$().SPServices({
-                	operation: "GetGroupCollectionFromUser",
-                	userLoginName: $().SPServices.SPGetCurrentUser(),
-                	async: true,
-                	completefunc: function (xData, Status) {
-                    	if ($(xData.responseXML).find("Group[Name='" + whatgroup + "']").length == 1) {
-                        	isMember = true;
-                    	} else {
-                        	isMember = false;
-                    	}
-                    	$("#clicksupport").click(function () {
-            				if (isMember) {
-                				window.location = "http://devsp/support/";
-            				} else {
-                				window.location = "http://app-fadb97673800f0.apps.com/support/HelpDesk/Pages/Default.aspx?SPHostUrl=http%3A%2F%2Fdevsp%2Fsupport&SPLanguage=ru-RU&SPClientTag=1&SPProductNumber=15%2E0%2E4763%2E1000&SPAppWebUrl=http%3A%2F%2Fapp-fadb97673800f0%2EApps%2Ecom%2Fsupport%2FHelpDesk";
-            					}
-        					})
-                		}
-            		});
-        		}
-        	
-        	check("SupportOwner");
-       }
-</script>
-
+                        </div>
+                    <!--ME:</asp:ContentPlaceHolder>-->
+                <!--ME:</SharePoint:AjaxDelta>-->
+                <!--CE: Конец фрагмента кода PlaceHolderMain-->
+            </div>
+        </div>
+    </body>
 </html>

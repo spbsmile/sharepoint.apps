@@ -10,6 +10,8 @@
 <!-- Reference SPServices on cdnjs (Cloudflare) -->
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.SPServices/0.7.1a/jquery.SPServices-0.7.1a.min.js"></script>
 
+<link type="text/css" rel="stylesheet" href="/_layouts/15/CustomCss/1.devsp/currency.css"/>
+
 $( document ).ready(function() {
     console.log( "ready!" );
 });

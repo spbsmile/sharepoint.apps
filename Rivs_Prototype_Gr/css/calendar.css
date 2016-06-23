@@ -99,6 +99,7 @@ td {
 
 .calendar-container {
     position: relative;
+    margin-top: 20px;
 }
 
 .calendar-panel{

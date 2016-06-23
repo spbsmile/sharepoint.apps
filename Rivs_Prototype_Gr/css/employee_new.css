@@ -340,7 +340,7 @@ p {
 }
 .employeeCell{
     display: table-cell;
-    width: 130px;
+    width: 450px;
     border-radius: 0.5em;
 }
 
@@ -348,11 +348,12 @@ p {
     width: 105px;
     margin: 4px;
     border-radius: 0.5em;
+    float: left;
 }
 
 .wrap_employeeCell {
-    width: 115px;
-    margin: 5%;
+    height: 135px;
+    margin: 2%;
     background-color: rgba(219, 219, 219, .20);
     box-shadow: 0 1px 4px 0px rgba(0, 0, 0, .75);
     border-radius: 0.5em;
@@ -360,6 +361,11 @@ p {
 
 .wrap_employeeCell:hover {
     background-color: rgba(150, 150, 150, .35) !important;
+}
+
+#breadcrumbs_container{
+    margin-top: 20px;
+    margin-bottom: 15px;
 }
 
 .widget_departament{

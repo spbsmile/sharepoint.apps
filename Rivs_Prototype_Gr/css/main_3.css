@@ -38,7 +38,7 @@ h1, .h1 {
 
 .search {
     float: right;
-    margin-top: 25px;
+    margin-top: 20px;
     margin-right: 20px;
 }
 
@@ -103,7 +103,7 @@ h1, .h1 {
 .textSearch {
     background-color: rgba(191, 189, 189, .35);
     border-radius: 0.5em;
-    font-size: 1.4em;
+    font-size: 1.3em;
     height: 35px;
     color: white;
     width: 200px;
