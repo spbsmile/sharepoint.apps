@@ -8,20 +8,17 @@ var shiftStartDate = null;
 $(document).ready(function () {
     moment.tz.add("Europe/Moscow|MSK MSD MSK|-30 -40 -40|01020|1BWn0 1qM0 WM0 8Hz0|16e6");
     moment.locale(window.navigator.userLanguage || window.navigator.language);
-    var currentDate = moment().format("D MMMM").toString();
-    var array = currentDate.split(" ");
-    $('#DayNow').html(moment().format("D") + "&nbsp" + array[1] + "&nbsp" + "2016" + "<br/>" +
-        capitalizeFirstLetter(moment().format('dddd')));
+    setCurrentMonthView();
 
     var currentMonth = parseInt(moment().format('M') - 1);
     //for next/prev month
     currentIterateMonth = currentMonth;
     // number first day week of month //http://stackoverflow.com/questions/26131003/moment-js-start-and-end-of-given-month
     shiftStartDate = parseInt(moment([moment().format('YYYY'), currentMonth]).weekday());
-    setCellCalendar(currentMonth);
+    setCellCalendar(shiftStartDate, currentMonth);
 
     $.ajax({
-        url: "http://intranet/_api/search/query?querytext='*'&trimduplicates=true&enablequeryrules=false&rowlimit=500&bypassresulttypes=true&selectproperties='Title%2cJobTitle%2cDepartment%2cBirthday%2cPictureURL'&sourceid='b09a7990-05ea-4af9-81ef-edfab16c4e31'&clienttype='ContentSearchRegular'",
+        url: "/_api/search/query?querytext='*'&trimduplicates=false&enablequeryrules=false&rowlimit=600&bypassresulttypes=true&selectproperties='Title%2cJobTitle%2cDepartment%2cBirthday%2cPictureURL%2chireDate'&sourceid='b09a7990-05ea-4af9-81ef-edfab16c4e31'&clienttype='ContentSearchRegular'",
         method: "GET",
         headers: {
             "Accept": "application/json;odata=verbose",
@@ -33,31 +30,66 @@ $(document).ready(function () {
 
     $("#btnPrevMonth").click(function () {
         currentIterateMonth--;
-        var startDateInt = moment([moment().format('YYYY'), currentIterateMonth]).format("d");
-        setCellCalendar(startDateInt, currentIterateMonth);
+        var shiftStartDate = parseInt(moment([moment().format('YYYY'), currentIterateMonth]).weekday());
+        setCellCalendar(shiftStartDate, currentIterateMonth);
         setMonthViewForIterate(currentIterateMonth);
         return false;
     });
 
     $("#btnNextMonth").click(function () {
         currentIterateMonth++;
-        var startDateInt = moment([moment().format('YYYY'), currentIterateMonth]).format("d");
-        setCellCalendar(startDateInt, currentIterateMonth);
+        var shiftStartDate = parseInt(moment([moment().format('YYYY'), currentIterateMonth]).weekday());
+        setCellCalendar(shiftStartDate, currentIterateMonth);
         setMonthViewForIterate(currentIterateMonth);
         return false;
     });
 });
 
 function setMonthViewForIterate(indexMonth) {
-    $('#MonthNow').html(moment(new Date(2012, indexMonth, 04)).format("MMMM"));
+    if (indexMonth === parseInt(moment().format('M') - 1)) {
+        setCurrentMonthView();
+    } else {
+        $('#DayNow').html(moment(new Date(moment().format('YYYY'), indexMonth, 04)).format("MMMM YYYY"));
+        $(".ring-left, .ring-right").css({top: '66px'});
+        $(".chevron").css({bottom: '71.5%'});
+    }
+}
+
+function setCurrentMonthView() {
+    var currentDate = moment().format("D MMMM").toString();
+    var array = currentDate.split(" ");
+    $('#DayNow').html(moment().format("D") + "&nbsp" + array[1] + "&nbsp" + "2016" + "<br/>" +
+        capitalizeFirstLetter(moment().format('dddd')));
+
+    $(".ring-left, .ring-right").css({top: '95px'});
+    $(".chevron").css({bottom: '65.5%'});
 }
 
 function successHandler(data) {
     var congratsBirthdayInit = false;
     var newEmploeeInit = false;
     var results = data.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results;
+
+    dataEmployee = results;
+
+    var thresholdDateHirePersons = moment().day(-14).format("YYYY-MM-DD");
     // iterate of all users
     for (var i = 0; i < results.length; i++) {
+        // define new hire persons
+        var hireDate = results[i].Cells.results[7].Value;
+        if (moment(hireDate).isAfter(thresholdDateHirePersons)) {
+            if (!newEmploeeInit) {
+                $("#newEmployee_block").append('<h1> Новые Сотрудники </h1>');
+                newEmploeeInit = true;
+            }
+
+            var name = results[i].Cells.results[2].Value;
+            var department = results[i].Cells.results[4].Value;
+            var job = results[i].Cells.results[3].Value;
+            var pictureUrl = results[i].Cells.results[6].Value;
+            displayWidgetEmployee("#newEmployee_block", name, job, department, pictureUrl);
+        }
+
         var birthday = results[i].Cells.results[5].Value;
         //icon current day
         $("#cell_" + (parseInt(moment().format('D')) + shiftStartDate - 1)).addClass('day_current');
@@ -78,7 +110,7 @@ function successHandler(data) {
                 var department = results[i].Cells.results[4].Value;
                 var job = results[i].Cells.results[3].Value;
                 var pictureUrl = results[i].Cells.results[6].Value;
-                displayWidgetEmployee(name, job, department, pictureUrl);
+                displayWidgetEmployee("#birthday_block", name, job, department, pictureUrl);
             }
             $(id).addClass('birthday');
             var prevName = $(id).prop("title") && $(id).prop("title").split(':')[1] ? ", " + $(id).prop("title").split(':')[1] : " ";
@@ -91,9 +123,17 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function setCellCalendar(currentMonth) {
+function defineHirePersons() {
+
+}
+
+function setCellsOfBirthdaysEmployes() {
+
+}
+
+function setCellCalendar(shift, currentMonth) {
     var prevMonth = (currentMonth - 1);
-    var t = shiftStartDate - 1;
+    var t = shift - 1;
     var prevMonthDayValue = moment(moment([moment().format('YYYY'), prevMonth])).daysInMonth();
     for (var i = t; i >= 0; i--) {
         var id = "#cell_" + i;
@@ -102,10 +142,10 @@ function setCellCalendar(currentMonth) {
         $(id).addClass('prev-month');
     }
 
-    var interval = shiftStartDate + parseInt(moment().daysInMonth());
+    var interval = shift + parseInt(moment().daysInMonth());
     var currentMonthDayValue = 1;
     var lastCellIndex = 0;
-    for (var i = shiftStartDate; i < interval; i++) {
+    for (var i = shift; i < interval; i++) {
         var id = "#cell_" + i;
         lastCellIndex = i;
         $(id).text(currentMonthDayValue++);
@@ -119,10 +159,16 @@ function setCellCalendar(currentMonth) {
     }
 }
 
-function displayWidgetEmployee(name, jobTitle, department, photo) {
+function displayWidgetEmployee(containerId, name, jobTitle, department, photo) {
+    var photoImprove = "#";
+    if (photo) {
+        photoImprove = photo.replace(/ /g, '%20');
+    } else {
+        photoImprove = "/_layouts/15/CustomjsLibs/1.devsp/noPhoto.jpg";
+    }
     var fio = name.split(" ");
-    $("#birthday_block").append('<div class="employeeRow"> <div class="employeeCell"> <div class="wrap_employeeCell"> <div class="wrap_employeeCell">' +
-        ' <p> <img src=' + photo.replace(/ /g, '%20') + '</p>' +
+    $(containerId).append('<div class="employeeRow"> <div class="employeeCell"> <div class="wrap_employeeCell"> <div class="wrap_employeeCell">' +
+        ' <p> <img src=' + photoImprove + '>' + '</p>' +
         '<h2 class="title_name">' +
         '<p>' + fio[0] + '<br>' + fio[1] + '<br>' + fio[2] + '</p> </h2> ' +
         '<div class="empl_jobs_title"> <p> ' + department + ' </p>' +
