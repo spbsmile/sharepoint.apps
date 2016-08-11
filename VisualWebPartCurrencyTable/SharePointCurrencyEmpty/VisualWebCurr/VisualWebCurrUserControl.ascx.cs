@@ -16,6 +16,7 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
         {
             if (!IsPostBack)
             {
+                dtDatePicker.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 ReadDataFromSql(DateTime.Now.ToString("dd/MM/yyyy"));
             }
         }
@@ -27,21 +28,32 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
 
         private void ReadDataFromSql(string date)
         {
-            using (var db = new CurrencySP2013Entities())
+            var rowIndex = 0;
+            foreach (var valitesCode in GetAllOurIdOfCurrency())
             {
-                var rowIndex = 0;
-                foreach (var valitesCode in GetAllOurIdOfCurrency(db))
-                {
-                    var filterPrimKey = date + valitesCode.Trim();
-                    ReadOrderData(filterPrimKey, Connect, rowIndex);
-                    rowIndex++;
-                }
+                var filterPrimKey = date + valitesCode.Trim();
+                ReadOrderData(filterPrimKey, Connect, rowIndex);
+                rowIndex++;
             }
         }
 
-        static IEnumerable<string> GetAllOurIdOfCurrency(CurrencySP2013Entities db)
+        static IEnumerable<string> GetAllOurIdOfCurrency()
         {
-            return db.description.Select(description => description.id).ToList();
+            return new[]
+            {
+                "R01010    ", "R01020A   ", "R01035    ", "R01060    ", "R01090    ", "R01100    ", "R01115    ",
+                "R01135    ", "R01215    ",
+                "R01235    ", "R01239    ", "R01270    "
+                , "R01335    ", "R01350    ", "R01370    ", "R01375    ", "R01500    ", "R01589    ", "R01625    ",
+                "R01670    "
+                , "R01700J    "
+                , "R01717    "
+                , "R01720    "
+                , "R01810    "
+                , "R01815    "
+                , "R01820    "
+            };
+            //db.description.Select(description => description.id).ToList();
         }
 
         private void ReadOrderData(string filterPrimkey, string connectionString, int rowIndex)
@@ -61,7 +73,7 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
                 // Call Read before accessing data.
                 while (reader.Read())
                 {
-                    ReadSingleRow((IDataRecord)reader, rowIndex);
+                    WriteCurrency(reader, rowIndex);
                 }
 
                 // Call Close when done reading.
@@ -69,7 +81,7 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
             }
         }
 
-        private void ReadSingleRow(IDataRecord record, int rowIndex)
+        private void WriteCurrency(IDataRecord record, int rowIndex)
         {
             if (rowIndex == 1)
             {

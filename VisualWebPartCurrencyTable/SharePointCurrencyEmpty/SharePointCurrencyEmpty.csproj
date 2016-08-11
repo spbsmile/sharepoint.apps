@@ -112,7 +112,6 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
-    <None Include="Scripts\jquery-2.2.3.min.map" />
     <None Include="VisualWebCurr\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{93ba301b-2b22-4ce0-ac45-02ae4b7dbd8a}</SharePointProjectItemId>
     </None>
@@ -136,9 +135,6 @@
       <DependentUpon>ModelCurrency.edmx</DependentUpon>
       <LastGenOutput>ModelCurrency.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="Scripts\jquery-2.2.3.js" />
-    <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="VisualWebCurr\Elements.xml" />
     <Content Include="VisualWebCurr\VisualWebCurrUserControl.ascx" />
