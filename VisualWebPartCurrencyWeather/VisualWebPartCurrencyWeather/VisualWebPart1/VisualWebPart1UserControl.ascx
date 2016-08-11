@@ -11,6 +11,8 @@
 <div id="currency" style="display: none">
     <asp:Label ID="USDcurrency" runat="server"></asp:Label>
     <asp:Label ID="EURcurrency" runat="server"></asp:Label>
+    <asp:Label ID="USDflowCurrency" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="EURflowCurrency" runat="server" Text="Label"></asp:Label>    
 </div>
 
 <div style="display: none">
