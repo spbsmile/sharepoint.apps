@@ -12,6 +12,8 @@
 
 <link type="text/css" rel="stylesheet" href="/_layouts/15/CustomCss/1.devsp/currency.css"/>
 
+<script type="text/javascript" src="/_layouts/15/CustomjsLibs/6.support/sendClaims.js"></script>
+
 $( document ).ready(function() {
     console.log( "ready!" );
 });

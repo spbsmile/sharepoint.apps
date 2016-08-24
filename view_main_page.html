@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="/_layouts/15/CustomCss/1.devsp/currency.css"/>
 <div class="page_T">
     <div class="body_T">
         <div class="left_column">
@@ -5,60 +6,64 @@
                      <div id="newEmployee_block" class="employeeBlock">
                      </div>
                   </span>
-                  <span class="weather_block">
+            <span class="weather_block">
                      <h1>Погода</h1>
-                     <div class="weatherBlock">
+                     <div class="weatherBlock" id="clickWeatherModal">
                         <div class="weatherRow">
-                           <div class="cell_weather"
-                                style="background: url(new_icons/sun.png) no-repeat center; border-right: ridge 1px;border-bottom: ridge 1px;">
-                              <div class="cell_weather_dicsription"> +5 <br> Гроза</div>
+                           <div id="cell_weather_spb" class="cell_weather">
                               <div class="cell_weather_city">Санкт-Петербург</div>
+                              <div class="cell_weather_dicsription"><span
+                                      id="spbDegreesDuplicat_View"> </span><br> <span
+                                      id="spbDescriptionDuplicat_View"> </span></div>
+                                  <img id="cell_weather_spb_image" src="">
                            </div>
-                           <div class="cell_weather"
-                                style="background: url(new_icons/chance_of_rain.png) no-repeat center; border-bottom: ridge 1px;">
-                              <div class="cell_weather_dicsription"> +10 <br> Ясно </div>
+                           <div id="cell_weather_uchaly" class="cell_weather">
                               <div class="cell_weather_city">Учалы</div>
+                              <div class="cell_weather_dicsription"> <span id="uchalyWeatherDegrees_View"> </span> <br> <span
+                                      id="uchalyWeatherDescription_View"> </span> </div>
+                                  <img id="cell_weather_uchaly_image" src="">
                            </div>
                         </div>
                         <div class="weatherRow">
-                           <div class="cell_weather"
-                                style="background: url(new_icons/snow.png) no-repeat center; border-right: ridge 1px;">
-                              <div class="cell_weather_dicsription"> +10 <br> Ясно </div>
+                           <div id="cell_weather_magnitogorsk" class="cell_weather">
                               <div class="cell_weather_city">Магнитогорск</div>
+                              <div class="cell_weather_dicsription"> <span id="magnitogorskWeatherDegrees_View"> </span> <br> <span
+                                      id="magnitogorskWeatherDescription_View"> </span> </div>
+                                  <img id="cell_weather_magnitogorsk_image" src="">
                            </div>
-                           <div class="cell_weather"
-                                style="background: url(new_icons/cloudy.png) no-repeat center; ">
-                              <div class="cell_weather_dicsription"> +10 <br> Ясно </div>
+                           <div id="cell_weather_kentay" class="cell_weather">
                               <div class="cell_weather_city">Кентау</div>
+                              <div class="cell_weather_dicsription"> <span id="kentayWeatherDegrees_View"> </span> <br> <span
+                                      id="kentayWeatherDescription_View"> </span> </div>
+                                  <img id="cell_weather_kentay_image" src="">
                            </div>
                         </div>
                      </div>
                   </span>
-                  <span class="coursesBlock">
+            <span class="coursesBlock">
+                <h1>Курсы валют</h1>
                      <div id="currency_widget" class="currencyBlock">
-                        <h2>Курсы валют</h2>
                         <table>
                            <tr>
                               <td class="glyphIcon" width="30px">&#xe148</td>
                               <td width="180px">Доллар США</td>
                               <td id="USDcurrency"></td>
-                              <td
-                                      class="glyphIcon">
-                                 <p style="color:green;">&#xe093;</p>
-                              </td>
+                               <!--  <td
+                                         class="glyphIcon">
+                                    <p style="color:green;">&#xe093;</p>
+                                 </td> -->
                            </tr>
                            <tr>
                               <td class="glyphIcon">&#x20ac;</td>
                               <td>Евро</td>
                               <td id="EURcurrency"></td>
-                              <td class="glyphIcon">
-                                 <p style="color:red;">&#xe094;
-                              </td>
+                               <!--<td class="glyphIcon">
+                                  <p style="color:red;">&#xe094;
+                               </td> -->
                            </tr>
                         </table>
                      </div>
                   </span>
-
         </div>
         <div class="right_column">
                 <span class="birtthday_block">
@@ -73,13 +78,12 @@
                         <div id="DayNow" class="day" align="center"></div>
                     </div>
 
-                    <!--        <div style=" margin-top: 5px;">
-                                <button id="btnPrevMonth" type="submit" class="btnIterateMonth">
-                                    <i class="fa fa-chevron-left fa-lg"></i></button>
-                                <button id="btnNextMonth" type="submit" class="btnIterateMonth">
-                                    <i class="fa fa-chevron-right fa-lg"></i></button>
-                            </div> -->
                 </header>
+
+
+                <a id="btnPrevMonth" class="leftBtnPrevMonth" href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                <a id="btnNextMonth" class="rightBtnNextMonth" href="#"><i class="fa fa-chevron-right fa-3" aria-hidden="true"></i></a>
+
                 <div class="calendar bottom">
                     <table>
                         <thead>
@@ -160,47 +164,7 @@
             <!-- calendar end -->
         </div>
         <div class="centr_column">
-
             <h1 id="title_block_news">Новости</h1>
-
-            <script>
-                jQuery.ajax({
-                    url: "http://intranet/sites/news/_api/web/lists/GetByTitle('Posts')/Items?&$top=3&$orderby=Created%20desc&$select=Title,Created,Body,ID",
-                    type: "GET",
-                    headers: {"Accept": "application/json; odata=verbose"},
-                    success: doSuccess,
-                    error: onError
-                });
-
-                function doSuccess(data) {
-                    var results = data.d.results;
-                    for (var i = 0; i < results.length; i++) {
-                        var r = results[i];
-                        var id = "news" + i;
-                        $("#resultsDivNews").append('<div id="' + id + '\" class="newsBlock">' +
-                                '<p class="newsdate">' + moment(r.Created).format("YYYY-MM-DD") + '</p> ' +
-                                '<h1 id="' + id + "title" + '">  ' + r.Title + '</h1> ' +
-                                '   <hr> <div id="' + id + "body" + '" hidden="true"> ' + r.Body + '</div> </div>');
-
-                        $("#" + id).on('click', function () {
-                            var selector = (typeof($(this).attr('id')) !== 'undefined' || $(this).attr('id') !== null) ? '#' + $(this).attr('id') : '.' + $(this).attr('class');
-                            var text = $(selector + "title").text();
-                            $("#myModalLabelNews").text("Новости: " + text);
-                            var cloned = $(selector + "body").clone();
-                            $('#modal-body-news').empty();
-                            $('#modal-body-news').append(cloned);
-                            $('#modal-body-news').children(selector + "body").show();
-                            $('#modalNews').modal('show');
-
-                        });
-                    }
-                }
-
-                // Display error messages.
-                function onError(error) {
-                    console.log(error.responseText);
-                }
-            </script>
 
             <div id="resultsDivNews">
             </div>
@@ -209,7 +173,7 @@
                 <div class="bootstrap-html">
                     <div class="bootstrap-body">
 
-                        <!-- Modal -->
+                        <!-- Modal News -->
                         <div class="modal fade" id="modalNews" tabindex="-1" role="dialog"
                              aria-labelledby="myModalLabel">
                             <div class="modal-dialog modal-lg" role="document">
@@ -228,6 +192,78 @@
                             </div>
                         </div>
 
+                        <!-- Modal Weather -->
+                        <div class="modal fade" id="modalWeather" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel">
+                            <div id= "modalDialogWeather" class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="myModalLabelWeather">Погода</h4>
+                                    </div>
+                                    <div class="modal-body" id="modal-body-weather"
+                                         style="overflow-y: auto; max-height: calc(100vh - 212px);">
+
+                                        <div class="modalWeatherBlock">
+                                            <div class="weatherRow">
+                                                <div  id="spbModalWeather"  class="modalCellWeather">
+                                                    <div class="cell_weather_city">Санкт-Петербург</div>
+                                                    <div class="cell_weather_dicsription"><span
+                                                            id="modalWeatherSpbDegrees"> </span><br> <span
+                                                            id="modalWeatherSpbDescription"> </span></div>
+                                                    <img id="modalWeatherSpbImage" src="">
+                                                </div>
+                                                <div id="uchalyModalWeather" class="modalCellWeather">
+                                                    <div class="cell_weather_city">Учалы</div>
+                                                    <div class="cell_weather_dicsription"><span id="modalWeatherUchalyDegrees"> </span> <br> <span
+                                                            id="modalWeatherUchalyDescription"> </span></div>
+                                                    <img id="modalWeatherUchalyImage" src="">
+                                                </div>
+                                                <div  id="moscowModalWeather" class="modalCellWeather">
+                                                    <div class="cell_weather_city">Москва</div>
+                                                    <div class="cell_weather_dicsription"><span id="modalWeatherMscDegrees"> </span> <br> <span
+                                                            id="modalWeatherMscDescription"> </span></div>
+                                                    <img id="modalWeatherMscImage" src="">
+                                                </div>
+                                                <div  id="erevanModalWeather" class="modalCellWeather">
+                                                    <div class="cell_weather_city">Ереван</div>
+                                                    <div class="cell_weather_dicsription"><span id="modalWeatherErevanDegrees"> </span> <br> <span
+                                                            id="modalWeatherErevanDescription"> </span></div>
+                                                    <img id="modalWeatherErevanImage" src="">
+                                                </div>
+
+                                            </div>
+                                            <div class="weatherRow">
+                                                <div  id="mgnModalWeather" class="modalCellWeather">
+                                                    <div class="cell_weather_city">Магнитогорск</div>
+                                                    <div class="cell_weather_dicsription"><span id="modalWeatherMgnDegrees"> </span> <br> <span
+                                                            id="modalWeatherMgnDescription"> </span></div>
+                                                    <img id="modalWeatherMagnImage" src="">
+                                                </div>
+                                                <div id="kentayModalWeather"  class="modalCellWeather">
+                                                    <div class="cell_weather_city">Кентау</div>
+                                                    <div class="cell_weather_dicsription"><span id="modalWeatherKentayDegress"> </span> <br> <span
+                                                            id="modalWeatherKentayDescription"> </span></div>
+                                                    <img id="modalWeatherKentayImage" src="">
+                                                </div>
+                                                <div  id="tachkentModalWeather" class="modalCellWeather">
+                                                    <div class="cell_weather_city">Ташкент</div>
+                                                    <div class="cell_weather_dicsription"><span id="modalWeatherTachkentDegress"> </span> <br> <span
+                                                            id="modalWeatherTachkentDescription" > </span></div>
+                                                    <img id="modalWeatherTachkentImage" src="">
+                                                </div>
+                                                <div id="erdenetModalWeather"  class="modalCellWeather">
+                                                    <div class="cell_weather_city">Эрдэнэт</div>
+                                                    <div class="cell_weather_dicsription"><span id="modalWeatherErdenetDegrees"> </span> <br> <span
+                                                            id="modalWeatherErdenetDescription" > </span></div>
+                                                    <img id="modalWeatherErdenetImage" src="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -235,5 +271,6 @@
     </div>
 </div>
 </div>
+<script type="text/javascript" src="/_layouts/15/CustomjsLibs/1.devsp/news.js"></script>
 <script type="text/javascript" src="/_layouts/15/CustomjsLibs/1.devsp/weather_valutes.js"></script>
 <script type="text/javascript" src="/_layouts/15/CustomjsLibs/1.devsp/coreCalendar.js"></script>
