@@ -525,7 +525,7 @@
                         </div>
                           </div>
                         </div>
-
+<!--
 <div id="sideNavBox"
 
      class="ms-dialogHidden ms-forceWrap ms-noList ms-mysite-sideNavBox">
@@ -682,9 +682,9 @@
 
     </asp:ContentPlaceHolder>
   </SharePoint:AjaxDelta>
-</div> 
+</div>  -->
 
-        <div id="mysite-titlerow">
+ <!--       <div id="mysite-titlerow">
 
         <div id="s4-titlerow"
 
@@ -746,9 +746,9 @@
         </div> 
         </div> 
 
-        </div> 
+        </div>  -->
 
-        <div id="contentRow">
+    <!--    <div id="contentRow">
 
 <div id="contentBox"
 
@@ -791,10 +791,10 @@
 <asp:ContentPlaceHolder id="PlaceHolderGlobalNavigationSiteMap" runat="server" Visible="false" />
 <asp:ContentPlaceHolder id="WSSDesignConsole" runat="server" Visible="false" />
 
+        </div> -->
         </div> 
         </div> 
-        </div> 
-
+<!--
 </SharePoint:SharePointForm>
 
     <SharePoint:AjaxDelta id="DeltaPlaceHolderUtilityContent" runat="server">
@@ -804,7 +804,7 @@
     <SharePoint:ScriptBlock runat="server">
         var g_Workspace = "s4-workspace";
     </SharePoint:ScriptBlock>
-
+    -->
 </body>
 </SharePoint:SPHtmlTag>
 
