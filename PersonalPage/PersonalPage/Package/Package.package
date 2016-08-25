@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="83e163e1-c3e1-430a-9bff-683dca80ffa4" solutionId="83e163e1-c3e1-430a-9bff-683dca80ffa4" resetWebServer="false" sharePointProductVersion="15.0" name="PersonalPage" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="08eb2f4d-41a2-4db6-a57a-a00f19844988" />
+    <featureReference itemId="d30c3892-6b46-45ac-8736-5c1b0767544e" />
+  </features>
+</package>
