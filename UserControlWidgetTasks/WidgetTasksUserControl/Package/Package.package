@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="18103a93-ed4d-4423-93de-3ddff9a74f75" solutionId="18103a93-ed4d-4423-93de-3ddff9a74f75" resetWebServer="false" sharePointProductVersion="15.0" name="WidgetTasksUserControl" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <projectItems>
+    <projectItemReference itemId="9d16a8e5-a481-406f-a99b-7f976ad58d4c" />
+  </projectItems>
+</package>
