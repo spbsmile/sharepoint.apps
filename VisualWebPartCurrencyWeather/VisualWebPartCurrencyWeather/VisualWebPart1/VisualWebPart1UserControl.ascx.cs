@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Net;
@@ -37,26 +36,37 @@ namespace VisualWebPartCurrencyWeather.VisualWebPart1
             var queryString =
               "SELECT numcode, charcode, nominal, name, value FROM dbo.values_history inner join dbo.description on  dbo.description.id = dbo.values_history.id WHERE dbo.values_history.primkey ='" + filterPrimkey + "' ;";
 
-            using (var connection =
-                       new SqlConnection(connectionString))
+            try
             {
-                var command =
-                    new SqlCommand(queryString, connection);
-                connection.Open();
-                var reader = command.ExecuteReader();
-                while (reader.Read())
+                using (var connection =
+                      new SqlConnection(connectionString))
                 {
-                    if (dateCurrency == DateCurrency.Today)
+                    var command =
+                        new SqlCommand(queryString, connection);
+                    connection.Open();
+                    var reader = command.ExecuteReader();
+                    while (reader.Read())
                     {
-                        WriteTodayCurrency(reader, rowIndex);
+                        if (dateCurrency == DateCurrency.Today)
+                        {
+                            WriteTodayCurrency(reader, rowIndex);
+                        }
+                        else
+                        {
+                            DiffTodayYesterdayCurrency(reader, rowIndex);
+                        }
+
                     }
-                    else
-                    {
-                        DiffTodayYesterdayCurrency(reader, rowIndex);
-                    }
-                    
+                    reader.Close();
                 }
-                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                USDcurrency.Text = "";
+                EURcurrency.Text = "";
+                var log = string.Format("filterPrimkey: {0}, connectionString: {1}, rowIndex: {2}, dateCurrency: {3}",
+                    filterPrimkey, connectionString, rowIndex, dateCurrency);
+                USDflowCurrency.Text = log + " ex.Message: " + ex.Message;
             }
         }
 
@@ -122,10 +132,6 @@ namespace VisualWebPartCurrencyWeather.VisualWebPart1
                         var degrees = Math.Floor(Convert.ToDouble(jResult["list"][i]["main"]["temp"])) + "&deg;C";
                         if (i == 0)
                         {
-                            //spbWeatherIcon.Attributes.Add("class",
-                            //    "wi wi-fw wi-owm-day-" + jResult["list"][i]["weather"][0]["id"]);
-                            //spbWeatherDescription.Text = description;
-                            //spbWeatherDegrees.Text = degrees;
                             spbIconDuplicat.Attributes.Add("class",
                                 "wi wi-fw wi-owm-day-" + jResult["list"][i]["weather"][0]["id"]);
                             spbDescriptionDuplicat.Text = description;
