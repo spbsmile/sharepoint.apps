@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="VisualWebPartDefineIP.WebPartDefineIp.WebPartDefineIp, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">VisualWebPartDefineIP - WebPartDefineIp</property>
+        <property name="Description" type="string">Моя веб-часть</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>
