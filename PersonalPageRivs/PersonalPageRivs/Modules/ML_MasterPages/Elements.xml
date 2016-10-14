@@ -1,0 +1,5 @@
+﻿<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="ML_MasterPages" List="116" Url="_catalogs/masterpage" Path="ML_MasterPages" RootWebOnly="TRUE">
+    <File Url="CustomMySite.master" Type="GhostableInLibrary" />
+  </Module>
+</Elements>

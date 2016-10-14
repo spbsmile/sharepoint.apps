@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="79ad6452-1469-4f45-b861-0150cab829ca" solutionId="79ad6452-1469-4f45-b861-0150cab829ca" resetWebServer="false" sharePointProductVersion="15.0" name="PersonalPageRivs" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="7e8f88e0-afce-487a-9160-ab5fca6e222c" />
+    <featureReference itemId="9f77388a-8c06-49da-ab6f-d5e7aeba0c0c" />
+  </features>
+</package>
