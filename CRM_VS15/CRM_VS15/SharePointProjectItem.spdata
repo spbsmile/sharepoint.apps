@@ -10,11 +10,11 @@
     <ProjectItemFile Source="App\views\edit.html" Target="App\views\" Type="ElementFile" />
     <ProjectItemFile Source="App\views\view.html" Target="App\views\" Type="ElementFile" />
     <ProjectItemFile Source="App\views\new.html" Target="App\views\" Type="ElementFile" />
+    <ProjectItemFile Source="App\start.html" Target="App\" Type="ElementFile" />
     <ProjectItemFile Source="fonts\glyphicons-halflings-regular.woff2" Target="fonts\" Type="ElementFile" />
     <ProjectItemFile Source="fonts\glyphicons-halflings-regular.woff" Target="fonts\" Type="ElementFile" />
     <ProjectItemFile Source="fonts\glyphicons-halflings-regular.ttf" Target="fonts\" Type="ElementFile" />
     <ProjectItemFile Source="fonts\glyphicons-halflings-regular.svg" Target="fonts\" Type="ElementFile" />
     <ProjectItemFile Source="fonts\glyphicons-halflings-regular.eot" Target="fonts\" Type="ElementFile" />
-    <ProjectItemFile Source="App\start.html" Target="App\" Type="ElementFile" />
   </Files>
 </ProjectItem>
