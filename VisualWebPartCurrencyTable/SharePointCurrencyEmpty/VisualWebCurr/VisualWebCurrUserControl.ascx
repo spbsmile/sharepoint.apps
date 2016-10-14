@@ -13,14 +13,15 @@
 <SharePoint:ScriptLink Language="javascript" Name="CustomjsLibs/jquery-ui.min.js" Defer="false" runat="server" Localizable="false" />
 <SharePoint:ScriptLink Language="javascript" Name="CustomjsLibs/jquery.ui.datepicker-ru.js" Defer="false" runat="server" Localizable="false"/>
 <SharePoint:ScriptLink Language="javascript" Name="CustomjsLibs/1.devsp/currencies_table.js" Defer="false" runat="server" Localizable="false"/>
-<!--<script src="/_layouts/15/CustomjsLibs/1.devsp/currencies_table.js"></script>-->
 
 <div id="rowChangeDate">
 <div class="form-group">
-    <asp:TextBox ID="dtDatePicker" runat="server" CssClass="form-control dtDatePicker" Style="width: 100px; float: left; margin-left: 45%;" />
+    <asp:TextBox ID="dtDatePicker" runat="server" CssClass="form-control dtDatePicker" Style="width: 100px; float: left; margin-left: 45%;"/>
 </div>
-<asp:Button ID="BtnDatechange" Text="Изменить" CssClass="btn btn-default" OnClick="BtnDatechange_Click" runat="server" />
+<asp:Button ID="BtnDatechange" Text="Изменить" CssClass="btn btn-default btnDateChange" OnClick="BtnDatechange_Click" runat="server" />
 </div>
+
+<asp:Label runat="server" CssClass="log" id="Log"></asp:Label>
 
 <div class="bootstrap-scope">
     <div class="bootstrap-html">

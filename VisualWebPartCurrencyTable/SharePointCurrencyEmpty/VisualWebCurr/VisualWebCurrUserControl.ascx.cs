@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace SharePointCurrencyEmpty.VisualWebCurr
 {
@@ -11,6 +11,8 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
     {
         private const string Connect = "Data Source= server-spbe; Initial Catalog=CurrencySP2013;"
                                                 + "Integrated Security=True";
+
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,6 +31,7 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
         private void ReadDataFromSql(string date)
         {
             var rowIndex = 0;
+
             foreach (var valitesCode in GetAllOurIdOfCurrency())
             {
                 var filterPrimKey = date + valitesCode.Trim();
@@ -53,7 +56,7 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
                 , "R01815    "
                 , "R01820    "
             };
-            //db.description.Select(description => description.id).ToList();
+            //return db.description.Select(description => description.id).ToList();
         }
 
         private void ReadOrderData(string filterPrimkey, string connectionString, int rowIndex)
@@ -61,23 +64,39 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
             var queryString =
               "SELECT numcode, charcode, nominal, name, value FROM dbo.values_history inner join dbo.description on  dbo.description.id = dbo.values_history.id WHERE dbo.values_history.primkey ='" + filterPrimkey + "' ;";
 
-            using (var connection =
-                       new SqlConnection(connectionString))
+            try
             {
-                var command =
-                    new SqlCommand(queryString, connection);
-                connection.Open();
-
-                var reader = command.ExecuteReader();
-
-                // Call Read before accessing data.
-                while (reader.Read())
+                using (var connection =
+                      new SqlConnection(connectionString))
                 {
-                    WriteCurrency(reader, rowIndex);
-                }
+                    var command =
+                        new SqlCommand(queryString, connection);
+                    connection.Open();
 
-                // Call Close when done reading.
-                reader.Close();
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        WriteCurrency(reader, rowIndex);
+                    }
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Text = ex.Message;
+            }
+        }
+
+        private void DisableEmptyRow(string nameCode, Label numCode, Label charCode, Label nominal, Label name, Label value)
+        {
+            if (string.IsNullOrEmpty(nameCode))
+            {
+                numCode.Attributes.Add("style", "display:none");
+                charCode.Attributes.Add("style", "display:none");
+                nominal.Attributes.Add("style", "display:none");
+                name.Attributes.Add("style", "display:none");
+                value.Attributes.Add("style", "display:none");
             }
         }
 
@@ -85,23 +104,24 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
         {
             if (rowIndex == 1)
             {
+                DisableEmptyRow(record[0].ToString(), numCode1, charCode1, nominal1, name1, value1);
                 numCode1.Text = record[0].ToString();
                 charCode1.Text = record[1].ToString();
                 nominal1.Text = record[2].ToString();
-                name1.Text = record[3].ToString();
-                value1.Text = "";
+                name1.Text = record[3].ToString();                
                 value1.Text = record[4].ToString();
             }
             else if (rowIndex == 2)
             {
                 numCode2.Text = record[0].ToString();
                 charCode2.Text = record[1].ToString();
-                nominal3.Text = record[2].ToString();
+                nominal2.Text = record[2].ToString();
                 name2.Text = record[3].ToString();
                 value2.Text = record[4].ToString();
             }
             else if (rowIndex == 3)
             {
+                DisableEmptyRow(record[0].ToString(), numCode3, charCode3, nominal3, name3, value3);
                 numCode3.Text = record[0].ToString();
                 charCode3.Text = record[1].ToString();
                 nominal3.Text = record[2].ToString();
@@ -110,6 +130,7 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
             }
             else if (rowIndex == 4)
             {
+                DisableEmptyRow(record[0].ToString(), numCode4, charCode4, nominal4, name4, value4);
                 numCode4.Text = record[0].ToString();
                 charCode4.Text = record[1].ToString();
                 nominal4.Text = record[2].ToString();
@@ -278,6 +299,7 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
             }
             else if (rowIndex == 25)
             {
+                DisableEmptyRow(record[0].ToString(), numCode25, charCode25, nominal25, name25, value25);
                 numCode25.Text = record[0].ToString();
                 charCode25.Text = record[1].ToString();
                 nominal25.Text = record[2].ToString();
@@ -286,6 +308,7 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
             }
             else if (rowIndex == 26)
             {
+                DisableEmptyRow(record[0].ToString(), numCode26, charCode26, nominal26, name26, value26);
                 numCode26.Text = record[0].ToString();
                 charCode26.Text = record[1].ToString();
                 nominal26.Text = record[2].ToString();
