@@ -7,10 +7,12 @@ namespace WidgetTasksUserControl.ControlTemplates.WidgetTasksUserControl
 {
     public partial class WidgetsTask : UserControl
     {
-        private const string SiteUrl = "http://devsp/sites/search";
+        private string SiteUrl = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SiteUrl = SPContext.Current.Web.Url;
+
             all_tasks.Text = "";
             focus_tasks.Text = "";
             control_tasks.Text = "";
@@ -22,27 +24,33 @@ namespace WidgetTasksUserControl.ControlTemplates.WidgetTasksUserControl
             }
         }
 
-        protected String TargetUserId
+        private String TargetUserId
         {
             get
             {
-                return hidden.Value;
+                return targetUserId.Value;
             }
             set
             {
-                hidden.Value = value;
+                targetUserId.Value = value;
             }
         }
 
         protected void BtnGiveTask_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(TargetUserId)) return;
             var userTargetInfo = new SPSite(SiteUrl).OpenWeb().SiteUsers.GetByID(Convert.ToInt32(TargetUserId));
 
             var titleText = "Новая Задача";
-            var bodyText = "Добрый день, " + userTargetInfo.Name + "!" + "<br>" + " Для Вас назначена задача" + "<br>" 
-              + Discription.Text +  
-             "<br>" + " Имя отправителя " +
-                           GetCurrentUserInfo().Name;
+            var bodyText = "Добрый день, " + userTargetInfo.Name + "!" +
+                           "<br>" + " Для Вас назначена задача" +
+                           "<br>" + " Заголовок: " + taskTitle.Text +
+                           "<br>" + " Текст: " + Description.Text +
+                           "<br>" + " Файлы: " + give_task_file.FileName +
+                           "<br>" + " Дата Выполнения: " + dtDatePicker.Text +
+                           "<br>" + "Назначил: " + GetCurrentUserInfo().Name +
+                           "<br>" + "С уважением, : " + "<br>" +
+                           "команда RIVS.";
 
             using (var objSite = new SPSite(SiteUrl))
             {
@@ -51,6 +59,21 @@ namespace WidgetTasksUserControl.ControlTemplates.WidgetTasksUserControl
                     SPUtility.SendEmail(oweb, false, false, userTargetInfo.Email, titleText, bodyText);
                 }
             }
+        }
+
+        protected void StartDoingTask(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void DeclineTask(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void ConfirmTaskDone(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private SPUser GetCurrentUserInfo()
@@ -87,11 +110,6 @@ namespace WidgetTasksUserControl.ControlTemplates.WidgetTasksUserControl
         public static void GiveTask()
         {
             
-        }
-
-        protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -24,46 +24,49 @@
 <div id="my_tasks_container" style="display: none">
     <asp:Label ID="my_tasks" runat="server"></asp:Label>
 </div>
-    
+
 
 <div class="btn_container">
     <input value="Выдать Задачу" class="btn_taskout" type="button">
 </div>
 
-<div id="dialog-form">
-    <div id="dialogText">
-
+<div id="give_task">
+    <div id="give_task_text">
         <div class="userTargetModalContainer">
-            <label class="userTargetModalContainer title">Назначить сотруднику:</label>
+            <label for="userTarget" class="userTargetModalContainer title">Кому:</label>
             <input class="userTargetModalContainer unit" name="userTarget" id="userTarget" value="" />
         </div>
-        <div class="discriptionContainerModal">
+        <div class="give_task_title">
             <div>
-                <label class="labelDiscription">Текст:</label>
+                <asp:Label runat="server" AssociatedControlID="taskTitle" CssClass="labelTitle" Text="Заголовок"></asp:Label>
             </div>
-            <asp:TextBox ID="Discription" CssClass="textModalClaim" runat="server"></asp:TextBox>            
+            <asp:TextBox ID="taskTitle" CssClass="textLabelTitle" runat="server"></asp:TextBox>
         </div>
+        <div class="give_task_description">
+            <div>
+                <asp:Label AssociatedControlID="Description" CssClass="labelDescription" runat="server" Text="Текст:"></asp:Label>
+            </div>
+            <asp:TextBox ID="Description" TextMode="multiline" Columns="50" Rows="5" CssClass="textModalClaim" runat="server"></asp:TextBox>
+        </div>
+
+        <div class="give_task_deadline">
+            <div>
+                <asp:Label AssociatedControlID="dtDatePicker" runat="server" Text="Дата выполнения:"></asp:Label>
+            </div>
+            <asp:TextBox ID="dtDatePicker" runat="server" CssClass="form-control dtDatePicker"/>
+        </div>
+
+        <div class="give_task_file">
+            <div>
+                <asp:Label AssociatedControlID="give_task_file" CssClass="labelFile" runat="server" Text="Файлы"></asp:Label>
+            </div>
+            <asp:FileUpload ID="give_task_file" runat="server" />
+        </div>
+
         <div>
             <div>
-                <label class="labelCategory" for="categoryModalClaim">Категория</label></div>
-            <asp:DropDownList ID="ListBox1" runat="server" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged">
-                <asp:ListItem>Программное обеспечение</asp:ListItem>
-                <asp:ListItem>Оборудование</asp:ListItem>
-                <asp:ListItem>Принтеры</asp:ListItem>
-                <asp:ListItem>Интернет</asp:ListItem>
-                <asp:ListItem>Почта</asp:ListItem>
-                <asp:ListItem>Телефония</asp:ListItem>
-                <asp:ListItem>Другое</asp:ListItem>
-            </asp:DropDownList>
-        </div>
-        <div>
-            <label class="labelFile">
-                Добавить файл</label>
-        </div>
-        <input type="file" id="getFile">
-        <div>
-            <div>
-                <label class="labelUrgently" for="urgencyModalClaim">Срочность выполнения</label></div>         
+                <asp:Label AssociatedControlID="DropDownUrgency" CssClass="labelUrgently" runat="server" Text="Срочность выполнения"></asp:Label>
+            </div>
             <asp:DropDownList ID="DropDownUrgency" runat="server">
                 <asp:ListItem>В течение дня</asp:ListItem>
                 <asp:ListItem>Срочно</asp:ListItem>
@@ -73,35 +76,120 @@
             </asp:DropDownList>
         </div>
 
-        <ul id="loaderClaimGive" class="fa-ul" hidden="true">
-            <li>
-                <i class="fa-li fa fa-spinner fa-spin"></i>Выполнение
-            </li>
-        </ul>
+        <asp:HiddenField ID="targetUserId" runat="server" />
+        <asp:Button ID="btn_give_task" Text="Выдать Задачу" CssClass="btn btn-default btnGiveTask" OnClick="BtnGiveTask_Click" runat="server" />
+    </div>
+</div>
+
+<div id="display_task">
+    <div id="display_task_text">
+        <div class="display_task_sourceUser">
+            <div>
+                <label>От кого:</label>
+            </div>
+            <div id="display_task_sourceUser"></div>
+        </div>
+
+        <div class="display_task_targetUser">
+            <div>
+                <label>Кому</label>
+            </div>
+            <div id="display_task_targetUser"></div>
+        </div>
+
+        <div class="display_task_createdDate">
+            <div>
+                <label>Дата создания</label>
+            </div>
+            <div id="display_task_createdDate"></div>
+        </div>
+
+        <div class="display_task_deadlineDate">
+            <div>
+                <label>Дата выполнения</label>
+            </div>
+            <div id="display_task_deadlineDate"></div>
+        </div>
+
+        <div class="display_task_title">
+            <div>
+                <label>Заголовок</label>
+            </div>
+            <div id="display_task_title"></div>
+        </div>
+
+        <div class="display_task_description">                            
+            <div>
+                <label>Текст</label>
+            </div>
+                <textarea id="display_task_description"></textarea>            
+        </div>
+
+        <div class="display_task_file">
+            <div>
+                <label class="labelFile">Файлы</label>
+            </div>
+            <asp:FileUpload ID="display_task_file" runat="server" />
+        </div>
+
+        <div class="display_task_receive">
+            <div>
+                <label>Начать выполнять задачу</label>
+            </div>
+            <asp:Button ID="btn_task_receive" runat="server" Text="Начать выполнять" OnClick="StartDoingTask"/>
+        </div>
+
+        <div class="display_task_comment_receive">
+            <div>
+                <asp:Label AssociatedControlID="commentTaskReceive" runat="server" Text="Комментарий выполнения"></asp:Label>
+            </div>
+            <asp:TextBox ID="commentTaskReceive" TextMode="multiline" Columns="50" Rows="5" runat="server"></asp:TextBox>
+        </div>
+
+        <div class="display_task_decline">
+            <div>
+                <label>Отклонить задачу</label>
+            </div>
+            <asp:Button ID="btn_task_decline" runat="server" Text="Отклонить" OnClick="DeclineTask"/>
+        </div>
+
+        <div class="display_task_comment_decline">
+            <div>
+                <asp:Label  AssociatedControlID="commentTaskDecline" runat="server" Text="Комментарий отклонения"></asp:Label>
+            </div>
+            <asp:TextBox ID="commentTaskDecline" TextMode="multiline" Columns="50" Rows="5" runat="server"></asp:TextBox>
+        </div>
         
-        <asp:HiddenField ID="hidden" runat="server" />
-        
-        <asp:Button ID="BtnGiveTask" Text="Выдать Задачу" CssClass="btn btn-default btnGiveTask" OnClick="BtnGiveTask_Click" runat="server" />
+          <div class="display_task_confirm_done">
+            <div>
+                <label>Подтвердить выполнение</label>
+            </div>
+            <asp:Button ID="btn_confirm_task_done" runat="server" Text="Подтвердить выполнение" OnClick="ConfirmTaskDone"/>
+        </div>
+
     </div>
 </div>
 
 <script>
     $(document)
         .ready(function () {
+            
+            //$("#dialog-form")
+            //    .click(function () {
+            //        $(".btn_taskout").show();
+            //    });
 
-            $("#dialog-form").hide();
-
-            $("#dialog-form")
-                .click(function() {
-                    $(".btn_taskout").show();
+            $(function () {
+                $('input[id*="dtDatePicker"]').datepicker({
+                    dateFormat: 'dd.mm.yy',
+                    maxDate: 0
                 });
+            });
 
             $("input[name='userTarget']").pickSPUser({
                 onPickUser: function () {
                     $("#userTarget").next().find(".pt-pickSPUser-input").hide();
-
-                    $(".damp_user_id").text($("#userTarget").val().split(";")[0]);
-                    document.getElementById('<%=hidden.ClientID %>').value = $("#userTarget").val().split(";")[0];
+                    document.getElementById('<%=targetUserId.ClientID %>').value = $("#userTarget").val().split(";")[0];
                 },
                 onRemoveUser: function () {
                     $("#userTarget").next().find(".pt-pickSPUser-input").show();

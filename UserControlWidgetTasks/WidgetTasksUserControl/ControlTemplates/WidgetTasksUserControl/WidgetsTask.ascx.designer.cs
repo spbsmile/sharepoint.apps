@@ -49,22 +49,40 @@ namespace WidgetTasksUserControl.ControlTemplates.WidgetTasksUserControl {
         protected global::System.Web.UI.WebControls.Label my_tasks;
         
         /// <summary>
-        /// Discription control.
+        /// taskTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Discription;
+        protected global::System.Web.UI.WebControls.TextBox taskTitle;
         
         /// <summary>
-        /// ListBox1 control.
+        /// Description control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ListBox1;
+        protected global::System.Web.UI.WebControls.TextBox Description;
+        
+        /// <summary>
+        /// dtDatePicker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox dtDatePicker;
+        
+        /// <summary>
+        /// give_task_file control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload give_task_file;
         
         /// <summary>
         /// DropDownUrgency control.
@@ -76,21 +94,75 @@ namespace WidgetTasksUserControl.ControlTemplates.WidgetTasksUserControl {
         protected global::System.Web.UI.WebControls.DropDownList DropDownUrgency;
         
         /// <summary>
-        /// hidden control.
+        /// targetUserId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidden;
+        protected global::System.Web.UI.WebControls.HiddenField targetUserId;
         
         /// <summary>
-        /// BtnGiveTask control.
+        /// btn_give_task control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnGiveTask;
+        protected global::System.Web.UI.WebControls.Button btn_give_task;
+        
+        /// <summary>
+        /// display_task_file control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload display_task_file;
+        
+        /// <summary>
+        /// btn_task_receive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_task_receive;
+        
+        /// <summary>
+        /// commentTaskReceive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox commentTaskReceive;
+        
+        /// <summary>
+        /// btn_task_decline control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_task_decline;
+        
+        /// <summary>
+        /// commentTaskDecline control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox commentTaskDecline;
+        
+        /// <summary>
+        /// btn_confirm_task_done control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_confirm_task_done;
     }
 }
