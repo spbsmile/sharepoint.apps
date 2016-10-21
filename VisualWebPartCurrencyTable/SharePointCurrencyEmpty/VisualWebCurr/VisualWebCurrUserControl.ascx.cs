@@ -7,15 +7,17 @@ using System.Web.UI.WebControls;
 
 namespace SharePointCurrencyEmpty.VisualWebCurr
 {
+    // this user control for page currency
+    // this control read data from db CurrencySP2013, write data by console app: ConsoleSqlCurrency
     public partial class VisualWebCurrUserControl : UserControl
     {
+        // entiry framework with sp2013 no default work, you need in web.config of sp2013 path data connect entiry framework
         private const string Connect = "Data Source= server-spbe; Initial Catalog=CurrencySP2013;"
                                                 + "Integrated Security=True";
-
-        
-
+        // handler on load page
         protected void Page_Load(object sender, EventArgs e)
         {
+            // this aps checker on no reload page
             if (!IsPostBack)
             {
                 dtDatePicker.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -23,6 +25,7 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
             }
         }
 
+        // click on change date of currency
         protected void BtnDatechange_Click(object sender, EventArgs e)
         {
             ReadDataFromSql(dtDatePicker.Text.Replace(@"\", "."));
@@ -34,6 +37,7 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
 
             foreach (var valitesCode in GetAllOurIdOfCurrency())
             {
+                // in datebase primaty key is: date + valitesCode. see db 
                 var filterPrimKey = date + valitesCode.Trim();
                 ReadOrderData(filterPrimKey, Connect, rowIndex);
                 rowIndex++;
@@ -100,6 +104,7 @@ namespace SharePointCurrencyEmpty.VisualWebCurr
             }
         }
 
+        // todo refactoring. create dynamic asp tabel, or create one label and append to this html rows
         private void WriteCurrency(IDataRecord record, int rowIndex)
         {
             if (rowIndex == 1)

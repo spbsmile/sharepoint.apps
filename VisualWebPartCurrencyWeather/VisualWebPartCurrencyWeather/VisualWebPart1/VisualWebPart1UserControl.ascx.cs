@@ -13,6 +13,7 @@ namespace VisualWebPartCurrencyWeather.VisualWebPart1
     {
         private const string Connect = "Data Source= server-spbe; Initial Catalog=CurrencySP2013;"
                                                  + "Integrated Security=True";
+        // for indicator-icon up, down(green/red)
         private enum DateCurrency
         {
             Today,
@@ -22,6 +23,7 @@ namespace VisualWebPartCurrencyWeather.VisualWebPart1
         private void ReadDataFromSql(string date, DateCurrency dateCurrency)
         {
             var rowIndex = 0;
+            // usa, eur code
             var currencyMainPage = new[] {"R01235  ", "R01239"};
             foreach (var currencyCode in currencyMainPage)
             {

@@ -10,7 +10,7 @@ namespace SqlCurrencyConsole
     {
         static void Main(string[] args)
         {
-            var daysInterval = 3;
+            var daysInterval = 1;
 
             using (var db = new CurrencySP2013Entities())
             {
@@ -32,11 +32,6 @@ namespace SqlCurrencyConsole
         {
             foreach (var valitesCode in GetAllOurIdOfCurrency(db))
             {
-                if (valitesCode.Trim() == "R01239")
-                {
-                    var sd = "";
-                }
-
                 var valute =
                     from el in xDocument.Root.Elements("Valute")
                     where el.Attribute("ID").Value == valitesCode.Trim()
@@ -74,13 +69,4 @@ namespace SqlCurrencyConsole
             return db.description.Select(description => description.id).ToList();
         }
     }
-
-    public static class Utils
-    {
-        public static bool IsAny<T>(this IEnumerable<T> data)
-        {
-            return data != null && data.Any();
-        }
-    }
-
 }

@@ -1,9 +1,22 @@
+/**
+ * Created by M_Zabiyakin on 31.03.2016.
+ */
 $(document).ready(function () {
 
-    var cartridgesStats = {};
-    var namesCartridges = [];
+    /** property - name device, value property - array statistics */
+    var devicesStats = {};
+    /** additional array for  devicesStats/ todo delete it and add property to devicesStats */
+    var namesDevices = [];
+    /** Периферия и расх материалы, ... */
+    var devicesCategory = [];
+
+    /**  */
+    var countMonthForStatistics = 7;
+    /** threhold date when write statistics */
+    var threholdDate = null
+
     var myLineChart = null;
-    var myLineAddedCartridgesChart = null;
+    var myLineAddedDevicesChart = null;
 
     $("#dialogstatistics").dialog({
         resizable: false,
@@ -15,13 +28,13 @@ $(document).ready(function () {
 
     $("#openstatistics").click(function () {
         if (myLineChart != null) myLineChart.destroy();
-        if (myLineAddedCartridgesChart != null) myLineAddedCartridgesChart.destroy();
+        if (myLineAddedDevicesChart != null) myLineAddedDevicesChart.destroy();
         receiveStatistics();
         $("#loader").show();
         $("#dialogstatistics").dialog("open");
     });
 
-    function addChart(datasets, chartId, lineChart) {
+    function addChart(datasets, chartId, lineChart, lastMonths) {
 
         var ctx = document.getElementById(chartId).getContext("2d");
 
@@ -35,7 +48,7 @@ $(document).ready(function () {
 
             // ** Required if scaleOverride is true **
             // Number - The number of steps in a hard coded scale
-            scaleSteps: 12,
+            scaleSteps: 20,
             // Number - The value jump in the hard coded scale
             scaleStepWidth: 1,
             // Number - The scale starting value
@@ -84,7 +97,7 @@ $(document).ready(function () {
             datasetFill: true,
 
             //Number - Spacing between each of the X value sets
-            barValueSpacing: 5,
+            barValueSpacing: 3,
 
             // Number - Tooltip label font size in pixels
             tooltipFontSize: 9,
@@ -97,7 +110,7 @@ $(document).ready(function () {
         };
 
         var data = {
-            labels: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль"],
+            labels: lastMonths,
             datasets: datasets
         };
 
@@ -105,7 +118,22 @@ $(document).ready(function () {
     }
 
     function receiveStatistics() {
-        console.log("receiveStatistics");
+
+        // get current month/name it's month
+        var index = parseInt(moment().format('M')) - 1;
+
+        // get last of countMonthForStatistics names month
+
+        var lastMonths = [];
+        for (var j = 0; j < countMonthForStatistics; j++) {
+            lastMonths.unshift(moment().month(index - j).format("MMMM"));
+        }
+               
+        threholdDate = moment().month(index - countMonthForStatistics - 1).format("YYYY-MM-DD");
+        console.log(threholdDate);
+        console.log(moment().month(index - countMonthForStatistics - 1).format("MMMM"));
+
+        // fetch data of all items (title/id)
         $.ajax({
             url: settings().siteUrl + "/_api/web/lists(guid'" + settings().listId + "')/items",
             method: "GET",
@@ -114,27 +142,27 @@ $(document).ready(function () {
             },
             success: function (data) {
                 var items = data.d.results;
-                var unique = {};
+
                 var itemsData = [];
-                var cartridgeInternalField = "OData__x041a__x0430__x0440__x0442__x04";
+                var categoryDeviceInternalField = "OData__x041a__x0430__x0442__x0435__x04";
 
                 for (var i = 0; i < items.length; i++) {
-                    var uniqueProperty = items[i][cartridgeInternalField];
+                    var nameCategory = items[i][categoryDeviceInternalField];
 
-                    if (items[i][cartridgeInternalField] != null && typeof (unique[uniqueProperty]) == "undefined" && items[i][cartridgeInternalField] != "Тестовый вариант") {
+                    if (items[i][categoryDeviceInternalField] != null && nameCategory === "Периферия и расх материалы") {
                         itemsData.push({
-                            name: items[i][cartridgeInternalField],
-                            id: items[i]["ID"]//,
-                            // colorSpecification:
+                            name: items[i]["Title"],
+                            id: items[i]["ID"]
                         });
                     }
-                    unique[uniqueProperty] = 0;
                 }
 
                 for (var i = 0; i < itemsData.length; i++) {
                     writeStatistics(itemsData[i].id, itemsData[i].name);
                 }
-                /*  for (var i = 0; i < Object.keys(cartridgesStats).length; i++) {
+                /* 
+                 // for debug 
+                 for (var i = 0; i < Object.keys(cartridgesStats).length; i++) {
                  for (var j = 0; j < 12; j++) {
                  console.log("Картридж:" + namesCartridges[i] + "В месяце: " + j + " Добавлено: " + cartridgesStats[namesCartridges[i]][j].countAdded + " Сделано замен: " + cartridgesStats[namesCartridges[i]][j].countReplace);
                  }
@@ -145,8 +173,8 @@ $(document).ready(function () {
                 var datasetAddedItems = [];
                 writeDataSetChart(datasetAddedItems, false);
 
-                addChart(datasetReplaceItems, "chartReplacements", myLineChart);
-                addChart(datasetAddedItems, "сhartAdded", myLineAddedCartridgesChart);
+                addChart(datasetReplaceItems, "chartReplacements", myLineChart, lastMonths);
+                addChart(datasetAddedItems, "сhartAdded", myLineAddedDevicesChart, lastMonths);
                 $("#loader").hide();
             },
             error: onQueryFailed
@@ -154,23 +182,20 @@ $(document).ready(function () {
     }
 
     function writeDataSetChart(datasetChart, isReplaceChart) {
-        //filter on empty data
-        /* for (var i = 0; i < Object.keys(cartridgesStats).length; i++) {
 
-         } */
-
-
-        for (var i = 0; i < Object.keys(cartridgesStats).length; i++) {
+        // loop for each device
+        for (var i = 0; i < Object.keys(devicesStats).length; i++) {
             var data = [];
-            for (var j = 0; j < 7; j++) {
+            // inner loop for months 
+            for (var j = 0; j < countMonthForStatistics; j++) {
                 if (isReplaceChart) {
-                    data.push(cartridgesStats[namesCartridges[i]][j].countReplace);
+                    data.push(devicesStats[namesDevices[i]][j].countReplace);
                 } else {
-                    data.push(cartridgesStats[namesCartridges[i]][j].countAdded);
+                    data.push(devicesStats[namesDevices[i]][j].countAdded);
                 }
             }
             datasetChart[i] = {
-                label: namesCartridges[i],
+                label: namesDevices[i],
                 fillColor: "rgba(220,220,220,0.2)",
                 strokeColor: "rgba(220,220,220,1)",
                 pointColor: "rgba(220,220,220,1)",
@@ -182,7 +207,10 @@ $(document).ready(function () {
         }
     }
 
-    // проходить по полю количество , сравнивать с предыдущим, если уменьшилось, считать что действие - выдано
+    /** проходить по полю количество, сравнивать с предыдущим, если уменьшилось, считать что действие - выдано 
+     * 
+     *  fetch and write statistics  for item to devicesStats
+     * */
     function writeStatistics(itemId, itemName) {
 
         var dataEachMonth = [];
@@ -200,31 +228,32 @@ $(document).ready(function () {
             async: false,
             strlistID: settings().listId,
             strlistItemID: itemId,
-            strFieldName: settings().catridgeCountFieldName,
+            strFieldName: settings().remainFieldName,
             completefunc: function (xData, Status) {
 
                 $(xData.responseText).find("Version").each(function (i) {
 
-                    if (moment($(this).attr("Modified")).isAfter(moment().format('2016-01-01'))) {
+                    // threhold data for stream statistics 
+                    if (moment($(this).attr("Modified")).isAfter(threholdDate)) {
                         //DD-MM-YYYY
-                        var currentMonth = parseInt(moment($(this).attr("Modified")).format("M") - 1);
-                        var currentCount = parseInt($(this).attr(settings().catridgeCountFieldName));
+                        var monthModified = parseInt(moment($(this).attr("Modified")).format("M") - 1);
+                        var count = parseInt($(this).attr(settings().remainFieldName));
                         var prevCount = 0;
                         if (i != 0) {
                             prevCount = parseInt(dataEachMonth[prevMonth].count);
                         }
-                        if (prevCount < currentCount) {
-                            dataEachMonth[currentMonth].countReplace++;
-                        } else if (prevCount > currentCount) {
-                            //console.log("COUNT ADD " +  " prev count " + prevCount + " current count " + currentCount + " name cart: " + nameCartridge + " month ");
-                            dataEachMonth[currentMonth].countAdded = parseInt(dataEachMonth[currentMonth].countAdded) + parseInt(prevCount) - currentCount;
+                        if (prevCount < count) {
+                            dataEachMonth[monthModified].countReplace++;
+                        } else if (prevCount > count) {
+                            console.log("COUNT ADD " +  " prev count " + prevCount + " current count " + currentCount + " name cart: " + nameCartridge + " month ");
+                            dataEachMonth[monthModified].countAdded = parseInt(dataEachMonth[monthModified].countAdded) + parseInt(prevCount) - count;
                         }
-                        dataEachMonth[currentMonth].count = currentCount;
-                        prevMonth = currentMonth;
+                        dataEachMonth[monthModified].count = count;
+                        prevMonth = monthModified;
                     }
                 });
-                namesCartridges.push(itemName);
-                cartridgesStats[itemName] = dataEachMonth;
+                namesDevices.push(itemName);
+                devicesStats[itemName] = dataEachMonth;
             }
         });
     }

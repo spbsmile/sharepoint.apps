@@ -21,6 +21,7 @@
 <asp:Button ID="BtnDatechange" Text="Изменить" CssClass="btn btn-default btnDateChange" OnClick="BtnDatechange_Click" runat="server" />
 </div>
 
+<!-- log html tag with display none:  -->
 <asp:Label runat="server" CssClass="log" id="Log"></asp:Label>
 
 <div class="bootstrap-scope">
@@ -34,6 +35,7 @@
                     <td>Валюта</td>
                     <td class="columnFixedWidth">Курс</td>
                 </tr>
+                <!-- todo: change on dynamic asp table -->
                 <tr>
                     <td>
                         <asp:Label runat="server" ID="numCode1"></asp:Label></td>

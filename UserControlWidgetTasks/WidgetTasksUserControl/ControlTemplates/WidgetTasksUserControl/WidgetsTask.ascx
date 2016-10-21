@@ -30,6 +30,7 @@
     <input value="Выдать Задачу" class="btn_taskout" type="button">
 </div>
 
+<!-- окно: выдать задачу -->
 <div id="give_task">
     <div id="give_task_text">
         <div class="userTargetModalContainer">
@@ -81,6 +82,7 @@
     </div>
 </div>
 
+<!-- окно: посмотреть задачу -->
 <div id="display_task">
     <div id="display_task_text">
         <div class="display_task_sourceUser">
@@ -174,11 +176,6 @@
     $(document)
         .ready(function () {
             
-            //$("#dialog-form")
-            //    .click(function () {
-            //        $(".btn_taskout").show();
-            //    });
-
             $(function () {
                 $('input[id*="dtDatePicker"]').datepicker({
                     dateFormat: 'dd.mm.yy',

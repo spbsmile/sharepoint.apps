@@ -1,531 +1,560 @@
-﻿<%@ Register Tagprefix="SPSWC" Namespace="Microsoft.SharePoint.Portal.WebControls" Assembly="Microsoft.SharePoint.Portal, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Register Tagprefix="SEARCHWC" Namespace="Microsoft.Office.Server.Search.WebControls" Assembly="Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+﻿<%@ Register TagPrefix="SPSWC" Namespace="Microsoft.SharePoint.Portal.WebControls" Assembly="Microsoft.SharePoint.Portal, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="SEARCHWC" Namespace="Microsoft.Office.Server.Search.WebControls" Assembly="Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 
-<%@Master language="C#"%>
-<%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Import Namespace="Microsoft.SharePoint" %> <%@ Assembly Name="Microsoft.Web.CommandUI, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Master Language="C#" %>
+
+<%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Import Namespace="Microsoft.SharePoint" %>
+<%@ Assembly Name="Microsoft.Web.CommandUI, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Import Namespace="Microsoft.SharePoint.ApplicationPages" %>
 
-<%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 
-<%@ Register TagPrefix="wssuc" TagName="Welcome" src="~/_controltemplates/15/Welcome.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="Welcome" Src="~/_controltemplates/15/Welcome.ascx" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<SharePoint:SPHtmlTag dir="<%$Resources:wss,multipages_direction_dir_value%>" ID="SPHtmlTag" runat="server" >
+<SharePoint:SPHtmlTag dir="<%$Resources:wss,multipages_direction_dir_value%>" ID="SPHtmlTag" runat="server">
 
-<head runat="server">
-    <meta name="GENERATOR" content="Microsoft SharePoint" />
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=10"/>
-    <meta http-equiv="Expires" content="0" />
-    <SharePoint:SPPinnedSiteTile runat="server" TileUrl="/_layouts/15/images/SharePointMetroAppTile.png" TileColor="#0072C6" />
-    <SharePoint:RobotsMetaTag runat="server"/>
+    <head runat="server">
+        <meta name="GENERATOR" content="Microsoft SharePoint" />
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=10" />
+        <meta http-equiv="Expires" content="0" />
+        <SharePoint:SPPinnedSiteTile runat="server" TileUrl="/_layouts/15/images/SharePointMetroAppTile.png" TileColor="#0072C6" />
+        <SharePoint:RobotsMetaTag runat="server" />
 
-    <SharePoint:PageTitle runat="server">
+        <SharePoint:PageTitle runat="server">
         <asp:ContentPlaceHolder id="PlaceHolderPageTitle" runat="server">
             <SharePoint:ProjectProperty Property="Title" runat="server" />
         </asp:ContentPlaceHolder>
-    </SharePoint:PageTitle>
+        </SharePoint:PageTitle>
 
-    <SharePoint:SPShortcutIcon runat="server" IconUrl="/_layouts/15/images/favicon.ico?rev=23" />
+        <SharePoint:SPShortcutIcon runat="server" IconUrl="/_layouts/15/images/favicon.ico?rev=23" />
 
-    <SharePoint:StartScript runat="server" />
-    <SharePoint:CssLink runat="server" Version="15"/>
-    <SharePoint:CacheManifestLink runat="server"/>
+        <SharePoint:StartScript runat="server" />
+        <SharePoint:CssLink runat="server" Version="15" />
+        <SharePoint:CacheManifestLink runat="server" />
 
-    <SharePoint:ScriptLink language="javascript" name="core.js" OnDemand="true" runat="server" Localizable="false" />
-    <SharePoint:ScriptLink language="javascript" name="menu.js" OnDemand="true" runat="server" Localizable="false" />
-    <SharePoint:ScriptLink language="javascript" name="callout.js" OnDemand="true" runat="server" Localizable="false" />
-    <SharePoint:ScriptLink language="javascript" name="sharing.js" OnDemand="true" runat="server" Localizable="false" />
-    <SharePoint:ScriptLink language="javascript" name="suitelinks.js" OnDemand="true" runat="server" Localizable="false" />
-    
-    <SharePoint:ScriptLink language="javascript" name="CustomjsLibs/jquery-2.1.4.min.js" Defer="false" runat="server" Localizable="false" />
-<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/jquery.SPServices-2014.02.min.js" Defer="false" runat="server" Localizable="false" />
-<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/bootstrap.min.js" Defer="false" runat="server" Localizable="false" />
-<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/searchRightTopCorner.js" Defer="false" runat="server" Localizable="false" />
-<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/initPermision.js" Defer="false" runat="server" Localizable="false" />
-<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/moment/moment.min.js" Defer="false" runat="server" Localizable="false" />
-<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/moment/moment-with-locales.min.js" Defer="false" runat="server" Localizable="false" />
-<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/moment/moment-timezone.min.js" Defer="false" runat="server" Localizable="false" />
-<SharePoint:ScriptLink language="javascript" name="CustomjsLibs/initClocks.js" Defer="false" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink Language="javascript" Name="core.js" OnDemand="true" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink Language="javascript" Name="menu.js" OnDemand="true" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink Language="javascript" Name="callout.js" OnDemand="true" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink Language="javascript" Name="sharing.js" OnDemand="true" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink Language="javascript" Name="suitelinks.js" OnDemand="true" runat="server" Localizable="false" />
 
-    <SharePoint:CustomJSUrl runat="server" />
-    <SharePoint:SoapDiscoveryLink runat="server" />
+        <SharePoint:ScriptLink Language="javascript" Name="CustomjsLibs/jquery-2.1.4.min.js" Defer="false" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink Language="javascript" Name="CustomjsLibs/jquery.SPServices-2014.02.min.js" Defer="false" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink Language="javascript" Name="CustomjsLibs/bootstrap.min.js" Defer="false" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink Language="javascript" Name="CustomjsLibs/searchRightTopCorner.js" Defer="false" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink Language="javascript" Name="CustomjsLibs/initPermision.js" Defer="false" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink Language="javascript" Name="CustomjsLibs/moment/moment.min.js" Defer="false" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink Language="javascript" Name="CustomjsLibs/moment/moment-with-locales.min.js" Defer="false" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink Language="javascript" Name="CustomjsLibs/moment/moment-timezone.min.js" Defer="false" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink Language="javascript" Name="CustomjsLibs/initClocks.js" Defer="false" runat="server" Localizable="false" />
 
-        <SharePoint:AjaxDelta id="DeltaPlaceHolderResizeMySiteQuickLaunch" Container="false" BlockElement="true" runat="server"> <SharePoint:ScriptBlock runat="server"> if (Boolean(_spBodyOnLoadFunctions)) { _spBodyOnLoadFunctions.push(function () { SP.SOD.executeFunc("portal.js", "ResizeMySiteQuickLaunch", function() { ResizeMySiteQuickLaunch(); }); }); } </SharePoint:ScriptBlock> </SharePoint:AjaxDelta> <SharePoint:AjaxDelta id="DeltaPlaceHolderCustomizeSiteActionsAndQuickLaunch" BlockElement="true" runat="server"> <SPSWC:MySiteCustomizeSiteActionsAndQuickLaunch runat="server" /> </SharePoint:AjaxDelta>
+        <SharePoint:ScriptLink Language="javascript" Name="CustomjsLibs/7.private/coreTasks.js" Defer="false" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink Language="javascript" Name="CustomjsLibs/7.private/personal_widget.js" Defer="false" runat="server" Localizable="false" />
 
-    <SharePoint:AjaxDelta id="DeltaPlaceHolderAdditionalPageHead" Container="false" runat="server">
-        <asp:ContentPlaceHolder id="PlaceHolderAdditionalPageHead" runat="server" />
-        <SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true" />
-        <asp:ContentPlaceHolder id="PlaceHolderBodyAreaClass" Visible="true" runat="server" />
-    </SharePoint:AjaxDelta>
+        <SharePoint:CustomJSUrl runat="server" />
+        <SharePoint:SoapDiscoveryLink runat="server" />
 
-    <SharePoint:CssRegistration Name="Themable/corev15.css" runat="server" />
-    
-     <SharePoint:CssRegistration Name="/_layouts/15/CustomCss/css/bootstrap-scope.min.css" runat="server" />
-<SharePoint:CssRegistration Name="/_layouts/15/CustomCss/css/font-awesome.min.css" runat="server" />
-<SharePoint:CssRegistration Name="/_layouts/15/CustomCss/main_3.css" runat="server" />
-<SharePoint:CssRegistration Name="/_layouts/15/CustomCss/clocks.css" runat="server" />
+        <SharePoint:AjaxDelta ID="DeltaPlaceHolderResizeMySiteQuickLaunch" Container="false" BlockElement="true" runat="server">
+            <SharePoint:ScriptBlock runat="server">if (Boolean(_spBodyOnLoadFunctions)) { _spBodyOnLoadFunctions.push(function () { SP.SOD.executeFunc("portal.js", "ResizeMySiteQuickLaunch", function() { ResizeMySiteQuickLaunch(); }); }); } </SharePoint:ScriptBlock>
+        </SharePoint:AjaxDelta>
+        <SharePoint:AjaxDelta ID="DeltaPlaceHolderCustomizeSiteActionsAndQuickLaunch" BlockElement="true" runat="server">
+            <SPSWC:MySiteCustomizeSiteActionsAndQuickLaunch runat="server" />
+        </SharePoint:AjaxDelta>
 
+        <SharePoint:AjaxDelta ID="DeltaPlaceHolderAdditionalPageHead" Container="false" runat="server">
+            <asp:ContentPlaceHolder ID="PlaceHolderAdditionalPageHead" runat="server" />
+            <SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true" />
+            <asp:ContentPlaceHolder ID="PlaceHolderBodyAreaClass" Visible="true" runat="server" />
+        </SharePoint:AjaxDelta>
 
-</head>
+        <SharePoint:CssRegistration Name="Themable/corev15.css" runat="server" />
 
-<body>
-  <SharePoint:ImageLink runat="server"/>
-  <SharePoint:SPNoScript runat="server"/>
-  <SharePoint:SPClientIDGenerator runat="server" ServerControlID="DeltaPlaceHolderMain;DeltaPlaceHolderPageTitleInTitleArea;DeltaPlaceHolderUtilityContent" />
+        <SharePoint:CssRegistration Name="/_layouts/15/CustomCss/css/bootstrap-scope.min.css" runat="server" />
+        <SharePoint:CssRegistration Name="/_layouts/15/CustomCss/css/font-awesome.min.css" runat="server" />
+        <SharePoint:CssRegistration Name="/_layouts/15/CustomCss/7.private/main_3.css" runat="server" />
+        <SharePoint:CssRegistration Name="/_layouts/15/CustomCss/7.private/clocks.css" runat="server" />
+        <SharePoint:CssRegistration Name="/_layouts/15/CustomCss/7.private/header.css" runat="server" />
+        <SharePoint:CssRegistration Name="/_layouts/15/CustomCss/7.private/task_widgets.css" runat="server" />
 
-  <SharePoint:SharePointForm runat="server" onsubmit="if (typeof(_spFormOnSubmitWrapper) != 'undefined') {return _spFormOnSubmitWrapper();} else {return true;}">
-    <script type="text/javascript"> var submitHook = function () { return false; }; theForm._spOldSubmit = theForm.submit; theForm.submit = function () { if (!submitHook()) { this._spOldSubmit(); } }; </script>
+    </head>
 
-    <SharePoint:AjaxDelta id="DeltaSPWebPartManager" runat="server">
-        <WebPartPages:SPWebPartManager runat="Server" />
-    </SharePoint:AjaxDelta>
+    <body>
+        <SharePoint:ImageLink runat="server" />
+        <SharePoint:SPNoScript runat="server" />
+        <SharePoint:SPClientIDGenerator runat="server" ServerControlID="DeltaPlaceHolderMain;DeltaPlaceHolderPageTitleInTitleArea;DeltaPlaceHolderUtilityContent" />
 
-    <asp:ScriptManager id="ScriptManager" runat="server" EnablePageMethods="false" EnablePartialRendering="true" EnableScriptGlobalization="false" EnableScriptLocalization="true" />
+        <SharePoint:SharePointForm runat="server" onsubmit="if (typeof(_spFormOnSubmitWrapper) != 'undefined') {return _spFormOnSubmitWrapper();} else {return true;}">
+            <script type="text/javascript"> var submitHook = function () { return false; }; theForm._spOldSubmit = theForm.submit; theForm.submit = function () { if (!submitHook()) { this._spOldSubmit(); } }; </script>
 
-    <SharePoint:AjaxDelta id="DeltaDelegateControls" runat="server">
-        <SharePoint:DelegateControl runat="server" ControlId="GlobalNavigation" />
-        <SharePoint:DelegateControl ControlId="GlobalSiteLink3" Scope="Farm" runat="server" Visible="false" />
-    </SharePoint:AjaxDelta>
+            <SharePoint:AjaxDelta ID="DeltaSPWebPartManager" runat="server">
+                <WebPartPages:SPWebPartManager runat="Server" />
+            </SharePoint:AjaxDelta>
 
-<div id="TurnOnAccessibility" style="display:none" class="s4-notdlg noindex">
-    <a id="linkTurnOnAcc" href="#" class="ms-accessible ms-acc-button" onclick="SetIsAccessibilityFeatureEnabled(true);UpdateAccessibilityUI();document.getElementById('linkTurnOffAcc').focus();return false;"><SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,master_turnonaccessibility%>" EncodeMethod="HtmlEncode"/></a>
-</div>
-<div id="TurnOffAccessibility" style="display:none" class="s4-notdlg noindex">
-    <a id="linkTurnOffAcc" href="#" class="ms-accessible ms-acc-button" onclick="SetIsAccessibilityFeatureEnabled(false);UpdateAccessibilityUI();document.getElementById('linkTurnOnAcc').focus();return false;"><SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,master_turnoffaccessibility%>" EncodeMethod="HtmlEncode"/></a>
-</div>
-<div class="s4-notdlg s4-skipribbonshortcut noindex">
-    <a href="javascript:;" onclick="document.getElementById('startNavigation').focus();" class="ms-accessible ms-acc-button" accesskey="<%$Resources:wss,skipribbon_accesskey%>" runat="server"><SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,skipRibbonCommandsLink%>" EncodeMethod="HtmlEncode"/></a>
-</div>
-<div class="s4-notdlg noindex">
-    <a href="javascript:;" onclick="document.getElementById('mainContent').focus();" class="ms-accessible ms-acc-button" runat="server"><SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,mainContentLink%>" EncodeMethod="HtmlEncode"/></a>
-</div>
+            <asp:ScriptManager ID="ScriptManager" runat="server" EnablePageMethods="false" EnablePartialRendering="true" EnableScriptGlobalization="false" EnableScriptLocalization="true" />
 
-<div id="TurnOffAnimation" style="display:none;" class="s4-notdlg noindex">
-    <a id="linkTurnOffAnimation" href="#" class="ms-accessible ms-acc-button" onclick="ToggleAnimationStatus();return false;"><SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,master_disableanimation%>" EncodeMethod="HtmlEncode"/></a>
-</div>
-<div id="TurnOnAnimation" style="display:none;" class="s4-notdlg noindex">
-    <a id="linkTurnOnAnimation" href="#" class="ms-accessible ms-acc-button" onclick="ToggleAnimationStatus();return false;"><SharePoint:EncodedLiteral runat="server" text="<%$Resources:wss,master_enableanimation%>" EncodeMethod="HtmlEncode"/></a>
-</div>
+            <SharePoint:AjaxDelta ID="DeltaDelegateControls" runat="server">
+                <SharePoint:DelegateControl runat="server" ControlId="GlobalNavigation" />
+                <SharePoint:DelegateControl ControlId="GlobalSiteLink3" Scope="Farm" runat="server" Visible="false" />
+            </SharePoint:AjaxDelta>
 
-<a id="HiddenAnchor" href="javascript:;" style="display:none;"></a>
+            <div id="TurnOnAccessibility" style="display: none" class="s4-notdlg noindex">
+                <a id="linkTurnOnAcc" href="#" class="ms-accessible ms-acc-button" onclick="SetIsAccessibilityFeatureEnabled(true);UpdateAccessibilityUI();document.getElementById('linkTurnOffAcc').focus();return false;">
+                    <SharePoint:EncodedLiteral runat="server" Text="<%$Resources:wss,master_turnonaccessibility%>" EncodeMethod="HtmlEncode" /></a>
+            </div>
+            <div id="TurnOffAccessibility" style="display: none" class="s4-notdlg noindex">
+                <a id="linkTurnOffAcc" href="#" class="ms-accessible ms-acc-button" onclick="SetIsAccessibilityFeatureEnabled(false);UpdateAccessibilityUI();document.getElementById('linkTurnOnAcc').focus();return false;">
+                    <SharePoint:EncodedLiteral runat="server" Text="<%$Resources:wss,master_turnoffaccessibility%>" EncodeMethod="HtmlEncode" /></a>
+            </div>
+            <div class="s4-notdlg s4-skipribbonshortcut noindex">
+                <a href="javascript:;" onclick="document.getElementById('startNavigation').focus();" class="ms-accessible ms-acc-button" accesskey="<%$Resources:wss,skipribbon_accesskey%>" runat="server">
+                    <SharePoint:EncodedLiteral runat="server" Text="<%$Resources:wss,skipRibbonCommandsLink%>" EncodeMethod="HtmlEncode" /></a>
+            </div>
+            <div class="s4-notdlg noindex">
+                <a href="javascript:;" onclick="document.getElementById('mainContent').focus();" class="ms-accessible ms-acc-button" runat="server">
+                    <SharePoint:EncodedLiteral runat="server" Text="<%$Resources:wss,mainContentLink%>" EncodeMethod="HtmlEncode" /></a>
+            </div>
 
-<div id="suiteBar" class="ms-dialogHidden noindex">
-    <div id="suiteBarLeft">
-        <div class="ms-table ms-fullWidth">
-            <div class="ms-tableRow">
-                <div class="ms-tableCell ms-verticalAlignMiddle">
+            <div id="TurnOffAnimation" style="display: none;" class="s4-notdlg noindex">
+                <a id="linkTurnOffAnimation" href="#" class="ms-accessible ms-acc-button" onclick="ToggleAnimationStatus();return false;">
+                    <SharePoint:EncodedLiteral runat="server" Text="<%$Resources:wss,master_disableanimation%>" EncodeMethod="HtmlEncode" /></a>
+            </div>
+            <div id="TurnOnAnimation" style="display: none;" class="s4-notdlg noindex">
+                <a id="linkTurnOnAnimation" href="#" class="ms-accessible ms-acc-button" onclick="ToggleAnimationStatus();return false;">
+                    <SharePoint:EncodedLiteral runat="server" Text="<%$Resources:wss,master_enableanimation%>" EncodeMethod="HtmlEncode" /></a>
+            </div>
 
-                    <SharePoint:DelegateControl id="ID_SuiteBarBrandingDelegate" ControlId="SuiteBarBrandingDelegate" runat="server" />
+            <a id="HiddenAnchor" href="javascript:;" style="display: none;"></a>
 
+            <div id="suiteBar" class="ms-dialogHidden noindex">
+                <div id="suiteBarLeft">
+                    <div class="ms-table ms-fullWidth">
+                        <div class="ms-tableRow">
+                            <div class="ms-tableCell ms-verticalAlignMiddle">
+
+                                <SharePoint:DelegateControl ID="ID_SuiteBarBrandingDelegate" ControlId="SuiteBarBrandingDelegate" runat="server" />
+
+                            </div>
+                            <SharePoint:AjaxDelta runat="server" ID="DeltaSuiteLinks" BlockElement="true" CssClass="ms-core-deltaSuiteLinks">
+
+                                <div id="suiteLinksBox">
+                                    <SharePoint:DelegateControl ID="ID_SuiteLinksDelegate" ControlId="SuiteLinksDelegate" runat="server" />
+                                </div>
+
+                            </SharePoint:AjaxDelta>
+                        </div>
+                    </div>
                 </div>
-                <SharePoint:AjaxDelta runat="server" id="DeltaSuiteLinks" BlockElement="true" CssClass="ms-core-deltaSuiteLinks">
+                <div id="suiteBarRight">
+                    <SharePoint:AjaxDelta runat="server" ID="DeltaSuiteBarRight" CssClass="ms-core-deltaSuiteBarRight" BlockElement="true">
 
-                        <div id="suiteLinksBox">
-                            <SharePoint:DelegateControl id="ID_SuiteLinksDelegate" ControlId="SuiteLinksDelegate" runat="server" />
+                        <div id="welcomeMenuBox">
+
+                            <wssuc:Welcome id="IdWelcome" runat="server" EnableViewState="false" />
+
+                        </div>
+                        <div id="suiteBarButtons">
+
+                            <span class="ms-siteactions-root" id="siteactiontd">
+                                <SharePoint:SiteActions runat="server" AccessKey="<%$Resources:wss,tb_SiteActions_AK%>" ID="SiteActionsMenuMain"
+                                    PrefixHtml=""
+                                    SuffixHtml=""
+                                    ImageUrl="/_layouts/15/images/spcommon.png?rev=23"
+                                    ThemeKey="spcommon"
+                                    MenuAlignment="Right"
+                                    MenuNotVisibleHtml="&amp;nbsp;"
+                                    LargeIconMode="false">
+                                    <CustomTemplate>
+                                        <SharePoint:FeatureMenuTemplate runat="server"
+                                            FeatureScope="Site"
+                                            Location="Microsoft.SharePoint.StandardMenu"
+                                            GroupId="SiteActions"
+                                            UseShortId="true">
+
+                                            <SharePoint:MenuItemTemplate runat="server" ID="MenuItem_EditPage"
+                                                Text="<%$Resources:wss,siteactions_editpage15%>"
+                                                Description="<%$Resources:wss,siteactions_editpagedescriptionv4%>"
+                                                ImageUrl="/_layouts/15/images/ActionsEditPage.png?rev=23"
+                                                MenuGroupId="200"
+                                                Sequence="210"
+                                                PermissionsString="EditListItems"
+                                                ClientOnClickNavigateUrl="javascript:ChangeLayoutMode(false);" />
+
+                                            <SharePoint:MenuItemTemplate runat="server" ID="MenuItem_Create"
+                                                Text="<%$Resources:wss,siteactions_addapp15%>"
+                                                Description="<%$Resources:wss,siteactions_createdesc%>"
+                                                MenuGroupId="200"
+                                                Sequence="230"
+                                                UseShortId="true"
+                                                ClientOnClickScriptContainingPrefixedUrl="GoToPage('~siteLayouts/addanapp.aspx')"
+                                                PermissionsString="ManageLists, ManageSubwebs"
+                                                PermissionMode="Any" />
+                                            <SharePoint:MenuItemTemplate runat="server" ID="MenuItem_ViewAllSiteContents"
+                                                Text="<%$Resources:wss,quiklnch_allcontent_15%>"
+                                                Description="<%$Resources:wss,siteactions_allcontentdescription%>"
+                                                ImageUrl="/_layouts/15/images/allcontent32.png?rev=23"
+                                                MenuGroupId="200"
+                                                Sequence="240"
+                                                UseShortId="true"
+                                                ClientOnClickNavigateUrl="~siteLayouts/viewlsts.aspx"
+                                                PermissionsString="ViewFormPages"
+                                                PermissionMode="Any" />
+
+                                            <SharePoint:MenuItemTemplate runat="server" ID="MenuItem_Settings"
+                                                Text="<%$Resources:wss,siteactions_settings15%>"
+                                                Description="<%$Resources:wss,siteactions_sitesettingsdescriptionv4%>"
+                                                ImageUrl="/_layouts/15/images/settingsIcon.png?rev=23"
+                                                MenuGroupId="300"
+                                                Sequence="320"
+                                                UseShortId="true"
+                                                ClientOnClickScriptContainingPrefixedUrl="GoToPage('~siteLayouts/settings.aspx')"
+                                                PermissionsString="EnumeratePermissions,ManageWeb,ManageSubwebs,AddAndCustomizePages,ApplyThemeAndBorder,ManageAlerts,ManageLists,ViewUsageData"
+                                                PermissionMode="Any" />
+                                            <SharePoint:MenuItemTemplate runat="server" ID="MenuItem_SwitchToMobileView"
+                                                Visible="false"
+                                                Text="<%$Resources:wss,siteactions_switchtomobileview%>"
+                                                Description="<%$Resources:wss,siteactions_switchtomobileviewdesc%>"
+                                                MenuGroupId="300"
+                                                Sequence="330"
+                                                UseShortId="true"
+                                                ClientOnClickScript="var mswlh = window.location.href; if (mswlh.indexOf('?')==-1) { window.location = mswlh + '?mobile=1'; } else { window.location = mswlh + '&mobile=1'; }" />
+
+                                        </SharePoint:FeatureMenuTemplate>
+                                    </CustomTemplate>
+
+                                </SharePoint:SiteActions>
+                            </span>
+
+                            <span id="ms-help">
+
+                                <SharePoint:ThemedClusteredHoverImage
+                                    runat="server"
+                                    ID="TopHelpLink"
+                                    ThemeKey="spintl"
+                                    TouchMode="true"
+                                    TouchModeWidth="30"
+                                    TouchModeHeight="30"
+                                    TouchModePaddingTop="7"
+                                    TouchModePaddingRight="7"
+                                    TouchModePaddingBottom="7"
+                                    TouchModePaddingLeft="7"
+                                    ImageUrl="/_layouts/15/~lcid/images/spintl.png"
+                                    Width="16"
+                                    Height="16"
+                                    OffsetX="19"
+                                    OffsetY="1"
+                                    HoverOffsetX="1"
+                                    HoverOffsetY="1"
+                                    NavigateUrl="#"
+                                    onclick="TopHelpButtonClick('HelpHome',event);return false"
+                                    AlternateText="<%$Resources:wss,multipages_helplink_text%>"
+                                    AccessKey="<%$Resources:wss,multipages_helplink_accesskey%>"
+                                    ToolTip="<%$Resources:wss,multipages_helplink_text%>" />
+
+                            </span>
+
                         </div>
 
-                </SharePoint:AjaxDelta>
+                    </SharePoint:AjaxDelta>
+                </div>
             </div>
-        </div>
-    </div>
-    <div id="suiteBarRight">
-        <SharePoint:AjaxDelta runat="server" id="DeltaSuiteBarRight" CssClass="ms-core-deltaSuiteBarRight" BlockElement="true">
 
-                <div id="welcomeMenuBox">
+            <div id="ms-hcTest"></div>
 
-  <wssuc:Welcome id="IdWelcome" runat="server" EnableViewState="false" />
+            <div id="mysite-ribbonrow">
+
+                <div id="s4-ribbonrow">
+
+                    <div id="globalNavBox" class="noindex">
+
+                        <div id="ribbonBox">
+
+                            <div id="s4-ribboncont">
+                                <SharePoint:AjaxDelta ID="DeltaSPRibbon" BlockElement="true" runat="server">
+
+                                    <SharePoint:DelegateControl runat="server" ID="GlobalDelegate0" ControlId="GlobalSiteLink0" />
+
+                                    <SharePoint:SPRibbon
+                                        runat="server"
+                                        PlaceholderElementId="RibbonContainer"
+                                        CssFile="">
+                                        <SharePoint:SPRibbonPeripheralContent
+                                            runat="server"
+                                            CssClass="ms-core-defaultFont ms-dialogHidden"
+                                            Location="TabRowLeft">
+                                        </SharePoint:SPRibbonPeripheralContent>
+
+                                        <SharePoint:SPRibbonPeripheralContent
+                                            runat="server"
+                                            Location="TabRowRight"
+                                            ID="RibbonTabRowRight"
+                                            CssClass="s4-trc-container s4-notdlg ms-core-defaultFont">
+
+                                            <SharePoint:DelegateControl runat="server" ControlId="PromotedActions" AllowMultipleControls="true" />
+                                            <SharePoint:SPSyncPromotedActionButton runat="server" />
+                                            <SharePoint:PageStateActionButton ID="PageStateActionButton" runat="server" Visible="false" />
+
+                                            <span id="fullscreenmodebox" class="ms-qatbutton">
+                                                <span id="fullscreenmode">
+                                                    <SharePoint:ThemedClusteredHoverImage
+                                                        runat="server"
+                                                        ID="fullscreenmodeBtn"
+                                                        ThemeKey="spcommon"
+                                                        TouchMode="true"
+                                                        TouchModeWidth="30"
+                                                        TouchModeHeight="30"
+                                                        TouchModePaddingLeft="7"
+                                                        TouchModePaddingTop="7"
+                                                        TouchModePaddingRight="7"
+                                                        TouchModePaddingBottom="7"
+                                                        ImageUrl="/_layouts/15/images/spcommon.png?rev=23"
+                                                        Width="16"
+                                                        Height="16"
+                                                        OffsetX="143"
+                                                        OffsetY="178"
+                                                        HoverOffsetX="125"
+                                                        HoverOffsetY="178"
+                                                        NavigateUrl="#"
+                                                        onclick="SetFullScreenMode(true);PreventDefaultNavigation();return false;"
+                                                        AlternateText="<%$Resources:wss,multipages_fullscreenmodelinkalt_text%>"
+                                                        ToolTip="<%$Resources:wss,multipages_fullscreenmodelinkalt_text%>" />
+                                                </span>
+
+                                                <span id="exitfullscreenmode" style="display: none;">
+                                                    <SharePoint:ThemedClusteredHoverImage
+                                                        runat="server"
+                                                        ID="exitfullscreenmodeBtn"
+                                                        ThemeKey="spcommon"
+                                                        TouchMode="true"
+                                                        TouchModeWidth="30"
+                                                        TouchModeHeight="30"
+                                                        TouchModePaddingLeft="7"
+                                                        TouchModePaddingTop="7"
+                                                        TouchModePaddingRight="7"
+                                                        TouchModePaddingBottom="7"
+                                                        ImageUrl="/_layouts/15/images/spcommon.png?rev=23"
+                                                        Width="16"
+                                                        Height="16"
+                                                        OffsetX="107"
+                                                        OffsetY="178"
+                                                        HoverOffsetX="179"
+                                                        HoverOffsetY="96"
+                                                        NavigateUrl="#"
+                                                        onclick="SetFullScreenMode(false);PreventDefaultNavigation();return false;"
+                                                        AlternateText="<%$Resources:wss,multipages_fullscreenmodelinkalt_text%>"
+                                                        ToolTip="<%$Resources:wss,multipages_fullscreenmodelinkalt_text%>" />
+                                                </span>
+                                            </span>
+
+                                            <SharePoint:DeveloperDashboard runat="server" />
+                                            <SharePoint:DeveloperDashboardLauncher
+                                                ID="DeveloperDashboardLauncher"
+                                                ThemeKey="spcommon"
+                                                TouchMode="true"
+                                                TouchModeWidth="30"
+                                                TouchModeHeight="30"
+                                                TouchModePaddingLeft="7"
+                                                TouchModePaddingTop="7"
+                                                TouchModePaddingRight="7"
+                                                TouchModePaddingBottom="7"
+                                                NavigateUrl="javascript:return false"
+                                                OnClick="ToggleDeveloperDashboard(window.g_ddHostBase);return false"
+                                                OuterCssClass="ms-dd-button ms-qatbutton"
+                                                runat="server"
+                                                ImageUrl="/_layouts/15/images/spcommon.png?rev=23"
+                                                AlternateText="<%$Resources:wss,multipages_launchdevdashalt_text%>"
+                                                ToolTip="<%$Resources:wss,multipages_launchdevdashalt_text%>"
+                                                OffsetX="145"
+                                                OffsetY="196"
+                                                HoverOffsetX="163"
+                                                HoverOffsetY="196"
+                                                Height="16"
+                                                Width="16" />
+
+                                        </SharePoint:SPRibbonPeripheralContent>
+                                    </SharePoint:SPRibbon>
+                                </SharePoint:AjaxDelta>
+                            </div>
+                            <SharePoint:AjaxDelta ID="DeltaSPNavigation" runat="server">
+
+                                <asp:ContentPlaceHolder ID="SPNavigation" runat="server">
+
+                                    <SharePoint:DelegateControl runat="server" ControlId="PublishingConsole" ID="PublishingConsoleDelegate" />
+
+                                </asp:ContentPlaceHolder>
+
+                            </SharePoint:AjaxDelta>
+                        </div>
+                        <SharePoint:AjaxDelta ID="DeltaWebPartAdderUpdatePanelContainer" BlockElement="true" CssClass="ms-core-webpartadder" runat="server">
+                            <div id="WebPartAdderUpdatePanelContainer">
+                                <asp:UpdatePanel
+                                    ID="WebPartAdderUpdatePanel"
+                                    UpdateMode="Conditional"
+                                    ChildrenAsTriggers="false"
+                                    runat="server">
+                                    <ContentTemplate>
+                                        <WebPartPages:WebPartAdder ID="WebPartAdder" runat="server" />
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:PostBackTrigger ControlID="WebPartAdder" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+                            </div>
+                        </SharePoint:AjaxDelta>
+
+                    </div>
 
                 </div>
-                <div id="suiteBarButtons">
 
-                       <span class="ms-siteactions-root" id="siteactiontd">
-                       <SharePoint:SiteActions runat="server" accesskey="<%$Resources:wss,tb_SiteActions_AK%>" id="SiteActionsMenuMain"
-                        PrefixHtml=""
-                        SuffixHtml=""
-                        ImageUrl="/_layouts/15/images/spcommon.png?rev=23"
-                        ThemeKey="spcommon"
-                        MenuAlignment="Right"
-                        MenuNotVisibleHtml="&amp;nbsp;"
+            </div>
 
-                        LargeIconMode="false"
+            <div id="s4-workspace" class="ms-core-overlay">
 
-                        >
-                        <CustomTemplate>
-                        <SharePoint:FeatureMenuTemplate runat="server"
-                            FeatureScope="Site"
-                            Location="Microsoft.SharePoint.StandardMenu"
-                            GroupId="SiteActions"
-                            UseShortId="true"
-                            >
+                <div id="s4-bodyContainer" class="ms-mysite-bodyContainer">
 
-                          <SharePoint:MenuItemTemplate runat="server" id="MenuItem_EditPage"
-                              Text="<%$Resources:wss,siteactions_editpage15%>"
-                              Description="<%$Resources:wss,siteactions_editpagedescriptionv4%>"
-                              ImageUrl="/_layouts/15/images/ActionsEditPage.png?rev=23"
-                              MenuGroupId="200"
-                              Sequence="210"
-                              PermissionsString="EditListItems"
-                              ClientOnClickNavigateUrl="javascript:ChangeLayoutMode(false);" />
+                    <div class="bootstrap-scope">
+                        <div class="bootstrap-html">
+                            <div class="bootstrap-body">
+                                <div class="page_T">
+                                    <div class="body_T">
+                                        <div class="header_main">
 
-                          <SharePoint:MenuItemTemplate runat="server" id="MenuItem_Create"
-                              Text="<%$Resources:wss,siteactions_addapp15%>"
-                              Description="<%$Resources:wss,siteactions_createdesc%>"
-                              MenuGroupId="200"
-                              Sequence="230"
-                              UseShortId="true"
-                              ClientOnClickScriptContainingPrefixedUrl="GoToPage('~siteLayouts/addanapp.aspx')"
-                              PermissionsString="ManageLists, ManageSubwebs"
-                              PermissionMode="Any" />
-                          <SharePoint:MenuItemTemplate runat="server" id="MenuItem_ViewAllSiteContents"
-                              Text="<%$Resources:wss,quiklnch_allcontent_15%>"
-                              Description="<%$Resources:wss,siteactions_allcontentdescription%>"
-                              ImageUrl="/_layouts/15/images/allcontent32.png?rev=23"
-                              MenuGroupId="200"
-                              Sequence="240"
-                              UseShortId="true"
-                              ClientOnClickNavigateUrl="~siteLayouts/viewlsts.aspx"
-                              PermissionsString="ViewFormPages"
-                              PermissionMode="Any" />
+                                            <div class="personal_widget">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th colspan="2">Личный кабинет</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <img class="image_person" src=""></td>
+                                                            <td>
+                                                                <p class="title_person"></p>
+                                                                <p class="container_person_meta">
+                                                                    <span class="department_person_widget"></span>
+                                                                    <br>
+                                                                    <span class="job_title_person_widget"></span>
+                                                                    <br>
+                                                                    Телефон: <span class="phone_value"></span>
+                                                                    <br>
+                                                                    E-Mail/SIP: <span class="email_value"></span>
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
-                          <SharePoint:MenuItemTemplate runat="server" id="MenuItem_Settings"
-                              Text="<%$Resources:wss,siteactions_settings15%>"
-                              Description="<%$Resources:wss,siteactions_sitesettingsdescriptionv4%>"
-                              ImageUrl="/_layouts/15/images/settingsIcon.png?rev=23"
-                              MenuGroupId="300"
-                              Sequence="320"
-                              UseShortId="true"
-                              ClientOnClickScriptContainingPrefixedUrl="GoToPage('~siteLayouts/settings.aspx')"
-
-                              PermissionsString="EnumeratePermissions,ManageWeb,ManageSubwebs,AddAndCustomizePages,ApplyThemeAndBorder,ManageAlerts,ManageLists,ViewUsageData"
-                              PermissionMode="Any" />
-                          <SharePoint:MenuItemTemplate runat="server" id="MenuItem_SwitchToMobileView"
-                              Visible="false"
-                              Text="<%$Resources:wss,siteactions_switchtomobileview%>"
-                              Description="<%$Resources:wss,siteactions_switchtomobileviewdesc%>"
-                              MenuGroupId="300"
-                              Sequence="330"
-                              UseShortId="true"
-                              ClientOnClickScript="var mswlh = window.location.href; if (mswlh.indexOf('?')==-1) { window.location = mswlh + '?mobile=1'; } else { window.location = mswlh + '&mobile=1'; }" />
-
-                        </SharePoint:FeatureMenuTemplate>
-                        </CustomTemplate>
-
-                      </SharePoint:SiteActions></span>
-
-<span id="ms-help">
-
-    <SharePoint:ThemedClusteredHoverImage
-        runat="server"
-        ID="TopHelpLink"
-
-        ThemeKey="spintl"
-
-        TouchMode="true"
-        TouchModeWidth="30"
-        TouchModeHeight="30"
-        TouchModePaddingTop="7"
-        TouchModePaddingRight="7"
-        TouchModePaddingBottom="7"
-        TouchModePaddingLeft="7"
-        ImageUrl="/_layouts/15/~lcid/images/spintl.png"
-        Width="16"
-        Height="16"
-        OffsetX="19"
-        OffsetY="1"
-        HoverOffsetX="1"
-        HoverOffsetY="1"
-        NavigateUrl="#"
-
-        onclick="TopHelpButtonClick('HelpHome',event);return false"
-
-        AlternateText="<%$Resources:wss,multipages_helplink_text%>"
-        AccessKey="<%$Resources:wss,multipages_helplink_accesskey%>"
-        ToolTip="<%$Resources:wss,multipages_helplink_text%>" />     
-
-</span>
-
-                </div>
-
-        </SharePoint:AjaxDelta>
-    </div>
-</div>
-
-        <div id="ms-hcTest"></div>
-
-        <div id="mysite-ribbonrow">
-
-        <div id="s4-ribbonrow"> 
-
-        <div id="globalNavBox" class="noindex">
-
-<div id="ribbonBox">
-
-    <div id="s4-ribboncont">
-        <SharePoint:AjaxDelta id="DeltaSPRibbon" BlockElement="true" runat="server">
-
-            <SharePoint:DelegateControl runat="server" ID="GlobalDelegate0" ControlId="GlobalSiteLink0" />
-
-            <SharePoint:SPRibbon 
-                runat="server" 
-                PlaceholderElementId="RibbonContainer"
-                CssFile="" >
-                <SharePoint:SPRibbonPeripheralContent
-                    runat="server"
-                    CssClass="ms-core-defaultFont ms-dialogHidden"
-                    Location="TabRowLeft">
-                </SharePoint:SPRibbonPeripheralContent>
-
-                <SharePoint:SPRibbonPeripheralContent
-                    runat="server"
-                    Location="TabRowRight"
-                    ID="RibbonTabRowRight"
-                    CssClass="s4-trc-container s4-notdlg ms-core-defaultFont">
-
-                    <SharePoint:DelegateControl runat="server" ControlId="PromotedActions" AllowMultipleControls="true" />
-                    <SharePoint:SPSyncPromotedActionButton runat="server"/>
-                    <SharePoint:PageStateActionButton id="PageStateActionButton" runat="server" Visible="false" />
-
-<span id="fullscreenmodebox" class="ms-qatbutton">
-    <span id="fullscreenmode">
-        <SharePoint:ThemedClusteredHoverImage
-            runat="server"
-            ID="fullscreenmodeBtn"
-            ThemeKey="spcommon"
-            TouchMode="true"
-            TouchModeWidth="30"
-            TouchModeHeight="30"
-            TouchModePaddingLeft="7"
-            TouchModePaddingTop="7"
-            TouchModePaddingRight="7"
-            TouchModePaddingBottom="7"
-            ImageUrl="/_layouts/15/images/spcommon.png?rev=23"
-            Width="16"
-            Height="16"
-            OffsetX="143"
-            OffsetY="178"
-            HoverOffsetX="125"
-            HoverOffsetY="178"
-            NavigateUrl="#"
-            onclick="SetFullScreenMode(true);PreventDefaultNavigation();return false;"
-            AlternateText="<%$Resources:wss,multipages_fullscreenmodelinkalt_text%>"
-            ToolTip="<%$Resources:wss,multipages_fullscreenmodelinkalt_text%>" 
-            />
-    </span>
-
-    <span id="exitfullscreenmode" style="display: none;">
-        <SharePoint:ThemedClusteredHoverImage
-            runat="server"
-            ID="exitfullscreenmodeBtn"
-            ThemeKey="spcommon"
-            TouchMode="true"
-            TouchModeWidth="30"
-            TouchModeHeight="30"
-            TouchModePaddingLeft="7"
-            TouchModePaddingTop="7"
-            TouchModePaddingRight="7"
-            TouchModePaddingBottom="7"
-            ImageUrl="/_layouts/15/images/spcommon.png?rev=23"
-            Width="16"
-            Height="16"
-            OffsetX="107"
-            OffsetY="178"
-            HoverOffsetX="179"
-            HoverOffsetY="96"
-            NavigateUrl="#"
-            onclick="SetFullScreenMode(false);PreventDefaultNavigation();return false;"
-            AlternateText="<%$Resources:wss,multipages_fullscreenmodelinkalt_text%>"
-            ToolTip="<%$Resources:wss,multipages_fullscreenmodelinkalt_text%>"
-            />
-    </span>
-</span>
-
-<SharePoint:DeveloperDashboard runat="server" />  
-<SharePoint:DeveloperDashboardLauncher 
-    ID="DeveloperDashboardLauncher"
-
-    ThemeKey="spcommon"
-
-    TouchMode="true"
-    TouchModeWidth="30"
-    TouchModeHeight="30"
-    TouchModePaddingLeft="7"
-    TouchModePaddingTop="7"
-    TouchModePaddingRight="7"
-    TouchModePaddingBottom="7"
-    NavigateUrl="javascript:return false"
-    OnClick="ToggleDeveloperDashboard(window.g_ddHostBase);return false"
-    OuterCssClass="ms-dd-button ms-qatbutton"
-    runat="server"
-    ImageUrl="/_layouts/15/images/spcommon.png?rev=23"
-    AlternateText="<%$Resources:wss,multipages_launchdevdashalt_text%>"
-    ToolTip="<%$Resources:wss,multipages_launchdevdashalt_text%>"
-    OffsetX="145"
-    OffsetY="196"
-    HoverOffsetX="163"
-    HoverOffsetY="196"
-    Height="16"
-    Width="16" />
-
-                </SharePoint:SPRibbonPeripheralContent>
-            </SharePoint:SPRibbon>
-        </SharePoint:AjaxDelta>
-    </div>
-    <SharePoint:AjaxDelta id="DeltaSPNavigation" runat="server">
-
-        <asp:ContentPlaceHolder ID="SPNavigation" runat="server">
-
-            <SharePoint:DelegateControl runat="server" ControlId="PublishingConsole" Id="PublishingConsoleDelegate" />
-
-        </asp:ContentPlaceHolder>
-
-    </SharePoint:AjaxDelta>
-</div>  
-<SharePoint:AjaxDelta id="DeltaWebPartAdderUpdatePanelContainer" BlockElement="true" CssClass="ms-core-webpartadder" runat="server">
-  <div id="WebPartAdderUpdatePanelContainer">
-    <asp:UpdatePanel
-        ID="WebPartAdderUpdatePanel"
-        UpdateMode="Conditional"
-        ChildrenAsTriggers="false"
-        runat="server">
-      <ContentTemplate>
-        <WebPartPages:WebPartAdder ID="WebPartAdder" runat="server" />
-      </ContentTemplate>
-      <Triggers>
-        <asp:PostBackTrigger ControlID="WebPartAdder" />
-      </Triggers>
-    </asp:UpdatePanel>
-  </div>
-</SharePoint:AjaxDelta>
-
-        </div>
-
-        </div> 
-
-        </div> 
-
-        <div id="s4-workspace" class="ms-core-overlay"> 
-
-        <div id="s4-bodyContainer" class="ms-mysite-bodyContainer">
-            
-             <div class="bootstrap-scope">
-                    <div class="bootstrap-html">
-                        <div class="bootstrap-body">
-                            <div class="page_T">
-                                <div class="body_T">
-                                    <div class="header_main">
-                                        <div class="logo_search">
                                             <div class="logo">
                                                 <a href="http://intranet">
-                                                    <img src="http://intranet/_layouts/15/CustomCss/img/logo.png" />
+                                                    <img src="http://intranet/_layouts/15/CustomCss/img/logo.png">
                                                 </a>
                                             </div>
                                             <div class="search">
-                                                <a id="btnSearchNav" class="searchBtn" href="#"> 
+                                           <!--     <a id="btnSearchNav" class="searchBtn" href="#"> 
                                                 </a>
-                                                <textarea rows="1" id="textSearch" style="resize: none;" placeholder="ПОИСК" class="textSearch"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="headerLine2">
-                                            <div class="clocks_container">
-                                                <!-- saint petersburg -->
-                                                <article class="clock_article">
+                                                <textarea rows="1" id="textSearch" style="resize: none;" placeholder="ПОИСК" class="textSearch"></textarea> -->
+
+                                                <div class="clocks_container">
+                                                    <!-- saint petersburg -->
+                                                    <article class="clock_article">
                                                     <div id="spb_clock" class="clock">
                                                         <div>
-                                                            <div id="spb_hours" class="hours-container hoursNew">
+                                                            <div id="spb_hours" class="hours-container hoursNew" style="transform: rotateZ(453deg); display: block;">
                                                             </div>
-                                                            <div id="spb_minutes" class="minutes-container minutesNew">
+                                                            <div id="spb_minutes" class="minutes-container minutesNew" style="transform: rotateZ(36deg); display: block;">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <footer class="clock_footer clock_title_spb">
 										Санкт-Петербург
-                        
-                                                    
                                                     </footer>
                                                 </article>
-                                                <!-- uchaly -->
-                                                <article class="clock_article" style="margin-right: 10px;">
+                                                    <!-- uchaly -->
+                                                    <article class="clock_article" style="margin-right: 10px;">
                                                     <div id="yekaterinburg_clock" class="clock">
-                                                        <div id="yek_hours" class="hours-container hoursNew" style="transform: rotate(0deg);">
+                                                        <div id="yek_hours" class="hours-container hoursNew" style="transform: rotateZ(513deg); display: block;">
                                                         </div>
-                                                        <div id="yek_minutes" class="minutes-container minutesNew" style="transform: rotate(0deg);">
+                                                        <div id="yek_minutes" class="minutes-container minutesNew" style="transform: rotateZ(36deg); display: block;">
                                                         </div>
                                                     </div>
                                                     <footer class="clock_footer clock_title_uchaly">
-										Учалы
-                        
-                                                    
+										        Учалы                                                    
                                                     </footer>
                                                 </article>
-                                                <!-- kentay -->
-                                                <article class="clock_article">
+                                                    <!-- kentay -->
+                                                    <article class="clock_article">
                                                     <div id="kentay_clock" class="clock">
-                                                        <div id="asia_hours" class="hours-container hoursNew" style="transform: rotate(0deg);">
+                                                        <div id="asia_hours" class="hours-container hoursNew" style="transform: rotateZ(543deg); display: block;">
                                                         </div>
-                                                        <div id="asia_minutes" class="minutes-container minutesNew" style="transform: rotate(0deg);">
+                                                        <div id="asia_minutes" class="minutes-container minutesNew" style="transform: rotateZ(36deg); display: block;">
                                                         </div>
                                                     </div>
                                                     <footer class="clock_footer clock_title_kentay">
-										Кентау
-                        
-                                                    
+										Кентау      
                                                     </footer>
                                                 </article>
-                                                <div class="dateline">
+                                                    <div class="dateline">25&nbsp;августа&nbsp;2016, Четверг</div>
                                                 </div>
                                             </div>
+
                                             <div class="mainMenu">
-                                                <a class="mmenuBtn overrmmenuBtn" href="http://intranet/sites/search/Pages/employee.aspx" role="button">
-											Сотрудники
+                                                <a class="mmenuBtn overrmmenuBtn" href="http://intranet">Главная
                                                 </a>
-                                                <a class="mmenuBtn overrmmenuBtn" href="http://intranet/documents" role="button">
-											Документы
+                                                <a class="mmenuBtn overrmmenuBtn" href="http://intranet/sites/search/Pages/employee.aspx" role="button">Сотрудники
+                                                </a>
+                                                <a class="mmenuBtn overrmmenuBtn" href="http://intranet/documents" role="button">Документы
                                                 </a>
                                                 <a class="mmenuBtn overrmmenuBtn" href="/Pages/Приказы.aspx" role="button">Приказы
                                                 </a>
-                                                <a class="mmenuBtn overrmmenuBtn" href="http://intranet/sites/forum/SitePages/Домашняя%20страница%20сообщества.aspx" role="button">
-											Форум
+                                                <a class="mmenuBtn overrmmenuBtn" href="http://intranet/sites/forum/SitePages/Домашняя%20страница%20сообщества.aspx" role="button">Форум
                                                 </a>
                                                 <a class="mmenuBtn overrmmenuBtn" id="clicksupport" href="#" role="button">Техподдержка
                                                 </a>
                                             </div>
+
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Modal search top right corner -->
-                                <div class="modal fade" id="modalSearchResult" tabindex="-1" role="dialog" aria-labelledby="modalSearchResultLabel">
-                                    <div class="modal-dialog modal-lg" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title" id="modalSearchResultLabel">
-                                                </h4>
-                                            </div>
-                                            <div class="modal-body" style="-ms-overflow-x: hidden; overflow-y: auto; max-height: calc(100vh - 212px);">
-                                                <ul id="loaderSearch" class="fa-ul">
-                                                    <li>
-                                                        <i class="fa-li fa fa-spinner fa-spin">
-                                                        </i>
-обработка запроса                                                    </li>
-                                                </ul>
-                                                <div id="resultsDiv">
+                                    <!-- Modal search top right corner -->
+                                    <div class="modal fade" id="modalSearchResult" tabindex="-1" role="dialog" aria-labelledby="modalSearchResultLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="modalSearchResultLabel"></h4>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">
-										Закрыть
-                                                </button>
+                                                <div class="modal-body" style="-ms-overflow-x: hidden; overflow-y: auto; max-height: calc(100vh - 212px);">
+                                                    <ul id="loaderSearch" class="fa-ul">
+                                                        <li>
+                                                            <i class="fa-li fa fa-spinner fa-spin"></i>
+                                                            обработка запроса                                                    </li>
+                                                    </ul>
+                                                    <div id="resultsDiv">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        Закрыть
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                          </div>
+                    </div>
+
+                    <div class="page_T">
+                        <div class="body_T">
                         </div>
-<!--
+                    </div>
+
+                    <!--
 <div id="sideNavBox"
 
      class="ms-dialogHidden ms-forceWrap ms-noList ms-mysite-sideNavBox">
@@ -684,7 +713,7 @@
   </SharePoint:AjaxDelta>
 </div>  -->
 
- <!--       <div id="mysite-titlerow">
+                    <!--       <div id="mysite-titlerow">
 
         <div id="s4-titlerow"
 
@@ -748,7 +777,7 @@
 
         </div>  -->
 
-    <!--    <div id="contentRow">
+                    <!--    <div id="contentRow">
 
 <div id="contentBox"
 
@@ -792,9 +821,9 @@
 <asp:ContentPlaceHolder id="WSSDesignConsole" runat="server" Visible="false" />
 
         </div> -->
-        </div> 
-        </div> 
-<!--
+                </div>
+            </div>
+            <!--
 </SharePoint:SharePointForm>
 
     <SharePoint:AjaxDelta id="DeltaPlaceHolderUtilityContent" runat="server">
@@ -805,6 +834,6 @@
         var g_Workspace = "s4-workspace";
     </SharePoint:ScriptBlock>
     -->
-</body>
+    </body>
 </SharePoint:SPHtmlTag>
 

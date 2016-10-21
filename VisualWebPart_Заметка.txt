@@ -1,0 +1,1 @@
+no fotgote activate feature for visualwebpart if demand

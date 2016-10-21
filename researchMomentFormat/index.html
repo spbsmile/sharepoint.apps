@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,7 +17,21 @@ Hello
         moment.tz.add("Europe/Moscow|MSK MSD MSK|-30 -40 -40|01020|1BWn0 1qM0 WM0 8Hz0|16e6");
         moment.locale(window.navigator.userLanguage || window.navigator.language);
 
-        console.log(moment().format("LLL")); //17 февраля 2016 г., 16:36
+       // get current month/name it's month
+        var index = parseInt(moment().format('M')) - 1;
+
+        // get last of countMonthForStatistics names month
+
+        var prev = moment().month(index - 1);
+
+        console.log(prev.format("MM"));
+
+        var prevprev = moment().month(index - 2);
+
+        console.log(prevprev.format("M"));
+
+
+       	console.log(moment().format("LLL")); //17 февраля 2016 г., 16:36
         console.log(moment().format("HH:mm"));//16:30
         console.log(moment().format("D MMMM HH:mm"));//18 апреля 16:04
         console.log(moment().format("LL")); //17 февраля 2016 г.
